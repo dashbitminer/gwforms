@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <base target="_top">
+    <title> Formación en intervencionista SanaMente</title>
+   <link href="/static/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+   <link rel="stylesheet" href="/static/bootstrap-select/dist/css/bootstrap-select.min.css">
+   <link rel="icon" href="https://gwdata.org/images/favicon.png" type="image/png">
+  </head>
+
+  <link rel="stylesheet" href="/public/CSS/estilos_sanamente_intervencion.css" type="text/css">
+
+  <body class="bg-custom">
+
+
+<div class="container">
+  <img src="/public/IMG/Sanamente.png" class="img-fluid" alt="Glasswing" />
+
+  <form action="/sanamente/modulo/intervencionista/post" method="POST" enctype="multipart/form-data" id="formualrioRegistro" name="formualrioRegistro" class="needs-validation" novalidatez>
+
+      {{range .}}
+      {{if eq .Idpregunta -3}}
+      <h2> Actividad de cierre - formación en intervencionista SanaMente {{ .Respuesta}}</h2>
+      {{end}}
+      {{end}}
+      <p style="text-align: justify;">
+        A continuación, se te presenta una serie de preguntas sobre lo compartido durante la formación. El objetivo es conocer cómo el proceso formativo apoya en tu conocimiento y cómo Glasswing puede continuar mejorando su implementación. 
+        <br><br>
+        Toda la información recolectada es de uso exclusivo para los objetivos del programa y será manejada únicamente por el equipo de SanaMente, además Glasswing se compromete a seguir medidas de seguridad para resguardar la información recogida. El resultado de estas preguntas no tendrá ninguna repercusión en tu participación en la actividad, ni en tu trabajo, por lo que puedes sentir completa confianza al contestar ya que no existe ningún riesgo asociado.La información como documento de identidad tiene como única finalidad el registro de las y los participantes y su fácil identificación entre todos los(as) demás participantes. 
+        <br><br>        
+        Agradecemos de antemano tus respuestas.
+        <br>
+      </p> 
+
+        <div class="col">
+          <label for="gi" class="form-label">1. Selecciona tu nacionalidad:</label>
+          <select class="form-select" id="nacionalidad" name="nacionalidad" required onchange="activaselect51()">
+          <option value="" selected></option>
+          {{range .}}
+          {{if eq .Idpregunta -9}}
+          <option value="1">{{ .Respuesta}}</option>
+          {{end}}
+          {{end}}
+          <option value="0">Extranjero(a)</option>
+          </select>
+        </div> 
+
+        {{range .}}
+        {{if eq .Idpregunta -6}}
+          <label for="DUIMl" id="DUIMl" class="form-label">2. Escribe el número de tu {{ .Respuesta}}:</label>
+        {{end}}
+        {{end}}
+        {{range .}}
+        {{if eq .Idpregunta -7}}  
+        <input type="text" name="DUIM" id="DUIM" class="form-control" placeholder="{{ .Respuesta}}" onchange="validateFormat()" oninput="hideAlert()" required >
+        {{end}}
+        {{end}}
+          <div id="alertContainer" style="display: none;"></div>
+
+        <div class="col">
+          <label for="nombrecompleto" class="form-label">3. Escribe tus nombres y apellidos completos:*</label>
+          <input type="text" name="nombreCompleto" id="nombreCompleto" class="form-control"  required>
+        </div>
+
+        <div class="col">
+          {{range .}}
+          {{if eq .Idpregunta -4}}
+          <label for="pais" class="form-label">4. Selecciona {{ .Respuesta}} donde se encuentra la sede a la que perteneces:*</label>
+          {{end}}
+          {{end}}
+          <select class="form-select" id="pais2" name="pais2"  onchange="actualizarmun(this.value)" required >
+                <option value=""></option>
+                {{range .}}
+                {{if eq .Idpregunta -1}} 
+                <option value="{{.Id}}">{{.Respuesta}}</option>
+                {{end}}
+                {{end}}
+              </select>  
+          </div>
+        <div class="col">
+                {{range .}}
+                {{if eq .Idpregunta -5}}
+                <label for="departamento2" class="form-label">5. Selecciona {{ .Respuesta}} donde se encuentra la sede a la que perteneces:*</label>
+                {{end}}
+                {{end}}
+                <select class="form-select" id="departamento2" name="departamento2"   onchange="actualizarsede(this.value)" required>
+            </select>
+          </div>
+
+        <div class="col">
+              <label for="sede2" class="form-label">6. Selecciona la sede a la que perteneces:*</label>
+              <select class="form-control selectpicker first-disabled" data-live-search="true" id="sede2" name="sede2" required="true" >
+                <option value=""></option>
+          </select>
+        </div>
+
+        <div class="col">
+          <label for="apellido" class="form-label">7. Seleccionar el nombre de la persona que facilitó este proceso formativo:</label>
+          <select class="form-control selectpicker first-disabled" data-live-search="true" id="apellido" name="apellido" required >
+            <option value=""></option>
+            {{range .}}
+            {{if eq .Idpregunta -2}} 
+            <option value="{{.Id}}">{{.Respuesta}}</option>
+            {{end}}
+            {{end}}
+          </select>  
+        </div>
+                     
+        <div class="col">
+          <label for="fechaform" class="form-label">8. Fecha de la formación:</label>
+          <input type="date" id="fechaform" name="fechaform" class="form-control" readonly>
+      </div>
+
+      <br>
+      <h6> A continuación encontrarás una serie de preguntas, agradecemos puedas responderlas de manera individual y recordando lo aprendido en la formación.</h6>
+      <br>
+      <div id="pregunta">
+      <label for="p1" id="p1" class="form-label personalizado">1. Aspecto clave que se tiene que tomar en cuenta en todo el proceso de acompañamiento a una persona:</label>
+      <br> 
+      {{range .}}
+                {{if eq .Idpregunta 1}} 
+                <input type="radio" value="{{.Id}}" name="p{{.Idpregunta}}" onchange="quitar('pregunta{{.Idpregunta}}')" required>{{.Respuesta}}</option><br><br>
+                {{end}}
+                {{end}}
+      </div>
+      <br> 
+      <div id="pregunta2">
+      <label for="p2" class="form-label personalizado">2. ¿Cómo se relacionan los pensamientos, emociones, comportamientos y sensaciones corporales?:</label>
+      <br> 
+      {{range .}}
+                {{if eq .Idpregunta 2}} 
+                <input type="radio" value="{{.Id}}" name="p{{.Idpregunta}}" onchange="quitar('pregunta{{.Idpregunta}}')" required>{{.Respuesta}}</option><br><br>
+                {{end}}
+                {{end}}
+      </div>
+      <br> 
+      <div id="pregunta3">
+      <label for="p3" class="form-label personalizado">3. ¿Por qué hablar sobre salud mental en nuestro trabajo o comunidad puede tener un impacto positivo?:</label>
+      <br>  
+      {{range .}}
+                {{if eq .Idpregunta 3}} 
+                <input type="radio" value="{{.Id}}" name="p{{.Idpregunta}}" onchange="quitar('pregunta{{.Idpregunta}}')" required>{{.Respuesta}}</option><br><br>
+                {{end}}
+                {{end}}
+      </div>
+      <br> 
+      <div id="pregunta4">
+      <label for="p4" class="form-label personalizado">4. ¿Qué es necesario para dar un apoyo básico en salud mental en nuestro trabajo y comunidad?:</label>
+      <br>   
+      {{range .}}
+                {{if eq .Idpregunta 4}} 
+                <input type="radio" value="{{.Id}}" name="p{{.Idpregunta}}" onchange="quitar('pregunta{{.Idpregunta}}')" required>{{.Respuesta}}</option><br><br>
+                {{end}}
+                {{end}}
+      </div>
+      <br> 
+      <div id="pregunta5">
+      <label for="p5" class="form-label personalizado">5. Una pauta clave para acompañar es la VALIDACIÓN, lo cual significa: </label>
+      <br> 
+      {{range .}}
+                {{if eq .Idpregunta 5}} 
+                <input type="radio" value="{{.Id}}" name="p{{.Idpregunta}}" onchange="quitar('pregunta{{.Idpregunta}}')" required>{{.Respuesta}}</option><br><br>
+                {{end}}
+                {{end}}
+      </div>
+      <br>
+      <div id="pregunta6">
+      <label for="p6" class="form-label personalizado">6. Al momento de hacer una intervención, ¿por qué es importante obtener el consentimiento verbal o escrito de la persona?:</label>
+      <br> 
+      {{range .}}
+                {{if eq .Idpregunta 6}} 
+                <input type="radio" value="{{.Id}}" name="p{{.Idpregunta}}" onchange="quitar('pregunta{{.Idpregunta}}')" required>{{.Respuesta}}</option><br><br>
+                {{end}}
+                {{end}}
+      </div>
+      <br>
+    <!-- <div id="pregunta7">
+    <label for="p7" class="form-label personalizado">7. ¿Qué funciones desarrollan los intervencionistas SanaMente dentro de las instituciones que cuentan con estos roles?</label>
+    <br> 
+    {{range .}}
+              {{if eq .Idpregunta 7}} 
+              <input type="radio" value="{{.Id}}" name="p{{.Idpregunta}}" onchange="quitar('pregunta{{.Idpregunta}}')" required>{{.Respuesta}}</option><br><br>
+              {{end}}
+              {{end}}
+    </div>
+    <br>
+    <div id="pregunta8">
+    <label for="p8" class="form-label personalizado">8. ¿Puede una persona que no es profesional de la salud mental atender casos relacionados al suicidio, trastornos de la salud mental o violencia de pareja?</label>
+    <br> 
+              <input type="radio" value="157" name="p8" onclick="ocultar()" required>a. Sí</option><br><br>
+              <input type="radio" value="158" name="p8" onclick="mostrar()" required>b. No</option><br><br>
+              
+    </div>
+    <br>
+    <div id="pregunta8.1" class = "d-none">
+    <label for="p9" class="form-label personalizado">8.1 Según lo discutido en la formación, ¿por qué una persona que no es profesional de la salud mental no puede atender casos relacionados al suicidio, trastornos de la salud mental o violencia de pareja?</label>
+    <br> 
+    {{range .}}
+              {{if eq .Idpregunta 9}} 
+              <input type="radio" value="{{.Id}}" name="p{{.Idpregunta}}" onchange="quitar('pregunta{{.Idpregunta}}')" id="{{.Id}}">{{.Respuesta}}</option><br><br>
+              {{end}}
+              {{end}}
+    </div> -->
+      <br>
+      {{range .}}
+      {{if eq .Idpregunta -3}}
+      <input type="hidden" name="idp" value="{{.Id}}" id="idp">
+      {{end}}
+      {{end}}
+      <input type="hidden" name="modulo" value="1" id="modulo">
+      <input type="hidden" name="version" value="2" id="version">
+        <button class="btn btn-primary" id="boton" type="submit"> Enviar</button>
+        <br>
+        <br>
+      </form>
+</div>
+   <script src="/static/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="/public/JS/sanamente/moduloInterv.js"></script>
+    <script src="/static/jquery/dist/jquery.min.js"></script>
+    <script src="/static/bootstrap-select/dist/js/bootstrap-select.min.js"></script>
+    
+    
+    <script>
+      function validateFormat() {
+       var formatInput = document.getElementById("DUIM").value;
+       {{range .}}
+       {{if eq .Idpregunta -8}}
+       var formatRegex = new RegExp('{{.Respuesta}}');
+       {{end}}
+       {{end}}
+       var select = document.getElementById("nacionalidad");
+       if(select.value==="1"||select.value===""){
+            if (!formatRegex.test(formatInput)) {
+                {{range .}}
+                {{if eq .Idpregunta -6}}
+                var alertContainer = document.getElementById("alertContainer");
+                alertContainer.innerHTML = '<div class="alert alert-danger" role="alert">El formato del {{.Respuesta}} no es válido.</div>';
+                alertContainer.style.display = "block";
+                return false;
+                {{end}}
+                {{end}}
+            }
+        }
+        return true;
+      }     
+
+      function activaselect51(){
+      var select = document.getElementById("nacionalidad");
+      var labelOutput = document.getElementById("DUIMl");
+      if(select.value==="1"){
+        {{range .}}
+        {{if eq .Idpregunta -6}}    
+        labelOutput.innerHTML = "Escribe el número de tu {{.Respuesta}}:"
+        {{end}}
+        {{end}}
+        {{range .}}
+        {{if eq .Idpregunta -7}}
+        document.getElementById("DUIM").placeholder = "{{.Respuesta}}";
+        {{end}}
+        {{end}}
+          } else {
+          labelOutput.innerHTML = "Escribe el número de tu Documento de Identidad"
+          document.getElementById("DUIM").placeholder = ""
+        } 
+      }
+    </script>
+
+
+  </body>
+
+</html>

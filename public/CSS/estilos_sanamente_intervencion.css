@@ -1,0 +1,49 @@
+label.personalizado {
+    color: #005A60;
+  }
+
+  .bg-custom {
+    background-color: #D6DBFF; 
+  }
+
+  input[type="radio"] {
+    transform: scale(1.5);
+    vertical-align: middle;
+    margin-right: 0.5em;
+  }
+ 
+  body {
+  zoom: 250%;
+  font-family: 'Poppins_regular', sans-serif;
+}
+
+@font-face {
+  font-family: 'Poppins_regular';
+  src: url('Fuentes/Poppins/Poppins-Regular.ttf');
+}
+
+@font-face {
+  font-family: 'Poppins_Bold';
+  src: url('Fuentes/Poppins/Poppins-Bold.ttf');
+}
+
+.pregunta-vacia {
+  border: 2px solid #FF7D81;
+  padding: 5px;
+}
+
+h2 {
+  font-family: 'Poppins_Bold', sans-serif;
+}
+
+.bigger-checkbox {
+  width: 20px;
+  height: 20px;
+  border-radius: 2px;
+  padding: 10px;
+}
+
+label.personalizado2 {
+  color: #005A60;
+  font-size: 30px;
+}

@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Formulario de inscripción participantes 2023</title>
+    <meta charset="utf-8">
+    <base target="_top">
+    <link href="/static/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+  </head>
+  <body>
+
+    <div class="container">
+<img src="/public/IMG/logo.png" class="img-fluid" alt="Glasswing" />
+<form method="POST" id="formualrioRegistro" name="formualrioRegistro" class="needs-validation" action="/educacion/hn/post" enctype="multipart/form-data" novalidatez>
+  <h2> Formulario de inscripción participantes Honduras 2023 </h2>
+     
+  <p style="text-align: justify;">
+     ¡Hola! Te damos la bienvenida a Glasswing International. Es un agrado que quieras participar en nuestras actividades. A continuación, te presentamos un formulario de inscripción que debe ser llenado solamente una vez, sin importar que participes en uno o más clubes, formaciones, cafés comunitarios u otras actividades impartidas por Glasswing International. La información solicitada es para usos exclusivos de Glasswing, te aseguramos que tu información no será compartida con terceros sin tu autorización. Toda la información será guardada con estricta confidencialidad y nada de lo que compartas tendrá repercusiones sobre tu persona o tu participación en las actividades. Si tienes consultas sobre este formulario, puedes hacerlas sin ningún problema a la persona líder de la actividad en cualquier momento.
+     <br><br>
+     Antes de iniciar, nos gustaría conocer si eres menor de edad, ya que si posees menos de 18 años, necesitaremos la autorización de tu adulto responsable.
+ </p>
+<label for="FechaN" class="form-label">Escribe tu fecha de nacimiento o de la persona que participará en las actividades de Glasswing:*</label>
+<input type="date" name="FechaN" id="FechaN" class="form-control" placeholder="dd/mm/aaaa"       onchange="activaselect4()">
+   <br/>
+
+<div id="ocultar" class="container d-none">
+   <div id="menor" class="container d-none">
+<h4>Autorización de uso de información digital</h4>
+<br/>
+<p style="text-align: justify;">
+
+Dado que tienes menos de 18 años, necesitamos que tu adulto responsable autorice que completes este formulario con tus datos. La información que viene a continuación está dirigida a tu adulto responsable, por favor, leerla en conjunto:<br>
+<br> Si usted acepta que la niña, niño o adolescente complete el presente formulario de inscripción con sus datos personales, le solicitamos llenar el siguiente apartado de autorización. La información será de uso exclusivo de Glasswing International y será almacenada en bases de datos internas que provendrán de una plataforma web y se resguadará con debidos protocolos de seguridad. 
+</p> 
+           
+       <p>Yo <input type="text" name="nombreRep" id="nombreRep" class="form-control"></p>
+       
+      
+ <label for="DUIP" class="form-label">, mayor de edad, con número de Documento Nacional de Identidad</label>
+ <input type="text" name="DUIP" id="DUIP" class="form-control" placeholder=""  >
+
+          <label for="parentesco" class="form-label">en mi calidad de </label>
+       <select class="form-select" id="parentesco" name="parentesco" placeholder="Seleccione parentesco con la persona participante">
+        <option value=""  disabled selected>Seleccione parentesco con la persona participante</option>
+         {{range .Parentesco}}
+         <option value="{{.Value}}">{{.Label}}</option>
+         {{end}}
+   </select>
+       <label for="nombreAdolescente" class="form-label"> del niño/niña/adolescente </label>
+       <input type="text" name="nombreAdolescente" id="nombreAdolescente" class="form-control" placeholder="nombre de la niña/niño/adolescente" >
+
+   <label for="edad" class="form-label">, de </label>
+       <input type="number" name="edad" id="edad" min="0" step="1" max="17" class="form-control" placeholder="edad de la niña/niño/adolescente">
+<p style="text-align: justify;">
+de edad, 
+  <select class="form-select" id="aut" name="aut" onchange="activaselect52()" >
+    <option value=""></option>
+    <option value="1">Brindo</option>
+    <option value="2">No brindo</option>
+    </select>
+mi autorización para que mi hijo/a, o niña/niño/adolescente a cargo comparta información personal en el formulario de inscripción a las actividades de Glasswing International, que se estarán realizando durante el año 2023. Estoy informado/a que los datos personales serán utilizados para el registro interno de participantes y serán alojados en una plataforma institucional con acceso restringido. Por lo que entiendo que la información será tratada con rigurosa confidencialidad y nunca será compartida con terceras personas.
+</p>
+</div>   
+<div id="brindo" class="container d-none">
+<p>Coloque su número de teléfono del adulto responsable: <input type="text" name="numResp" id="numResp" class="form-control"></p>
+<br>
+</div>
+</div>
+<div id="brindo3" class="container d-none">
+<p class="text-primary" style="text-align: justify;"> En caso usted no pueda brindar la autorización del llenado de información personal del menor de edad a su cargo, únicamente se le solicitará información de participación en nuestras actividades.</p>
+<p style="text-align: justify;">
+Si usted como adulto responsable del niño/niña/jóven desea recibir mayor información y/o orientación sobre este formulario puede dejarnos sus datos para que el equipo líder de las actividades se ponga en contacto con usted: 
+</p>
+<p>Número de teléfono del adulto responsable: <input type="text" name="numResp" id="numResp" class="form-control"></p>
+</div>
+<div id="brindo2" class="container d-none">
+<h4>DATOS DE IDENTIFICACIÓN</h4>
+
+<p style="text-align: justify;" class="text-primary"> Las preguntas a continuación deberán ser completadas con tu información como participante de las actividades de Glasswing. 	</p>
+        <div class="mb-3">
+          <div class="row">
+  <div class="col">
+          <label for="nombrecompleto" class="form-label">Escribe tus nombres completos:*</label>
+          <input type="text" name="nombreCompleto" id="nombreCompleto" class="form-control"  oninput="activa1()">
+        </div>
+          <div class="col">
+          <label for="apellido" class="form-label">Escribe tus apellidos completos:*</label>
+          <input type="text" name="apellido" id="apellido" class="form-control"   oninput="activa1()">
+        </div>
+          </div>
+        <div class="row">
+
+   <div class="col">
+              <label for="Sexo" class="form-label">Selecciona tu sexo según registro nacional:*</label>
+     <select class="form-select" id="Sexo" name="Sexo"  >
+       <option value=""></option>
+       {{range .Sexo}}
+       <option value="{{.Value}}">{{.Label}}</option>
+     {{end}}
+    </select>
+    </div>
+  </div>
+
+ <div class="row">
+  <div class="col">
+          <label for="pais" class="form-label">Selecciona el departamento en el que resides:*</label>
+          <select class="form-select" id="pais" name="pais"  onchange="actualizarCiudades(this.value)">
+            <option value="" selected></option>
+            {{range .Departamento}}
+            <option value="{{.Value}}">{{.Label}}</option>
+          {{end}}
+      </select>
+    </div>
+  <div class="col">
+          <label for="departamento" class="form-label">Selecciona el municipio en el que resides:*</label>
+           <select class="form-select" id="departamento" name="departamento" >
+            <option value="" selected></option>
+      </select>
+    </div>
+  </div>
+
+  <label for="departamento" class="form-label"> Selecciona tu nacionalidad:*</label>
+  <select class="form-select" id="nacionalidad" name="nacionalidad" >
+   <option value="" selected></option>
+   <option value="1">Hondureño(a)</option>
+   <option value="2">Extranjero(a)</option>
+
+</select>
+ 
+
+<div class="d-none" id="duiparticipante">
+    <label for="DUIM" class="form-label">Escribe el número de tu Documento nacional de identidad:*</label>
+    <input type="text" name="DUIM" id="DUIM" class="form-control" >
+  </div>
+
+  <div class="col">
+       <label for="TdC" class="form-label">¿Te encuentras estudiando actualmente?*</label>
+       <select class="form-select" id="TdC" name="TdC" onchange="activaselect2()" >
+        <option value="" selected></option>
+        {{range .Respuestas}}
+        <option value="{{.Value}}">{{.Label}}</option>
+        {{end}}
+      </select>
+     </div>
+
+ <div id="hidden-question-div" class="col d-none">
+     <label for="Area" class="form-label">Último grado alcanzado*</label>
+            <select class="form-select" id="UT" name="UT"  >
+                <option value="" selected></option>
+                {{range .Ultgrad}}
+                <option value="{{.Value}}">{{.Label}}</option>
+              {{end}}
+            </select>
+    </div>
+    <div id="hidden-question-div2" class="col d-none">
+     <label for="Area" class="form-label">Selecciona tu grado actual:*</label>
+            <select class="form-select" id="GA" name="GA"  onchange="activaselect3()">
+                <option value="" selected></option>
+                {{range .Grado}}
+                <option value="{{.Value}}">{{.Label}}</option>
+              {{end}}
+            </select>
+
+    <div id="hidden-question-div3" class="col d-none">
+     <label for="seccion" class="form-label">Selecciona tu sección:*</label>
+            <select class="form-select" id="seccion" name="seccion"  >
+              <option value="" selected></option>
+              {{range .Seccion}}
+              <option value="{{.Value}}">{{.Label}}</option>
+            {{end}}
+            </select>
+    </div>
+        <div id="hidden-question-div5" class="col d-none">
+     <label for="turno" class="form-label">Selecciona el turno o jornada en la que estudias:*</label>
+            <select class="form-select" id="Turno" name="Turno"  >
+              <option value="" selected></option>
+              {{range .Turno}}
+              <option value="{{.Value}}">{{.Label}}</option>
+            {{end}}
+            </select>
+    </div>
+        
+    </div>
+<div class="col">
+          <label for="dis" class="form-label">¿Posees alguna discapacidad?
+*</label>
+           <select class="form-select" id="dis" name="dis"  onchange="activaselect10()">
+            <option value="" selected></option>
+            {{range .Respuestas}}
+            <option value="{{.Value}}">{{.Label}}</option>
+          {{end}}    
+      </select>
+     </div>
+
+ <div id="hidden-question-div10" class="col d-none">
+    <label for="dis2" class="form-label">¿Cuál?</label><br>
+        <input type="checkbox" name="dis2" value="4"> Física<br>
+        <input type="checkbox" name="dis2" value="2"> Auditiva<br>
+        <input type="checkbox" name="dis2" value="3"> Visual<br>
+        <input type="checkbox" name="dis2" value="5"> Cognitiva o intelectual<br>
+    </div>
+
+<div class="col">
+
+          <label for="TdC" class="form-label">¿Has participado en años anteriores en actividades de Glasswing?*</label>
+           <select class="form-select" id="gp" name="gp" >
+            <option value="" selected></option>
+            {{range .Respuestas}}
+            <option value="{{.Value}}">{{.Label}}</option>
+           {{end}}    
+      </select>
+     </div>
+
+
+
+      <label for="tipo" class="form-label">Selecciona el perfil con el que te identificas:</label>
+      <select class="form-select" id="tipo" name="tipo" >
+        <option value=""></option>
+        {{range .Perfil}}
+        <option value="{{.Value}}">{{.Label}}</option>
+        {{end}}
+      </select>
+
+      <br>
+
+  </div>
+  </div>
+<h4> DATOS DE SEDE </h4>
+      
+<div class="col">
+  <label for="pais" class="form-label">Selecciona el departamento donde se encuentra la escuela/sede a la que perteneces*</label>
+  <select class="form-select" id="pais2" name="pais2"  onchange="actualizarmun(this.value)" required>
+        <option value=""></option>
+        {{range .Depsede}}
+        <option value="{{.Value}}">{{.Label}}</option>
+        {{end}}
+      </select>  
+     
+</select>
+</div>
+<div class="col">
+  <label for="departamento2" class="form-label">Selecciona el municipio donde se encuentra la escuela/sede a la que perteneces*</label>
+   <select class="form-select" id="departamento2" name="departamento2"   onchange="actualizarsede(this.value)" required >
+</select>
+</div>
+
+<div class="col">
+  <label for="sede2" class="form-label">Selecciona la sede/escuela a la que perteneces*</label>
+   <select class="form-select" id="sede2" name="sede2" required >
+    <option value=""></option>
+</select>
+</div>
+
+</br>
+<div >         
+<div id="hidden-question-div6" class="container">
+<div id="mayorpart2" class="d-none">
+    </br>
+<h4>AUTORIZACIÓN DE INFORMACIÓN </h4>
+<P style="text-align: justify;">Hacemos de su conocimiento que la información solicitada es utilizada para nuestros registros internos, en los cuales llevamos un seguimiento de las y los participantes. Los datos son guardados en una plataforma institucional de único acceso para personal de Glasswing International a cargo del monitoreo e implementación del programa. Para efectos de rendición de cuentas con donantes de nuestros programas y/o socios implementadores, se podrá compartir información de forma general sin detalles personales del registro de la persona participante.
+ 
+<br/>
+<div class="form-check">
+<input class="form-check-input" type="checkbox" value="Confirmo" id="aut4"  > Por lo anterior, confirmo que he leido y se me ha informado el uso que se le dará a los datos compartidos en este formulario y reconozco que tengo el derecho de retirar mi autorización en cualquier momento si así lo estimo conveniente. De ser así, puedes enviar un correo a "info_hn@glasswing.org" retirando tu autorización para compartir datos.  
+</P>        
+</div>
+
+<br/>
+
+<h4>DERECHOS DE USO DE IMAGEN Y VOZ</h4>
+<P style="text-align: justify;">Previo al inicio de nuestras actividades, solicitamos la autorización de cada participante para la toma de fotografías y vídeos en grupo y/o individuales de carácter general. Las fotografías y vídeos serán presentadas, divulgadas y/o publicadas exclusivamente en las redes institucionales (página web, redes sociales, herramientas de comunicación, publicación en medios de comunicación, informes u otras), medios de comunicación para divulgar el trabajo de Glasswing y en las redes profesionales de nuestra fundadora, Celina de Sola, y de los socios. 
+No existe ningún riesgo asociado a que autorice la toma de fotografías y vídeos, ya que la única información personal que podrá compartirse será su primer o segundo nombre y el departamento al que pertenece. No se utilizarán aquellos datos que permitan su localización exacta, tales como nombre completo, nombre de la escuela, comunidad y/o municipio de residencia.
+Las fotografías y vídeos tendrán una vigencia de uso de 5 años máximo, lo que significa que, luego de ese periodo, Glasswing International no podrá seguir presentando, divulgando o publicando dichas fotografías y vídeos. A excepción de aquellas imágenes que son parte de reportes o documentos entregados a un tercero y de fotografías que, por su carácter antiguo, sean utilizadas en las presentaciones y publicaciones de aniversarios de Glasswing International.
+Las fotografías, vídeos o historias serán de uso exclusivo de Glasswing, con el objetivo de promover el trabajo de la organización. Las fotos podrán ser utilizadas por la organización o sus socios (cooperación internacional, empresas, organizaciones o centros educativos) con el único fin de promover la labor que se realiza en los programas de Glasswing. Ninguna foto, vídeo o historia se podrá utilizar para fines políticos, religiosos o fines personales de alguien de la institución o ajeno a la organización. Asimismo, ninguna persona externa o personal de Glasswing en carácter personal podrá divulgar sus fotos, voz o video.
+Si tiene alguna duda, puede solicitar apoyo a la persona de Glasswing de su referencia, quien nos comunicará sus dudas y se las aclararemos lo más pronto posible. También puede escribir directamente al correo info_hn@glasswing.org, por este medio nos encargaremos de resolver sus dudas.  
+<br/>
+<br/>
+Si usted autoriza la toma de fotografías y vídeos, le solicitamos completar los siguientes campos:
+<br>Yo <span id="nombrep" style="display: inline;" class="text-primary"></span>, mayor de edad, portador/portadora de mi Documento de Identidad número
+<span id="duil" style="display: inline;" class="text-primary"></span>, habiendo sido informada/informado de los derechos que protegen mi imagen y de la finalidad para la cual se utilizará mi imagen, 
+<span class="form-group d-inline-block">   <select class="form-select" id="aut2" name="aut2" >
+       <option value=""></option>
+       <option value="1">Autorizo</option>
+       <option value="2">No Autorizo</option>
+       </select>  
+      </span>
+a Fundación Crisálida International (Glasswing International) y sus socios para que, en cumplimiento de sus objetivos estrictamente de carácter institucional, pueda publicar, presentar o divulgar mi imagen (fotografía/vídeo) y voz (audio/vídeo) en sus redes institucionales (página web, redes sociales, herramientas de comunicación, publicación en medios de comunicación, informes u otras), así como en las redes profesionales de su fundadora Celina de Sola, y sus socios.
+</P> 
+ </div>
+</div>
+
+<br/>
+ </div>
+<div id="mayorpart" class="d-none">
+<br/>
+<h4>CONSENTIMIENTO DE PARTICIPACIÓN</h4>
+<p style="text-align: justify;">Yo: <span id="nombrep2" style="display: inline;" class="text-primary"></span>, de <span id="edadl" style="display: inline;" class="text-primary"></span>
+años de edad, he sido informada/informado de las actividades que realiza Glasswing International, por tanto, <span class="form-group d-inline-block">   <select class="form-select" id="aut3" name="aut3" >
+  <option value=""></option>
+  <option value="1">ACEPTO</option>
+  </select>  
+ </span> PARTICIPAR DE FORMA VOLUNTARIA en el programa. Comprendo que Glasswing International posee protocolos que protegen mi participación.
+</p>
+</div>
+<br/>
+<button class="btn btn-primary" id="boton" type="submit"> Enviar</button>
+  </div>
+      </form>
+    </div>
+   <script src="/static/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="/public/JS/Participantes/edu.js"></script>
+  </body>
+</html>

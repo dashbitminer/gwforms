@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <base target="_top">
+    <link href="/static/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+.swal2-content.text-justify {
+  text-align: justify;
+}
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="row">
+        <div class="col-12 d-flex justify-content-between">
+          <img src="/public/IMG/LOGO CREANDO.png" class="img-fluid" alt="Glasswing" style="height: 150px; width: auto;" />
+          <img src="/public/IMG/logo.png" class="img-fluid" alt="Glasswing" style="height: 150px; width: auto;" />
+        </div>
+      </div>
+      <br/>
+      <br/>
+      <div class="row">
+        <div class="col-12">
+          <h2>Ficha de interés - Programa Creando Profesionales</h2>
+          <p style="text-align: justify;">
+          ¡Buen día! Te damos la bienvenida a Glasswing y agradecemos tu interés en participar en las actividades del programa Creando Profesionales. A continuación, se te presentan una serie de preguntas que tienen por objetivo recolectar datos básicos que nos permitan dar seguimiento a tu caso y compartirte mayor información sobre el proceso al que estás aplicando. Los datos solicitados son de uso exclusivo de Glasswing y no se compartirán con terceros sin tu previa autorización. Toda la información será guardada con estricta confidencialidad y nada de lo que nos compartas tendrá repercusiones sobre tu persona. Si tienes consultas sobre este formulario, puedes hacerlas sin ningún problema a los siguientes números:
+          <br>
+          San Salvador: 7468-4292 , 7697-7143 , 7349-4899
+          <br>
+          Santa Ana: 7465-5174 , 7290-9804
+          </p>
+        </div>
+      </div>
+       <form id="form">
+        <p>¿Te gustaría completar la ficha de interés presente?</p>
+        <div class="form-check">
+          <input class="form-check-input" type="radio" name="llenado" id="siDisponible" value="1" required onclick="mostrar(this.value)">
+          <label class="form-check-label" for="siDisponible">Sí</label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" type="radio" name="llenado" id="noDisponible" value="0" onclick="mostrar(this.value)">
+          <label class="form-check-label" for="noDisponible">No</label>
+        </div>
+        <div class="d-none" id="todo">
+        <div class="mb-3">
+        <label for="fechaNacimiento" class="form-label">Escribe tu fecha de nacimiento</label>
+        <input type="date" class="form-control" id="fechaNacimiento" name="fechaNacimiento" required onblur="comprobarfecha()">
+      </div>
+      <div class="d-none" id="menor">
+        <p>Al ser menor de edad, ¿Podrías brindar los siguientes datos?</p>
+        <label for="nombreRep" class="form-label">Nombre de tu responsable:</label>
+        <input type="text" class="form-control" id="nombreRep" name="nombreRep" maxlength="300">
+        <label for="telefonoRep" class="form-label">Número de contacto de tu responsable:</label>
+        <input type="tel" class="form-control" id="telefonoRep" pattern="\d{8}" name="telefonoRep" required>
+      </div>
+      <div class="mb-3">
+        <label for="nombreCompleto" class="form-label">Escribe tu nombre completo</label>
+        <input type="text" class="form-control" id="nombreCompleto" name="nombreCompleto" maxlength="300" required>
+      </div>
+        <div class="d-none" id="alertaFecha">
+          <div class="mb-3">
+            <label for="departamentoResidencia" class="form-label">Selecciona tu departamento de residencia</label>
+            <select class="form-select" id="departamentoResidencia" onchange="buscarm(this.value)" name="departamentoResidencia" required>
+              <option disabled selected value=""></option>
+              <!-- <option value="123">San Miguel</option> -->
+              <option value="2">San Salvador</option>
+              <option value="76">San Santa</option>
+            </select>
+          </div>
+          <div class="mb-3">
+            <label for="municipioResidencia" class="form-label">Selecciona tu municipio de residencia</label>
+            <select class="form-select" id="municipioResidencia" name="municipioResidencia" required>
+            </select>
+          </div>
+          <div class="mb-3">
+            <label for="coloniaComunidad" class="form-label">Escribe el nombre de la colonia o comunidad en la que resides</label>
+            <input type="text" class="form-control" id="coloniaComunidad" name="coloniaComunidad" required>
+          </div>
+          <div class="mb-3">
+            <label for="telefonoContacto" class="form-label">Escribe un número de teléfono al que podamos contactarte</label>
+            <input type="tel" class="form-control" id="telefonoContacto" pattern="\d{8}" name="telefonoContacto" required>
+          </div>
+          <div class="mb-3">
+            <p>¿Actualmente te encuentras estudiando o trabajando?</p>
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="disponibilidad" id="siDisponible" value="1" required >
+              <label class="form-check-label" for="siDisponible">Sí</label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="disponibilidad" id="noDisponible" value="0">
+              <label class="form-check-label" for="noDisponible">No</label>
+            </div>
+          </div>
+          <div class="mb-3">
+            <label for="grado" class="form-label">¿Cuál es tu último grado escolar alcanzado?</label>
+            <select class="form-select" id="grado" name="grado" required>
+              <option disabled selected value=""></option>
+              <option value="1">Sexto grado o inferior</option>
+              <option value="7">Séptimo grado</option>
+              <option value="8">Octavo grado</option>
+              <option value="9">Noveno grado</option>
+              <option value="10">Primer año de bachillerato</option>
+              <option value="11">Segundo año de bachillerato</option>
+              <option value="12">Tercer año de bachillerato</option>
+              <option value="13">Educación superior</option>
+            </select>
+          </div>
+          <div class="mb-3">
+            <label for="diplomado" class="form-label">¿En cuál diplomado ofertado por el programa te gustaría participar?</label>
+            <select class="form-select" id="diplomado" name="diplomado" required>
+              <option disabled selected value=""></option>
+              <option value="1">Diplomado de Empleo.</option>
+              <option value="2">Diplomado de Emprendimiento.</option>
+              <option value="3">Diplomado de Estudio.</option>
+            </select>
+          </div>
+          
+          <button type="submit" class="btn btn-primary" onclick="guardar(event)">Enviar</button>
+        </div>
+      </div>
+        </form>
+      </div>
+
+ 
+  </body>
+  <script src="/static/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="/public/JS/MdV/pre.js"></script>
+  <script src="/static/sweetalert2/dist/sweetalert2.all.min.js"></script>
+  </html>
+
+

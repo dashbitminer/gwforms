@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>CARTA DE CONSENTIMIENTO INFORMADO: ADULTO RESPONSABLE PARTICIPANTE DE PROGRAMAS DE GÉNERO</title>
+    <meta charset="utf-8">
+    <base target="_top">
+    <link href="/static/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+  </head>
+
+  <body>
+
+<div class="container"id="contentToPrint">
+  <img src="/public/IMG/Membretada_Mexico.png" class="img-fluid" alt="Glasswing" style="width: 100%;" />
+<form method="POST" id="form" name="form" class="needs-validation" enctype="multipart/form-data" novalidatez>
+
+      <h2> CARTA DE CONSENTIMIENTO INFORMADO: ADULTO RESPONSABLE PARTICIPANTE DE PROGRAMAS DE GÉNERO</h2>
+      <br>
+      <p style='text-align: justify;'>
+        ¡Buen día! Recibe un cordial saludo de Glasswing International.
+        <br>
+        <br>
+        <strong>¿Por qué estás recibiendo esta carta?</strong> Nos encontramos impulsando una iniciativa para entender cómo está funcionando nuestro programa “Club de Niñas” del cual su hija/familiar menor de edad participa.  
+        <br>
+        <br>
+        <b><u>Por eso, queremos solicitar su autorización, como persona adulta responsable, para que la joven pueda participar en una encuesta. Además de su autorización, pediremos el consentimiento a la joven para participar, por lo que ambas personas deberán estar de acuerdo para continuar el proceso: usted como responsable y la joven como participante.</u></b> 
+        Aunque ambos estén de acuerdo en participar, la joven puede dejar de responder las preguntas de la encuesta en cualquier momento o no contestar alguna pregunta si así lo desea. De igual manera, en cualquier parte del proceso tanto usted como la menor de edad a su cargo pueden realizar las preguntas que consideren necesarias. 
+        <br>
+        <br>
+        <strong>¿En qué consiste y cuánto durará la participación de la joven a su cargo?</strong>  La encuesta consiste en una serie de preguntas sobre el programa de Glasswing y tu participación en este. Esta se realizará en un horario de conveniencia, con una duración aproximada de 40 minutos. 
+        <br>
+        <br>
+        <strong>¿Qué riesgos se corre al participar en la encuesta?</strong> No existe ningún riesgo asociado a la participación en la encuesta. Toda la información recolectada se guardará con estricta confidencialidad (no aparecerá el nombre de la menor de edad en ningún lugar) y no se compartirá información de manera individual a terceros. 
+        <br>
+        <br>
+        <strong>¿Qué beneficios puedes tener por participar en la encuesta?</strong> Glasswing quiere revisar el funcionamiento de su programa, así que esta encuesta puede servir para que este mejore y beneficie a más personas. No existe un pago por la participación. 
+        <br>
+        <br>
+        <strong>¿Qué pasa con la información y datos que se generen?</strong> Tal como se mencionó antes, toda la información recopilada será totalmente <i>CONFIDENCIAL</i>. La única persona con acceso a esta será la persona que acompaña el levantamiento y quién analice la información. Asimismo, toda la información se guardará en una base de datos privada de Glasswing International. 
+        <br>
+        <br>
+        <strong>¿Es obligación participar? ¿Pueden retirar su participación?</strong> Su hija/familiar no está obligada a participar y tiene derecho a retirarse del encuestamiento en el momento que estime conveniente, sin necesidad de presentar razones o explicaciones, ni que esto implique alguna consecuencia para ella.
+        <br>
+        <br>
+        <strong>¿A quién puedo contactar para saber más del estudio o si surgen dudas?</strong> Si tiene preguntas adicionales, puede contactar directamente a los coordinadores locales:<br>
+        -Alejandro Díaz Navarro- Coordinador Ciudad de México: <a href="mailto:addiaz@glasswing.org">addiaz@glasswing.org</a><br>
+        -Francisco Rosas Lucas- Coordinador Tijuana, Baja California: <a href="mailto:frosas@glasswing.org">frosas@glasswing.org</a><br>
+        -Alejandro Hernández Mendoza - Coordinador Tapachula, Chiapas: <a href="mailto:amendoza@glasswing.org">amendoza@glasswing.org</a>
+        <br>
+        <br>
+        Por lo anterior manifiesto que:<strong> HE TENIDO LA OPORTUNIDAD DE LEER / DE QUE ME SEA LEÍDA ESTA DECLARACIÓN DE CONSENTIMIENTO INFORMADO Y DE HACER PREGUNTAS ACERCA DEL PROCESO. POR LO TANTO, ACEPTO QUE LA PERSONA MENOR DE EDAD A MI CARGO PARTICIPE EN ESTA ENCUESTA.</strong>
+        <br>
+        <br>
+            <b>YO <input type="text" class="form-control" name="responsable" placeholder="Nombre del adulto responsable" style="display: inline-block; width: 250px; margin: 0 5px;" required maxlength="300">EN CALIDAD DE ADULTO(A) RESPONSABLE DE <input type="text" class="form-control" name="joven" placeholder="Nombre del joven" style="display: inline-block; width: auto; margin: 0 5px;" required maxlength="300"> AUTORIZO LA PARTICIPACIÓN EN ESTA ENCUESTA PARA USO EXCLUSIVO DEL PROGRAMA IMPLEMENTADO POR GLASSWING INTERNATIONAL EN LA FECHA <input type="date" class="form-control" name="fechaautoriza" style="display: inline-block; width: auto; margin: 0 5px;" required></b>.
+      </p>
+
+      <div>
+        <canvas id="Signature1draw" width="750px" height="250px" class="border"></canvas>
+        <br>
+        <button type="button" id="borrar1" class="btn btn-primary" onclick="clearSigniture()">Borrar</button>
+        <br>
+        <br>
+        <div>
+          <input type="radio" id="autorizaSi" name="autoriza" value="1" required>
+          <label for="autorizaSi"><b>Autoriza la participación</b></label>
+        </div>
+        <div>
+          <input type="radio" id="autorizaNo" name="autoriza" value="0">
+          <label for="autorizaNo"><b>No autoriza la participación</b></label>
+        </div>
+      </div>
+      <br>
+      <label for="fechafirma"><b>Fecha de firma: <span id="fechaActual"></span></b></label>
+      <input type="date" hidden id="fechafirma" name="fechafirma">
+      <img src="/public/IMG/Membretada_Mexicofooter.png" class="img-fluid" alt="Glasswing" style="width: 100%;" />
+      <br>
+      <br>
+<button class="btn btn-primary" id="boton" type="submit" onclick="guardar(event)"> Enviar</button>
+      </form>
+    </div>
+   
+   <script src="/static/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+   <script src="/static/sweetalert2/dist/sweetalert2.all.min.js"></script>
+   <script src="/static/signature_pad/dist/signature_pad.umd.min.js"></script>
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+   <script src="/public/JS/Participantes/Salud/consentimientomx.js"></script>   
+  </body>
+</html>

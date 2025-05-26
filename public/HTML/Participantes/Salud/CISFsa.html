@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>FORMULARIO DE INSCRIPCIÓN DE PARTICIPANTES NNA - CISF</title>
+    <meta charset="utf-8">
+    <base target="_top">
+    <link href="/static/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+  </head>
+  <body class="bg-custom">
+
+    <link rel="stylesheet" href="/public/CSS/estilos_nnasv.css" type="text/css">
+
+    <div class="container">
+<img src="/public/IMG/logo.png" class="img-fluid" alt="Glasswing" />
+<form method="POST" id="formualrioRegistro" name="formualrioRegistro" class="needs-validation" action="/salud/nna/cisf/post" enctype="multipart/form-data" novalidatez>
+  <h2>FORMULARIO DE INSCRIPCIÓN DE PARTICIPANTES NNA - CISF ESA</h2>
+ 
+    <p style="text-align: justify;">
+        ¡Buen día! Reciba un cordial saludo de Glasswing International. Este es un formulario para solicitar su autorización para que las jóvenes del Centro de Integración Social Femenino de quienes está a cargo puedan (1) participar en las actividades de talleres psicoeducativos en Bienestar Emocional y Cultura de Paz; y talleres ocupacionales que Glasswing desarrolla en su institución, así como en otras actividades complementarias entre las que se encuentran ferias de salud, convivios, autocuidados y espacios de contención y descarga emocional. Todas las actividades son realizadas dentro de su institución, por lo que las jóvenes no deben movilizarse hacia otro lugar. Adicionalmente, se solicita su autorización para (2) compartir datos personales para el formulario de inscripción. A continuación, se brinda información breve sobre cada uno de estos requisitos. <br>
+        Por favor marque su respuesta en la casilla correspondiente de cada autorización solicitada: <br>
+    </p>
+
+<br>
+<div id="autorizaciones">
+<h4>CAMPO A LLENAR POR ADULTO RESPONSABLE</h4>
+<h5>AUTORIZACIÓN DE PARTICIPACIÓN</h5>
+<p style="text-align: justify;">
+    Esta autorización es necesaria para respaldar que la participación de las adolescentes o jóvenes en las actividades de Talleres psicoeducativos u ocupacionales es voluntaria. Informamos que Glasswing International desarrolla mecanismos de supervisión en sus actividades y que tanto el staff, voluntarias y voluntarios deben cumplir con un código de conducta y lineamientos de Salvaguarda y Protección Infantil. Asimismo, notificamos que la persona representante institucional también debe brindar supervisión adecuada para las adolescentes o jóvenes a cargo en las actividades que lo ameriten.
+  <br>
+ </p>
+<input type="radio" value="1" onchange="ver()" name="autR1" required>Brindo autorización de participación<br>
+<input type="radio" value="0" onchange="ocultar()" name="autR1">No brindo autorización de participación 
+<br>
+<br>
+<div class="d-none" id="datospersonales">
+  <h5>AUTORIZACIÓN PARA COMPARTIR DATOS PERSONALES EN FORMULARIO DE INSCRIPCIÓN</h5>
+  <p style="text-align: justify;">
+    Esta autorización es necesaria para respaldar que la información de las adolescentes o jóvenes que se recolecta en el formulario de inscripción ha sido brindada de forma voluntaria. Algunos ejemplos de la información solicitada son: nombre, edad, nivel de escolaridad, sede de participación, municipio de residencia, entre otros datos. La información será de uso exclusivo de Glasswing International y será almacenada en bases de datos internas con protocolos de seguridad. Además, esta información podría ser compartida con datos anónimos (sin el nombre o información de identificación de las adolescentes o jóvenes a su cargo) o de forma general con donantes del programa y socios en reportes de rendición y seguimientos elaborados por Glasswing International.
+    <br>
+   </p>
+   <input type="radio" value="1" onchange="ver1()" name="autR2" required>Brindo autorización para recolección y uso de información<br>
+   <input type="radio" value="0" onchange="ocultar1()" name="autR2">No brindo autorización para recolección y uso de información
+   <br>
+   <br>
+
+<div class="d-none" id="datospersonales1">
+<label for="contacto" class="form-label"><b>Nombres y apellidos completos del representante institucional:</b></label>
+<input type="text" name="contacto" id="contacto" class="form-control" required maxlength="400">
+
+<label for="cargo" class="form-label"><b>Cargo y nombre de la institución:</b></label>
+<input type="text" name="cargo" id="cargo" class="form-control" required maxlength="400">
+
+<label for="DUIMl" id="DUIMl" class="form-label"><b>Número de documento único de Identidad:</b></label>
+<input type="text" name="DUIM" id="DUIM" class="form-control" placeholder="00000000-0" onchange="validateFormat()" oninput="hideAlert()" maxlength="10">
+<div id="alertContainer" style="display: none;"></div>
+
+<label for="Telcontacto" class="form-label"><b>Número de teléfono:</b></label>
+<input type="text" name="Telcontacto" id="Telcontacto" class="form-control" required minlength="8" maxlength="20">
+
+<p style="text-align: justify;">
+    Hago constar que conozco toda la información necesaria para la participación de las adolescentes/jóvenes (autorización de participación y autorización para compartir datos) y que los campos de autorización han sido marcados por mi persona.
+</p>
+
+<h4>CAMPO A LLENAR POR LA NIÑA, ADOLESCENTE O JOVEN</h4>
+<h5>AUTORIZACIÓN DE PARTICIPACIÓN</h5>
+<p style="text-align: justify;">
+Es necesaria para respaldar que tu participación como niña, adolescente o joven es voluntaria. Informamos que Glasswing International desarrolla mecanismos de supervisión en sus actividades y, tanto el staff, voluntarias y voluntarios, deben cumplir con un Código de Conducta y lineamientos de Salvaguarda y Protección Infantil. Estos programas y actividades pueden desarrollarse de manera presencial o virtual, y que la institución también debe brindar supervisión adecuada en las actividades que lo ameriten.
+  <br>
+ </p>
+ 
+<input type="radio" value="1" onchange="ver3()" name="autm1"> Sí acepto participar de forma voluntaria<br>
+<input type="radio" value="0" onchange="ocultar3()" name="autm1">No acepto participar<br>
+<br>
+
+<div class="d-none" id="datospersonales3">
+  <h5>AUTORIZACIÓN PARA COMPARTIR DATOS PERSONALES EN FORMULARIO DE INSCRIPCIÓN</h5>
+  <p style="text-align: justify;">
+  Es necesaria para respaldar que tu información de inscripción como niña, adolescente o joven ha sido brindada de forma voluntaria, de acuerdo con los campos que se encuentran al final de esta ficha. La información será utilizada exclusivamente por Glasswing International y se almacenará de forma segura; asimismo, podría compartirse en reportes e informes con donantes y socios, manteniendo tu confidencialidad.
+    <br>
+   </p>
+   <input type="radio" value="1" onchange="ver4()" name="autm2" required>Sí acepto la recolección y uso de mi información<br>
+   <input type="radio" value="0" onchange="ocultar4()" name="autm2">No acepto la recolección y uso de mi información<br>
+   <br>
+
+   <p style="text-align: justify;">
+    Doy fe que conozco toda la información necesaria para mi participación en el programa y que los campos de autorización han sido marcados por mi persona (asentimiento de participación y asentimiento de uso de información).
+   </p>
+<br>
+<div class="d-none" id="datospersonales4">
+<h4>INFORMACIÓN PERSONAL DE LA NIÑA, ADOLESCENTE O JOVEN</h4>
+
+<div class="col">
+    <label for="nombre" class="form-label"><b>Nombres completos:</b></label>
+    <input type="text" name="nombre" id="nombre" class="form-control" required maxlength="200">
+</div>
+    <div class="col">
+    <label for="apellido" class="form-label"><b>Apellidos completos:</b></label>
+    <input type="text" name="apellido" id="apellido" class="form-control" required maxlength="200">
+  </div>
+
+  <label for="FechaN" class="form-label"><b>Fecha de nacimiento:</b></label>
+  <input type="date" name="FechaN" id="FechaN" class="form-control" placeholder="dd/mm/aaaa" required>
+
+  <div class="col">
+    <label for="Sexo" class="form-label"><b>Selecciona tu sexo según registro nacional:</b></label>
+    <select class="form-select" id="Sexo" name="Sexo"  required>
+    <option value=""></option>
+    {{range .Sexo}}
+    <option value="{{.Value}}">{{.Label}}</option>
+    {{end}}
+    </select>
+</div>
+
+<div class="col">
+    <label for="pais" class="form-label"><b>Selecciona tu departamento de origen:</b></label>
+    <select class="form-select" id="pais" name="pais"  onchange="actualizarCiudades(this.value)" required>
+      <option value="" selected></option>
+      {{range .Departamento}}
+      <option value="{{.Value}}">{{.Label}}</option>
+    {{end}}
+  </select>
+  </div>
+  <div class="col">
+    <label for="departamento" class="form-label"><b>Selecciona tu municipio de origen:</b></label>
+     <select class="form-select" id="departamento" name="departamento" required>
+      <option value="" selected></option>
+  </select>
+  </div>
+
+  <div id="llenadofecha">
+      <label for="nacionalidad" class="form-label"><b>Selecciona tu nacionalidad:</b></label>
+      <select class="form-select" id="nacionalidad" name="nacionalidad" required>
+       <option value="" selected></option>
+       <option value="1">Salvadoreño(a)</option>
+       <option value="0">Extranjero(a)</option>
+    </select>
+
+<div class="col">
+    <label for="dis" class="form-label"><b>¿Posees alguna discapacidad?</b></label>
+        <select class="form-select" id="dis" name="dis"  onchange="activaselect10()" required>
+        <option value="" selected></option>
+        <option value="1">Sí</option>
+        <option value="0">No</option>
+    </select>
+    </div>
+
+    <div id="hidden-question-div10" class="col d-none">
+        <label for="dis2" class="form-label">¿Cuál?</label><br>
+        <input type="checkbox" name="dis2" value="4"> Física<br>
+        <input type="checkbox" name="dis2" value="2"> Auditiva<br>
+        <input type="checkbox" name="dis2" value="3"> Visual<br>
+        <input type="checkbox" name="dis2" value="5"> Cognitiva o intelectual<br>
+        </div>
+
+    <label for="anterior" class="form-label"><b>¿Has participado en años anteriores en actividades de Glasswing?</b></label>
+    <select class="form-select" id="anterior" name="anterior" required>
+     <option value="" selected></option>
+     <option value="1">Sí</option>
+     <option value="0">No</option>
+</select>
+
+<div class="col">
+  <label for="TdC" class="form-label"><b>¿Te encuentras estudiando actualmente?</b></label>
+  <select class="form-select" id="Eactual" name="Eactual" onchange="activaselect2()" required>
+   <option value="" selected></option>
+   <option value="1">Sí</option>
+   <option value="0">No</option>
+ </select>
+</div>
+
+<div id="hidden-question-div" class="col d-none">
+  <label for="Area" class="form-label">¿Último grado alcanzado?</label>
+         <select class="form-select" id="UT" name="UT"  >
+             <option value="" selected></option>
+             {{range .Ultgrad}}
+             <option value="{{.Value}}">{{.Label}}</option>
+           {{end}}
+         </select>
+ </div>
+ <div id="hidden-question-div2" class="col d-none">
+  <label for="Area" class="form-label">Selecciona tu grado o el nivel educativo actual:</label>
+         <select class="form-select" id="GA" name="GA"  onchange="activaselect3()">
+             <option value="" selected></option>
+             {{range .Grado}}
+             <option value="{{.Value}}">{{.Label}}</option>
+           {{end}}
+         </select>
+
+ <div id="hidden-question-div3" class="col d-none">
+  <label for="seccion" class="form-label">Selecciona tu sección:</label>
+         <select class="form-select" id="seccion" name="seccion"  >
+           <option value="" selected></option>
+           {{range .Seccion}}
+           <option value="{{.Value}}">{{.Label}}</option>
+         {{end}}
+         </select>
+ </div>
+     <div id="hidden-question-div5" class="col d-none">
+  <label for="turno" class="form-label">Selecciona el turno:</label>
+         <select class="form-select" id="Turno" name="Turno"  >
+           <option value="" selected></option>
+           {{range .Turno}}
+           <option value="{{.Value}}">{{.Label}}</option>
+         {{end}}
+         </select>
+ </div> 
+</div>
+
+<label for="fechaficha" class="form-label"><b>Fecha de registro de la ficha fisica:</b></label>
+<input type="date" name="fechaficha" id="fechaficha" class="form-control" placeholder="dd/mm/aaaa" required>
+
+<input hidden type="text" name="idpais" id="idpais" value="7">
+<input hidden type="text" name="sede2" id="sede2" value="280">
+</div>
+<br/>
+<button class="btn btn-primary" id="boton" type="submit"> Enviar</button>
+  </div>
+</div>
+</div>
+</div>
+</div>
+</div>
+      </form>
+    </div>
+   <script src="/static/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="/public/JS/Participantes/nnacisfsv.js"></script>
+  </body>
+</html>

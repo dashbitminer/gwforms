@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <base target="_top">
+    <title> Encuesta de satisfacción de atención | Intervencionista </title>
+   <link href="/static/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+  </head>
+
+<link rel="stylesheet" href="/public/CSS/estilos_sanamente_intervencion.css" type="text/css">
+ 
+<body class="bg-custom">
+
+<div class="container">
+<img src="/public/IMG/Sanamente.png" class="img-fluid" alt="Glasswing" />
+
+<form action="/sanamente/Encuesta/Intervencionista/post" method="POST" enctype="multipart/form-data" id="formualrioRegistro" name="formualrioRegistro" class="needs-validation" novalidatez>
+ 
+<h2> Encuesta de satisfacción de atención | Intervencionista </h2>
+<p style="text-align: justify;">
+    Para Glasswing es muy importante tu opinión, por ello, nos gustaría saber cómo fue la atención  durante el apoyo recibido por parte de una persona intervencionista Glasswing. Esta encuesta es totalmente anónima y lo que nos compartas será de utilidad para mejorar las atenciones a las personas que acuden a estos espacios. Dar tu opinión no afectará de ninguna manera en el servicio que te encuentras recibiendo dentro de la institución o por parte de Glasswing. 
+        <br>
+              </p>
+            
+            <div class="col">
+                <label for="FechaN" class="form-label"><b>Escribe tu fecha de nacimiento:<span style="color: #FF7D81;">*</span></b></label>
+                <input type="date" name="FechaN" id="FechaN" class="form-control" placeholder="dd/mm/aaaa" onchange="activaselect4()" oninput="hideAlert2()">
+            </div>
+
+            <br>
+
+            <div id="alertContainer2" style="display: none;"></div> 
+
+        <div id="ocultar" class="d-none">
+
+            <div class="col">
+                <label for="sexo" class="form-label"><b>Sexo<span style="color: #FF7D81;">*</span></b></label>
+                <select class="form-select" id="sexo" name="sexo">
+                <option value="" selected></option>
+                <option value="0">Mujer</option>
+                <option value="1">Hombre</option>
+                </select>
+            </div>
+
+            <br>
+
+            <div class="col">
+                <label for="satis" class="form-label"><b>1. ¿Qué tan satisfecho(a) estás con la atención y servicio recibido por parte de la persona intervencionista Glasswing?<span style="color: #FF7D81;">*</span></b></label>
+                <br>
+                <input type="radio" name="satis1" id="satis1" value="1" required>Nada satisfecho/a</option><br><br>
+                <input type="radio" name="satis1" id="satis2" value="2">Poco satisfecho/a</option><br><br>
+                <input type="radio" name="satis1" id="satis3" value="3">Algo satisfecho/a</option><br><br>
+                <input type="radio" name="satis1" id="satis4" value="4">Muy satisfecho/a</option><br><br>
+            </div>
+
+            <br>
+
+            <div class="col">
+                <label for="razon" class="form-label"><b>2. ¿Podrías contarnos las razones de tu respuesta anterior?<span style="color: #FF7D81;">*</span></b></label>
+                <br>
+                <input type="checkbox" name="razon1" value="1" onchange="mostrarPreguntaOtro(this.value)"> Debido a la información recibida</option><br><br>
+                <input type="checkbox" name="razon1" value="2" onchange="mostrarPreguntaOtro(this.value)"> El trato y forma en que la intervencionista me atendió</option><br><br>
+                <input type="checkbox" name="razon1" value="3" onchange="mostrarPreguntaOtro(this.value)"> Debido a la forma en que me sentí durante la intervención</option><br><br>
+                <input type="checkbox" name="razon1" value="4" onchange="mostrarPreguntaOtro(this.value)"> Otros comentarios</option><br><br>
+                <p id="errorMensaje" style="color: #FF7D81; display: none;" tabindex="-1">Debe marcar al menos una opción.</p>
+            </div>
+
+            <div id="preguntaOtro" class="d-none">
+                <input type="text" name="otro" id="otro" class="form-control" maxlength="200">
+            </div>
+
+            </br>
+
+            <div class="col">
+                <label for="util" class="form-label"><b>3. ¿Crees que lo aprendido con la persona intervencionista podría ser útil en otros momentos de tu vida?<span style="color: #FF7D81;">*</span></b></label>
+                <br>
+                <input type="radio" name="util1" id="util1" value="1" required>Sí</option><br><br>
+                <input type="radio" name="util1" id="util2" value="2">No</option><br><br>
+                <input type="radio" name="util1" id="util3" value="3">Prefiero no responder</option><br><br>
+            </div>
+            
+            <br>
+
+            <div class="col">
+                <label for="considerar" class="form-label"><b>4. ¿Considerarías regresar con un intervencionista?<span style="color: #FF7D81;">*</span></b></label>
+                <br>
+                <input type="radio" name="considerar1" id="considerar1" value="1" required>Sí</option><br><br>
+                <input type="radio" name="considerar1" id="considerar2" value="2">No</option><br><br>
+                <input type="radio" name="considerar1" id="considerar3" value="3">Prefiero no responder</option><br><br>
+            </div>
+            
+            <br>
+            
+            <div class="col">
+                <label for="cantServicio" class="form-label"><b>5. Del 1 al 5, ¿qué tanto le recomendarías a algún familiar o amistad buscar una atención como la que tú acabas de recibir?<span style="color: #FF7D81;">*</b></label>
+                    <br><br>
+                    <table class="table align-middle" style="text-align:center; width: 100%; table-layout: fixed;">
+                        <tr>
+                          <td style="background-color: #D6DBFF; border: none;"><label style="font-size: 15px;" for="option1">No lo recomendaría</label></td>
+                          <td style="background-color: #D6DBFF; border: none;"></td>
+                          <td style="background-color: #D6DBFF; border: none;"><label style="font-size: 15px;" for="option3">Tal vez lo recomendaría</label></td>
+                          <td style="background-color: #D6DBFF; border: none;"></td>
+                          <td style="background-color: #D6DBFF; border: none;"><label style="font-size: 15px;" for="option5">Sí lo recomendaría</label></td>
+                        </tr>
+                        <tr>
+                          <td style="background-color: #D6DBFF; border: none;"><input type="radio" name="recomendar" value="1" id="option1" required></td>
+                          <td style="background-color: #D6DBFF; border: none;"><input type="radio" name="recomendar" value="2" id="option2"></td>
+                          <td style="background-color: #D6DBFF; border: none;"><input type="radio" name="recomendar" value="3" id="option3"></td>
+                          <td style="background-color: #D6DBFF; border: none;"><input type="radio" name="recomendar" value="4" id="option4"></td>
+                          <td style="background-color: #D6DBFF; border: none;"><input type="radio" name="recomendar" value="5" id="option5"></td>
+                        </tr>
+                        <tr>
+                          <td style="background-color: #D6DBFF; border: none;"><span class="radio-label">1</span></td>
+                          <td style="background-color: #D6DBFF; border: none;"><span class="radio-label">2</span></td>
+                          <td style="background-color: #D6DBFF; border: none;"><span class="radio-label">3</span></td>
+                          <td style="background-color: #D6DBFF; border: none;"><span class="radio-label">4</span></td>
+                          <td style="background-color: #D6DBFF; border: none;"><span class="radio-label">5</span></td>
+                        </tr>
+                      </table>                                           
+            </div>
+
+            <div class="col">
+                <label for="comentarios" class="form-label"><b>6. Si tienes algún comentario o sugerencia sobre la atención recibida, puedes dejarlo aquí para ayudarnos a mejorar:</b></label>
+                <br>
+                <input type="text" name="comentarios" id="comentarios" class="form-control" maxlength="500">
+            </div>
+
+            <br>
+            
+            <div align = "center">
+                <h5> ¡Muchas gracias! su opinión es muy importante.</h5>
+            </div>
+            
+
+            <br>
+            <input type="hidden" name="idp" value="{{.IdPais}}" id="idp">
+                <button class="btn btn-primary" id="boton" type="submit" style="display: inline-block;"> Enviar</button>
+                <br>
+                <br>
+
+        </div>
+            </form>
+        </div>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+  
+ <script src="/static/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="/public/JS/sanamente/encuestaSatisfaccionInter.js"></script>
+  <script src="/static/sweetalert2/dist/sweetalert2.all.min.js"></script>
+
+  </body>
+</html>

@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Formulario de inscripción participantes 2024</title>
+    <meta charset="utf-8">
+    <base target="_top">
+    <link href="/static/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+  </head>
+  <body>
+
+    <div class="container">
+      <div class="row">
+        <div class="col-12">
+          <div style="overflow: hidden;">
+            <img src="/public/IMG/banner.png" class="w-100 h-auto img-fluid" style="object-fit: cover;">
+          </div>
+        </div>
+      </div>
+            
+<form method="POST" id="formualrioRegistro" name="formualrioRegistro" class="needs-validation" action="/jli/participante/post" enctype="multipart/form-data" novalidatez>
+      <h2> Formulario de inscripción participantes 2024 Cohorte 6</h2>
+     
+     <p style="text-align: justify;">
+     </p>
+<label for="FechaN" class="form-label">Fecha de nacimiento:</label>
+<input type="date" name="FechaN" id="FechaN" class="form-control" placeholder="dd/mm/aaaa"  onchange="activaselect4()">
+      <br/>
+    
+<div id="ocultar" class="container d-none">
+<h4>GENERALIDADES DE SOCIO</h4>
+
+<div>
+  <label for="pais" class="form-label">Pais</label>
+  <select class="form-select" id="pais" name="pais"  onchange="actualizarCiudades2(this.value) ,actualizarCiudades3(this.value)">
+    <option value="" selected></option>
+    <option value="4" >Guatemala</option>
+    <option value="3" >Honduras</option>
+</select>
+</div>
+
+<label for="persona" class="form-label">Persona levanta el formulario:*</label>
+<input type="text" name="persona" id="persona" class="form-control">
+
+<div>
+  <label for="pais" class="form-label">Rol de persona que levanta el formulario:*</label>
+  <select class="form-select" id="rol" name="rol" >
+    <option value="" selected></option>
+    <option value="1" >Gestora juvenil</option>
+    <option value="2" >Tallerista</option>
+    <option value="3" >Punto focal de M&E</option>
+</select>
+</div>
+
+<div class="col">
+  <label for="sede2" class="form-label">Socio implementador*</label>
+   <select class="form-select" id="sede2" name="sede2"   required>
+    <option value=""></option>
+</select>
+</div>
+<h4>GENERALIDADES DE PARTICIPANTE</h4>
+<div class="mb-3">
+          <div class="row">
+  <div class="col">
+          <label for="nombrecompleto" class="form-label">Nombres completos:</label>
+          <input type="text" name="nombreCompleto" id="nombreCompleto" class="form-control">
+        </div>
+          <div class="col">
+          <label for="apellido" class="form-label">Apellidos completos:</label>
+          <input type="text" name="apellido" id="apellido" class="form-control">
+        </div>
+          </div>
+
+          <label for="perfilparticipante" class="form-label">Favor marque Perfil del programa de la persona participante</label>
+          <select class="form-select" id="perfilparticipante" name="perfilparticipante" required>
+           <option value="" selected></option>
+           <option value="1">Joven de 15 a 18 años activo en el sistema educativo</option>
+           <option value="2">Joven de 18 a 22 años no activo en el sistema educativo</option> 
+        </select>
+
+          <label for="EstadoC" class="form-label">Estado civil de persona participante:</label>
+          <select class="form-select" id="EstadoC" name="EstadoC"  >
+           <option value=""></option>
+           {{range .Estado_civ}}
+           <option value="{{.Value}}">{{.Label}}</option>
+           {{end}}                    
+           </select>
+          
+          <label for="nacionalidad" class="form-label">Nacionalidad:*</label>
+          <select class="form-select" id="nacionalidad" name="nacionalidad" >
+           <option value="" selected></option>
+           <option value="1">Nacional</option>
+           <option value="2">Extranjero</option>
+        
+        </select>
+
+  <div class="row">
+  <div class="col">
+          <label for="pais" class="form-label">Departamento</label>
+          <select class="form-select" id="departamento" name="departamento"  onchange="actualizarCiudades(this.value)" required>
+            <option value="" selected></option>
+      </select>
+    </div>
+
+  <div class="col">
+          <label for="departamento" class="form-label">Municipio</label>
+           <select class="form-select" id="municipio" name="municipio" required>
+            <option value="" selected></option>
+      </select>
+    </div>
+  </div>
+  
+  <div class="col">
+    <label for="comunidad" class="form-label">Comunidad/Colonia/Barrio/Aldea</label>
+    <input type="text" name="comunidad" id="comunidad" class="form-control" required >
+</div>
+
+<div class="col">
+  <label for="sector" class="form-label">Sector/Zona</label>
+  <input type="text" name="sector" id="sector" class="form-control" >
+</div>
+<div class="d-none" id="Honduras">
+<div class="col">
+  <label for="calle" class="form-label">Calle</label>
+  <input type="text" name="calle" id="calle" class="form-control"  >
+</div>
+
+<div class="col">
+  <label for="bloque" class="form-label">Bloque</label>
+  <input type="text" name="bloque" id="bloque" class="form-control"  >
+</div>
+</div>
+
+<div class="d-none" id="Guatemala">
+  <div class="col">
+    <label for="apartamento" class="form-label">Apartamento</label>
+    <input type="text" name="apartamento" id="apartamento" class="form-control">
+  </div>
+  
+  </div>
+
+<div class="col">
+  <label for="casa" class="form-label">Casa</label>
+  <input type="text" name="casa" id="casa" class="form-control"  required>
+</div>
+
+<div class="col">
+  <label for="preferencia" class="form-label">Puntos de referencia</label>
+  <input type="text" name="preferencia" id="preferencia" class="form-control"  required>
+</div>
+
+
+
+    <div class="col">
+          <label for="direccion" class="form-label">Dirección completa con puntos de referencia</label>
+          <input type="text" name="direccion" id="direccion" class="form-control" required >
+    </div>
+
+<div class="col">
+<label for="Sexo" class="form-label">Sexo según registro nacional:</label>
+<select class="form-select" id="Sexo" name="Sexo"  required>
+<option value=""></option>
+{{range .Sexo}}
+<option value="{{.Value}}">{{.Label}}</option>
+{{end}}
+</select>
+</div>
+
+<label for="dis" class="form-label">¿Posee algún tipo de discapacidad? </label>
+             <select class="form-select" id="dis" name="dis"  onchange="activaselect10()" required>
+              <option value="" selected></option>
+              {{range .Respuestas}}
+              <option value="{{.Value}}">{{.Label}}</option>
+            {{end}}   
+            <option value="3" >Prefiere no responder    </option> 
+        </select>
+       </div>
+  
+   <div id="hidden-question-div10" class="col d-none">
+      <label for="dis2" class="form-label">¿Qué discapacidad posee (puede marcar varias)?</label><br>
+          <input type="checkbox" name="dis2" value="4"> Física<br>
+          <input type="checkbox" name="dis2" value="2"> Auditiva<br>
+          <input type="checkbox" name="dis2" value="3"> Visual<br>
+          <input type="checkbox" name="dis2" value="5"> Cognitiva o intelectual<br>
+      </div>
+  
+  <div class="col">
+  <label for="TdC" class="form-label">¿Te encuentras estudiando actualmente?*</label>
+  <select class="form-select" id="TdC" name="TdC" onchange="activaselect2()" >
+   <option value="" selected></option>
+   {{range .Respuestas}}
+   <option value="{{.Value}}">{{.Label}}</option>
+   {{end}}
+ </select>
+</div>
+
+<div id="hidden-question-div" class="col d-none">
+<label for="Area" class="form-label">Último grado alcanzado*</label>
+       <select class="form-select" id="UT" name="UT"  >
+           <option value="" selected></option>
+           {{range .Ultgrad}}
+           <option value="{{.Value}}">{{.Label}}</option>
+         {{end}}
+       </select>
+</div>
+<div id="hidden-question-div2" class="col d-none">
+  <label for="privado" class="form-label">Tipo de establecimiento educativo:*</label>
+  <select class="form-select" id="privado" name="privado" >
+      <option value="" selected></option>
+      <option value="1">Publico</option>
+      <option value="2">Privado</option>
+   
+  </select>
+
+  <label for="Area" class="form-label">Selecciona tu grado actual:*</label>
+       <select class="form-select" id="GA" name="GA"  onchange="activaselect3()">
+           <option value="" selected></option>
+           {{range .Grado}}
+           <option value="{{.Value}}">{{.Label}}</option>
+         {{end}}
+       </select>
+
+   <div id="hidden-question-div5" class="col d-none">
+<label for="turno" class="form-label">Selecciona el turno o jornada en la que estudias:*</label>
+       <select class="form-select" id="Turno" name="Turno"  >
+         <option value="" selected></option>
+         {{range .Turno}}
+         <option value="{{.Value}}">{{.Label}}</option>
+       {{end}}
+       </select>
+</div>
+</div>
+
+<label for="responsable" class="form-label">Nombre de persona responsable de participante</label>
+<input type="text" name="responsable" id="responsable" class="form-control" >
+
+ <label for="contacto2" class="form-label">Número de teléfono de persona responsable </label>
+<input type="text" name="contacto2" id="contacto2" class="form-control" >
+
+      <h4> PERFIL DEMOGRÁFICO </h4>
+
+      <label for="ccomunidad" class="form-label">La comunidad donde habita la persona participante es catalogada como</label>
+      <select class="form-select" id="ccomunidad" name="ccomunidad">
+        <option value=""></option>
+        <option value="1">Bajo riesgo migratorio</option>
+        <option value="2">Medio riesgo migratorio</option>
+        <option value="3">Alto riesgo migratorio</option>
+        <option value="4">No se sabe</option>
+  </select>
+  
+        <label for="migrante" class="form-label">La persona participante expresa haber migrado y haber sido retornado al pais</label>
+        <select class="form-select" id="migrante" name="migrante" required>
+          <option value=""></option>
+          <option value="1">Si</option>
+          <option value="2">No</option>
+          <option value="3">Prefiere no responder</option>
+        </select>
+  
+        <label for="fmigrante" class="form-label">La persona participante expresa que al menos un miembro de su hogar ha migrado</label>
+        <select class="form-select" id="fmigrante" name="fmigrante" required>
+          <option value=""></option>
+          <option value="1">Si</option>
+          <option value="2">No</option>
+          <option value="3">Prefiere no responder</option>
+        </select>
+  
+        <label for="dependencia" class="form-label">Los ingresos del hogar de la persona participante depende de (puede marcar varias):</label>
+        <select class="form-select" id="dependencia" name="dependencia" multiple required>
+          <option value="1">Padre</option>
+          <option value="2">Madre</option>
+          <option value="3">Hermanos</option>
+          <option value="4">Tías o tíos</option>
+          <option value="5">Abuelas o abuelos</option>
+          <option value="6">Pareja de persona participante</option>
+          <option value="7">Persona participante</option>
+          <option value="8">Familiares en el exterior</option>
+          <option value="9">Otros</option>
+        </select>
+  
+        <label for="empleo" class="form-label">Los ingresos del hogar de la persona participante provienen de empleos</label>
+        <select class="form-select" id="empleo" name="empleo" required>
+          <option value="" selected></option>
+          <option value="1">Formales</option>
+          <option value="2">No formales</option>
+          <option value="3">Ambos</option>
+        </select>
+
+        <label for="gastos" class="form-label">Los gastos del hogar de la persona participantes son cubiertos</label>
+        <select class="form-select" id="gastos" name="gastos" required>
+          <option value=""></option>
+          <option value="1">Siempre</option>
+          <option value="2">Casi siempre</option>
+          <option value="3">Algunas veces</option>
+          <option value="4">Muy pocas veces</option>
+          <option value="5">Nunca</option>
+        </select>
+
+        
+        <label for="situacion" class="form-label">Indique cuales de las siguientes situaciones identifica que la persona participante haber
+          padecido durante los últimos 6 meses (puede marcar varias):</label>
+        <select class="form-select" id="situacion" name="situacion" multiple required >
+          <option value="1">Ninguno</option>
+          <option value="2">Estigmatización o señalamiento</option>
+          <option value="3">Amenazas</option>
+          <option value="4">Extorsión</option>
+          <option value="5">Desplazamiento</option>
+          <option value="6">Desaparición forzada de algún miembro de su hogar</option>
+          <option value="7">Hurto de muebles o dinero</option>
+          <option value="8">Retención de muebles o dinero</option>
+          <option value="9">Acoso sexual, explotación sexual o violencia sexual</option>
+          <option value="10">Violencia física</option>
+          <option value="11">Violencia psicológica</option>
+          <option value="12">Violencia cibernética </option>
+        </select>
+  
+  
+
+ <h4> ADICIONAL </h4>
+    
+<div class="col">
+
+          <label for="gp" class="form-label">¿Has participado en años anteriores en actividades de Glasswing?*</label>
+           <select class="form-select" id="gp" name="gp"  onchange="activaselect7()" required>
+            <option value="" selected></option>
+            {{range .Respuestas}}
+            <option value="{{.Value}}">{{.Label}}</option>
+           {{end}}    
+      </select>
+     </div>
+
+     <div id="gps" class="d-none">
+      
+      
+      <label for="pv" class="form-label">¿Con qué rol has participado?*</label>
+      <select class="form-select" id="pv" name="pv" >
+        <option value="" selected></option>
+        <option value="1">Participante</option>
+        <option value="2">Voluntario/Voluntaria</option>
+      </select>
+
+      <label for="ActG" class="form-label">¿En qué actividades has participado?*</label>
+      <select class="form-select" id="ActG" name="ActG"  >
+        <option value="" selected></option>
+            {{range .Actividades}}
+            <option value="{{.Value}}">{{.Label}}</option>
+            {{end}}                       
+      </select>
+</div>
+<br>
+<h4> BANCARIZACIÓN </h4>
+
+
+  <label for="DUIMl" id="DUIMl" class="form-label">Número de documento de identidad de participante</label>
+  <input type="text" name="DUIM" id="DUIM" class="form-control" required onchange="validateFormat()" oninput="hideAlert()">
+
+<div id="alertContainer" style="display: none;"></div>
+
+<div class="col">
+  <label for="correo" class="form-label">Correo electrónico de participante</label>
+  <input type="email" name="correo" id="correo" class="form-control" placeholder="" required>
+  <div class="invalid-feedback">
+    Ingresa una dirección de correo válida
+ </div>
+</div>
+
+        <label for="TM" class="form-label">Número de teléfono de participante </label>
+        <input type="text" name="TM" id="TM" class="form-control" required>
+
+        <div class="col">
+          <label for="pais" class="form-label">Lugar de nacimiento departamento </label>
+          <select class="form-select" id="pais2" name="pais2"  onchange="actualizarmun2(this.value)" required >
+              </select>  
+             
+      </select>
+    </div>
+  <div class="col">
+          <label for="departamento2" class="form-label">Lugar de nacimiento  Municipio</label>
+           <select class="form-select" id="departamento2" name="departamento2"  required>
+      </select>
+    </div>
+
+
+     <label for="contacto" class="form-label">Nombre persona que asignan como beneficiaria de cuenta bancaria en caso de fallecimiento (Persona mayor de edad)</label>
+    <input type="text" name="beneficiario" id="beneficiario" class="form-control" required >
+
+    <label for="beneficiarioapellido" class="form-label">Apellido persona que asignan como beneficiaria de cuenta bancaria en caso de fallecimiento (Persona mayor de edad)</label>
+    <input type="text" name="beneficiarioapellido" id="beneficiarioapellido" class="form-control" required >
+
+      <label for="relacion" class="form-label">Parentesco con participante </label>
+          <select class="form-select" id="relacion" name="relacion" required >
+            <option value="" selected></option>
+            {{range .Parentesco}}
+            <option value="{{.Value}}">{{.Label}}</option>
+            {{end}}
+            <option value="20">Otros</option>
+          </select>
+<br>
+
+<label for="docF" id="Docl" class="form-label">Copia de documento de identidad de participante (lado de enfrente)</label>
+<input type="file" class="form-control-file" id="docF" name="docF" required>
+</br>
+<div class="d-none" id="menor">
+<label for="DocA" id="DocAl" class="form-label">Copia de documento de identidad de participante (lado de atras) </label>
+<input type="file" class="form-control-file" id="docA" name="docA"  >
+</br>
+</div>
+
+</br>
+<br>
+  <h4> AUTORIZACIÓN DE PARTICIPANTES </h4>
+
+  <h5> 1. Autorización de Participación </h5>
+  <div class="d-none" id="autorizacion">
+  <label for="pbrindaa" class="form-label">CAMPO PARA MADRE, PADRE O RESPONSABLE</label>
+  <select class="form-select" id="pbrindaa" name="pbrindaa" >
+    <option value=""></option>
+    <option value="1">Brindo Autorización de Participación</option>
+    <option value="2">No Brindo Autorización de Participación</option>
+  </select>  
+  </div>
+  <label for="haceptaa" class="form-label">CAMPO PARA NIÑA, NIÑO O ADOLESCENTE</label>
+  <select class="form-select" id="haceptaa" name="haceptaa" required>
+    <option value=""></option>
+    <option value="1">Acepto Participar de Forma Voluntaria</option>
+    <option value="2">No Acepto Participar de Forma Voluntaria</option>
+  </select>  
+
+  <h5> 2. Autorización para compartir datos personales en formulario de inscripción </h5>
+  <div class="d-none" id="compartir_datos">
+  <label for="pbrindab" class="form-label">CAMPO PARA MADRE, PADRE O RESPONSABLE</label>
+  <select class="form-select" id="pbrindab" name="pbrindab" >
+    <option value=""></option>
+    <option value="1">Brindo Autorización para Recolección y Uso de Información</option>
+    <option value="2">No Brindo Autorización para Recolección y Uso de Información</option>
+  </select>  
+  </div>
+  <label for="haceptab" class="form-label">CAMPO PARA NIÑA, NIÑO O ADOLESCENTE</label>
+  <select class="form-select" id="haceptab" name="haceptab" required>
+    <option value=""></option>
+    <option value="1">Acepto de Forma Voluntaria la Recolección y Uso de mi Información</option>
+    <option value="2">No Acepto la Recolección y Uso de mi Información</option>
+  </select> 
+
+  <h5> 3.	Autorización para compartir datos personales en formulario de inscripción para bancarización </h5>
+  <div class="d-none" id="banco">
+  <label for="pbrindac" class="form-label">CAMPO PARA MADRE, PADRE O RESPONSABLE</label>
+  <select class="form-select" id="pbrindac" name="pbrindac" >
+    <option value=""></option>
+    <option value="1">Brindo Autorización para Recolección y Uso de Información para Bancarización</option>
+    <option value="2">No Brindo Autorización para Recolección y Uso de Información para Bancarización</option>
+  </select>  
+  </div>
+  <label for="haceptac" class="form-label">CAMPO PARA NIÑA, NIÑO O ADOLESCENTE</label>
+  <select class="form-select" id="haceptac" name="haceptac" required>
+    <option value=""></option>
+    <option value="1">Acepto de Forma Voluntaria la Recolección y Uso de mi Información para Bancarización</option>
+    <option value="2">No Acepto la Recolección y Uso de mi Información para Bancarización</option>
+  </select> 
+
+  <h5> 4.	Autorización para enlazar datos a Aplicación institucional.</h5>
+  <div class="d-none" id="datos">
+  <label for="pbrindad" class="form-label">CAMPO PARA MADRE, PADRE O RESPONSABLE</label>
+  <select class="form-select" id="pbrindad" name="pbrindad" >
+    <option value=""></option>
+    <option value="1">Brindo Autorización para Migrar la Información a APPTREVETE</option>
+    <option value="2">No Brindo Autorización para Migrar la Información a APPTREVETE</option>
+  </select>  
+  </div>
+  <label for="haceptad" class="form-label">CAMPO PARA NIÑA, NIÑO O ADOLESCENTE</label>
+  <select class="form-select" id="haceptad" name="haceptad" required>
+    <option value=""></option>
+    <option value="1">Acepto la Migración de mi Información a APPTREVETE</option>
+    <option value="2">No Acepto la Migración de mi Información a APPTREVETE</option>
+  </select> 
+
+  <h5> 5.	Uso de voz e imagen</h5>
+  <div class="d-none" id="usovoz">
+  <label for="pbrindae" class="form-label">CAMPO PARA MADRE, PADRE O RESPONSABLE</label>
+  <select class="form-select" id="pbrindae" name="pbrindae">
+    <option value=""></option>
+    <option value="1">Brindo Autorización de Uso de Voz e Imagen</option>
+    <option value="2">No Brindo Autorización de Uso de Voz e Imagen</option>
+  </select>  
+</div>
+  <label for="haceptae" class="form-label">CAMPO PARA NIÑA, NIÑO O ADOLESCENTE</label>
+  <select class="form-select" id="haceptae" name="haceptae" required>
+    <option value=""></option>
+    <option value="1">Brindo Autorización de Uso de mi Voz e Imagen</option>
+    <option value="2">No Brindo Autorización de Uso de mi Voz e Imagen</option>
+  </select> 
+  
+<br/>
+<button class="btn btn-primary" id="boton" type="submit"> Enviar</button>
+  </div>
+</div>
+<input type="hidden" name="cohorte" value="6" id="cohorte">
+      </form>
+    </div>
+   <script src="/static/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="/public/JS/Participantes/jlicohorte6.js"></script>
+  </body>
+</html>

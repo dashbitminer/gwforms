@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>CORPORATE VOLUNTERING FORM</title>
+    <meta charset="utf-8">
+    <base target="_top">
+    <link href="/static/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    </head>
+    <body>
+        <div class="container">
+
+            <img src="/public/IMG/logo.png" class="img-fluid" alt="Glasswing" />
+
+            <form method="POST" id="formularioRegistro" name="formularioRegistro" class="needs-validation" action="/voluntariado/corporativo/post" enctype="multipart/form-data" novalidatez>
+            <br></br>
+                <h2> CORPORATE VOLUNTEER FORM 2024 </h2>
+            
+
+                <p style="text-align: justify;">
+                    Thank you for participating in our corporate volunteer program! 
+                    <br>Your assistance is crucial in making a positive difference in our community.
+                </p>
+
+                <div class="row">
+                    <div class="col">
+                        <label for="pais" class="form-label">Enter your country of residence: *</label>
+                            <select class="form-select" id="pais" name="pais">
+                                <option value="" selected></option>
+                                {{range .Paises}}
+                                <option value="{{.Value}}">{{.Label}}</option>
+                              {{end}}
+                            </select>
+                    </div>                    
+                </div>
+
+                <div class="mb-3">
+                    <label for="nombreCompleto" class="form-label">Full name: *</label>
+                    <input type="text" name="nombreCompleto" id="nombreCompleto" class="form-control" placeholder="Nombre Completo" oninput="activa1()" required>
+                </div>
+            
+                <div class="row">
+
+                    <div class="col">
+                        <label for="FechaN" class="form-label">Date of birth: *</label>
+                        <input type="date" name="FechaN" id="FechaN" class="form-control" placeholder="dd/mm/aaaa" oninput="activaselect4()" required>
+                    </div>
+
+                    <div class="col">
+                        <label for="sexo" class="form-label">Gender: *</label>
+                            <select class="form-select" id="sexo" name="sexo" required >
+                                <option value="" selected></option>
+                                <option value="1">Male</option>
+                                <option value="2">Female</option>
+                            </select>
+                    </div>
+
+                </div>
+            
+                <div class="row">
+
+                    <div class="col">
+                        <label for="DUIMl" id="DUIMl" class="form-label">National Identity Document number: *</label>
+                        <input type="text" name="DUIM" id="DUIM" class="form-control" required>
+                        <div id="alertContainer" style="display: none;"></div>
+                    </div>
+
+                </div>
+            
+            <div class="row">
+                <div class="col">
+                    <label for="empresa" class="form-label">Enter the name of the company where you work: *</label>
+                    <input type="text" name="empresa" id="empresa" class="form-control" placeholder="Nombre empresa" required>
+                </div>
+            </div>
+            
+            <div class="mb-3">
+                <label for="evento" class="form-label">Select the date of your volunteer activity: *</label>
+                <input type="date" name="FechaAct" id="FechaAct" class="form-control" placeholder="dd/mm/aaaa" required>
+            </div>
+
+            <p style="text-align: justify;">
+                <h4> CHILD SAFEGUARDING AND PROTECTION </h4>
+            </p>
+            <p style="text-align: justify;">
+                Glasswing International is dedicated to providing dignified care and safe environments for girls, boys, and adolescents, as well as their families, whenever they interact with our organization. We recognize the importance of ensuring due process in cases of child abuse, promptly addressing and resolving such incidents without tolerance for negligence or inattention. In alignment with this commitment, Glasswing maintains a Zero Tolerance Declaration against child abuse and mistreatment. All volunteers must commit and adhere to this declaration, irrespective of the program, project, or activity they are involved in, or the duration of their volunteer service.
+            </p>
+
+            <p style="text-align: justify;">
+                <h4>ZERO TOLERANCE STATEMENT AGAINST CHILD VIOLENCE, ABUSE, AND MISTREATMENT</h4>
+            </p>
+            <p style="text-align: justify;">
+                At Glasswing International, safeguarding and protecting children and adolescents is paramount. We maintain an unwavering commitment to zero tolerance against all forms of violence, abuse (physical, emotional, and sexual), and mistreatment directed towards them. To uphold this commitment, Glasswing International has established a comprehensive Child Safeguarding and Protection Policy along with a Protocol for Care and Response for the Safeguarding and Protection of Children and Adolescents. It is the responsibility of Glasswing, its directors, and collaborators to ensure the strict implementation of these policies. Zero Tolerance means that any collaborator involved in an incident of violence, abuse (physical, emotional, and sexual), or mistreatment of children and adolescents, or who becomes aware of such an incident and fails to report it, will be immediately separated from the organization and reported to the appropriate authorities.
+                 <br>
+                 <br>
+                 This policy applies to all collaborators and departments, whether directly or subcontracted, with permanent or temporary contracts, volunteers, and all types of suppliers, partners, and/or visitors (regardless of whether they have direct contact with children and adolescents) who are involved in programs and projects in all countries where Glasswing operates.
+                 <br>
+            </p>
+               <input type="checkbox" value="1" name="autR1" required> I have read the zero tolerance declaration.<br>
+
+
+            <p style="text-align: justify;">
+                <h4>MEDIA CONSENT</h4>
+            </p>
+            <p style="text-align: justify;">
+                NAME, LIKENESS, VOICE AND VIDEO RELEASE
+                <br>
+                I, <span id="nombrep2" style="display: inline;" class="text-primary"></span> , age <span id="edadl" style="display: inline;" class="text-primary"></span>, of legal age for good and valuable consideration, 
+                <span class="form-group d-inline-block">   <select class="form-select" id="aut3" name="aut3" required>
+                    <option value=""></option>
+                    <option value="1">Authorize</option>
+                    <option value="0">No authorize</option>
+                    </select>  
+                   </span>              
+                to Fundación Crisálida (Glasswing International), its partners, and employees, the right to use, publish, reproduce and share my name,  photo or video likeness, and my recorded voice, quotes and comments in all media to further any and all Glasswing fundraising, marketing and other not-for-profit related activities (the “Materials”).
+                <br>
+                I agree that Glasswing International may edit such Materials and I hereby waive any right to inspect or approve the Materials that Glasswing may use. I understand that Glasswing has no obligation to return such Materials in whole or in edited form. I hereby release and forever discharge Glasswing, its partners and employees, from any and all claims, demands, and liabilities that may arise from Glasswing’s exercise of the rights that I have granted in this Release.
+                <br>
+                You may withdraw your authorization for the use of your voice and image at any time. if so, you may send an email to info_cr@glasswing.org notifying Glasswing staff of your request.
+                <br>
+                This authorization includes:
+                Exclusive use on institutional platforms and accountability to Glasswing partners, which may be shared and published by our partners (international agencies, companies, organizations, or schools).
+                The use of photographs or videos in forms of communication and media as it pertains to Glasswing's work.
+                Use of voice and image for events or public presentations, exclusively for Glasswing's marketing and promotion.
+                <br>
+                <br>
+                This authorization has a maximum period of use of five years for initial use of an image/voice, except for images/voices in Glasswing reports, programs, and anniversary materials, as well as those that have already been shared (for instance, to Glasswing’s social media accounts or website).
+                No video or photography may be used for political, religious, or personal purposes by any person at Glasswing International or its partners
+                Authorization for the use of voice and image is not a requirement to participate in our initiatives or programs.
+                <br>
+                <br>
+                <input type="checkbox" value="1" name="autR4" required> I assert that I have read and agree to this release and that I fully understand its meaning.
+                <br>
+                <input type="checkbox" value="1" name="autR4" required> I certify that I have received all necessary information for my participation in the program and/or volunteer activities, and that the required fields  (including but not limited to participation authorization, information use authorization, voice and image use authorization) have been filled out by me.
+                <br>
+                <br>
+                <strong>We look forward to your support in future volunteer initiatives. Have a wonderful day!</strong>
+            </p>
+
+<div class="d-none" id="mx">
+            <div class="mapouter"><div class="gmap_canvas"><iframe class="gmap_iframe" width="100%" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.com/maps?width=600&amp;height=400&amp;hl=en&amp;q=21.143854, -101.737809&amp;t=&amp;z=14&amp;ie=UTF8&amp;iwloc=B&amp;output=embed"></iframe><a href="https://capcuttemplate.org/">Capcut Template</a></div><style>.mapouter{position:relative;text-align:right;width:100%;height:400px;}.gmap_canvas {overflow:hidden;background:none!important;width:100%;height:400px;}.gmap_iframe {height:400px!important;}</style></div>
+</div>
+<div class="d-none" id="gt">
+    <div class="mapouter"><div class="gmap_canvas"><iframe class="gmap_iframe" width="100%" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.com/maps?width=600&amp;height=400&amp;hl=en&amp;q=14.542556, -90.567194&amp;t=&amp;z=16&amp;ie=UTF8&amp;iwloc=B&amp;output=embed"></iframe><a href="https://capcuttemplate.org/">Capcut Template</a></div><style>.mapouter{position:relative;text-align:right;width:100%;height:400px;}.gmap_canvas {overflow:hidden;background:none!important;width:100%;height:400px;}.gmap_iframe {height:400px!important;}</style></div>
+</div>
+<div class="d-none" id="pn">
+    <div class="mapouter"><div class="gmap_canvas"><iframe class="gmap_iframe" width="100%" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.com/maps?width=600&amp;height=400&amp;hl=en&amp;q=Complejo Deportivo Omar Torrijos Herrera, Av. Los Andes 23, San Miguelito, Panama&amp;t=&amp;z=16&amp;ie=UTF8&amp;iwloc=B&amp;output=embed"></iframe><a href="https://capcuttemplate.org/">Capcut Template</a></div><style>.mapouter{position:relative;text-align:right;width:100%;height:400px;}.gmap_canvas {overflow:hidden;background:none!important;width:100%;height:400px;}.gmap_iframe {height:400px!important;}</style></div> 
+</div>
+<div class="d-none" id="cr">
+    <div class="mapouter"><div class="gmap_canvas"><iframe class="gmap_iframe" width="100%" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.com/maps?width=600&amp;height=400&amp;hl=en&amp;q=Parque San Juan De Tibas&amp;t=&amp;z=16&amp;ie=UTF8&amp;iwloc=B&amp;output=embed"></iframe><a href="https://capcuttemplate.org/">Capcut Template</a></div><style>.mapouter{position:relative;text-align:right;width:100%;height:400px;}.gmap_canvas {overflow:hidden;background:none!important;width:100%;height:400px;}.gmap_iframe {height:400px!important;}</style></div>
+</div>
+<br>
+
+                <button class="btn btn-primary" id="boton" type="submit"> Enviar</button>
+
+            </form>
+
+        </div>
+
+       <script src="/static/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+        <script src="/public/JS/Voluntarios/corporativo.js"></script>
+
+    </body>
+</html>

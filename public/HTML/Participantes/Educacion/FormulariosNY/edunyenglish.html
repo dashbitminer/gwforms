@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>PARTICIPANT REGISTRATION FORM 2024</title>
+    <meta charset="utf-8">
+    <base target="_top">
+    <link href="/static/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    </head>
+  <body>
+
+    <div class="container">
+<img src="/public/IMG/logo.png" class="img-fluid" alt="Glasswing" />
+<form method="POST" id="formualrioRegistro" name="formualrioRegistro" class="needs-validation" action="/educacion/ny/post" enctype="multipart/form-data" novalidatez>
+  
+    <div class="btn-group" style="text-align: right;">
+        <a href="/educacion/ny/esp" class="btn btn-primary active" aria-current="page">Español</a>
+        <a href="/educacion/ny/eng" class="btn btn-primary">English</a>
+        <a href="/educacion/ny/fr" class="btn btn-primary">Française</a>
+      </div>
+  
+    <h2> PARTICIPANT REGISTRATION FORM 2024 </h2>
+    
+    <p style="text-align: justify;">Hello! Welcome to Glasswing International.  
+        We are excited that you are interested in joining our activities. Before we begin, we would like to get to know you a little better. Please provide us with your date of birth. Your personal information will help us ensure a safe and personalized experience for you.
+    <br><br></p>
+
+    <label style="font-weight: bold;" for="FechaN" class="form-label">Select your date of birth:</label>
+    <input type="date" name="FechaN" id="FechaN" class="form-control" placeholder="MM/DD/AAAA" required onchange="activaselect4()" required>
+
+    <p>First and middle name: <input type="text" name="Firstmiddle" id="Firstmiddle" class="form-control" oninput="activa1()" required></p>
+
+    <p>Surnames: <input type="text" name="Surnames" id="Surnames" class="form-control" oninput="activa1()" required></p>
+
+    <label for="sede2" class="form-label">Name of your school: </label>
+        <select class="form-select" id="sede2" name="sede2" required oninput="activa1()">
+            <option value="" selected></option>
+            {{range .Departamento}}
+            <option value="{{.Value}}">{{.Label}}</option>
+            {{end}}
+        </select>
+        <br>
+
+        <div class="col">
+            <label for="category_clubs" class="form-label">Glasswing club name:</label><br>
+            <input type="checkbox" name="club" value="1" onchange="validarClubs()">Reading club <br>
+            <input type="checkbox" name="club" value="2" onchange="validarClubs()">Peer mentoring <br>
+            <input type="checkbox" name="club" value="3" onchange="validarClubs()">Relaxation or practice club <br>
+        </select>
+        </div>
+        <br>
+
+    <div id="menor1" class="container d-none">
+    <p style="text-align: justify;">
+    <h4> SECTION TO BE FILLED OUT BY CAREGIVER OR GUARDIAN </h4></p>
+
+    <p style="text-align: justify;">This is a form to request your permission for your child or adolescent, <span id="nombrep" style="display: inline;" class="text-primary"></span> (the “Student”) to participate in the [Reading Club / Peer Mentoring / Unwind Club / Internship] program developed by Glasswing at their school. All activities take place within the school.  We sometimes take students on trips around the city or have activities at our office. In those instances, we will send home an additional permission slip.  Glasswing ensures supervision and safety during activities, whether in-person or virtual.
+    <br><br>Please complete Questions 1-3 by checking the appropriate box. Then, please print your name, telephone number, and your relationship to the Student.
+    </p>
+
+    <p style="text-align: justify;">
+        
+        <b>PERMISSION TO PARTICIPATE:</b> I give my permission for the Student to participate in Glasswing’s programs. I understand they must follow the rules of Glasswing and their school. I understand that I am responsible for the actions of my Student. I release Glasswing from all claims and liabilities that arise in connection with the program or activity. I release Glasswing and New York City Department of Education, their agents, and their employees, from all claims and liabilities that arise in connection with the use of the Media.
+         <br>
+        </p>
+       <input type="radio" value="1" onchange="ver1()" id="autR1" name="autR1"> I GIVE PERMISSION FOR THE STUDENT TO PARTICIPATE<br>
+       <input type="radio" value="0" onchange="ocultar1()" id="autR1" name="autR1"> I DO NOT GIVE PERMISSION FOR THE STUDENT TO PARTICIPATE 
+       <br> <br>
+       
+       <div id="comentarior1" class="d-none">
+        <p>
+            <i>The participation authorization is necessary to continue filling out the registration form. If you wish to receive more information about Glasswing's activities, you can contact Dionne Delgado at (646) 370-1930.</i>
+        </p>
+    </div>
+
+    <div id="autorizacionesr2">
+    <p style="text-align: justify;">
+    
+        <b>PERMISSION TO SHARE DATA:</b> Glasswing collects general information as well as students’ opinions in surveys. I voluntarily provide this information. I understand that my information will only be used by Glasswing. It may be shared anonymously for reports with donors and partners.  I understand that this information will be stored securely.
+            <br>
+        </p>
+        <input type="radio" value="1" onchange="ver2()" id="autR2" name="autR2"> I AGREE TO THE COLLECTION AND USE OF DATA<br>
+        <input type="radio" value="0" onchange="ocultar2()" id="autR2" name="autR2"> I DO NOT AGREE TO THE COLLECTION AND USE OF DATA 
+        <br><br>
+
+        <div id="comentarior2" class="d-none">
+            <p>
+                <i>The authorization to share data is necessary to continue filling out the registration form. If you wish to receive more information about this authorization, you can contact Dionne Delgado at (646) 370-1930.</i>
+            </p>
+        </div>
+
+        <div id="autorizacionesr3">
+        <p style="text-align: justify;">
+
+        <b>PERMISSION FOR MEDIA USE:</b> I agree to let Glasswing use and edit images, quotes, interviews, videos, and recordings of the Student (the “Media”) for non-profit purposes related to the program. This includes use in print, in online spaces (such as the Glasswing website and social media accounts), and all other forms of media. Media will never be used for advertising or sold. I release Glasswing and the New York City Department of Education, their agents, and their employees, from all claims and liabilities that arise in connection with the use of the Media. Permission to use the Student’s Media is not required to participate in the program.
+        <br>
+        </p>
+        <input type="radio" value="1" onchange="ver3()" id="autR3" name="autR3"> I AGREE TO MEDIA USE<br>
+        <input type="radio" value="0" onchange="ocultar3()" id="autR3" name="autR3"> I DO NOT AGREE TO MEDIA USE 
+        <br><br>
+
+        <div id="mediosr1" class="container d-none">
+            <p style="text-align: justify;"><b>Entity:</b> Glasswing International</p>
+            <p style="text-align: justify;"><b>Contact Information:</b> Dionne Delgado, (646) 370-1930</p>
+            <p style="text-align: justify;"><b>Purpose/Dates of Recording:</b> Extracurricular enrichment of the participant, from <input type="date" name="FechaSt1" id="FechaSt1" placeholder="dd/mm/aaaa"> to  <input type="date" name="FechaEnd1" id="FechaEnd1" placeholder="dd/mm/aaaa">
+            <br>Student Name: <span id="nombrep2" style="display: inline;" class="text-primary"></span>
+            School: <span id="nombreSchool1" style="display: inline;" class="text-primary"></span>
+            </p>
+        </div>
+
+    <div id="autorizacionesr4">
+        <p style="text-align: justify;">
+        
+            <b>CONSENT FOR PARTICIPATION IN GLASSWING'S PROGRAM EVALUATION SURVEY:</b> In our effort to improve our program, we conduct surveys to gather feedback from participants. Surveys are anonymous and do not collect personally identifiable information. The primary objective is to understand participants' experiences and assess if our program is achieving its goal of empowering immigrant youth in New York City. Participants' feedback is valuable and will contribute to improving our services. We kindly ask for your permission for your student to take the survey. Participation is voluntary and not required; even if you do not give your permission, your student can still participate in the program. Thank you for your cooperation and the trust placed in our program.
+                <br>
+            </p>
+            <input type="radio" value="1" id="autR11" name="autR11" required> I authorize participation in the survey<br>
+            <input type="radio" value="0" id="autR11" name="autR11"> I do not authorize participation in the survey<br>
+            <br>
+    </div>
+
+        <label for="nombreRes" class="form-label">Full name of the responsible adult: *</label>
+        <input type="text" name="nombreRes" id="nombreRes" class="form-control" maxlength="400">
+
+        <label for="Telcontacto" class="form-label">Phone number: *</label>
+        <input type="text" name="Telcontacto" id="Telcontacto" class="form-control" maxlength="20">
+
+        <div class="col">
+            <label for="relacion" class="form-label">Relationship with the student: </label>
+                <select class="form-select" id="relacion" name="relacion">
+                <option></option>
+                <option value = "1">Father</option>
+                <option value = "2">Mother</option>
+                <option value = "3">Uncle</option>
+                <option value = "4">Aunt</option>
+                <option value = "5">Grandfather</option>
+                <option value = "6">Grandmother</option>
+                <option value = "7">Brother</option>
+                <option value = "8">Sister</option>
+                <option value = "9">Cousin</option>
+                <option value = "10">Godmother/Godfather</option>
+                <option value = "12">Nephew/niece</option>
+                <option value = "13">Institutional manager (orphaned children's homes)</option>
+                <option value = "14">Partner/Spouse</option>
+        </select>
+        </div>
+
+        <p style="text-align: justify;">
+    
+            I am aware of all the necessary information for the participation of the Student (participation authorization, permission to share data, and permission for media use). This form has been completed by me.
+                <br>
+            </p>
+
+        <p style="text-align: justify;">Signature of Caregiver/Guardian:</p>
+        <div>
+            <div>
+            <canvas id="Signature1draw" width="750px" height="250px" class="border"></canvas>
+            <br>
+            <button type="button" id="borrar1" class="btn btn-primary" onclick="clearSigniture()">Delete signature</button>
+          </div>
+        </div>
+
+      </div>
+     </div>
+    </div>
+
+    <div id="participante" class="d-none">
+    <p style="text-align: justify;">
+
+    <h4> SECTION TO BE FILLED OUT BY THE STUDENT </h4></p>
+
+    <p style="text-align: justify;">Next, please complete the following form with your personal information to enroll in the English classes offered by Glasswing at your school.</p>
+
+    <p style="text-align: justify;">
+        
+        <b>ASSENT TO PARTICIPATE:</b> I am voluntarily participating in this program. I understand I must follow the rules of Glasswing and my school. I understand activities may be in-person or virtual.
+         <br>
+        </p>
+       <input type="radio" value="1" onchange="ver4()" name="autR4" required> YES, I WISH TO PARTICIPATE<br>
+       <input type="radio" value="0" onchange="ocultar4()" name="autR4"> NO, I DO NOT WISH TO PARTICIPATE<br>
+       <br>
+
+       <div id="comentarior4" class="d-none">
+        <p>
+            <i>The participation authorization is necessary to continue filling out the registration form. If you wish to receive more information about Glasswing's activities, you can contact Dionne Delgado at (646) 370-1930.</i>
+        </p>
+    </div>
+
+    <div id="autorizacionesp1">
+    <p style="text-align: justify;">
+    
+        <b>PERMISSION TO SHARE DATA:</b> Glasswing collects general information as well as student opinions and surveys. I voluntarily provide this information. My information will only be used by Glasswing. It will be stored securely. It may be shared anonymously for reports with donors and partners.
+            <br>
+        </p>
+        <input type="radio" value="1" onchange="ver5()" name="autR5" required> I AGREE TO THE COLLECTION AND USE OF DATA<br>
+        <input type="radio" value="0" onchange="ocultar5()" name="autR5"> I DO NOT AGREE TO THE COLLECTION AND USE OF DATA<br>
+        <br>
+
+        <div id="comentarior5" class="d-none">
+            <p>
+                <i>The authorization to share data is necessary to continue filling out the registration form. If you wish to receive more information about this authorization, you can contact Dionne Delgado at (646) 370-1930.</i>
+            </p>
+        </div>
+
+    <div id="autorizacionesp2">
+        <p style="text-align: justify;">
+
+        <b>PERMISSION FOR MEDIA USE:</b> I agree to let Glasswing use and edit my images, quotes, interviews, videos, and recordings (the “Media”) for non-profit purposes related to the program. This includes use in print, in online spaces (such as the Glasswing website and social media accounts), and all other forms of media. Media will never be used for advertising or sold. Permission to use your Media is not required to participate in the program. I release Glasswing and the New York City Department of Education, their agents, and their employees, from all claims and liabilities that arise in connection with the use of the Media.
+        <br>
+        </p>
+        <input type="radio" value="1" onchange="ver6()" name="autR6" required> I AGREE TO MEDIA USE<br>
+        <input type="radio" value="0" onchange="ocultar6()" name="autR6"> I DO NOT AGREE TO MEDIA USE 
+        <br>
+        <br>
+
+        <div id="mediosp1" class="container d-none">
+            <p style="text-align: justify;"><b>Entity:</b> Glasswing International</p>
+            <p style="text-align: justify;"><b>Contact Information:</b> Dionne Delgado, (646) 370-1930</p>
+            <p style="text-align: justify;"><b>Purpose/Dates of Recording:</b> Afterschool Enrichment in <span id="nombreClub2" style="display: inline;" class="text-primary"></span>, from <input type="date" name="FechaSt2" id="FechaSt2" placeholder="dd/mm/aaaa"> to <input type="date" name="FechaEnd2" id="FechaEnd2" placeholder="dd/mm/aaaa">
+            <br>Student Name: <span id="nombrePart2" style="display: inline;" class="text-primary"></span>
+            School: <span id="nombreSchool2" style="display: inline;" class="text-primary"></span>
+            </p>
+        </div>
+    
+<!--         <div id="mayor1" class="container d-none">
+        <p style="text-align: justify;">
+    
+        <b>I release Glasswing and New York City Department of Education, their agents, and their employees, from all claims and liabilities that arise in connection with the use of the Media.</b>
+        <br>
+        </p>
+        <input type="radio" value="1" id="autR7" name="autR7"> I AGREE<br>
+        <input type="radio" value="0" id= "autR7" name="autR7"> I DO NOT AGREE 
+        <br>
+        </div> -->
+        <br>
+        <div id="autorizacionesp3">
+            <p style="text-align: justify;">
+            
+                <b>CONSENT FOR PARTICIPATION IN GLASSWING'S PROGRAM EVALUATION SURVEY:</b> In our ongoing effort to improve and strengthen our program, we will conduct surveys to gather feedback from participants and measure program outcomes. Surveys are anonymous and will not collect personally identifiable information. The primary objective is to directly understand participants' experiences and assess if our program is achieving its goal of empowering immigrant youth in New York City. Participants' involvement is highly valuable and will significantly contribute to the improvement of our services, benefiting all participants. Therefore, we kindly request your consent for your student to participate in the survey. Participation is entirely voluntary and not mandatory; if you choose not to give your permission, it will not have any consequences for the student's participation in the program. We sincerely appreciate your cooperation and the trust placed in our program.
+                    <br>
+                </p>
+                <input type="radio" value="1" id="autR10" name="autR10" required> I authorize participation in the survey<br>
+                <input type="radio" value="0" id="autR10" name="autR10"> I do not authorize participation in the survey<br>
+                <br>
+        </div>
+
+        <br>
+
+        <p style="text-align: justify;">
+
+        <input type="checkbox" value="1" name="autR9" required> I am aware of all the necessary information for my participation (assent to participate, permission to share data, and permission for media use). This form has been completed by me.
+        <br>
+        </p>
+        <p style="text-align: justify;">Signature of student:</p>
+        <div>
+            <canvas id="Signature2draw" width="750px" height="250px" class="border"></canvas>
+            <br>
+            <button type="button" id="borrar1" class="btn btn-primary" onclick="clearSigniture2()">Delete signature</button>
+          </div>
+        <br>
+
+        <label for="StudentNationality" class="form-label">Select the country of your nationality: </label>
+        <select class="form-select" id="StudentNationality" name="StudentNationality" required>
+            <option value="" selected></option>
+            {{range .Paises}}
+            <option value="{{.Value}}">{{.Label}}</option>
+            {{end}}
+        </select>
+
+
+        <p style="text-align: justify;">
+
+            Have you participated in Glasswing activities in previous years? 
+            <br>
+            </p>
+            <input type="radio" value="1" name="autR8" required> Yes<br>
+            <input type="radio" value="0" name="autR8"> No<br>
+            <br>
+                
+        <div class="col">
+            <label for="Sexo" class="form-label">Select your gender: </label>
+                <select class="form-select" id="Sexo" name="Sexo" required>
+                <option></option>
+                <option value = "2">Female</option>
+                <option value = "1">Male</option>
+                <option value = "3">Non Binary</option>
+        </select>
+        </div>
+        <br>
+                <div class="col">
+            <label for="Area" class="form-label">Select your grade or current educational level: </label>
+                <select class="form-select" id="GA" name="GA" required>
+                <option></option>
+                <option value = "4">1st primary</option>
+                <option value = "5">2nd primary</option>
+                <option value = "6">3rd primary</option>
+                <option value = "7">4th primary</option>
+                <option value = "8">5th primary</option>
+                <option value = "9">6th primary</option>
+                <option value = "10">1st basic (7th grade)</option>
+                <option value = "11">2nd basic (8th grade)</option>
+                <option value = "12">3rd basic (9th grade)</option>
+                <option value = "14">1 high school/diversified</option>
+                <option value = "16">2 high school/diversified</option>
+                <option value = "17">3 high school/diversified</option>
+                <option value = "18">4 high school/diversified</option>
+                <option value = "19">1 technical baccalaureate</option>
+                <option value = "20">2 technical baccalaureate</option>
+                <option value = "22">3 technical baccalaureate</option>
+                <option value = "39">Technical studies</option>
+                <option value = "38">University studies</option>
+        </select>
+        </div>
+        <br>
+
+        <div class="col">
+        <label for="municipio" class="form-label">Borough where you reside: </label>
+            <select class="form-select" id="municipio" name="municipio" required>
+            <option value=""></option>
+            <option value="2217">Manhattan</option>
+            <option value="2216">Brooklyn</option>
+            <option value="2529">Queens</option>
+            <option value="2532">Bronx</option>
+            <option value="2533">Staten Island</option>
+        </select>
+        </div>
+        <br>
+
+        <p style="text-align: justify;"><b> Thank you for filling out the registration form. <br>
+            Good day </b></p>
+        <br>
+
+        <input hidden type="text" name="idioma" id="idioma" value="2"> <!--para identificar las respuestas del form en ingles-->
+    <button class="btn btn-primary" id="boton" type="submit" onclick="guardar(event)"> Send</button>
+      </div>
+     </div>
+    </div>
+    </form>
+    </div>
+        <script src="/static/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+        <script src="/public/JS/Participantes/edunyenglish.js"></script>
+        <script src="/static/signature_pad/dist/signature_pad.umd.min.js"></script>
+      </body>
+    </html>  

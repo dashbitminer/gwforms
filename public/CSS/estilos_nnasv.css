@@ -1,0 +1,16 @@
+.bg-custom {
+    background-color: #bbb5ba;
+  }
+
+  input[type="radio"] {
+    transform: scale(1.5);
+    vertical-align: middle;
+    margin-right: 0.5em;
+  }
+
+  .bigger-checkbox {
+    width: 20px;
+    height: 20px;
+    border-radius: 2px;
+    padding: 10px;
+  }

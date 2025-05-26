@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Formulario Inventario de Hardware</title>
+    <meta charset="utf-8">
+    <base target="_top">
+    <link href="/static/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    </head>
+    <body>
+        <div class="container">
+
+            <img src="/public/IMG/logo.png" class="img-fluid" alt="Glasswing" />
+
+            <form method="POST" id="formularioRegistro" name="formularioRegistro" class="needs-validation" action="/voluntariado/corporativo/post" enctype="multipart/form-data" novalidatez>
+            <br></br>
+                <h2> Formulario Inventario de Hardware </h2>
+            
+            <p style="text-align: justify;">
+                ¡Hola! El presente formulario tiene como objetivo recopilar información detallada y precisa sobre los dispositivos y componentes de hardware en uso de Glasswing International para facilitar su administración, mantenimiento y mejora continua.
+            </p>
+                
+            <br/>
+            <h4>Seccion Información de Usuarios</h4>
+
+            <div class="row">
+                <div class="col">
+                    <label for="nombres" class="form-label">Ingresa tus Nombres Completos: *</label>
+                    <input type="text" name="nombres" id="nombres" class="form-control" placeholder="Ej: Ana Brenda" required>
+                </div>
+
+                <div class="col">
+                    <label for="apellidos" class="form-label">Ingresa tus Apellidos Completos: *</label>
+                    <input type="text" name="apellidos" id="apellidos" class="form-control" placeholder="Ej: Caceres Dueñas" required>
+                </div>
+
+            </div>
+
+                <div class="row">
+
+                    <div class="col">
+                        <label for="email" class="form-label">Ingresa tu correo electrónico institucional o de contacto: *</label>
+                        <input type="email" name="email" id="email" class="form-control" placeholder="nombre@correo.com" min="18" required>    
+                    </div>
+
+                    <div class="col">
+                        <label for="telefono" class="form-label">Ingresa tu número de teléfono institucional o de contacto: *</label>
+                        <input type="text" name="telefono" id="telefono" class="form-control" placeholder="+502 7123 7456" min="18" required>    
+                    </div>
+
+                </div>            
+            
+            <div class="row">
+                <div class="col">
+                    <label for="area" class="form-label">Selecciona el area/programa al que perteneces: *</label>
+                    <select class="form-select" id="area" name="area">
+                        <option value="" selected></option>
+                        {{range .Areas}}
+                        <option value="{{.Value}}">{{.Label}}</option>
+                      {{end}}
+                      </select>                
+                    </div>
+                
+                <div class="col">
+                    <label for="puesto" class="form-label">Ingresa el nombre de tu puesto: *</label>
+                    <input type="text" name="puesto" id="puesto" class="form-control" placeholder="Ej: Personal de campo" required>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col">
+                        <label for="paisn" class="form-label">Selecciona el país en el que resides:*</label>
+                        <select class="form-select" id="paisn" name="paisn">
+                          <option value="" selected></option>
+                          {{range .Paises}}
+                          <option value="{{.Value}}">{{.Label}}</option>
+                        {{end}}
+                        </select>
+                    </div>             
+                <div class="col">
+                        <label for="pais" class="form-label">Selecciona el departamento en el que resides:*</label>
+                        <select class="form-select" id="pais" name="pais" required onchange="actualizarCiudades(this.value)">
+                          <option value="" selected></option>
+                          {{range .Departamento}}
+                          <option value="{{.Value}}">{{.Label}}</option>
+                        {{end}}
+                    </select>
+                    </select>
+                  </div>
+                <div class="col">
+                        <label for="departamento" class="form-label">Selecciona el municipio en el que resides:*</label>
+                         <select class="form-select" id="departamento" name="departamento" required>
+                          <option value="" selected></option>
+                    </select>
+                  </div>
+                </div>        
+
+            <br>
+            <h4>Seccion Documentación Necesaria</h4>
+            <br>
+            <div class="form-group">
+                <label for="activoFijo">Adjuntar fotografía legible en donde se vea el n° del activo fijo de tu laptop: *</label>
+                </br>
+                <input type="file" class="form-control-file" id="activoFijo" name="activoFijo" required>
+                </br>
+            </div>
+            <BR></BR>
+
+            <div class="form-group">
+                <label for="dorsoPc">Adjuntar fotografía legible de la parte trasera de tu laptop: *</label>
+                </br>
+                <input type="file" class="form-control-file" id="dorsoPc" name="dorsoPc" required>
+                </br>
+            </div>
+            <BR></BR>
+
+
+            <div class="form-group">
+                <label for="activoFijo">Adjuntar captura de la "Información de Sistema" de tu laptop: (Tecla Windows + "Información del Sistema")*</label>
+                </br>
+                <input type="file" class="form-control-file" id="activoFijo" name="activoFijo" required>
+                </br>
+            </div>
+            <br>
+            <h4>Sección Hardware Asignado</h4>
+            <br>
+
+            <table class="table">
+                <thead>
+                  <tr>
+                    <th scope="col">Dispositivo</th>
+                    <th scope="col">Modelo</th>
+                    <th scope="col">Serie</th>
+                    <th scope="col">Marca</th>
+                    <th scope="col">Numero Activo</th>
+                    <th scope="col">Fecha Recepción</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>
+                        <select name="Dispositivo[]" class="form-control">
+                          <option value="">Seleccionar...</option>
+                          <option value="1">Computadora Personal</option>
+                          <option value="2">Dispositivos Móviles</option>
+                          <option value="3">Periféricos de Entrada y Salida</option>
+                          <option value="3">Dispositivos de Almacenamiento</option>
+                          <option value="3">Componentes Internos de computadoras</option>
+                        </select>
+                    </td>
+                    <td><input type="text" name="modelo]" class="form-control"></td>
+                    <td><input type="text" name="serie[]" class="form-control"></td>
+                    <td><input type="text" name="marca[]" class="form-control"></td>
+                    <td><input type="text" name="nActvivo[]" class="form-control"></td>
+                    <td><input type="date" name="fechaRecepcion[]" class="form-control"></td>
+                  </tr>
+                </tbody>
+              </table>
+
+              <button class="btn btn-primary" id="agregar-fila">Agregar fila</button>
+
+<br>
+
+
+            <br>
+                <button class="btn btn-primary" id="boton" type="submit"> Enviar</button>
+
+            </form>
+
+        </div>
+
+       <script src="/static/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+        <script src="/public/JS/Voluntarios/inventariohw.js"></script>
+
+    </body>
+</html>

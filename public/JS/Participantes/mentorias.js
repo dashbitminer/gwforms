@@ -1,0 +1,553 @@
+// Example starter JavaScript for disabling form submissions if there are invalid fields
+(() => {
+  'use strict'
+
+  // Fetch all the forms we want to apply custom Bootstrap validation styles to
+  const forms = document.querySelectorAll('.needs-validation')
+
+  // Loop over them and prevent submission
+  Array.from(forms).forEach(form => {
+    form.addEventListener('submit', event => {
+      if (!form.checkValidity()) {
+        event.preventDefault()
+        event.stopPropagation()
+      }
+
+      form.classList.add('was-validated')
+    }, false)
+  })
+})()
+
+
+
+function activaselect2(){
+  var select = document.getElementById("TdC");
+var hiddenDiv = document.getElementById("hidden-question-div");
+var hiddenDiv2 = document.getElementById("hidden-question-div2");
+var hiddenDiv3 = document.getElementById("hidden-question-div3");
+var hiddenDiv4 = document.getElementById("hidden-question-div5");
+var input = document.getElementById("UT");
+var input2 = document.getElementById("GA");
+var input3 = document.getElementById("Turno");
+var input4 = document.getElementById("seccion");
+  if(select.value==="1"){    
+      hiddenDiv.classList.add("d-none");
+      input.required = false;
+      hiddenDiv2.classList.remove("d-none");
+      input2.required = true;
+      
+      activaselect3();
+  }
+  
+   else {
+  hiddenDiv.classList.remove("d-none");
+  input.required = true;
+    hiddenDiv2.classList.add("d-none");
+  input2.required = false;
+    hiddenDiv3.classList.add("d-none");
+  input3.required = false;
+      hiddenDiv4.classList.add("d-none");
+  input4.required = false;
+  }
+
+  }
+
+function activaselect3(){
+var hiddenDiv3 = document.getElementById("hidden-question-div3");
+var hiddenDiv4 = document.getElementById("hidden-question-div5");
+var input2 = document.getElementById("GA");
+var input3 = document.getElementById("Turno");
+var input4 = document.getElementById("seccion");
+  if(input2.value==="38"||input2.value==="39"||input2.value==="40"){ 
+  hiddenDiv3.classList.add("d-none");
+  input3.required = false;
+      hiddenDiv4.classList.add("d-none");
+  input4.required = false;}
+  else{
+  hiddenDiv3.classList.remove("d-none");
+  input3.required = false;
+    hiddenDiv4.classList.remove("d-none");
+  input4.required = false;
+  }
+  }
+function activaselect4(){
+var select = document.getElementById("FechaN");
+var hiddenDiv = document.getElementById("ocultar");
+var hiddenDiv2 = document.getElementById("menoredad");
+var hiddenDiv3 = document.getElementById("hidden-question-div6");
+var hiddenDiv5 = document.getElementById("mayorpart");
+var hiddenDiv6 = document.getElementById("mayorpart2");
+var hiddenDiv7 = document.getElementById("duiparticipante");
+var birthDate = new Date(select.value);
+var diff_ms = Date.now() -birthDate ;
+var age_dt = new Date(diff_ms); 
+var age= Math.abs(age_dt.getUTCFullYear() - 1970); 
+var input = document.getElementById("DUIM");
+var output1 = document.getElementById("edadl");
+var input9= document.getElementById("nombreCompleto");
+var input10= document.getElementById("apellido");
+var input11= document.getElementById("Sexo");
+var input12= document.getElementById("pais");
+var input13= document.getElementById("departamento");
+var input14= document.getElementById("direccion");
+var input19= document.getElementById("TM");
+var input20= document.getElementById("WS");
+var input22= document.getElementById("EstadoC");
+var input23= document.getElementById("TdC");
+var input28= document.getElementById("dis");
+var input30= document.getElementById("gp");
+var input33= document.getElementById("contacto");
+var input34= document.getElementById("contacto2");
+var input35= document.getElementById("relacion");
+var input37= document.getElementById("Transp");
+var input40= document.getElementById("hijos");
+var input41= document.getElementById("aut4");
+var input42= document.getElementById("aut2");
+
+ 
+  if(age>=18){    
+  hiddenDiv.classList.remove("d-none");
+  hiddenDiv2.classList.add("d-none");
+  hiddenDiv3.classList.remove("d-none");
+  hiddenDiv5.classList.remove("d-none");
+  hiddenDiv6.classList.remove("d-none");
+  hiddenDiv7.classList.remove("d-none");
+  output1.innerHTML = age;
+  input.required = true;
+input9.required = true;
+input10.required = true;
+input11.required = true;
+input12.required = true;
+input13.required = true;
+input14.required = true;
+input19.required = true;
+input20.required = true;
+input22.required = true;
+input23.required = true;
+input28.required = true;
+input30.required = true;
+input33.required = true;
+input34.required = true;
+input35.required = true;
+input37.required = true;
+input40.required = true;
+input41.required = true;
+input42.required = true;
+
+  } else {
+    hiddenDiv.classList.add("d-none");
+    hiddenDiv2.classList.remove("d-none");
+    hiddenDiv3.classList.add("d-none");
+    }
+  }
+    
+    function activaselect6(){
+    var select = document.getElementById("ActG");
+    var hiddenDiv = document.getElementById("carnets");
+    if(select.value==="7"||select.value==="8"){
+      hiddenDiv.classList.remove("d-none") ;
+    }
+    else {
+       hiddenDiv.classList.add("d-none") ;
+    }
+    }
+    function activaselect7(){
+    var select = document.getElementById("gp");
+    var hiddenDiv = document.getElementById("gps");
+    if(select.value==="1"){
+      hiddenDiv.classList.remove("d-none") ;
+    }
+    else {
+       hiddenDiv.classList.add("d-none") ;
+    }
+    }
+    
+    function activaselect8(){
+    var select = document.getElementById("WS");
+    var hiddenDiv = document.getElementById("what");
+     input4 = document.getElementById("TM2")
+    if(select.value==="1"){
+      hiddenDiv.classList.remove("d-none") ;
+      input4.required = true;
+    }
+    else {
+       hiddenDiv.classList.add("d-none") ;
+       input4.required = false;
+    }
+    }
+    
+    function activaselect9(){
+      var select = document.getElementById("gasto");
+      var hiddenDiv = document.getElementById("gastodiv");
+      var input1=document.getElementById("cantidad");
+      if(select.value==="9"){
+        hiddenDiv.classList.remove("d-none") ;
+        input1.required = true;
+
+      }
+      else {
+         hiddenDiv.classList.add("d-none") ;
+         input1.required = false;
+      }
+      }   
+
+
+function activaselect10(){
+  var select = document.getElementById("dis");
+var hiddenDiv = document.getElementById("hidden-question-div10");
+var input4 = document.getElementById("dis2");
+  if(select.value==="1"){    
+  hiddenDiv.classList.remove("d-none");
+  } else {
+  hiddenDiv.classList.add("d-none");
+    }
+  }
+function activaselect10(){
+  var select = document.getElementById("dis");
+var hiddenDiv = document.getElementById("hidden-question-div10");
+  if(select.value==="1"){    
+  hiddenDiv.classList.remove("d-none");
+  } else {
+  hiddenDiv.classList.add("d-none");
+    }
+  }
+  function activaselect11(){
+    var select = document.getElementById("sabados");
+    var hiddenDiv = document.getElementById("sabadosdiv");
+    if(select.value==="1"){
+      hiddenDiv.classList.remove("d-none") ;
+    }
+    else {
+       hiddenDiv.classList.add("d-none") ;
+    }
+    }
+    function activaselect12(){
+      var select = document.getElementById("idioma");
+      var hiddenDiv = document.getElementById("idiomadiv");
+      if(select.value!=="1"){
+        hiddenDiv.classList.remove("d-none") ;
+      }
+      else {
+         hiddenDiv.classList.add("d-none") ;
+      }
+      }
+
+      function activaselect13(){
+        var select = document.getElementById("trabajas");
+        var hiddenDiv = document.getElementById("trabajasdiv");
+        if(select.value==="1"){
+          hiddenDiv.classList.remove("d-none") ;
+        }
+        else {
+           hiddenDiv.classList.add("d-none") ;
+        }
+        }
+
+        function activaselect14(){
+          var select = document.getElementById("hijos2");
+          var hiddenDiv = document.getElementById("expdiv");
+          if(select.value==="1"){
+            hiddenDiv.classList.remove("d-none") ;
+          }
+          else {
+             hiddenDiv.classList.add("d-none") ;
+          }
+          }
+
+  function validateFormat() {
+    var formatInput = document.getElementById("DUIM").value;
+       var formatRegex = /^\d{8}-\d$/;
+       var select = document.getElementById("nacionalidad");
+    var output2 = document.getElementById("duil");
+      output2.innerHTML = formatInput;
+      if(select.value==="1"){
+            if (!formatRegex.test(formatInput)) {
+          var alertContainer = document.getElementById("alertContainer");
+          alertContainer.innerHTML = '<div class="alert alert-danger" role="alert">El formato del DUI no es válido.</div>';
+          alertContainer.style.display = "block";
+          return false;
+    }
+    return true;
+  }
+  }
+  function validateFormat2() {
+    var formatInput = document.getElementById("DUIP").value;
+    var select = document.getElementById("nacionalidad2");
+    var formatRegex = /^\d{8}-\d$/;
+    if(select.value==="1"){
+            if (!formatRegex.test(formatInput)) {
+          var alertContainer = document.getElementById("alertContainer2");
+          alertContainer.innerHTML = '<div class="alert alert-danger" role="alert">El formato del DUI no es válido.</div>';
+          alertContainer.style.display = "block";
+          return false;
+    }
+    return true;
+  }
+  }
+      function hideAlert() {
+    var alertContainer = document.getElementById("alertContainer");
+    alertContainer.style.display = "none";
+  }
+     function hideAlert2() {
+    var alertContainer = document.getElementById("alertContainer2");
+    alertContainer.style.display = "none";
+  }
+
+function activaselect51(){
+var select = document.getElementById("nacionalidad");
+var labelOutput = document.getElementById("DUIMl");
+if(select.value==="1"){    
+  labelOutput.innerHTML = "Escribe el número de tu Documento Único de Identidad (DUI)"
+  document.getElementById("DUIM").placeholder = "00000000-0";
+    } else {labelOutput.innerHTML = "Escribe el número de tu Documento de Identidad"
+    document.getElementById("DUIM").placeholder = ""
+  } 
+  } 
+  
+      function activaselect54(){
+        var select = document.getElementById("nacionalidad2");
+        if(select.value==="1"){    
+          document.getElementById("DUIP").placeholder = "00000000-0";
+            } else {
+            document.getElementById("DUIP").placeholder = ""
+          } 
+          }
+
+  document.querySelector('#formualrioRegistro').addEventListener('submit', function(event) {
+  var interests = document.querySelectorAll('input[name="dis2"]:checked');
+   var select = document.getElementById("dis");
+  if(select.value==="1"){
+  if (interests.length === 0) {
+    alert('Debes seleccionar al menos una opción de discapacidad en caso de poseer alguna');
+    event.preventDefault();
+  }
+  }
+});
+
+function activaselect52(){
+var select = document.getElementById("aut");
+var hiddenDiv = document.getElementById("brindo");
+var hiddenDiv2 = document.getElementById("brindo2");
+var hiddenDiv3 = document.getElementById("brindo3");
+
+var input9= document.getElementById("nombreCompleto");
+var input10= document.getElementById("apellido");
+var input11= document.getElementById("Sexo");
+var input12= document.getElementById("pais");
+var input13= document.getElementById("departamento");
+var input14= document.getElementById("direccion");
+var input19= document.getElementById("TM");
+var input20= document.getElementById("WS");
+var input22= document.getElementById("EstadoC");
+var input23= document.getElementById("TdC");
+var input28= document.getElementById("dis");
+var input30= document.getElementById("gp");
+var input33= document.getElementById("contacto");
+var input34= document.getElementById("contacto2");
+var input35= document.getElementById("relacion");
+var input37= document.getElementById("Transp");
+var input38= document.getElementById("gasto");
+var input39= document.getElementById("cantidad");
+var input40= document.getElementById("hijos");
+var input45= document.getElementById("docF");
+var input46= document.getElementById("docA");
+
+
+if(select.value==="1"){
+  hiddenDiv.classList.remove("d-none") ;
+  hiddenDiv2.classList.remove("d-none") ;
+  hiddenDiv3.classList.add("d-none") 
+ 
+  input9.required = true;
+input10.required = true;
+input11.required = true;
+input12.required = true;
+input13.required = true;
+input14.required = true;
+input19.required = true;
+input20.required = true;
+input22.required = true;
+input23.required = true;
+input28.required = true;
+input30.required = true;
+input33.required = true;
+input34.required = true;
+input35.required = true;
+input37.required = true;
+input38.required = true;
+input40.required = true;
+input45.required = true;
+input46.required = true;
+
+}
+else {
+   hiddenDiv.classList.add("d-none") ;
+   hiddenDiv2.classList.add("d-none") ;
+   hiddenDiv3.classList.remove("d-none") ;
+   
+   input9.required = false;
+   input10.required = false;
+   input11.required = false;
+   input12.required = false;
+   input13.required = false;
+   input14.required = false;
+   input19.required = false;
+   input20.required = false;
+   input22.required = false;
+   input23.required = false;
+   input28.required = false;
+   input30.required = false;
+   input33.required = false;
+   input34.required = false;
+   input35.required = false;
+   input37.required = false;
+   input38.required = false;
+   input39.required = false;
+   input40.required = false;
+   input45.required = false;
+  input46.required = false;  
+}
+}
+
+function activa1(){
+  var input = document.getElementById("nombreCompleto");
+  var input2 = document.getElementById("apellido");
+  var output = document.getElementById("nombrep");
+  var output2 = document.getElementById("nombrep2");
+    output.innerHTML = input.value +" "+input2.value;
+    output2.innerHTML = input.value +" "+input2.value;
+  
+  }
+
+
+  function actualizarCiudades(paisSeleccionado) {
+    var ciudadSelect = document.getElementById("municipio");
+    ciudadSelect.innerHTML = ""; // Limpiar la lista de ciudades
+
+    // Enviar petición AJAX para obtener las ciudades correspondientes al país seleccionado
+    var xhr = new XMLHttpRequest();
+    xhr.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+            var opcionesCiudades = this.responseText;
+            ciudadSelect.innerHTML = opcionesCiudades; // Actualizar la lista de ciudades
+        }
+    };
+    xhr.open("POST", "/obtenerciudades", true);
+    xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    xhr.send("pais=" + paisSeleccionado);
+}
+
+function actualizarCiudades2(paisSeleccionado) {
+  var ciudadSelect = document.getElementById("departamento");
+  if(paisSeleccionado==="4"||paisSeleccionado==="3"){
+    document.getElementById("preguntasabado").classList.remove("d-none");
+  }else{
+    document.getElementById("preguntasabado").classList.add("d-none");
+  }
+  ciudadSelect.innerHTML = ""; // Limpiar la lista de ciudades
+
+  // Enviar petición AJAX para obtener las ciudades correspondientes al país seleccionado
+  var xhr = new XMLHttpRequest();
+  xhr.onreadystatechange = function() {
+      if (this.readyState == 4 && this.status == 200) {
+          var opcionesCiudades = this.responseText;
+          ciudadSelect.innerHTML = opcionesCiudades; // Actualizar la lista de ciudades
+      }
+  };
+  xhr.open("POST", "/obtenerciudades2", true);
+  xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+  xhr.send("pais=" + paisSeleccionado);
+
+}
+
+function actualizarCiudades3(paisSeleccionado) {
+  var select = document.getElementById("pais");
+  if(select.value==="4"||select.value==="3"){
+  var ciudadSelect = document.getElementById("sede2");
+  ciudadSelect.innerHTML = ""; // Limpiar la lista de ciudades
+
+  // Enviar petición AJAX para obtener las ciudades correspondientes al país seleccionado
+  var xhr = new XMLHttpRequest();
+  xhr.onreadystatechange = function() {
+      if (this.readyState == 4 && this.status == 200) {
+          var opcionesCiudades = this.responseText;
+          ciudadSelect.innerHTML = opcionesCiudades; // Actualizar la lista de ciudades
+      }
+  };
+  xhr.open("POST", "/obtenerciudades3", true);
+  xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+  xhr.send("pais=" + paisSeleccionado);
+}
+}
+
+function actualizarCiudades4() {
+  var select = document.getElementById("pais");
+  var output2 = document.getElementById("correop");
+var output = document.getElementById("correop2");
+var hiddenDiv = document.getElementById("paisdiv");
+if(select.value==="4"){
+  output2.innerHTML = "gt";
+  output.innerHTML = "gt";
+  hiddenDiv.classList.add("d-none") ;
+}
+if(select.value==="3"){
+  output2.innerHTML = "hn";
+  output.innerHTML = "hn";
+  hiddenDiv.classList.add("d-none") ;
+}
+if(select.value==="7"){
+  output2.innerHTML = "sv";
+  output.innerHTML = "sv";
+  hiddenDiv.classList.remove("d-none") ;
+}
+}
+
+function actualizarmun(paisSeleccionado) {
+  var ciudadSelect = document.getElementById("departamento2");
+  ciudadSelect.innerHTML = ""; // Limpiar la lista de ciudades
+  var sede = document.getElementById("sede2");
+  sede.innerHTML = ""; // Limpiar la lista de ciudades
+  // Enviar petición AJAX para obtener las ciudades correspondientes al país seleccionado
+  var xhr = new XMLHttpRequest();
+  xhr.onreadystatechange = function() {
+      if (this.readyState == 4 && this.status == 200) {
+          var pcionesmunsede= this.responseText;
+          ciudadSelect.innerHTML = pcionesmunsede; // Actualizar la lista de ciudades
+      }
+  };
+  xhr.open("POST", "/obtenermunsedeedu", true);
+  xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+  xhr.send("depsede=" + paisSeleccionado);
+}
+
+function actualizarsede(paisSeleccionado) {
+  var ciudadSelect = document.getElementById("sede2");
+  var nuevaOpcion = document.createElement("option");
+  ciudadSelect.innerHTML = ""; // Limpiar la lista de ciudades
+  // Enviar petición AJAX para obtener las ciudades correspondientes al país seleccionado
+  var xhr = new XMLHttpRequest();
+  xhr.onreadystatechange = function() {
+      if (this.readyState == 4 && this.status == 200) {
+          var opcionesmunsede= this.responseText;
+          ciudadSelect.innerHTML = opcionesmunsede; // Actualizar la lista de ciudades
+      }
+      if(paisSeleccionado==2){
+        nuevaOpcion.text = "Sede Juventudes - San Salvador";
+        nuevaOpcion.value = "666";
+        ciudadSelect.add(nuevaOpcion);
+      }
+      if(paisSeleccionado==402){
+        nuevaOpcion.text = "Sede Juventudes - Santa Ana";
+        nuevaOpcion.value = "1128";
+        ciudadSelect.add(nuevaOpcion);
+      }
+      if(paisSeleccionado==2159){
+        nuevaOpcion.text = "Sede Juventudes - San Miguel";
+        nuevaOpcion.value = "2968";
+        ciudadSelect.add(nuevaOpcion);
+      }
+  };
+  xhr.open("POST", "/obtenersedeedu", true);
+  xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+  xhr.send("munsede=" + paisSeleccionado);
+}

@@ -1,0 +1,942 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <base target="_top">
+    <title> Encuesta de seguimiento a personal entrenado en Formación General </title>
+   <link href="/static/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+  </head>
+
+<link rel="stylesheet" href="/public/CSS/estilos_sanamente_encuesta.css" type="text/css">
+ 
+<body class="bg-custom">
+
+<div class="container">
+
+<img src="/public/IMG/Sanamente.png" class="img-fluid" alt="Glasswing" />
+
+<form action="/sanamente/chemonics/post" method="POST" enctype="multipart/form-data" id="formualrioRegistro" name="formualrioRegistro" class="needs-validation" novalidatez>
+
+<h2> Encuesta de seguimiento a personal entrenado en Formación General </h2>
+<p style="text-align: justify;">
+  ¡Buen día! Le saludamos de Glasswing International. Como parte de los procesos de calidad y seguimiento, estamos realizando consultas para conocer los beneficios que la formación impartida por Glasswing, le ha brindado a nivel personal y en su lugar de trabajo. Por esta razón, le invitamos a llenar esta encuesta que nos ayudará a identificar las oportunidades de mejora del proyecto.
+  <br><br>
+  Si usted recibió esta encuesta, es porque se encuentra en nuestra base de participantes y fue seleccionado al azar, es decir, que solamente algunas personas recibirán este formulario. Aclaramos que el llenado de esta encuesta es completamente voluntario, por lo que puede decidir participar o no.
+  <br><br>
+  La encuesta tiene una duración de 20 minutos máximo, y las preguntas no son una evaluación de conocimiento. Únicamente queremos conocer su experiencia después de la formación. La información recopilada será analizada de forma confidencial y anónima, esto quiere decir que en ningún momento se solicitará su nombre. Además, las respuestas se analizarán grupalmente, es decir, que no se presentarán respuestas individuales o por cada persona. Sus respuestas se almacenarán en bases de datos a las que solamente el equipo de Glasswing tendrá acceso, por tanto, su participación en la encuesta no tendrá ninguna repercusión para usted.
+  <br><br>
+  Como incentivo y agradecimiento a su tiempo en el llenado de esta encuesta, usted estará participando en la rifa de dos tarjetas de regalo de $50.00 en Walmart. La rifa se realizará el 31 de mayo de 2024. Únicamente dos personas serán ganadoras de todas las participantes en la encuesta. 
+  <br><br>
+  Habiendo sido informada(o) del objetivo de esta encuesta y la garantía de protección de su información ¿desea completar de forma voluntaria esta encuesta? Recuerde que su participación es voluntaria.
+  <br><br>
+  
+  <select class="form-select" id="participar" name="participar" onchange="activaselect()" required >
+    <option value=""></option>
+    {{range .Data.Respuestas}}
+    <option value="{{.Value}}">{{.Label}}</option>
+    {{end}}
+  </select>  
+
+  <br>
+              </p> 
+              <div id="ocultar" class="container d-none">
+
+              <br>
+                <h4>Datos Sociodemográficos</h4>
+              <br>
+
+              <label for="departamento" class="form-label">Seleccione el departamento de su lugar de trabajo:<span style="color: #FF7D81;">*</span></label>
+              <select class="form-select" id="departamento" name="departamento" onchange="fdep(this.value)">
+                <option value="" selected></option>
+                {{range .Data.Paises}}
+                <option value="{{.Value}}">{{.Label}}</option>
+                {{end}}
+              </select>
+
+              <label for="municipio" class="form-label">Seleccione el municipio de su lugar de trabajo:<span style="color: #FF7D81;">*</span></label>
+              <select class="form-select" id="municipio" name="municipio" onchange="fmun(this.value)">
+                <option value="" selected></option>
+              </select>
+
+              <label for="sede" class="form-label">Seleccione su lugar de trabajo:<span style="color: #FF7D81;">*</span></label>
+              <select class="form-select" id="sede" name="sede">
+                <option value="" selected></option>
+              </select>
+
+
+                <div class="col">
+                  <label for="edad" class="form-label">Edad:<span style="color: #FF7D81;">*</span></label>
+                  <input type="number" min=15 step="1" name="edad" id="edad" class="form-control" placeholder="" >
+                </div>
+
+                <div class="col">
+                  <label for="aniol" class="form-label"># de años laborales en su trabajo actual:<span style="color: #FF7D81;">*</span></label>
+                  <input type="number" min=0 step="1" name="aniol" id="aniol" class="form-control" placeholder="" >
+                </div>
+    
+                <div class="col">
+                  <label for="sexo" class="form-label">Sexo:<span style="color: #FF7D81;">*</span></label>
+                  <select class="form-select" id="sexo" name="sexo"  >
+                    <option value=""></option>
+                    {{range .Data.Sexo}}
+                    <option value="{{.Value}}">{{.Label}}</option>
+                  {{end}}
+                 </select>
+                </div>              
+
+                <div class="col">
+                  <label for="rol" class="form-label">Seleccione su perfil:<span style="color: #FF7D81;">*</span></label>
+                  <select class="form-select" id="rol" name="rol"  >
+                    <option value=""></option>
+                    {{range .Data2.Solucion}}
+                    {{if eq .IdPregunta "7" }} 
+                    <option value="{{.Value}}">{{.Label}}</option>
+                  {{end}}
+                  {{end}}
+                 </select>
+                </div>                  
+
+                <div class="col">
+                  <label for="puesto" class="form-label">Rol o puesto dentro de su lugar de trabajo:<span style="color: #FF7D81;">*</span></label>
+                  <input type="text" name="puesto" id="puesto" class="form-control" maxlength="150" placeholder="" >
+                </div>
+                <br>
+
+                <p style="text-align: justify;">A continuación, se le presenta una serie de preguntas con el objetivo de conocer cómo el proceso formativo que recibió de parte de Glasswing International apoya en su conocimiento y manejo de estrés y autocuidado.</p>
+          
+                <h4>Prácticas de autocuidado y acciones a favor del bienestar</h4>
+
+                <label for="afirma" class="form-label">1. Abajo se encuentra una lista de afirmaciones. Por favor indique con qué frecuencia dichos enunciados se aplican en su vida cotidiana ANTES y DESPUÉS de la formación<span style="color: #FF7D81;">*</span></label>
+                <table class="table table-bordered border-dark align-middle" style="text-align:center;" >
+                 <thead>
+                  <tr>
+                    <th colspan="1" rowspan="2" style="vertical-align: middle;">Afirmaciones</th>
+                    <th colspan="3" style="vertical-align: middle;">ANTES <h6 class="fw-normal">de la formación</h6></th>
+                    <th colspan="3" style="vertical-align: middle;">DESPUES <h6 class="fw-normal">de la formación</h6></th>
+                  </tr>
+                   <tr>
+                    <th style="vertical-align: middle;">Muy pocas veces</th>
+                    <th style="vertical-align: middle;">Algunas veces</th>
+                    <th style="vertical-align: middle;">Casi siempre</th>
+                    <th style="vertical-align: middle;">Muy pocas veces</th>
+                    <th style="vertical-align: middle;">Algunas veces</th>
+                    <th style="vertical-align: middle;">Casi siempre</th>
+                    </tr>
+                 </thead>
+                 <tbody>
+                   <tr>
+                     <th style="text-align: left;">Cuando me siento sobrepasado(a) o muy cargado(a) puedo encontrar un lugar tranquilo dentro de mí.</th>
+                     <td><input type="radio" name="afirma1" id="afirma1" value="1"></td> 
+                     <td><input type="radio" name="afirma1" id="afirma1" value="2"></td>
+                     <td><input type="radio" name="afirma1" id="afirma1" value="3"></td>
+                     <td><input type="radio" name="afirma1B" id="afirma1B" value="1"></td>
+                     <td><input type="radio" name="afirma1B" id="afirma1B" value="2"></td>
+                     <td><input type="radio" name="afirma1B" id="afirma1B" value="3"></td>
+                   </tr>
+                   <tr>
+                     <th style="text-align: left;">Cuando dirijo la atención hacia mi cuerpo siento calma.</th>
+                     <td><input type="radio" name="afirma2" id="afirma2" value="1"></td>
+                     <td><input type="radio" name="afirma2" id="afirma2" value="2"></td>
+                     <td><input type="radio" name="afirma2" id="afirma2" value="3"></td>
+                     <td><input type="radio" name="afirma2B" id="afirma2B" value="1"></td>
+                     <td><input type="radio" name="afirma2B" id="afirma2B" value="2"></td>
+                     <td><input type="radio" name="afirma2B" id="afirma2B" value="3"></td>
+                   </tr>
+                   <tr>
+                     <th style="text-align: left;">Puedo utilizar mi respiración para reducir la tensión.</th>
+                     <td><input type="radio" name="afirma3" id="afirma3" value="1"></td>
+                     <td><input type="radio" name="afirma3" id="afirma3" value="2"></td>
+                     <td><input type="radio" name="afirma3" id="afirma3" value="3"></td>
+                     <td><input type="radio" name="afirma3B" id="afirma3B" value="1"></td>
+                     <td><input type="radio" name="afirma3B" id="afirma3B" value="2"></td>
+                     <td><input type="radio" name="afirma3B" id="afirma3B" value="3"></td>
+                   </tr>
+                   <tr>
+                     <th style="text-align: left;">Cuando estoy atrapado(a) en mis pensamientos puedo calmar mi mente concentrándome en mi cuerpo/respiración.</th>
+                     <td><input type="radio" name="afirma4" id="afirma4" value="1"></td>
+                     <td><input type="radio" name="afirma4" id="afirma4" value="2"></td>
+                     <td><input type="radio" name="afirma4" id="afirma4" value="3"></td>
+                     <td><input type="radio" name="afirma4B" id="afirma4B" value="1"></td>
+                     <td><input type="radio" name="afirma4B" id="afirma4B" value="2"></td>
+                     <td><input type="radio" name="afirma4B" id="afirma4B" value="3"></td>
+                   </tr>
+                   <tr>
+                     <th style="text-align: left;">Noto cómo mi cuerpo cambia cuando estoy enojado(a).</th>
+                     <td><input type="radio" name="afirma5" id="afirma5" value="1"></td>
+                     <td><input type="radio" name="afirma5" id="afirma5" value="2"></td>
+                     <td><input type="radio" name="afirma5" id="afirma5" value="3"></td>
+                     <td><input type="radio" name="afirma5B" id="afirma5B" value="1"></td>
+                     <td><input type="radio" name="afirma5B" id="afirma5B" value="2"></td>
+                     <td><input type="radio" name="afirma5B" id="afirma5B" value="3"></td>
+                   </tr>
+                   <tr>
+                     <th style="text-align: left;">Cuando algo anda mal en mi vida puedo sentirlo en mi cuerpo.</th>
+                     <td><input type="radio" name="afirma6" id="afirma6" value="1"></td>
+                     <td><input type="radio" name="afirma6" id="afirma6" value="2"></td>
+                     <td><input type="radio" name="afirma6" id="afirma6" value="3"></td>
+                     <td><input type="radio" name="afirma6B" id="afirma6B" value="1"></td>
+                     <td><input type="radio" name="afirma6B" id="afirma6B" value="2"></td>
+                     <td><input type="radio" name="afirma6B" id="afirma6B" value="3"></td>
+                   </tr>
+                   <tr>
+                     <th style="text-align: left;">Noto que mi cuerpo se siente diferente después de una experiencia apacible (agradable).</th>
+                     <td><input type="radio" name="afirma7" id="afirma7" value="1"></td>
+                     <td><input type="radio" name="afirma7" id="afirma7" value="2"></td>
+                     <td><input type="radio" name="afirma7" id="afirma7" value="3"></td>
+                     <td><input type="radio" name="afirma7B" id="afirma7B" value="1"></td>
+                     <td><input type="radio" name="afirma7B" id="afirma7B" value="2"></td>
+                     <td><input type="radio" name="afirma7B" id="afirma7B" value="3"></td>
+                   </tr>
+                   <tr>
+                     <th style="text-align: left;">Noto que puedo respirar libre y fácilmente cuando me siento cómodo(a).</th>
+                     <td><input type="radio" name="afirma8" id="afirma8" value="1"></td>
+                     <td><input type="radio" name="afirma8" id="afirma8" value="2"></td>
+                     <td><input type="radio" name="afirma8" id="afirma8" value="3"></td>
+                     <td><input type="radio" name="afirma8B" id="afirma8B" value="1"></td>
+                     <td><input type="radio" name="afirma8B" id="afirma8B" value="2"></td>
+                     <td><input type="radio" name="afirma8B" id="afirma8B" value="3"></td>
+                   </tr>
+                   <tr>
+                     <th style="text-align: left;">Noto cómo mi cuerpo cambia cuando me siento contento(a)/feliz.</th>
+                     <td><input type="radio" name="afirma9" id="afirma9" value="1"></td>
+                     <td><input type="radio" name="afirma9" id="afirma9" value="2"></td>
+                     <td><input type="radio" name="afirma9" id="afirma9" value="3"></td>
+                     <td><input type="radio" name="afirma9B" id="afirma9B" value="1"></td>
+                     <td><input type="radio" name="afirma9B" id="afirma9B" value="2"></td>
+                     <td><input type="radio" name="afirma9B" id="afirma9B" value="3"></td>
+                   </tr>
+           
+                 </tbody>
+               </table>
+
+               <div id="afectacion">
+                <label for="afecta"  class="form-label">2. En la siguiente tabla, seleccione si ANTES de la formación usted era consciente de las siguientes afectaciones en su cotidianidad. <span style="color: #FF7D81;">*</span></label>
+                 <table class="table table-bordered align-middle" style="text-align:center;">
+                   <thead>
+                     <tr>
+                       <th style="vertical-align: middle;">Tipo de afectación</th>
+                       <th style="vertical-align: middle;">NO las reconocía en mí ANTES de la formación</th>
+                       <th style="vertical-align: middle;">SÍ las reconocía en mí ANTES de la formación</th>
+                     </tr>
+                   </thead>
+                   <tbody>
+                     
+                    <tr id="afecta1linea">
+                       <th style="text-align: left;">Mentales: preocupación, inseguridad, dificultad para decidir, miedo, pensamientos negativos sobre uno mismo o sobre nuestra actuación ante los otros, temor a que se den cuenta de nuestras dificultades, temor a la pérdida del control, dificultades para pensar, dificultad para concentrarse.</th>
+                       <td><input type="radio" name="afecta1" id="afecta1" value="11"></td>
+                       <td><input type="radio" name="afecta1" id="afecta1" value="12"></td>
+                     </tr>
+                 
+                      
+                     <tr id="afecta2linea">
+                       <th style="text-align: left;">Corporales: sudoración, tensión muscular, palpitaciones, taquicardia, temblor, malestares gástricos o en el estómago, dificultades respiratorias, sequedad de boca, dificultades para deglutir, dolores de cabeza, mareo, náuseas, escalofríos.</th>
+                       <td><input type="radio" name="afecta2" id="afecta2" value="11"></td>
+                       <td><input type="radio" name="afecta2" id="afecta2" value="12"></td>
+                     </tr>
+                     
+                     <tr id="afecta3linea">
+                       <th style="text-align: left;">Conductuales: evitación de situaciones temidas, fumar en exceso, comer en exceso, beber en exceso, intranquilidad motora [movimientos repetitivos, rascarse, tocarse], ir de un lado para otro sin una finalidad concreta, tartamudear, quedarse paralizado.</th>
+                       <td><input type="radio" name="afecta3" id="afecta3" value="11"></td>
+                       <td><input type="radio" name="afecta3" id="afecta3" value="12"></td>
+                     </tr>
+                    
+                   </tbody>
+                 </table>
+                 </div>
+                 <br>
+
+                 <label for="actitud" class="form-label">2.1 De las siguientes frases, ¿cuál es la que mejor describe su actitud hacia las afectaciones anteriormente mencionadas?<span style="color: #FF7D81;">*</span></label>
+                 <br> 
+                 {{range .Data2.Solucion}}
+                 {{if eq .IdPregunta "1" }}
+                  <input type="radio" value="{{.Value}}" name="actitud" id="actitud" >{{.Label}}</option><br><br>
+                 {{end}}
+                 {{end}}
+                 <br>
+                
+                  <label for="estrategia"  class="form-label">2.2 ¿Ha tenido la oportunidad de aplicar alguna estrategia/pauta para enfrentar el estrés y fomentar el autocuidado?<span style="color: #FF7D81;">*</span></label>
+                  <br> 
+                  {{range .Data.Estrategia}}
+                  <input type="radio" value="{{.Value}}" name="estrategia" id="estrategia{{.Value}}" onchange="otro()">{{.Label}}</option><br><br> 
+                   {{end}}
+                  <br>
+                  <div class="d-none" id="epracticadiv">
+                  <label for="epractica" class="form-label">3. De las siguientes estrategias/pautas para enfrentar el estrés y fomentar el autocuidado, seleccione aquellas que ha tenido la oportunidad de aplicar en los últimos dos meses: (Puede seleccionar más de una opción).<span style="color: #FF7D81;">*</span></label>
+                  <br> 
+                  {{range .Data.Practica}}
+                  <input type="checkbox" value="{{.Value}}" name="epractica" id="epractica{{.Value}}" onchange="otro3()">{{.Label}}</option><br><br> 
+                   {{end}}
+                  <br>
+                  </div>
+                  <div class="d-none" id="apoyodiv">
+                  <label for="apoyo" class="form-label">3.1 ¿Qué apoyo externo o especializado ha buscado? <span style="color: #FF7D81;">*</span></label>
+                <br>
+                  {{range .Data2.Solucion}}
+                 {{if eq .IdPregunta "2" }}
+                  <input type="radio" value="{{.Value}}" name="apoyo" id="ap{{.Value}}" onchange="otro4()">{{.Label}}</option><br><br>
+                 {{end}}
+                 {{end}}
+                  </div>
+                  <br>
+                  <div class="d-none" id="motivodiv">
+                <label for="motivo" class="form-label">Otro<span style="color: #FF7D81;">*</span></label>
+                  <textarea class="form-control" rows="3" name="motivo" id="motivo" maxlength="500"></textarea>
+                  <br>
+                </div>
+              <br>  
+
+              <label for="practicat" class="form-label">4. ANTES de recibir las formaciones de Glasswing, ¿practicaba técnicas de autocuidado?<span style="color: #FF7D81;">*</span></label>
+              <br> 
+              {{range .Data.Respuestas}}
+              <input type="radio" value="{{.Value}}" name="practicat" id="practicat">{{.Label}}</option><br><br> 
+                {{end}}
+            <br>  
+
+            <label for="estadoe" class="form-label">5. De las siguientes oraciones, seleccione la respuesta que mejor describa cómo se siente. Usted siente que:<span style="color: #FF7D81;">*</span></label>
+            <br> 
+            {{range .Data.Estado}}
+            <input type="radio" value="{{.Value}}" name="estadoe" id="estadoe">{{.Label}}</option><br><br> 
+              {{end}}
+            <br>  
+
+            <label for="angustia" class="form-label">6. Ingrese el número (del 0 al 10) que mejor describa cuánta angustia ha estado sintiendo esta última semana, incluyendo el día de hoy, siendo 10 extremadamente angustiada(o) y 0 ninguna angustia.<span style="color: #FF7D81;">*</span></label>
+            <input class="form-control" type="number" min="0" max="10" step="1" name="angustia" id="angustia" style="margin-left: auto; margin-right: auto;" onchange="updateTemperature(this.value)" oninput="validateNumber(this)">
+
+            <br> 
+            <label for="termometro" class="d-flex align-items-center justify-content-center">EXTREMADAMENTE ANGUSTIADA(O) “Nunca me había sentido tan mal”<span style="color: #FF7D81;">*</span></label>
+            <br>  
+             
+            <div class="thermometer">
+              
+              <div class="temperature"></div>
+              </div>
+              <br> 
+              <div class="text-center">
+              <label for="termometro" class="d-flex align-items-center justify-content-center">NINGUNA ANGUSTIA “Todo está bien”<span style="color: #FF7D81;">*</span></label> 
+             </div>
+              <br>  
+            <br>
+            <h4>Espacios conscientes de trauma</h4>
+    <br>
+
+
+      <label for="opractica2" class="form-label">7.	En su opinión, ¿cuál es el objetivo principal de la formación general de SanaMente?<span style="color: #FF7D81;">*</span></label>
+      <br> 
+      {{range .Data2.Solucion}}
+      {{if eq .IdPregunta "3" }}
+       <input type="radio" value="{{.Value}}" name="op7" id="op7" >{{.Label}}</option><br><br>
+      {{end}}
+      {{end}}
+      <br>  
+
+            <div id="pAfirmaciones">
+            <label for="opractica" class="form-label">8. De las siguientes afirmaciones, seleccione cuál o cuáles ha tenido la oportunidad de poner en práctica DESPUÉS de la formación:<span style="color: #FF7D81;">*</span></label>
+            <br> 
+            {{range .Data.Afirmacion}}
+            <input type="checkbox" value="{{.Value}}" name="opractica" id="opractica{{.Value}}" onchange="otro5()">{{.Label}}</option><br><br> 
+              {{end}}
+            <br>  
+
+<div id="8p" class="d-none">
+            <label for="oportunidad"  class="form-label">8.1. De las acciones arriba seleccionadas, en el último mes aproximadamente ¿con cuántas personas ha realizado esas prácticas? por ejemplo, a cuántas personas le ha explicado sobre los efectos del trauma en su lugar de trabajo o en su vida diaria.<span style="color: #FF7D81;">*</span></label>
+            <br> 
+            <input class="form-control" type="number" min="1" step="1" name="81" id="81">
+            <br>  
+            
+            <div class="d-none" id="82div">
+            <label for="oportunidad2"  class="form-label">8.2. En el último mes ¿A cuántas personas ha referido o animado a alguien a solicitar apoyo externo? <span style="color: #FF7D81;">*</span></label>
+            <br> 
+            <input class="form-control" type="number" min="1" step="1" name="82" id="82">
+            <br>  
+            </div>
+
+            <label for="practicat" class="form-label">8.3 ¿Percibe que los usuarios que ha atendido bajo enfoques de trauma informado pueden mostrar actitudes favorables para sus vidas después de recibir su atención?<span style="color: #FF7D81;">*</span></label>
+            <br> 
+            {{range .Data.Respuestas}}
+            <input type="radio" value="{{.Value}}" name="practicat1" id="practicat1{{.Value}}" onchange="otro6()">{{.Label}}</option><br><br> 
+              {{end}}
+          <br>  
+
+          <div class="d-none" id="831div">
+            <label for="motivo" class="form-label">8.3.1 Podría mencionar algunas de los beneficios que pueden tener estas personas tras su atención: <span style="color: #FF7D81;">*</span></label>
+              <textarea class="form-control" rows="3" name="motivo2" id="motivo2" maxlength="500"></textarea>
+              <br>
+            </div>
+                  </div>
+            <label for="ptrabajo" class="form-label">9. Lea el siguiente caso hipotético y complete seleccionando la opción que mejor le parezca:
+             <i>A su lugar de trabajo llega un joven que solicita ayuda, ante esto una de sus compañeras decide atenderlo bajo el enfoque de trauma informado. Usted reconoce que está utilizando aprendizajes de la formación ¿Cuál considera que fue el mayor aporte de la formación para que su compañera lo atienda de esta manera?</i>
+              <span style="color: #FF7D81;">*</span></label>
+            <br> 
+            {{range .Data2.Solucion}}
+            {{if eq .IdPregunta "4" }}
+             <input type="radio" value="{{.Value}}" name="op9" id="op9" >{{.Label}}</option><br><br>
+            {{end}}
+            {{end}}
+            <br>  
+
+            <label for="ptrabajo" class="form-label">10. De las siguientes afirmaciones, seleccione cuál o cuáles se ponen en práctica en su lugar de trabajo con las personas usuarias, es decir, no necesariamente que usted las haga, si no que las observe en su equipo de trabajo después de recibir la formación: <span style="color: #FF7D81;">*</span></label>
+            <br> 
+            {{range .Data2.Solucion}}
+            {{if eq .IdPregunta "5" }}
+            <input type="checkbox" value="{{.Value}}" name="op10" id="op10">{{.Label}}</option><br><br> 
+            {{end}}
+            {{end}}
+             <br>  
+
+            <label for="ptrabajo" class="form-label">10.1  De las siguientes afirmaciones, seleccione cuál o cuáles se ponen en práctica en su lugar de trabajo, es decir, no necesariamente que usted las haga, si no que las observe en su equipo de trabajo después de recibir la formación: <span style="color: #FF7D81;">*</span></label>
+            <br> 
+            {{range .Data2.Solucion}}
+            {{if eq .IdPregunta "6" }}
+            <input type="checkbox" value="{{.Value}}" name="op101" id="op101">{{.Label}}</option><br><br> 
+            {{end}}
+            {{end}}
+            <br>              
+
+            <label for="clima" class="clima">11. ¿Considera que la formación ha apoyado a la mejora del clima laboral en su trabajo?<span style="color: #FF7D81;">*</span></label>
+            <br> 
+              {{range .Data.Respuestas}}
+                      <input type="radio" value="{{.Value}}" name="conocee" id="conocee">{{.Label}}</option><br><br> 
+              {{end}}
+           
+            <br>
+         
+            <label for="conocee" class="form-label">11.1 ¿Por qué?<span style="color: #FF7D81;">*</span></label>
+            <br> 
+            <textarea class="form-control" rows="3" name="clima" id="clima" maxlength="500"></textarea>
+            <br>  
+
+            <label for="consciente" class="form-label">12. DESPUÉS de la formación, ¿considera que es consciente de los efectos del trauma en la vida de las personas?<span style="color: #FF7D81;">*</span></label>
+            <br> 
+            {{range .Data.Respuestas}}
+            <input type="radio" value="{{.Value}}" name="consciente" id="consciente{{.Value}}" onchange="activaselect2()">{{.Label}}</option><br><br> 
+              {{end}}
+            <br>  
+            <div class="d-none" id="beneficiodiv">
+            <label for="beneficio" class="form-label">13. ¿Cómo considera que su conocimiento sobre trauma beneficia a las personas que atiende en su lugar de trabajo?<span style="color: #FF7D81;">*</span></label>
+            <textarea class="form-control" rows="2" name="beneficio" id="beneficio" maxlength="300"></textarea>
+          </div>
+<br>
+            <h4>Cohesión Social</h4>
+<br>
+            <label for="relacion" class="form-label">14. A continuación encontrará una serie de círculos, por favor seleccione el círculo que mejor represente su relación , ANTES y DESPUÉS de la formación: <span style="color: #FF7D81;">*</span></label>
+            <div class="form-group">
+              <label>¿Qué tan cerca se sentía de su familia ANTES de la formación?<span style="color: #FF7D81;">*</span></label><br>
+              <table class="table">
+                <tbody>
+                  <tr>
+                    <td class="text-center">
+                      <div class="form-check">
+                        <input class="form-check-input" type="radio" name="rel1" id="rel1" value="1">
+                        <label class="form-check-label" for="rel1">
+                          <div class="d-flex justify-content-center">
+                            <img src="/public/IMG/rel1_1.png" class="img-max" alt="Imagen 1">
+                          </div>
+                        </label>
+                      </div>
+                    </td>
+                    <td class="text-center">
+                      <div class="form-check">
+                        <input class="form-check-input" type="radio" name="rel1" value="2">
+                        <label class="form-check-label" for="imagen2">
+                          <div class="d-flex justify-content-center">
+                            <img src="/public/IMG/rel1_2.png" class="img-max" alt="Imagen 2">
+                          </div>
+                        </label>
+                      </div>
+                    </td>
+                    <td class="text-center">
+                      <div class="form-check">
+                        <input class="form-check-input" type="radio" name="rel1" value="3">
+                        <label class="form-check-label" for="imagen3">
+                          <div class="d-flex justify-content-center">
+                            <img src="/public/IMG/rel1_3.png" class="img-max" alt="Imagen 3">
+                          </div>
+                        </label>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="text-center">
+                      <div class="form-check">
+                        <input class="form-check-input" type="radio" name="rel1" value="4">
+                        <label class="form-check-label" for="imagen4">
+                          <div class="d-flex justify-content-center">
+                            <img src="/public/IMG/rel1_4.png" class="img-max" alt="Imagen 4">
+                          </div>
+                        </label>
+                      </div>
+                    </td>
+                    <td class="text-center">
+                      <div class="form-check">
+                        <input class="form-check-input" type="radio" name="rel1" value="5">
+                        <label class="form-check-label" for="imagen5">
+                          <div class="d-flex justify-content-center">
+                            <img src="/public/IMG/rel1_5.png" class="img-max" alt="Imagen 5">
+                          </div>
+                        </label>
+                      </div>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+    
+            <hr size="8px" color="#005A60" />
+            <div class="form-group" style="color: darkblue;">
+              <label> ¿Qué tan cerca se sentía de su familia DESPUÉS de la formación? <span style="color: #FF7D81;">*</span></label><br>
+              <table class="table">
+                <tbody>
+                  <tr>
+                    <td class="text-center">
+                      <div class="form-check">
+                        <input class="form-check-input" type="radio" name="rel12" id="rel12" value="1">
+                        <label class="form-check-label" for="rel1">
+                          <div class="d-flex justify-content-center">
+                            <img src="/public/IMG/rel1_1.png" class="img-max" alt="Imagen 1">
+                          </div>
+                        </label>
+                      </div>
+                    </td>
+                    <td class="text-center">
+                      <div class="form-check">
+                        <input class="form-check-input" type="radio" name="rel12" value="2">
+                        <label class="form-check-label" for="imagen2">
+                          <div class="d-flex justify-content-center">
+                            <img src="/public/IMG/rel1_2.png" class="img-max" alt="Imagen 2">
+                          </div>
+                        </label>
+                      </div>
+                    </td>
+                    <td class="text-center">
+                      <div class="form-check">
+                        <input class="form-check-input" type="radio" name="rel12" value="3">
+                        <label class="form-check-label" for="imagen3">
+                          <div class="d-flex justify-content-center">
+                            <img src="/public/IMG/rel1_3.png" class="img-max" alt="Imagen 3">
+                          </div>
+                        </label>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="text-center">
+                      <div class="form-check">
+                        <input class="form-check-input" type="radio" name="rel12" value="4">
+                        <label class="form-check-label" for="imagen4">
+                          <div class="d-flex justify-content-center">
+                            <img src="/public/IMG/rel1_4.png" class="img-max" alt="Imagen 4">
+                          </div>
+                        </label>
+                      </div>
+                    </td>
+                    <td class="text-center">
+                      <div class="form-check">
+                        <input class="form-check-input" type="radio" name="rel12" value="5">
+                        <label class="form-check-label" for="imagen5">
+                          <div class="d-flex justify-content-center">
+                            <img src="/public/IMG/rel1_5.png" class="img-max" alt="Imagen 5">
+                          </div>
+                        </label>
+                      </div>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <hr size="8px" color="#005A60" />
+
+            <div class="form-group">
+              <label>¿Qué tan cerca se sentía de las personas de su trabajo ANTES de la formación?<span style="color: #FF7D81;">*</span></label><br>
+              <table class="table">
+                <tbody>
+                  <tr>
+                    <td class="text-center">
+                      <div class="form-check">
+                        <input class="form-check-input" type="radio" name="rel2" id="rel2" value="1">
+                        <label class="form-check-label" for="rel2">
+                          <div class="d-flex justify-content-center">
+                            <img src="/public/IMG/rel2_1.png" class="img-max" alt="Imagen 1">
+                          </div>
+                        </label>
+                      </div>
+                    </td>
+                    <td class="text-center">
+                      <div class="form-check">
+                        <input class="form-check-input" type="radio" name="rel2" value="2">
+                        <label class="form-check-label" for="imagen2">
+                          <div class="d-flex justify-content-center">
+                            <img src="/public/IMG/rel2_2.png" class="img-max" alt="Imagen 2">
+                          </div>
+                        </label>
+                      </div>
+                    </td>
+                    <td class="text-center">
+                      <div class="form-check">
+                        <input class="form-check-input" type="radio" name="rel2" value="3">
+                        <label class="form-check-label" for="imagen3">
+                          <div class="d-flex justify-content-center">
+                            <img src="/public/IMG/rel2_3.png" class="img-max" alt="Imagen 3">
+                          </div>
+                        </label>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="text-center">
+                      <div class="form-check">
+                        <input class="form-check-input" type="radio" name="rel2" value="4">
+                        <label class="form-check-label" for="imagen4">
+                          <div class="d-flex justify-content-center">
+                            <img src="/public/IMG/rel2_4.png" class="img-max" alt="Imagen 4">
+                          </div>
+                        </label>
+                      </div>
+                    </td>
+                    <td class="text-center">
+                      <div class="form-check">
+                        <input class="form-check-input" type="radio" name="rel2" value="5">
+                        <label class="form-check-label" for="imagen5">
+                          <div class="d-flex justify-content-center">
+                            <img src="/public/IMG/rel2_5.png" class="img-max" alt="Imagen 5">
+                          </div>
+                        </label>
+                      </div>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <hr size="8px" color="#005A60" />
+          
+            <div class="form-group">
+              <label style="color: darkblue;"> ¿Qué tan cerca se sentía de las personas de su trabajo DESPUÉS de la formación?<span style="color: #FF7D81;">*</span></label><br>
+              <table class="table">
+                <tbody>
+                  <tr>
+                    <td class="text-center">
+                      <div class="form-check">
+                        <input class="form-check-input" type="radio" name="rel22" id="rel22" value="1">
+                        <label class="form-check-label" for="rel2">
+                          <div class="d-flex justify-content-center">
+                            <img src="/public/IMG/rel2_1.png" class="img-max" alt="Imagen 1">
+                          </div>
+                        </label>
+                      </div>
+                    </td>
+                    <td class="text-center">
+                      <div class="form-check">
+                        <input class="form-check-input" type="radio" name="rel22" value="2">
+                        <label class="form-check-label" for="imagen2">
+                          <div class="d-flex justify-content-center">
+                            <img src="/public/IMG/rel2_2.png" class="img-max" alt="Imagen 2">
+                          </div>
+                        </label>
+                      </div>
+                    </td>
+                    <td class="text-center">
+                      <div class="form-check">
+                        <input class="form-check-input" type="radio" name="rel22" value="3">
+                        <label class="form-check-label" for="imagen3">
+                          <div class="d-flex justify-content-center">
+                            <img src="/public/IMG/rel2_3.png" class="img-max" alt="Imagen 3">
+                          </div>
+                        </label>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="text-center">
+                      <div class="form-check">
+                        <input class="form-check-input" type="radio" name="rel22" value="4">
+                        <label class="form-check-label" for="imagen4">
+                          <div class="d-flex justify-content-center">
+                            <img src="/public/IMG/rel2_4.png" class="img-max" alt="Imagen 4">
+                          </div>
+                        </label>
+                      </div>
+                    </td>
+                    <td class="text-center">
+                      <div class="form-check">
+                        <input class="form-check-input" type="radio" name="rel22" value="5">
+                        <label class="form-check-label" for="imagen5">
+                          <div class="d-flex justify-content-center">
+                            <img src="/public/IMG/rel2_5.png" class="img-max" alt="Imagen 5">
+                          </div>
+                        </label>
+                      </div>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <hr size="8px" color="#005A60" />
+
+            <div class="form-group">
+              <label>¿Qué tan cerca se sentía de los usuarios ANTES de la formación?<span style="color: #FF7D81;">*</span></label><br>
+              <table class="table">
+                <tbody>
+                  <tr>
+                    <td class="text-center">
+                      <div class="form-check">
+                        <input class="form-check-input" type="radio" name="rel3" id="rel3" value="1">
+                        <label class="form-check-label" for="rel3">
+                          <div class="d-flex justify-content-center">
+                            <img src="/public/IMG/rel3_1.png" class="img-max" alt="Imagen 1">
+                          </div>
+                        </label>
+                      </div>
+                    </td>
+                    <td class="text-center">
+                      <div class="form-check">
+                        <input class="form-check-input" type="radio" name="rel3" value="2">
+                        <label class="form-check-label" for="imagen2">
+                          <div class="d-flex justify-content-center">
+                            <img src="/public/IMG/rel3_2.png" class="img-max" alt="Imagen 2">
+                          </div>
+                        </label>
+                      </div>
+                    </td>
+                    <td class="text-center">
+                      <div class="form-check">
+                        <input class="form-check-input" type="radio" name="rel3" value="3">
+                        <label class="form-check-label" for="imagen3">
+                          <div class="d-flex justify-content-center">
+                            <img src="/public/IMG/rel3_3.png" class="img-max" alt="Imagen 3">
+                          </div>
+                        </label>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="text-center">
+                      <div class="form-check">
+                        <input class="form-check-input" type="radio" name="rel3" value="4">
+                        <label class="form-check-label" for="imagen4">
+                          <div class="d-flex justify-content-center">
+                            <img src="/public/IMG/rel3_4.png" class="img-max" alt="Imagen 4">
+                          </div>
+                        </label>
+                      </div>
+                    </td>
+                    <td class="text-center">
+                      <div class="form-check">
+                        <input class="form-check-input" type="radio" name="rel3" value="5">
+                        <label class="form-check-label" for="imagen5">
+                          <div class="d-flex justify-content-center">
+                            <img src="/public/IMG/rel3_5.png" class="img-max" alt="Imagen 5">
+                          </div>
+                        </label>
+                      </div>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <hr size="8px" color="#005A60" />
+            <div class="form-group">
+              <label style="color: darkblue;">  ¿Qué tan cerca se sentía de los usuarios DESPUÉS de la formación?<span style="color: #FF7D81;">*</span></label><br>
+              <table class="table">
+                <tbody>
+                  <tr>
+                    <td class="text-center">
+                      <div class="form-check">
+                        <input class="form-check-input" type="radio" name="rel32" id="rel3" value="1">
+                        <label class="form-check-label" for="rel3">
+                          <div class="d-flex justify-content-center">
+                            <img src="/public/IMG/rel3_1.png" class="img-max" alt="Imagen 1">
+                          </div>
+                        </label>
+                      </div>
+                    </td>
+                    <td class="text-center">
+                      <div class="form-check">
+                        <input class="form-check-input" type="radio" name="rel32" value="2">
+                        <label class="form-check-label" for="imagen2">
+                          <div class="d-flex justify-content-center">
+                            <img src="/public/IMG/rel3_2.png" class="img-max" alt="Imagen 2">
+                          </div>
+                        </label>
+                      </div>
+                    </td>
+                    <td class="text-center">
+                      <div class="form-check">
+                        <input class="form-check-input" type="radio" name="rel32" value="3">
+                        <label class="form-check-label" for="imagen3">
+                          <div class="d-flex justify-content-center">
+                            <img src="/public/IMG/rel3_3.png" class="img-max" alt="Imagen 3">
+                          </div>
+                        </label>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="text-center">
+                      <div class="form-check">
+                        <input class="form-check-input" type="radio" name="rel32" value="4">
+                        <label class="form-check-label" for="imagen4">
+                          <div class="d-flex justify-content-center">
+                            <img src="/public/IMG/rel3_4.png" class="img-max" alt="Imagen 4">
+                          </div>
+                        </label>
+                      </div>
+                    </td>
+                    <td class="text-center">
+                      <div class="form-check">
+                        <input class="form-check-input" type="radio" name="rel32" value="5">
+                        <label class="form-check-label" for="imagen5">
+                          <div class="d-flex justify-content-center">
+                            <img src="/public/IMG/rel3_5.png" class="img-max" alt="Imagen 5">
+                          </div>
+                        </label>
+                      </div>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+  
+            <hr size="8px" color="#005A60" />
+
+          <div class="form-group">
+            <label>¿Qué tan cerca se sentía de las personas de su país ANTES de la formación?<span style="color: #FF7D81;">*</span></label><br>
+            <table class="table">
+              <tbody>
+                <tr>
+                  <td class="text-center">
+                    <div class="form-check">
+                      <input class="form-check-input" type="radio" name="rel4" id="rel4" value="1">
+                      <label class="form-check-label" for="rel4">
+                        <div class="d-flex justify-content-center">
+                          <img src="/public/IMG/rel4_1.png" class="img-max" alt="Imagen 1">
+                        </div>
+                      </label>
+                    </div>
+                  </td>
+                  <td class="text-center">
+                    <div class="form-check">
+                      <input class="form-check-input" type="radio" name="rel4" value="2">
+                      <label class="form-check-label" for="imagen2">
+                        <div class="d-flex justify-content-center">
+                          <img src="/public/IMG/rel4_2.png" class="img-max" alt="Imagen 2">
+                        </div>
+                      </label>
+                    </div>
+                  </td>
+                  <td class="text-center">
+                    <div class="form-check">
+                      <input class="form-check-input" type="radio" name="rel4" value="3">
+                      <label class="form-check-label" for="imagen3">
+                        <div class="d-flex justify-content-center">
+                          <img src="/public/IMG/rel4_3.png" class="img-max" alt="Imagen 3">
+                        </div>
+                      </label>
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="text-center">
+                    <div class="form-check">
+                      <input class="form-check-input" type="radio" name="rel4" value="4">
+                      <label class="form-check-label" for="imagen4">
+                        <div class="d-flex justify-content-center">
+                          <img src="/public/IMG/rel4_4.png" class="img-max" alt="Imagen 4">
+                        </div>
+                      </label>
+                    </div>
+                  </td>
+                  <td class="text-center">
+                    <div class="form-check">
+                      <input class="form-check-input" type="radio" name="rel4" value="5">
+                      <label class="form-check-label" for="imagen5">
+                        <div class="d-flex justify-content-center">
+                          <img src="/public/IMG/rel4_5.png" class="img-max" alt="Imagen 5">
+                        </div>
+                      </label>
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <hr size="8px" color="#005A60" />
+       
+        <div class="form-group">
+          <label style="color: darkblue;"> ¿Qué tan cerca se sentía de las personas de su país DESPUÉS de la formación?<span style="color: #FF7D81;">*</span></label><br>
+          <table class="table">
+            <tbody>
+              <tr>
+                <td class="text-center">
+                  <div class="form-check">
+                    <input class="form-check-input" type="radio" name="rel42" id="rel42" value="1">
+                    <label class="form-check-label" for="rel4">
+                      <div class="d-flex justify-content-center">
+                        <img src="/public/IMG/rel4_1.png" class="img-max" alt="Imagen 1">
+                      </div>
+                    </label>
+                  </div>
+                </td>
+                <td class="text-center">
+                  <div class="form-check">
+                    <input class="form-check-input" type="radio" name="rel42" value="2">
+                    <label class="form-check-label" for="imagen2">
+                      <div class="d-flex justify-content-center">
+                        <img src="/public/IMG/rel4_2.png" class="img-max" alt="Imagen 2">
+                      </div>
+                    </label>
+                  </div>
+                </td>
+                <td class="text-center">
+                  <div class="form-check">
+                    <input class="form-check-input" type="radio" name="rel42" value="3">
+                    <label class="form-check-label" for="imagen3">
+                      <div class="d-flex justify-content-center">
+                        <img src="/public/IMG/rel4_3.png" class="img-max" alt="Imagen 3">
+                      </div>
+                    </label>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td class="text-center">
+                  <div class="form-check">
+                    <input class="form-check-input" type="radio" name="rel42" value="4">
+                    <label class="form-check-label" for="imagen4">
+                      <div class="d-flex justify-content-center">
+                        <img src="/public/IMG/rel4_4.png" class="img-max" alt="Imagen 4">
+                      </div>
+                    </label>
+                  </div>
+                </td>
+                <td class="text-center">
+                  <div class="form-check">
+                    <input class="form-check-input" type="radio" name="rel42" value="5">
+                    <label class="form-check-label" for="imagen5">
+                      <div class="d-flex justify-content-center">
+                        <img src="/public/IMG/rel4_5.png" class="img-max" alt="Imagen 5">
+                      </div>
+                    </label>
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+       <br>
+      <br>
+      
+      <input type="hidden" name="id" value="{{.Data3}}" id="id">
+      <label> Su aporte es muy valioso. ¡Muchas gracias por completar esta encuesta! Utilizaremos su número de teléfono para confirmar si es una de las personas ganadoras de la rifa. </label>
+    </div>
+    <br>
+    <button class="btn btn-primary" id="boton" type="submit" > Enviar</button>
+    </div>
+    </form>
+ 
+   <script src="/static/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="/public/JS/sanamente/encuestachemonics.js"></script>
+  </body>
+</html>
+

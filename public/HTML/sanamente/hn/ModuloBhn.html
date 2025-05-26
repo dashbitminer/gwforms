@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <base target="_top">
+    <title> Actividad de Cierre - Formación General: módulo B</title>
+   <link href="/static/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+   <link rel="stylesheet" href="/static/bootstrap-select/dist/css/bootstrap-select.min.css">
+  </head>
+  <link rel="stylesheet" href="/public/CSS/estilos_sanamente.css" type="text/css">
+  <body class="bg-custom">
+
+
+<div class="container">
+<img src="/public/IMG/Sanamente.png" class="img-fluid" alt="Glasswing" />
+
+<form action="/sanamente/modulo/post" method="POST" enctype="multipart/form-data" id="formualrioRegistro" name="formualrioRegistro" class="needs-validation" novalidatez>
+
+  <h2> Actividad de Cierre - Formación General: módulo B Honduras</h2>
+  <p style="text-align: justify;">
+    A continuación, se te presenta una serie de preguntas sobre lo compartido durante el módulo, el objetivo es conocer cómo el proceso formativo apoya en tu conocimiento y cómo Glasswing puede continuar mejorando su implementación. 
+    <br><br>
+    Toda la información recolectada es de uso exclusivo para los objetivos del programa y será manejada únicamente por el equipo de SanaMente. El resultado de estas preguntas no tendrá ninguna repercusión en tu participación en la actividad, ni en tu trabajo, por lo que puedes sentir completa confianza al contestar ya que no existe ningún riesgo asociado. 
+    <br><br>        
+    La información como DNI o número de identificación tiene como única finalidad el registro de las y los participantes y su fácil identificación entre todos los(as) participantes, este y los demás datos son resguardados en servidores de Glasswing y con acceso único y exclusivo del personal de Monitoreo y Evaluación y el responsable de las actividades, ninguna persona ajena a nuestra organización tendrá acceso a ella y no compartiremos el documento de identificación con terceros. 
+    <br><br>
+    Agradecemos de antemano tus respuestas.
+    <br><br>
+          </p> 
+          <div id="ocultar" class="container">
+
+                   <div class="col">
+                      <label for="nombrecompleto" class="form-label">Escribe tus nombres y apellidos completos:*</label>
+                      <input type="text" name="nombreCompleto" id="nombreCompleto" class="form-control"  oninput="activa1()" required>
+                    </div>
+                      <div class="col">
+                      <label for="apellido" class="form-label">Seleccionar el nombre de la persona que facilitó este proceso formativo:</label>
+                      <select class="form-control selectpicker first-disabled" data-live-search="true" id="apellido" name="apellido" required="true" >
+                        <option value=""></option>
+                        {{range .Perfil }}
+                        <option value="{{.Value}}">{{.Label}}</option>
+                        {{end}}
+                      </select>          
+            </div>
+
+
+            <div class="col">
+              <label for="gi" class="form-label">Selecciona tu nacionalidad:</label>
+              <select class="form-select" id="nacionalidad" name="nacionalidad" required onchange="activaselect51()">
+              <option value="" selected></option>
+              <option value="1">Hondureño(a)</option>
+              <option value="2">Extranjero(a)</option>
+              </select>
+      </div> 
+      
+    
+        <label for="DUIMl" id="DUIMl" class="form-label">Escribe el número de tu Documento Nacional de Identidad (DNI):</label>
+        <input type="text" name="DUIM" id="DUIM" class="form-control" placeholder="0000-0000-00000" onchange="validateFormat()" oninput="hideAlert()" required >
+      
+      <div id="alertContainer" style="display: none;"></div>
+    
+        <div class="col">
+          <label for="pais" class="form-label">Selecciona el departamento donde se encuentra la sede a la que perteneces*</label>
+          <select class="form-select" id="pais2" name="pais2"  onchange="actualizarmun(this.value)" required >
+                <option value=""></option>
+                {{range .Departamento}}
+                <option value="{{.Value}}">{{.Label}}</option>
+                {{end}}
+              </select>  
+             
+      </select>
+    </div>
+  <div class="col">
+          <label for="departamento2" class="form-label">Selecciona el municipio donde se encuentra la sede a la que perteneces*</label>
+           <select class="form-select" id="departamento2" name="departamento2"   onchange="actualizarsede(this.value)" required>
+      </select>
+    </div>
+
+     <div class="col">
+          <label for="sede2" class="form-label">Selecciona la sede a la que perteneces*</label>
+           <select class="form-control selectpicker first-disabled" data-live-search="true" id="sede2" name="sede2" required="true" >
+            <option value=""></option>
+      </select>
+     </div>
+
+<br>
+<h6> A continuación encontrarás una serie de preguntas, agradecemos puedas responderlas de manera individual y recordando lo aprendido en el Módulo B de formación general.</h6>
+<br>
+<div id="pregunta">
+<label for="p1" id="p1" class="form-label personalizado">1.	Cuando nos enfrentamos a situaciones que exigen y demandan continuamente nuestro esfuerzo y esto se convierte en estrés crónico, estamos en riesgo de que:</label>
+<br> 
+{{range .Parentesco}}
+<input type="radio" value="{{.Value}}" name="p1" onchange="quitar('pregunta')" required>{{.Label}}</option><br><br> 
+ {{end}}
+</div>
+<br> 
+<div id="pregunta2">
+<label for="p2" class="form-label personalizado">2. Identificar y reconocer mis errores de pensamiento cuando estoy en situaciones estresantes es importante porque:</label>
+<br> 
+{{range .Sexo}}
+ <input type="radio" value="{{.Value}}" name="p2" onchange="quitar('pregunta2')" required>{{.Label}}</option><br><br>
+ {{end}}
+</div>
+ <br> 
+ <div id="pregunta3">
+<label for="p3" class="form-label personalizado">3. Una persona se siente a gusto con sus emociones cuando:</label>
+<br>  
+{{range .Respuestas}}
+ <input type="radio" value="{{.Value}}" name="p3" onchange="quitar('pregunta3')" required>{{.Label}}</option><br><br>
+ {{end}}
+</div>
+ <br> 
+ <div id="pregunta4">
+<label for="p4" class="form-label personalizado">4. Seleccione la opción que mejor representa la relación entre nuestros pensamientos, comportamientos y emociones:</label>
+<br>   
+{{range .Ultgrad}}
+ <input type="radio" value="{{.Value}}" name="p4" onchange="quitar('pregunta4')" required>{{.Label}}</option><br><br>
+ {{end}}
+</div>
+ <br> 
+ <div id="pregunta5">
+<label for="p5" class="form-label personalizado">5. La práctica constante de estrategias de autocuidado puede ser una alternativa efectiva para evitar: </label>
+<br> 
+{{range .Grado}}
+ <input type="radio" value="{{.Value}}" name="p5" required onchange="quitar('pregunta5')">{{.Label}}</option><br><br>
+ {{end}}
+</div>
+<br>
+   <input type="hidden" name="idp" value="3" id="idp">
+   <input type="hidden" name="modulo" value="2" id="modulo">
+      <button class="btn btn-primary" id="boton" type="submit"> Enviar</button>
+      <br>
+      <br>
+     </form>
+    </div>
+   <script src="/static/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="/public/JS/sanamente/modulohn.js"></script>
+    <script src="/static/jquery/dist/jquery.min.js"></script>
+    <script src="/static/bootstrap-select/dist/js/bootstrap-select.min.js"></script>
+  </body>
+</html>
+
+</html>

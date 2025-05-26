@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Feria de Salud y Donacion de Sangre</title>
+    <meta charset="utf-8">
+    <base target="_top">
+    <link href="/static/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+  </head>
+  <body>
+
+    <div class="container">
+<img src="/public/IMG/logo.png" class="img-fluid" alt="Glasswing" />
+<form method="POST" id="formualrioRegistro" name="formualrioRegistro" class="needs-validation" action="/rrhh/feriasalud/post" enctype="multipart/form-data" novalidatez>
+      <h2>Feria de Salud y Donacion de Sangre </h2>
+      
+    <p style="text-align: justify;">
+      Para inscribirse en la Feria de Salud y Donación de Sangre, por favor completa en el siguiente formulario los datos personales tuyos o de tus familiares. Esta información es solicitada por FOSALUD y CRUZ ROJA.
+      <br>Para reservar un cupo debes marcar la casilla de la actividad en la que deseas participar. 
+    </p>
+   
+    <h4> Parte I: Datos personales </h4>
+    <label for="nombre" class="form-label">Nombre completo:</label><span style="color: red;">*</span>
+    <input type="text" name="nombre" id="nombre" class="form-control" required>
+    <label for="dui" class="form-label">DUI:</label><span style="color: red;">*</span>
+    <input type="text" name="dui" id="dui" placeholder="00000000-0" pattern="^\d{8}-\d{1}$" class="form-control" required>
+    <label for="area" class="form-label">Area:</label><span style="color: red;">*</span>
+    <input type="text" name="area" id="area" class="form-control" required>
+    <label for="puesto" class="form-label">Puesto:</label><span style="color: red;">*</span>
+    <input type="text" name="puesto" id="puesto" class="form-control" required>
+    <label for="correo" class="form-label">Correo:</label><span style="color: red;">*</span>
+    <input type="email" name="correo" id="correo" class="form-control" required>
+    <label for="celular" class="form-label">Número de celular:</label><span style="color: red;">*</span>
+    <input type="text" name="celular" id="celular" class="form-control" required>
+
+    <h4> Parte II: Reservación de cupos:</h4>
+    <label>Inscripción para Donación de Sangre:</label> <span></span><input type="checkbox" value="1" class="bigger-checkbox" name="sangre" id="sangre"> Cupos disponibles:</span><span style="color: blue;">{{.Sangre}}</span>
+    <br><label>Inscripción para exámenes de citologías:</label> <span></span><input type="checkbox" value="1" class="bigger-checkbox" name="citologia" id="citologia"> Cupos disponibles:</span><span style="color: blue;">{{.Citologia}}</span>
+    <br><label>Inscripción para Sesión en vivo de Yoga(9am a 9:45am):</label> <span></span><input type="checkbox" value="1" class="bigger-checkbox" name="yoga" id="yoga"> Cupos disponibles:</span><span style="color: blue;">{{.Yoga}}</span>
+    <br><label>Inscripción para clases de baile corporativo:</label> <span></span><input type="checkbox" value="1" class="bigger-checkbox" name="baile" id="baile"> Cupos disponibles:</span><span style="color: blue;">{{.Baile}}</span>
+    <br><label>Inscripción para Sesiones en vivo de preparación de menús saludables (2 sesiones al mediodía):</label> <span></span><input type="checkbox" value="1" class="bigger-checkbox" name="saludable" id="saludable"> Cupos disponibles:</span><span style="color: blue;">{{.Saludables}}</span>
+    <input type="hidden" name="sangrenum" value="{{.Sangre}}" id="sangrenum">
+    <input type="hidden" name="citologianum" value="{{.Citologia}}" id="citologianum">
+    <input type="hidden" name="yoganum" value="{{.Yoga}}" id="yoganum">
+    <input type="hidden" name="bailenum" value="{{.Baile}}" id="bailenum">
+    <input type="hidden" name="saludablenum" value="{{.Saludables}}" id="saludablenum">   
+    <br>
+    <br>
+    <h5>¡Gracias por cuidar de tu salud y la de tus seres queridos! </h5>
+
+
+<button class="btn btn-primary" id="boton" type="submit"> Enviar</button>
+  </div>
+      </form>
+    </div>
+   <script src="/static/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="/public/JS/RRHH/feriasalud.js"></script>
+  </body>
+</html>

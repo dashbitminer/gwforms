@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Formulario de inscripción participantes 2024</title>
+    <meta charset="utf-8">
+    <base target="_top">
+    <link href="/static/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+  </head>
+  <body>
+
+    <div class="container">
+<img src="/public/IMG/logo.png" class="img-fluid" alt="Glasswing" />
+<form method="POST" id="formualrioRegistro" name="formualrioRegistro" class="needs-validation" action="/mdv/red/post" enctype="multipart/form-data" novalidatez>
+      <h2> Formulario de inscripción participantes 2024 </h2>           
+     <p style="text-align: justify;">
+      ¡Hola! Te damos la bienvenida a Glasswing International. Es un agrado que quieras participar en nuestras actividades. A continuación, te presentamos un formulario de inscripción que debe ser llenado solamente una vez, sin importar que participes en un o más programas u otras actividades impartidas por Glasswing International. La información solicitada es para usos exclusivos de Glasswing, te aseguramos que tu información no será compartida con terceros sin tu autorización. Toda la información será guardada con estricta confidencialidad y nada de lo que compartas tendrá repercusiones sobre tu persona o tu participación en las actividades. Si tienes consultas sobre este formulario, puedes hacerlas sin ningún problema a la persona líder de la actividad en cualquier momento. 
+    </p>
+    <div class="col">
+      <label for="sede" class="form-label">Selecciona la sede a la que perteneces*</label>
+      <select class="form-select" id="sede2" name="sede2" required>
+        <option value=""></option>
+        <option value="666">Sede Juventudes - San Salvador</option>
+        <option value="2968">Sede Juventudes - San Miguel</option>
+        <option value="1128">Sede Juventudes - Santa Ana</option>
+  </select>
+ </div>
+<label for="FechaN" class="form-label">Escribe tu fecha de nacimiento o de la persona que participará en las actividades de Glasswing:*</label>
+<input type="date" name="FechaN" id="FechaN" class="form-control" placeholder="dd/mm/aaaa"  onchange="activaselect4()">
+      <div class="d-none" id="menoredad">
+        <label for="TdC" class="form-label">¿Has completado junto a tu responsable el asentimiento y consentimiento de participación, de uso de información y uso de voz e imagen?</label>
+        <select class="form-select" id="consentimiento" name="consentimiento" onchange="verificar(this.value)">
+         <option value="" selected></option>
+         <option value="1">Sí</option>
+         <option value="0">No</option>
+   </select>
+  </div>
+  <div class="d-none" id="negativoconsentimiento">
+    <br>
+  <p style="text-align: justify;">
+    Para continuar con el proceso de inscripción, es necesario contar con tu asentimiento y el consentimiento de tu responsable. Por favor, acércate a la persona líder de la actividad para que te brinde indicaciones y puedas continuar con el proceso de inscripción.
+    <br>
+   </p>
+  </div>
+    <div class="d-none" id="llenadofecha">
+      <h4>DATOS DE IDENTIFICACIÓN</h4>
+<p style="text-align: justify;" class="text-primary"> Las preguntas a continuación deberán ser completadas con tu información como participante de las actividades de Glasswing. 	</p>
+        <div class="mb-3">
+          <div class="row">
+  <div class="col">
+          <label for="nombrecompleto" class="form-label">Escribe tus nombres completos:*</label>
+          <input type="text" name="nombreCompleto" id="nombreCompleto" class="form-control" required  oninput="activa1()">
+        </div>
+          <div class="col">
+          <label for="apellido" class="form-label">Escribe tus apellidos completos:*</label>
+          <input type="text" name="apellido" id="apellido" class="form-control" required  oninput="activa1()">
+        </div>
+          </div>
+        <div class="row">
+   <div class="col">
+              <label for="Sexo" class="form-label">Selecciona tu sexo según registro nacional:*</label>
+     <select class="form-select" id="Sexo" name="Sexo" required >
+       <option value=""></option>
+       {{range .Sexo}}
+       <option value="{{.Value}}">{{.Label}}</option>
+     {{end}}
+    </select>
+    </div>
+  </div>
+ <div class="row">
+  <div class="col">
+          <label for="pais" class="form-label">Selecciona el departamento en el que resides:*</label>
+          <select class="form-select" id="pais" name="pais"  onchange="actualizarCiudades(this.value)" required>
+            <option value="" selected></option>
+            {{range .Departamento}}
+            <option value="{{.Value}}">{{.Label}}</option>
+          {{end}}
+      </select>
+    </div>
+  <div class="col">
+          <label for="departamento" class="form-label">Selecciona el municipio en el que resides:*</label>
+           <select class="form-select" id="departamento" name="departamento" required >
+            <option value="" selected></option>
+      </select>
+    </div>
+  </div>
+    <div class="col">
+          <label for="direccion" class="form-label">Escribe tu dirección exacta:*</label>
+          <input type="text" name="direccion" id="direccion" class="form-control" required >
+    </div>
+    <label for="nacionalidad" class="form-label"> Selecciona tu nacionalidad:*</label>
+    <select class="form-select" id="nacionalidad" name="nacionalidad" onchange="activaselect51()" required>
+     <option value="" selected></option>
+     <option value="1">Salvadoreño(a)</option>
+     <option value="2">Extranjero(a)</option> 
+  </select>
+    <div class="d-none" id="duiparticipante">
+    <label for="DUIMl" id="DUIMl" class="form-label">Escribe el número de tu Documento Único de Identidad:*</label>
+    <input type="text" name="DUIM" id="DUIM" class="form-control" placeholder="00000000-0" onchange="validateFormat()" oninput="hideAlert()" >
+  </div>
+  <div id="alertContainer" style="display: none;"></div>
+      <div >
+          <label for="TM" class="form-label">Escribe tu número de teléfono:*</label>
+          <input type="text" name="TM" id="TM" class="form-control" required >
+      </div>
+      <label for="WS" class="form-label">¿Podemos contactarte por Whatsapp?*</label>
+      <select class="form-select" id="WS" name="WS"   onchange="activaselect8()" required>
+       <option value="" selected></option>
+       {{range .Respuestas}}
+       <option value="{{.Value}}">{{.Label}}</option>
+       {{end}}
+       </select>
+      <div class="d-none" id="what">
+          <label for="TM2" class="form-label">Escribe tu número de Whatsapp:*</label>
+          <input type="text" name="TM2" id="TM2" class="form-control" >
+      </div>
+      <label for="EstadoC" class="form-label">¿Cuál es tu estado civil?*</label>
+      <select class="form-select" id="EstadoC" name="EstadoC"  required>
+       <option value=""></option>
+       {{range .Estado_civ}}
+       <option value="{{.Value}}">{{.Label}}</option>
+       {{end}}                    
+       </select>
+  <div class="col">
+       <label for="TdC" class="form-label">¿Te encuentras estudiando actualmente?*</label>
+       <select class="form-select" id="TdC" name="TdC" onchange="activaselect2()" required>
+        <option value="" selected></option>
+        {{range .Respuestas}}
+        <option value="{{.Value}}">{{.Label}}</option>
+        {{end}}
+      </select>
+     </div>
+ <div id="hidden-question-div" class="col d-none">
+     <label for="Area" class="form-label">Último grado alcanzado*</label>
+            <select class="form-select" id="UT" name="UT"  >
+                <option value="" selected></option>
+                {{range .Ultgrad}}
+                <option value="{{.Value}}">{{.Label}}</option>
+              {{end}}
+            </select>
+    </div>
+    <div id="hidden-question-div2" class="col d-none">
+     <label for="Area" class="form-label">Selecciona tu grado actual:*</label>
+            <select class="form-select" id="GA" name="GA"  onchange="activaselect3()">
+                <option value="" selected></option>
+                {{range .Grado}}
+                <option value="{{.Value}}">{{.Label}}</option>
+              {{end}}
+            </select>
+    <div id="hidden-question-div3" class="col d-none">
+     <label for="seccion" class="form-label">Selecciona tu sección:*</label>
+            <select class="form-select" id="seccion" name="seccion"  >
+              <option value="" selected></option>
+              {{range .Seccion}}
+              <option value="{{.Value}}">{{.Label}}</option>
+            {{end}}
+            </select>
+    </div>
+        <div id="hidden-question-div5" class="col d-none">
+     <label for="turno" class="form-label">Selecciona el turno o jornada en la que estudias:*</label>
+            <select class="form-select" id="Turno" name="Turno"  >
+              <option value="" selected></option>
+              {{range .Turno}}
+              <option value="{{.Value}}">{{.Label}}</option>
+            {{end}}
+            </select>
+    </div>
+    </div>
+<div class="col">
+          <label for="dis" class="form-label">¿Posees alguna discapacidad?*</label>
+           <select class="form-select" id="dis" name="dis"  onchange="activaselect10()" required>
+            <option value="" selected></option>
+            {{range .Respuestas}}
+            <option value="{{.Value}}">{{.Label}}</option>
+          {{end}}    
+      </select>
+     </div>
+ <div id="hidden-question-div10" class="col d-none">
+    <label for="dis2" class="form-label">¿Cuál?</label><br>
+        <input type="checkbox" name="dis2" value="4"> Física<br>
+        <input type="checkbox" name="dis2" value="2"> Auditiva<br>
+        <input type="checkbox" name="dis2" value="3"> Visual<br>
+        <input type="checkbox" name="dis2" value="5"> Cognitiva o intelectual<br>
+    </div>
+<div class="col">
+          <label for="TdC" class="form-label">¿Has participado en años anteriores en actividades de Glasswing?*</label>
+           <select class="form-select" id="gp" name="gp"  onchange="activaselect7()" required>
+            <option value="" selected></option>
+            {{range .Respuestas}}
+            <option value="{{.Value}}">{{.Label}}</option>
+           {{end}}    
+      </select>
+     </div>
+<div id="gps" class="d-none">
+      <label for="ActG" class="form-label">¿En qué actividades has participado?*</label>
+      <select class="form-select" id="ActG" name="ActG"  onchange="activaselect6()">
+        <option value="" selected></option>
+            {{range .Actividades}}
+            <option value="{{.Value}}">{{.Label}}</option>
+            {{end}}                       
+      </select>
+</div>
+<div id="carnets" class="d-none">
+      <label for="carnet" class="form-label">Escribe tú número de carnet:</label>
+    <input type="text" name="carnet" id="carnet" class="form-control"  oninput="hideAlert2()" onchange="validateFormat2()" >
+</div>
+<br>
+<h4> CONTACTO DE EMERGENCIA </h4>
+     <label for="contacto" class="form-label">En caso de emergencia ¿Con quién podemos contactarnos? Escribe el nombre:*</label>
+    <input type="text" name="contacto" id="contacto" class="form-control" required>
+
+     <label for="contacto2" class="form-label">¿Cuál es su número de teléfono? *</label>
+    <input type="text" name="contacto2" id="contacto2" class="form-control" required>
+
+      <label for="relacion" class="form-label">¿Cuál es la relación que tienes con tu contacto de emergencia?*</label>
+          <select class="form-select" id="relacion" name="relacion"  required>
+            <option value="" selected></option>
+            {{range .Parentesco}}
+            <option value="{{.Value}}">{{.Label}}</option>
+            {{end}}
+            </select>
+  </div>
+     <div class="col">
+      <label for="rjfor" class="form-label">¿En que formación de la Red Juvenil estarás participando?*</label>
+       <select class="form-select" id="rjfor" name="rjfor"   onchange="activaselect11()" required>
+        <option value=""></option>
+        <option value="138">Escuela de Liderazgo</option>
+        <option value="168">Curso de liderazgo e innovación: desarrollando líderes del futuro</option>
+        <option value="183">Diplomado en diseño, gestión y evaluación de proyectos</option>
+  </select>
+ </div>
+ <div id="diplomado" class="d-none"> 
+        <label for="diplomado" class="form-label">¿En qué nivel de la escuela de liderazgo estarás participando?</label>
+          <select class="form-select" id="diplomado" name="diplomado">
+            <option value=""></option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+        </select>
+        </div>
+<div id="hidden-question-div6" class="container">
+<div id="mayorpart2" class="d-none">
+</br>
+<h4>AUTORIZACIÓN PARA COMPARTIR DATOS PERSONALES EN FORMULARIO DE INSCRIPCIÓN</h4>
+<P style="text-align: justify;">Es necesaria la expresa autorización por usted para respaldar que su información de inscripción, ha sido brindada de forma voluntaria, de acuerdo con los campos que se encuentran al final de esta ficha. La información será utilizada exclusivamente por Glasswing y se almacenará de forma segura; asimismo, podría compartirse de forma grupal en reportes e informes con donantes y socios, manteniendo la confidencialidad de datos, a fin de evitar que se le identifique, en dichos reportes.
+<br/>
+<input class="form-check-input" type="checkbox" value="Confirmo" id="aut4"  > Por lo anterior, confirmo que he leído y se me ha informado el uso que se le dará a los datos compartidos en este formulario y reconozco que tengo el derecho de retirar mi autorización en cualquier momento si así lo estimo conveniente. De ser así, puedo enviar un correo a "info_sv@glasswing.org" retirando mi autorización para compartir datos.  
+</P>        
+<br/>
+<h4>AUTORIZACIÓN DE USO DE IMAGEN Y VOZ</h4>
+<P style="text-align: justify;">
+ Es necesaria la expresa autorización por usted para respaldar que su información de inscripción ha sido brindada de forma voluntaria, de acuerdo con los campos que se encuentran al final de esta ficha. La información será utilizada exclusivamente por Glasswing y se almacenará de forma segura; asimismo, podría compartirse de forma grupal en reportes e informes con donantes y socios, manteniendo la confidencialidad de datos, a fin de evitar que se le identifique, en dichos reportes.
+ Por lo anterior, confirmo que he leído y se me ha informado el uso que se le dará a los datos compartidos en este formulario y reconozco que tengo el derecho de retirar mi autorización en cualquier momento si así lo estimo conveniente. De ser así, puedo enviar un correo a "info_sv@glasswing.org" retirando mi autorización para compartir datos.
+<br><br>
+  • Uso exclusivo en plataformas institucionales y rendición de socios de Glasswing, las cuales podrán ser compartidas y publicadas por nuestros socios (cooperación internacional, empresas, organizaciones o centros educativos).<br>
+  • Autorización para uso de fotografías o videos en medios de comunicación, siempre ligados al trabajo de Glasswing o socios.<br>
+  • Autorización con una vigencia de uso máximo de cinco años, salvo para imágenes en reportes o aniversarios de la organización.<br>
+  • Uso de voz e imagen para eventos o presentaciones públicas.<br>
+  Ninguna fotografía, video se podrá utilizar para fines políticos, religiosos o personales por ningún miembro de nuestra organización o externos a ella. La autorización para el uso de voz e imagen no es un requisito para participar en el programa.<br>
+<span class="form-group d-inline-block">   <select class="form-select" id="aut2" name="aut2" >
+       <option value=""></option>
+       <option value="1">Autorizo</option>
+       <option value="0">No Autorizo</option>
+       </select>  
+      </span>
+ 
+
+<br/>
+<br/>
+<h4>CONSENTIMIENTO DE PARTICIPACIÓN</h4>
+<p style="text-align: justify;">Yo: <span id="nombrep2" style="display: inline;" class="text-primary"></span>, de <span id="edadl" style="display: inline;" class="text-primary"></span>
+años de edad, he sido informada/informado de las actividades que realiza Glasswing International, por tanto, <span class="form-group d-inline-block">   <select class="form-select" id="aut3" name="aut3" >
+  <option value=""></option>
+  <option value="1">ACEPTO</option>
+  </select>  
+ </span> PARTICIPAR DE FORMA VOLUNTARIA en el programa. Comprendo que Glasswing International posee protocolos que protegen mi participación.
+</p>
+</div>
+</div>
+
+<input type="hidden" name="formulario" value="8" id="formulario">
+<div id="menordiv5" class="d-none">
+<p>¡Gracias por tu interés en nuestro programa Red Juvenil!</p>  
+</div>
+<br/>
+<button class="btn btn-primary" id="boton" type="submit"> Enviar</button>
+  </div>
+      </form>
+   <script src="/static/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="/public/JS/Participantes/red.js"></script>
+  </body>
+</html>

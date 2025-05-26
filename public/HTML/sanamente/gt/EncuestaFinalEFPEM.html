@@ -1,0 +1,650 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <base target="_top">
+    <title> Encuesta Final para Personal EFPEM </title>
+   <link href="/static/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+  </head>
+
+<link rel="stylesheet" href="/public/CSS/estilos_sanamente_encuesta.css" type="text/css">
+ 
+<body class="bg-custom">
+
+<div class="container">
+
+<img src="/public/IMG/Sanamente.png" class="img-fluid" alt="Glasswing" />
+
+<form action="/sanamente/encuesta/final/post" method="POST" enctype="multipart/form-data" id="formualrioRegistro" name="formualrioRegistro" class="needs-validation" novalidatez>
+
+<h2> Encuesta Final de la Formación General en Atención en Trauma Informado para Personal EFPEM </h2>
+
+<p style="text-align: justify;">
+  ¡Buen día! Le saludamos de Glasswing International. Hace unos meses, antes de completar la formación, usted fue parte de una encuesta inicial para conocer sus prácticas de autocuidado, gestión de estrés, atención a las personas y entorno laboral. Para darle seguimiento a ese proceso, estamos realizando una encuesta final sobre los mismos temas. Por esta razón, le invitamos nuevamente a llenar esta encuesta.
+  <br><br>
+  El objetivo de esta encuesta final es obtener información sobre la eficacia del programa SanaMente. La encuesta tomará aproximadamente 30 minutos y <u>las preguntas no son una evaluación de conocimiento.</u> Únicamente queremos conocer su experiencia después de la formación. 
+  <br><br>
+  La información recopilada será analizada de forma confidencial y anónima, esto quiere decir que en ningún momento se solicitará su nombre. Además, las respuestas se analizarán grupalmente, es decir, que no se presentarán respuestas individuales o por cada persona. Sus respuestas se almacenarán en bases de datos a las que solamente el equipo de Glasswing tendrá acceso, por tanto, su participación en la encuesta no tendrá ninguna repercusión para usted. Si tiene alguna duda, puede consultar con la persona encargada de Glasswing International. Con mucho gusto, aclararemos sus preguntas.
+</p>
+<br>
+<label for="postencuesta" class="form-label">Habiendo sido informada(o) del objetivo de esta encuesta y la garantía de protección de su 
+  información ¿desea completar de forma voluntaria esta encuesta? </label><br>
+  <input type="radio" value="1" name="m1" id="m1" onchange="acepta()"> Sí</option><br>
+  <input type="radio" value="2" name="m1" id="m2" onchange="acepta()"> No</option><br><br>
+
+<div id="acepta" class="d-none"> 
+
+  <p>Para iniciar, solicitaremos algunos datos de verificación:</p>
+
+            <div class="col">
+              <label for="dpi" class="form-label">Código de encuesta:<span style="color: #FF7D81;">*</span></label>
+              <input type="text" name="dpi" id="dpi" class="form-control" required>
+            </div>        
+<br>
+            <div class="col">
+                <label for="sexo" class="form-label">Sexo:<span style="color: #FF7D81;">*</span></label>
+                <select class="form-select" id="sexo" name="sexo" required>
+                <option value="" selected disabled>Seleccione una opción...</option>
+                <option value="1">Hombre</option>
+                <option value="2">Mujer</option>
+                </select>
+            </div> 
+<br>
+            <div class="col">
+                <label for="fechaN" class="form-label">Fecha de nacimiento:<span style="color: #FF7D81;">*</span></label>
+                <input type="date" name="fechaN" id="fechaN" class="form-control" required>
+            </div>
+<br>
+            <div class="col">
+                <label for="puesto" class="form-label">Rol o puesto dentro de su lugar de trabajo:<span style="color: #FF7D81;">*</span></label>
+                <select class="form-select" id="puesto" name="puesto" required onchange="mostrarEF(); mostrar4()">
+                  <option value="" selected disabled>Seleccione una opción...</option>
+                  <option value="1">Personal administrativo EFPEM.</option>
+                  <option value="2">Personal de servicios EFPEM.</option>
+                  <option value="3">Personal docente EFPEM.</option>
+                  <option value="4">Personal Administrativo de Coordinación. Asesores PADED/D.</option>
+                  <option value="5">Estudiantes PADED/D.</option>
+                  <option value="6">Otro</option>
+                </select>    
+                <br>
+            </div>
+
+            <div id="otro1" class="d-none">
+              <label for="otrorol" class="form-label">Especifique:<span style="color: #FF7D81;">*</span></label>
+              <input type="text" name="otrorol" id="otrorol" class="form-control" maxlength="150" placeholder="">
+                  <br>
+            </div>
+
+    <p style="text-align: justify;"> A continuación, se le presentará una serie de preguntas sobre las prácticas que realiza para su bienestar, sobre las formas que usa para regular su estrés, sobre su forma de atender a las personas y sobre su entorno laboral. </p>
+
+    <h4>Prácticas a favor del bienestar</h4>
+
+            <div id="question1">
+            <label for="practica" class="form-label">1. Abajo se le presenta una serie de prácticas que ayudan a las personas a cuidarse y sentirse mejor con ellas mismas. Por favor, marque la casilla que mejor represente con cuánta frecuencia ha realizado cada práctica durante <u>el último mes.</u> <span style="color: #FF7D81;">*</span></label>
+            <table class="table table-bordered align-middle" style="text-align:center;">
+                <thead>
+                <tr>
+                    <th>Prácticas que utilizo para sentirme mejor.</th>
+                    <th>Nunca</th>
+                    <th>En raras ocasiones</th>
+                    <th>Algunas veces</th>
+                    <th>Muy seguido</th>
+                </tr>
+                </thead>
+                <tbody>
+
+                    {{range.}}
+                    {{if eq .Seccion 1}}
+                    {{if eq .Id 20}}
+                    <tr>
+                    <th style="text-align: left;">{{.Pregunta}}</th>
+                    <td><input type="radio" name="practica{{.Id}}" value="1" required onclick="mostrar2(this.value)"></td> 
+                    <td><input type="radio" name="practica{{.Id}}" value="2" required onclick="mostrar2(this.value)"></td>
+                    <td><input type="radio" name="practica{{.Id}}" value="3" required onclick="mostrar2(this.value)"></td>
+                    <td><input type="radio" name="practica{{.Id}}" value="4" required onclick="mostrar2(this.value)"></td>
+                </tr>
+
+                {{else}}
+                <tr>
+                  <th style="text-align: left;">{{.Pregunta}}</th>
+                  <td><input type="radio" name="practica{{.Id}}" value="1" required></td> 
+                  <td><input type="radio" name="practica{{.Id}}" value="2" required></td>
+                  <td><input type="radio" name="practica{{.Id}}" value="3" required></td>
+                  <td><input type="radio" name="practica{{.Id}}" value="4" required></td>
+              </tr>
+                {{end}}
+                {{end}}
+                {{end}}
+                </tbody>
+            </table>
+
+<br>
+        <div id="ayuda" class="d-none">
+            <label for="ayuda" class="form-label">1.1 ¿Qué tipo de ayuda especializada ha buscado?:<span style="color: #FF7D81;">*</span></label>
+            <br>
+            <input type="checkbox" name="ayuda" value="1"> He buscado apoyo psicológico profesional y prolongado (terapia). <br>
+            <input type="checkbox" name="ayuda" value="2"> He buscado apoyo psiquiátrico. <br>
+            <input type="checkbox" name="ayuda" value="3"> He buscado grupos de apoyo que sean afines a mi necesidad. <br>
+        </div>
+
+      </div>
+    <br>
+    <div id="question2">
+      <label for="aplicaautoc" class="form-label">2. ¿Ha tenido la oportunidad de aplicar alguna estrategia/pauta para enfrentar el estrés y fomentar el autocuidado?<span style="color: #FF7D81;">*</span></label>
+      <br>
+      <input type="radio" name="aplicaautoc" value="1" onclick="autocuidado(this.value)" required> Sí, después de reconocer que estaba pasando por un momento de estrés apliqué una estrategia en un momento de mayor calma. <br>
+      <input type="radio" name="aplicaautoc" value="2" onclick="autocuidado(this.value)"> Sí, en el momento de estrés apliqué una estrategia rápida. <br>
+      <input type="radio" name="aplicaautoc" value="3" onclick="autocuidado(this.value)"> No <br>
+      <br>
+      <div id="fomentaautoc1" class="d-none">
+        <label for="fomentaautoc" class="form-label">2.1 De las siguientes estrategias/pautas para enfrentar el estrés y fomentar el autocuidado, seleccione aquellas que ha tenido la oportunidad de aplicar <u>en el último mes</u>: (Puede seleccionar más de una opción).<span style="color: #FF7D81;">*</span></label>
+        <br>
+        <input type="checkbox" name="fomentaautoc" value="1"> Evaluar mis pensamientos de tal forma que pueda evitar errores o generalizaciones. <br>
+        <input type="checkbox" name="fomentaautoc" value="2"> Ser más compasivo(a) conmigo mismo(a). <br>
+        <input type="checkbox" name="fomentaautoc" value="3"> Técnicas de visualización y/o relajación. <br>
+        <input type="checkbox" name="fomentaautoc" value="4"> Encontrar un momento para dejarme sentir las emociones y reconocerlas. <br>
+        <input type="checkbox" name="fomentaautoc" value="5"> Expandir mi círculo: priorizar y/o agendar espacios de diversión o tranquilidad conmigo mismo(a) o con mis seres queridos. <br>
+        <input type="checkbox" name="fomentaautoc" value="6"> Otra. <br>
+      </div>
+    </div>
+        <br>
+        <div id="question3">
+        <label for="afirma" class="form-label">3. La siguiente tabla muestra una serie de afirmaciones acerca de sus pensamientos y emociones. Por favor, marque la casilla que mejor describa su experiencia <u>en las últimas dos semanas.</u> <span style="color: #FF7D81;">*</span></label>
+        <table class="table table-bordered align-middle" style="text-align:center;">
+            <thead>
+            <tr>
+                <th>Afirmación</th>
+                <th>Nunca</th>
+                <th>En raras ocasiones</th>
+                <th>Algunas veces</th>
+                <th>Muy seguido</th>
+            </tr>
+            </thead>
+            <tbody>
+
+              {{range.}}
+              {{if eq .Seccion 2}}
+              <tr>
+              <th style="text-align: left;">{{.Pregunta}}</th>
+                <td><input type="radio" name="afirma{{.Id}}" required value="1"></td> 
+                <td><input type="radio" name="afirma{{.Id}}" required value="2"></td>
+                <td><input type="radio" name="afirma{{.Id}}" required value="3"></td>
+                <td><input type="radio" name="afirma{{.Id}}" required value="4"></td>
+            </tr>
+            {{end}}
+            {{end}}
+          </tbody>
+        </table>
+      </div>
+<br>
+            <div id="question4"> 
+            <label for="aafecta" class="form-label">4. En la siguiente tabla, seleccione si usted es consciente de las siguientes afectaciones en su vida cotidiana. <span style="color: #FF7D81;">*</span></label>
+                <table class="table table-bordered align-middle" style="text-align:center;">
+                <thead>
+                    <tr>
+                    <th>Tipo de afectación </th>
+                    <th>No reconozco estas afectaciones </th>
+                    <th>Sí reconozco estas afectaciones </th>
+                    </tr>
+                </thead>
+                <tbody>
+                  {{range.}}
+                  {{if eq .Seccion 3}}
+                  <tr>
+                  <th style="text-align: left;">{{.Pregunta}}</th>
+                  <td><input type="radio" name="afecta{{.Id}}" required value="1"></td>
+                  <td><input type="radio" name="afecta{{.Id}}" required value="2"></td>
+                    </tr>
+                    {{end}}
+                    {{end}}                
+                </tbody>
+                </table>
+                </div>
+<br>
+
+          <div id="question5">
+            <label for="actitud" class="form-label">5. De las siguientes frases, ¿cuál es la que mejor describe su actitud hacia las afectaciones anteriormente mencionadas? <span style="color: #FF7D81;">*</span></label>
+                <br> 
+                <select class="form-select" id="actitud" name="actitud" required >
+                    <option value="" selected disabled>Seleccione una opción...</option>
+                    <option value="1">No he logrado identificar afectaciones parecidas en mí.</option>
+                    <option value="2">Me parece muy abrumador identificar este tipo de afectaciones en mi vida y no sé cómo afrontarlas y hacer un cambio en mí cuando las noto.</option>
+                    <option value="3">Soy consciente de las afectaciones que puede experimentar mi cuerpo ante situaciones de estrés, aunque no pueda tomar acción para cambiarlo.</option>
+                    <option value="4">Soy consciente de las afectaciones y puedo aplicar herramientas o técnicas para enfrentar el estrés.</option>
+                    <option value="5">Aunque no sé cómo aplicar pautas para frenar las afectaciones, hago cosas que sé que me ayudan a estar bien (autocuidado).</option>
+                    </select>  
+         </div>
+<br>
+          <div id="question6" class="d-none">
+            <label for="situacion" class="form-label">6. La siguiente tabla muestra situaciones en las cuales podría haber experimentado estrés. Por favor, selecciona la frecuencia en la que ha sentido estrés durante <u>las últimas dos semanas.</u> <span style="color: #FF7D81;">*</span></label>
+            <table class="table table-bordered align-middle" style="text-align:center;">
+                <thead>
+                <tr>
+                    <th>Durante las últimas dos semanas, me sentí estresado(a) por…</th>
+                    <th>Nunca</th>
+                    <th>En raras ocasiones</th>
+                    <th>Algunas veces</th>
+                    <th>Muy seguido</th>
+                </tr>
+                </thead>
+                <tbody>
+                  {{range.}}
+                  {{if eq .Seccion 5}}
+                  <tr>
+                  <th style="text-align: left;">{{.Pregunta}}</th>
+                    <td><input type="radio" name="situacion{{.Id}}" value="1"></td> 
+                    <td><input type="radio" name="situacion{{.Id}}" value="2"></td>
+                    <td><input type="radio" name="situacion{{.Id}}" value="3"></td>
+                    <td><input type="radio" name="situacion{{.Id}}" value="4"></td>
+                </tr>
+                {{end}}
+                {{end}}                
+            </tbody>
+            </table>
+          </div>
+            <br>
+
+            <div id="question7">
+            <label for="angustia" class="form-label">7. Ingrese el número (del 0 al 10) que mejor describa cuánta angustia ha estado sintiendo <u>esta última semana,</u> incluyendo el día de hoy.<span style="color: #FF7D81;">*</span></label>
+            <input class="form-control" type="number" min="0" max="10" step="1" name="angustia" id="angustia" style="margin-left: auto; margin-right: auto;" onchange="updateTemperature(this.value)" required>
+<br> 
+            <label for="termometro" class="d-flex align-items-center justify-content-center">EXTREMADAMENTE ANGUSTIADA(O) “Nunca me había sentido tan mal”<span style="color: #FF7D81;">*</span></label>
+            <div class="thermometer">
+              
+              <div class="temperature"></div>
+              </div>
+<br> 
+              <div class="text-center">
+              <label for="termometro" class="d-flex align-items-center justify-content-center">NINGUNA ANGUSTIA “Todo está bien”<span style="color: #FF7D81;">*</span></label> 
+             </div>
+            </div>
+<br>  
+            <div id="question8">
+            <label for="vida" class="form-label">8. Abajo se encuentra una lista de afirmaciones. Por favor indique con qué frecuencia dichos enunciados se aplican en su vida cotidiana. <span style="color: #FF7D81;">*</span></label>
+            <table class="table table-bordered align-middle" style="text-align:center;">
+                <thead>
+                <tr>
+                    <th>Afirmación</th>
+                    <th>Muy pocas veces</th>
+                    <th>Algunas veces</th>
+                    <th>Casi siempre</th>
+                </tr>
+                </thead>
+                <tbody>
+                  {{range.}}
+                  {{if eq .Seccion 7}}
+                  <tr>
+                  <th style="text-align: left;">{{.Pregunta}}</th>
+                    <td><input type="radio" name="vida{{.Id}}" value="1" required></td> 
+                    <td><input type="radio" name="vida{{.Id}}" value="2" required></td>
+                    <td><input type="radio" name="vida{{.Id}}" value="3" required></td>
+                </tr>
+                {{end}}
+                {{end}} 
+                </tbody>
+            </table>
+          </div>
+<br>
+          <div id="question9">
+            <label for="estrategia" class="form-label">9. En la siguiente tabla, encontrará una serie de estrategias que puede utilizar cuando se enfrenta a una situación complicada. Por favor, marque la casilla que represente la frecuencia con la cual utiliza cada estrategia.</u> <span style="color: #FF7D81;">*</span></label>
+            <table class="table table-bordered align-middle" style="text-align:center;">
+                <thead>
+                <tr>
+                    <th>Cuando me enfrento a una situación complicada: </th>
+                    <th>Nunca</th>
+                    <th>Muy pocas veces</th>
+                    <th>Algunas veces</th>
+                    <th>Muy seguido</th>
+                </tr>
+                </thead>
+                <tbody>
+                  {{range.}}
+                  {{if eq .Seccion 8}}
+                  <tr>
+                  <th style="text-align: left;">{{.Pregunta}}</th>
+                    <td><input type="radio" name="estrategia{{.Id}}" value="1" required></td> 
+                    <td><input type="radio" name="estrategia{{.Id}}" value="2" required></td>
+                    <td><input type="radio" name="estrategia{{.Id}}" value="3" required></td>
+                    <td><input type="radio" name="estrategia{{.Id}}" value="4" required></td>
+                </tr>
+                {{end}}
+                {{end}} 
+                </tbody>
+            </table>
+          </div>
+<br>
+            <div id="question10" class="col">
+                <label for="realidad" class="form-label">10. De las oraciones a continuación, seleccione la respuesta que mejor describa su realidad. Usted siente que:<span style="color: #FF7D81;">*</span></label>
+                <select class="form-select" id="realidad" name="realidad" required>
+                    <option value="" selected disabled>Seleccione una opción...</option>
+                    <option value="1">Es capaz de lidiar (hacerle frente) a cualquier situación.</option>
+                    <option value="2">Es capaz de lidiar (hacerle frente) a algunas situaciones, pero no puede hacerle frente a otras.</option>
+                    <option value="3">No puede lidiar con la mayoría de situaciones.</option>
+                    <option value="4">No puede lidiar con ninguna situación.</option>
+                    </select>    
+            </div>
+<br>
+<h4>Espacios conscientes del trauma</h4>
+
+            <div id="question11" class="col">
+                <label for="objetivoSM" class="form-label">11. En su opinión, ¿cuál es el objetivo principal de la formación general de SanaMente?<span style="color: #FF7D81;">*</span></label><br>
+                  <input type="radio" name="objetivoSM" id="objetivoSM1" value="1" required>Promover espacios de autocuidado a través de la enseñanza de técnicas de relajación y afrontamiento al estrés.<br>
+                  <input type="radio" name="objetivoSM" id="objetivoSM2" value="2">Informar sobre los efectos del trauma y las reacciones comunes en las personas.<br>
+                  <input type="radio" name="objetivoSM" id="objetivoSM3" value="3">Brindar herramientas prácticas a prestadores de primera línea para la atención de las comunidades que están expuestas a situaciones de violencia.<br>
+                  <input type="radio" name="objetivoSM" id="objetivoSM4" value="4">Brindar herramientas prácticas a prestadores de primera línea para mejorar su lugar de trabajo.<br>
+                  <input type="radio" name="objetivoSM" id="objetivoSM5" value="5">Informar sobre los efectos de la violencia en los individuos y cómo esto puede a su vez contribuir a mantener violencia.<br>
+            </div>
+<br>
+            <div id="question12">
+              <label for="efectosT" class="form-label">12. ¿Considera que es consciente de los efectos del trauma en la vida de las personas?<span style="color: #FF7D81;">*</span></label>
+              <br>
+              <input type="radio" name="efectosT" value="1" onclick="consciente(this.value)" required> Sí. <br>
+              <input type="radio" name="efectosT" value="2" onclick="consciente(this.value)"> No. <br>
+              <br>
+              <div id="conocimientoT1" class="d-none">
+                <label for="conocimientoT" class="form-label">12.1 ¿Cómo considera que su conocimiento sobre trauma beneficia a las personas que atiende en su lugar de trabajo?<span style="color: #FF7D81;">*</span></label>
+                <input type="text" name="conocimientoT" id="conocimientoT" class="form-control" placeholder="" maxlength="300">
+              </div>
+            </div>
+            <br>
+            <div id="question13">
+              <label for="actitudesF" class="form-label">13. ¿Percibe que los usuarios que ha atendido bajo enfoques de trauma informado pueden mostrar actitudes favorables para sus vidas después de recibir su atención?<span style="color: #FF7D81;">*</span></label>
+              <br>
+              <input type="radio" name="actitudesF" value="1" required> Sí. <br>
+              <input type="radio" name="actitudesF" value="2"> No. <br>
+            </div>
+            <br>
+            <div id="question14" class="col">
+              <label for="practicasAt" class="form-label">14. A continuación, se le presenta una serie de prácticas de atención hacia las personas que usted atiende. Por favor, seleccione si ha utilizado alguna de estas prácticas.<span style="color: #FF7D81;">*</span></label><br>
+                <input type="checkbox" name="practicasAt" id="practicasAt1" value="1" onclick="referido(this.value)"> Le he explicado a alguien sobre los efectos del trauma para tranquilizarle o explicar su comportamiento o reacciones. <br>
+                <input type="checkbox" name="practicasAt" id="practicasAt2" value="2" onclick="referido(this.value)"> He animado a alguien a practicar técnicas de autocuidado que sean de su agrado, ofreciendo variedad. <br>
+                <input type="checkbox" name="practicasAt" id="practicasAt3" value="3" onclick="referido(this.value)"> Reconozco que la historia de vida de cada persona es diferente e intento ser más empático(a) en el trato al momento de brindarles servicios.<br>
+                <input type="checkbox" name="practicasAt" id="practicasAt4" value="4" onclick="referido(this.value)"> Reconozco que hay comportamientos de las personas en mi comunidad que responden a las experiencias grupales y que no son responsabilidad de cada persona, por lo que intento no juzgarles.<br>
+                <input type="checkbox" name="practicasAt" id="practicasAt5" value="5" onclick="referido(this.value)"> Al momento de atender a alguien en mi lugar de trabajo explico a las personas el porqué de mis preguntas y mis acciones con mayor frecuencia. <br>
+                <input type="checkbox" name="practicasAt" id="practicasAt6" value="6" onclick="referido(this.value)"> He referido o animado a alguien a solicitar apoyo externo o especializado sobre salud mental. <br>
+                <input type="checkbox" name="practicasAt" id="practicasAt7" value="7" onclick="referido(this.value)"> No he tenido la oportunidad de aplicar ninguna de esas acciones. <br>
+              <br>
+              <div id="referido1" class="d-none">
+                <label for="nreferido" class="form-label">14.1 En el último mes ¿a cuántas personas ha referido o animado a alguien a solicitar ayuda especializada? (terapia psicológica, terapia psiquiátrica, grupos de apoyo de salud mental)<span style="color: #FF7D81;">*</span></label>
+                <input type="number" min=0 step="1" name="nreferido" id="nreferido" class="form-control" placeholder="" required >
+              </div>
+            </div>
+            <br>
+            <div id="question15" class="col">
+              <label for="npracticas" class="form-label">15. De las acciones arriba seleccionadas, en el último mes aproximadamente ¿con cuántas personas en su lugar de trabajo ha realizado esas prácticas? por ejemplo, a cuántas personas le ha explicado sobre los efectos del trauma en su lugar de trabajo o en su vida diaria.<span style="color: #FF7D81;">*</span></label>
+              <input type="number" min=0 step="1" name="npracticas" id="npracticas" class="form-control" placeholder="" required >
+            </div>
+            <br>  
+            <div id="question16" class="col">
+              <label for="caso" class="form-label">16. Lea el siguiente caso hipotético y complete seleccionando la opción que mejor le parezca:<br>
+                <i>A su lugar de trabajo llega un joven que solicita ayuda, ante esto una de sus compañeras decide atenderlo bajo el enfoque de trauma informado. Usted reconoce que está utilizando aprendizajes de la formación ¿Cuál considera que fue el mayor aporte de la formación para que su compañera lo atienda de esta manera?</i>
+                <span style="color: #FF7D81;">*</span></label>
+                <input type="radio" name="caso" id="caso1" value="1" required>Las herramientas de autocuidado facilitadas en la formación general. Ella se siente mejor por lo que atiende con mayor cuidado al joven.<br>
+                <input type="radio" name="caso" id="caso2" value="2">La sensibilización sobre los efectos del estrés y el trauma y las reacciones comunes en las personas. <br>
+                <input type="radio" name="caso" id="caso3" value="3">El reconocimiento de la juventud como una población mayoritariamente expuesta a riesgos y a estigmatización.<br>
+                <input type="radio" name="caso" id="caso4" value="4">La importancia de comunicar cómo funciona el trauma con las personas que se atienden.<br>
+            </div>
+            <br>    
+            <div id="question17" class="col">
+              <label for="practicasEq" class="form-label">17. De las siguientes afirmaciones, seleccione cuál o cuáles se ponen en práctica en su lugar de trabajo con las personas usuarias, es decir, no necesariamente que usted las haga, sino que las observe en su equipo de trabajo después de recibir la formación:<span style="color: #FF7D81;">*</span></label><br>
+                <input type="checkbox" name="practicasEq" id="practicasEq1" value="1"> He visto a personas de mi equipo explicarle a usuarios sobre cómo las vivencias impactan su comportamiento y que esto no necesariamente es su responsabilidad. <br>
+                <input type="checkbox" name="practicasEq" id="practicasEq2" value="2"> Noto un aumento en las explicaciones brindadas a las personas usuarias de los servicios de mi institución, es decir, veo que mis compañeros anticipan sus acciones a las personas atendidas (por ejemplo, explican por qué realizarán los procesos y cómo se harán). <br>
+                <input type="checkbox" name="practicasEq" id="practicasEq3" value="3"> He visto a compañeras(os) de trabajo referir casos a especialistas de salud mental.<br>
+                <input type="checkbox" name="practicasEq" id="practicasEq4" value="4"> Soy la única persona de mi equipo que ha recibido la formación, por lo que todavía no percibo cambios.<br>
+                <input type="checkbox" name="practicasEq" id="practicasEq5" value="5"> No he visto ningún cambio en mi equipo de trabajo. <br>
+            </div>
+            <br>
+            <div id="question18" class="col">
+              <label for="practicasTr" class="form-label">18. De las siguientes afirmaciones, seleccione cuál o cuáles se ponen en práctica en su lugar de trabajo, es decir, no necesariamente que usted las haga, si no que las observe en su equipo de trabajo después de recibir la formación:<span style="color: #FF7D81;">*</span></label><br>
+                <input type="checkbox" name="practicasTr" id="practicasTr1" value="1"> Existe un lenguaje común sobre cómo funciona la relación entre emociones, pensamientos y comportamientos; por ejemplo: se habla del jinete y el elefante, guardia de seguridad, entre otros. <br>
+                <input type="checkbox" name="practicasTr" id="practicasTr2" value="2"> Considero que el trabajo en equipo ha mejorado e intentamos como grupo no cargar a otras personas con más responsabilidades. <br>
+                <input type="checkbox" name="practicasTr" id="practicasTr3" value="3"> Escucho con mayor frecuencia a mi equipo de trabajo hablar sobre salud mental.<br>
+                <input type="checkbox" name="practicasTr" id="practicasTr4" value="4"> Escucho con mayor  frecuencia a mi equipo de trabajo hablar sobre técnicas de autocuidado.<br>
+                <input type="checkbox" name="practicasTr" id="practicasTr5" value="5"> Soy la única persona de mi equipo que ha recibido la formación, por lo que todavía no percibo cambios. <br>
+                <input type="checkbox" name="practicasTr" id="practicasTr6" value="6"> No he visto ningún cambio en mi equipo de trabajo. <br>
+            </div>
+            <br>
+            <div id="question19">
+            <label for="entorno" class="form-label">19. En la siguiente tabla, se muestran algunas afirmaciones respecto a cómo se siente en su entorno laboral. Por favor, marque la casilla que mejor represente la situación en su lugar de trabajo. <span style="color: #FF7D81;">*</span></label>
+            <table class="table table-bordered align-middle" style="text-align:center;">
+                <thead>
+                <tr>
+                    <th>En mi lugar de trabajo…</th>
+                    <th>Muy pocas veces</th>
+                    <th>Algunas veces</th>
+                    <th>Casi siempre</th>
+                </tr>
+                </thead>
+                <tbody>
+                  {{range.}}
+                  {{if eq .Seccion 12}}
+                  <tr>
+                  <th style="text-align: left;">{{.Pregunta}}</th>
+                    <td><input type="radio" name="entorno{{.Id}}" required value="1"></td> 
+                    <td><input type="radio" name="entorno{{.Id}}" required value="2"></td>
+                    <td><input type="radio" name="entorno{{.Id}}" required value="3"></td>
+                </tr>
+                {{end}}
+                {{end}} 
+                </tbody>
+            </table>
+          </div>
+          <br>
+          <div id="question20">
+            <label for="clima" class="form-label">20. ¿Considera que la formación ha apoyado a la mejora del clima laboral en su trabajo?<span style="color: #FF7D81;">*</span></label>
+            <br>
+            <input type="radio" name="clima" value="1" onclick="climaL(this.value)" required> Sí. <br>
+            <input type="radio" name="clima" value="2" onclick="climaL(this.value)"> No. <br>
+            <br>
+            <div id="climaT1" class="d-none">
+              <label for="climaT" class="form-label">20.1 ¿Por qué?<span style="color: #FF7D81;">*</span></label>
+              <input type="text" name="climaT" id="climaT" class="form-control" placeholder="" maxlength="300">
+            </div>
+          </div>
+          <br>      
+            <h4>Cohesión Social</h4>
+          <br>
+          <div id="question21">
+            <label for="relacion" class="form-label">21. A continuación encontrará una serie de círculos, por favor seleccione el círculo que mejor represente su relación con estas personas: <span style="color: #FF7D81;">*</span></label>
+            <div class="form-group">
+              <label> ¿Qué tan cerca se siente de su familia?:<span style="color: #FF7D81;">*</span></label><br>
+              <table class="table">
+                <tbody>
+                  <tr>
+                    <td class="text-center">
+                      <div class="form-check">
+                        <input class="form-check-input" type="radio" name="rel1" id="rel1" value="1" required>
+                        <label class="form-check-label" for="rel1">
+                          <div class="d-flex justify-content-center">
+                            <img src="/public/IMG/rel1_1.png" class="img-max" alt="Imagen 1">
+                          </div>
+                        </label>
+                      </div>
+                    </td>
+                    <td class="text-center">
+                      <div class="form-check">
+                        <input class="form-check-input" type="radio" name="rel1" value="2">
+                        <label class="form-check-label" for="imagen2">
+                          <div class="d-flex justify-content-center">
+                            <img src="/public/IMG/rel1_2.png" class="img-max" alt="Imagen 2">
+                          </div>
+                        </label>
+                      </div>
+                    </td>
+                    <td class="text-center">
+                      <div class="form-check">
+                        <input class="form-check-input" type="radio" name="rel1" value="3">
+                        <label class="form-check-label" for="imagen3">
+                          <div class="d-flex justify-content-center">
+                            <img src="/public/IMG/rel1_3.png" class="img-max" alt="Imagen 3">
+                          </div>
+                        </label>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="text-center">
+                      <div class="form-check">
+                        <input class="form-check-input" type="radio" name="rel1" value="4">
+                        <label class="form-check-label" for="imagen4">
+                          <div class="d-flex justify-content-center">
+                            <img src="/public/IMG/rel1_4.png" class="img-max" alt="Imagen 4">
+                          </div>
+                        </label>
+                      </div>
+                    </td>
+                    <td class="text-center">
+                      <div class="form-check">
+                        <input class="form-check-input" type="radio" name="rel1" value="5">
+                        <label class="form-check-label" for="imagen5">
+                          <div class="d-flex justify-content-center">
+                            <img src="/public/IMG/rel1_5.png" class="img-max" alt="Imagen 5">
+                          </div>
+                        </label>
+                      </div>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+<br>            
+            <div class="form-group">
+              <label>¿Qué tan cerca se siente de sus compañeros(as) de trabajo?<span style="color: #FF7D81;">*</span></label><br>
+              <table class="table">
+                <tbody>
+                  <tr>
+                    <td class="text-center">
+                      <div class="form-check">
+                        <input class="form-check-input" type="radio" name="rel2" id="rel2" value="1" required>
+                        <label class="form-check-label" for="rel2">
+                          <div class="d-flex justify-content-center">
+                            <img src="/public/IMG/rel2_1.png" class="img-max" alt="Imagen 1">
+                          </div>
+                        </label>
+                      </div>
+                    </td>
+                    <td class="text-center">
+                      <div class="form-check">
+                        <input class="form-check-input" type="radio" name="rel2" value="2">
+                        <label class="form-check-label" for="imagen2">
+                          <div class="d-flex justify-content-center">
+                            <img src="/public/IMG/rel2_2.png" class="img-max" alt="Imagen 2">
+                          </div>
+                        </label>
+                      </div>
+                    </td>
+                    <td class="text-center">
+                      <div class="form-check">
+                        <input class="form-check-input" type="radio" name="rel2" value="3">
+                        <label class="form-check-label" for="imagen3">
+                          <div class="d-flex justify-content-center">
+                            <img src="/public/IMG/rel2_3.png" class="img-max" alt="Imagen 3">
+                          </div>
+                        </label>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="text-center">
+                      <div class="form-check">
+                        <input class="form-check-input" type="radio" name="rel2" value="4">
+                        <label class="form-check-label" for="imagen4">
+                          <div class="d-flex justify-content-center">
+                            <img src="/public/IMG/rel2_4.png" class="img-max" alt="Imagen 4">
+                          </div>
+                        </label>
+                      </div>
+                    </td>
+                    <td class="text-center">
+                      <div class="form-check">
+                        <input class="form-check-input" type="radio" name="rel2" value="5">
+                        <label class="form-check-label" for="imagen5">
+                          <div class="d-flex justify-content-center">
+                            <img src="/public/IMG/rel2_5.png" class="img-max" alt="Imagen 5">
+                          </div>
+                        </label>
+                      </div>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+<br>
+            <div class="form-group">
+              <label> ¿Qué tan cerca se siente de las personas que atiende? (estudiantes, usuarios de sus servicios):<span style="color: #FF7D81;">*</span></label><br>
+              <table class="table">
+                <tbody>
+                  <tr>
+                    <td class="text-center">
+                      <div class="form-check">
+                        <input class="form-check-input" type="radio" name="rel3" id="rel3" value="1" required>
+                        <label class="form-check-label" for="rel3">
+                          <div class="d-flex justify-content-center">
+                            <img src="/public/IMG/rel3_1.png" class="img-max" alt="Imagen 1">
+                          </div>
+                        </label>
+                      </div>
+                    </td>
+                    <td class="text-center">
+                      <div class="form-check">
+                        <input class="form-check-input" type="radio" name="rel3" value="2">
+                        <label class="form-check-label" for="imagen2">
+                          <div class="d-flex justify-content-center">
+                            <img src="/public/IMG/rel3_2.png" class="img-max" alt="Imagen 2">
+                          </div>
+                        </label>
+                      </div>
+                    </td>
+                    <td class="text-center">
+                      <div class="form-check">
+                        <input class="form-check-input" type="radio" name="rel3" value="3">
+                        <label class="form-check-label" for="imagen3">
+                          <div class="d-flex justify-content-center">
+                            <img src="/public/IMG/rel3_3.png" class="img-max" alt="Imagen 3">
+                          </div>
+                        </label>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="text-center">
+                      <div class="form-check">
+                        <input class="form-check-input" type="radio" name="rel3" value="4">
+                        <label class="form-check-label" for="imagen4">
+                          <div class="d-flex justify-content-center">
+                            <img src="/public/IMG/rel3_4.png" class="img-max" alt="Imagen 4">
+                          </div>
+                        </label>
+                      </div>
+                    </td>
+                    <td class="text-center">
+                      <div class="form-check">
+                        <input class="form-check-input" type="radio" name="rel3" value="5">
+                        <label class="form-check-label" for="imagen5">
+                          <div class="d-flex justify-content-center">
+                            <img src="/public/IMG/rel3_5.png" class="img-max" alt="Imagen 5">
+                          </div>
+                        </label>
+                      </div>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+<br>
+            <br>
+            <label> Su aporte es muy valioso. ¡Muchas gracias por completar esta encuesta! </label>
+      <br>
+      <br>
+    
+      <button class="btn btn-primary" id="boton" type="submit" > Enviar</button>
+    </div>
+</div>
+    </form>
+ 
+    <script src="/static/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="/public/JS/sanamente/encuestainicial.js"></script>
+  </body>
+</html>
+

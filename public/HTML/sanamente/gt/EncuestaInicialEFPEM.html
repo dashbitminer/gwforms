@@ -1,0 +1,576 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <base target="_top">
+    <title> Encuesta Inicial para Personal EFPEM </title>
+   <link href="/static/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+  </head>
+
+<link rel="stylesheet" href="/public/CSS/estilos_sanamente_encuesta.css" type="text/css">
+ 
+<body class="bg-custom">
+
+<div class="container">
+
+<img src="/public/IMG/Sanamente.png" class="img-fluid" alt="Glasswing" />
+
+<form action="/sanamente/encuesta/inicial/post" method="POST" enctype="multipart/form-data" id="formualrioRegistro" name="formualrioRegistro" class="needs-validation" novalidatez>
+
+<h2> Encuesta Inicial de la Formación General en Atención en Trauma Informado para Personal EFPEM </h2>
+
+<p style="text-align: justify;">
+    Agradecemos su interés por apoyarnos en el llenado de esta encuesta. Su opinión es muy importante para nosotros y contribuirá a obtener información sobre la eficacia del programa SanaMente para realizar mejoras en éste. La encuesta tomará aproximadamente 30 minutos y <u>las preguntas no son una evaluación de conocimiento.</u> Si tiene alguna duda, puede consultar con la persona encargada de Glasswing International. Con mucho gusto, aclararemos sus preguntas.
+  <br><br>
+  Para iniciar solicitaremos algunos datos. Recuerde que estos datos serán tratados con estricta confidencialidad. </p>
+            <br>
+            <h4>Datos Sociodemográficos</h4>
+            <br>
+
+            <div class="col">
+              <label for="dpi" class="form-label">Código de encuesta:<span style="color: #FF7D81;">*</span></label>
+              <input type="text" name="dpi" id="dpi" class="form-control" required>
+            </div>        
+<br>
+            <div class="col">
+                <label for="sexo" class="form-label">Sexo:<span style="color: #FF7D81;">*</span></label>
+                <select class="form-select" id="sexo" name="sexo" required>
+                <option value="" selected disabled>Seleccione una opción...</option>
+                <option value="1">Hombre</option>
+                <option value="2">Mujer</option>
+                </select>
+            </div> 
+<br>
+            <div class="col">
+                <label for="fechaN" class="form-label">Fecha de nacimiento:<span style="color: #FF7D81;">*</span></label>
+                <input type="date" name="fechaN" id="fechaN" class="form-control" required>
+            </div>
+<br>
+            <div class="col">
+                <label for="aniol" class="form-label">Número de años laborales en su trabajo actual:<span style="color: #FF7D81;">*</span></label>
+                <input type="number" min=0 step="1" name="aniol" id="aniol" class="form-control" placeholder="" required>
+            </div>
+<br>
+            <div class="col">
+                <label for="puesto" class="form-label">Rol o puesto dentro de su lugar de trabajo:<span style="color: #FF7D81;">*</span></label>
+                <select class="form-select" id="puesto" name="puesto" required onchange="mostrar(); mostrar3()">
+                  <option value="" selected disabled>Seleccione una opción...</option>
+                  <option value="1">Personal administrativo EFPEM.</option>
+                  <option value="2">Personal de servicios EFPEM.</option>
+                  <option value="3">Personal docente EFPEM.</option>
+                  <option value="4">Personal Administrativo de Coordinación. Asesores PADED/D.</option>
+                  <option value="5">Estudiantes PADED/D.</option>
+                  <option value="6">Otro</option>
+                </select>    
+                <br>
+            </div>
+
+            <div id="otro1" class="d-none">
+              <label for="otrorol" class="form-label">Especifique:<span style="color: #FF7D81;">*</span></label>
+              <input type="text" name="otrorol" id="otrorol" class="form-control" maxlength="150" placeholder="">
+                  <br>
+            </div>
+
+            <div id="a" class="d-none">
+                <label for="docente" class="form-label">Tipo de docente:<span style="color: #FF7D81;">*</span></label>
+                <select class="form-select" id="docente" name="docente" >
+                    <option value="" selected disabled>Seleccione una opción...</option>
+                    <option value="1">Titular.</option>
+                    <option value="2">Interino.</option>
+                    </select>    
+                    <br>
+                  </div>
+
+            <div id="b" class="d-none">
+                <label for="ntrabaja" class="form-label">Además de su labor en EFPEM, ¿en cuántas otras escuelas o instituciones trabaja?:<span style="color: #FF7D81;">*</span></label>
+                <input type="number" min=0 step="1" name="ntrabaja" id="ntrabaja" class="form-control" placeholder="">
+                <br>
+              </div>
+
+            <div id="c" class="d-none">
+                <label for="catedra" class="form-label">Cátedra que imparte en EFPEM:<span style="color: #FF7D81;">*</span></label>
+                <input type="text" name="catedra" id="catedra" class="form-control" maxlength="150" placeholder="">
+                <br>
+              </div>
+            
+            <div id="bEst" class="d-none">
+              <label for="ntrabajaEst" class="form-label">¿En cuántas escuelas o instituciones trabaja?:<span style="color: #FF7D81;">*</span></label>
+              <input type="number" min=0 max="10" step="1" name="ntrabajaEst" id="ntrabajaEst" class="form-control" placeholder="">
+              <br>
+            </div>
+              
+
+    <p style="text-align: justify;"> A continuación, se le presentará una serie de preguntas sobre las prácticas que realiza para su bienestar, sobre las formas que usa para regular su estrés, sobre su forma de atender a las personas y sobre su ambiente laboral. </p>
+
+    <h4>Prácticas a favor del bienestar</h4>
+
+            <div id="question1">
+            <label for="practica" class="form-label">1. Abajo se le presenta una serie de prácticas que ayudan a las personas a cuidarse y sentirse mejor con ellas mismas. Por favor, marque la casilla que mejor represente con cuánta frecuencia ha realizado cada práctica durante <u>el último mes.</u> <span style="color: #FF7D81;">*</span></label>
+            <table class="table table-bordered align-middle" style="text-align:center;">
+                <thead>
+                <tr>
+                    <th>Prácticas que utilizo para sentirme mejor.</th>
+                    <th>Nunca</th>
+                    <th>En raras ocasiones</th>
+                    <th>Algunas veces</th>
+                    <th>Muy seguido</th>
+                </tr>
+                </thead>
+                <tbody>
+
+                    {{range.}}
+                    {{if eq .Seccion 1}}
+                    {{if eq .Id 20}}
+                    <tr>
+                    <th style="text-align: left;">{{.Pregunta}}</th>
+                    <td><input type="radio" name="practica{{.Id}}" value="1" required onclick="mostrar2(this.value)"></td> 
+                    <td><input type="radio" name="practica{{.Id}}" value="2" required onclick="mostrar2(this.value)"></td>
+                    <td><input type="radio" name="practica{{.Id}}" value="3" required onclick="mostrar2(this.value)"></td>
+                    <td><input type="radio" name="practica{{.Id}}" value="4" required onclick="mostrar2(this.value)"></td>
+                </tr>
+
+                {{else}}
+                <tr>
+                  <th style="text-align: left;">{{.Pregunta}}</th>
+                  <td><input type="radio" name="practica{{.Id}}" value="1" required></td> 
+                  <td><input type="radio" name="practica{{.Id}}" value="2" required></td>
+                  <td><input type="radio" name="practica{{.Id}}" value="3" required></td>
+                  <td><input type="radio" name="practica{{.Id}}" value="4" required></td>
+              </tr>
+                {{end}}
+                {{end}}
+                {{end}}
+                </tbody>
+            </table>
+
+<br>
+        <div id="ayuda" class="d-none">
+            <label for="ayuda" class="form-label">1.1 ¿Qué tipo de ayuda especializada ha buscado?:<span style="color: #FF7D81;">*</span></label>
+<br>
+            <input type="checkbox" name="ayuda" value="1"> He buscado apoyo psicológico profesional y prolongado (terapia). <br>
+            <input type="checkbox" name="ayuda" value="2"> He buscado apoyo psiquiátrico. <br>
+            <input type="checkbox" name="ayuda" value="3"> He buscado grupos de apoyo que sean afines a mi necesidad. <br>
+        </div>
+      </div>
+        <br>
+        <div id="question2">
+        <label for="afirma" class="form-label">2. La siguiente tabla muestra una serie de afirmaciones acerca de sus pensamientos y emociones. Por favor, marque la casilla que mejor describa su experiencia <u>en las últimas dos semanas.</u> <span style="color: #FF7D81;">*</span></label>
+        <table class="table table-bordered align-middle" style="text-align:center;">
+            <thead>
+            <tr>
+                <th>Afirmación</th>
+                <th>Nunca</th>
+                <th>En raras ocasiones</th>
+                <th>Algunas veces</th>
+                <th>Muy seguido</th>
+            </tr>
+            </thead>
+            <tbody>
+
+              {{range.}}
+              {{if eq .Seccion 2}}
+              <tr>
+              <th style="text-align: left;">{{.Pregunta}}</th>
+                <td><input type="radio" name="afirma{{.Id}}" required value="1"></td> 
+                <td><input type="radio" name="afirma{{.Id}}" required value="2"></td>
+                <td><input type="radio" name="afirma{{.Id}}" required value="3"></td>
+                <td><input type="radio" name="afirma{{.Id}}" required value="4"></td>
+            </tr>
+            {{end}}
+            {{end}}
+          </tbody>
+        </table>
+      </div>
+<br>
+            <div id="question3"> 
+            <label for="aafecta" class="form-label">3. En la siguiente tabla, seleccione si usted es consciente de las siguientes afectaciones en su vida cotidiana. <span style="color: #FF7D81;">*</span></label>
+                <table class="table table-bordered align-middle" style="text-align:center;">
+                <thead>
+                    <tr>
+                    <th>Tipo de afectación </th>
+                    <th>No reconozco estas afectaciones </th>
+                    <th>Sí reconozco estas afectaciones </th>
+                    </tr>
+                </thead>
+                <tbody>
+                  {{range.}}
+                  {{if eq .Seccion 3}}
+                  <tr>
+                  <th style="text-align: left;">{{.Pregunta}}</th>
+                  <td><input type="radio" name="afecta{{.Id}}" required value="1"></td>
+                  <td><input type="radio" name="afecta{{.Id}}" required value="2"></td>
+                    </tr>
+                    {{end}}
+                    {{end}}                
+                </tbody>
+                </table>
+                </div>
+<br>
+
+          <div id="question4">
+            <label for="actitud" class="form-label">4. De las siguientes frases, ¿cuál es la que mejor describe su actitud hacia las afectaciones anteriormente mencionadas? <span style="color: #FF7D81;">*</span></label>
+                <br> 
+                <select class="form-select" id="actitud" name="actitud" required >
+                    <option value="" selected disabled>Seleccione una opción...</option>
+                    <option value="1">No he logrado identificar afectaciones parecidas en mí.</option>
+                    <option value="2">Me parece muy abrumador identificar este tipo de afectaciones en mi vida y no sé cómo afrontarlas y hacer un cambio en mí cuando las noto.</option>
+                    <option value="3">Soy consciente de las afectaciones que puede experimentar mi cuerpo ante situaciones de estrés, aunque no pueda tomar acción para cambiarlo.</option>
+                    <option value="4">Soy consciente de las afectaciones y puedo aplicar herramientas o técnicas para enfrentar el estrés.</option>
+                    <option value="5">Aunque no sé cómo aplicar pautas para frenar las afectaciones, hago cosas que sé que me ayudan a estar bien (autocuidado).</option>
+                    </select>  
+         </div>
+<br>
+          <div id="question5" class="d-none">
+            <label for="situacion" class="form-label">5. La siguiente tabla muestra situaciones en las cuales podría haber experimentado estrés. Por favor, selecciona la frecuencia en la que ha sentido estrés durante <u>las últimas dos semanas.</u> <span style="color: #FF7D81;">*</span></label>
+            <table class="table table-bordered align-middle" style="text-align:center;">
+                <thead>
+                <tr>
+                    <th>Durante las últimas dos semanas, me sentí estresado(a) por…</th>
+                    <th>Nunca</th>
+                    <th>En raras ocasiones</th>
+                    <th>Algunas veces</th>
+                    <th>Muy seguido</th>
+                </tr>
+                </thead>
+                <tbody>
+                  {{range.}}
+                  {{if eq .Seccion 5}}
+                  <tr>
+                  <th style="text-align: left;">{{.Pregunta}}</th>
+                    <td><input type="radio" name="situacion{{.Id}}" value="1"></td> 
+                    <td><input type="radio" name="situacion{{.Id}}" value="2"></td>
+                    <td><input type="radio" name="situacion{{.Id}}" value="3"></td>
+                    <td><input type="radio" name="situacion{{.Id}}" value="4"></td>
+                </tr>
+                {{end}}
+                {{end}}                
+            </tbody>
+            </table>
+          </div>
+            <br>
+
+            <div id="question6">
+            <label for="angustia" class="form-label">6. Ingrese el número (del 0 al 10) que mejor describa cuánta angustia ha estado sintiendo <u>esta última semana,</u> incluyendo el día de hoy.<span style="color: #FF7D81;">*</span></label>
+            <input class="form-control" type="number" min="0" max="10" step="1" name="angustia" id="angustia" style="margin-left: auto; margin-right: auto;" onchange="updateTemperature(this.value)" required>
+<br> 
+            <label for="termometro" class="d-flex align-items-center justify-content-center">EXTREMADAMENTE ANGUSTIADA(O) “Nunca me había sentido tan mal”<span style="color: #FF7D81;">*</span></label>
+            <div class="thermometer">
+              
+              <div class="temperature"></div>
+              </div>
+<br> 
+              <div class="text-center">
+              <label for="termometro" class="d-flex align-items-center justify-content-center">NINGUNA ANGUSTIA “Todo está bien”<span style="color: #FF7D81;">*</span></label> 
+             </div>
+            </div>
+<br>  
+            <div id="question7">
+            <label for="vida" class="form-label">7. Abajo se encuentra una lista de afirmaciones. Por favor indique con qué frecuencia dichos enunciados se aplican en su vida cotidiana. <span style="color: #FF7D81;">*</span></label>
+            <table class="table table-bordered align-middle" style="text-align:center;">
+                <thead>
+                <tr>
+                    <th>Afirmación</th>
+                    <th>Muy pocas veces</th>
+                    <th>Algunas veces</th>
+                    <th>Casi siempre</th>
+                </tr>
+                </thead>
+                <tbody>
+                  {{range.}}
+                  {{if eq .Seccion 7}}
+                  <tr>
+                  <th style="text-align: left;">{{.Pregunta}}</th>
+                    <td><input type="radio" name="vida{{.Id}}" value="1" required></td> 
+                    <td><input type="radio" name="vida{{.Id}}" value="2" required></td>
+                    <td><input type="radio" name="vida{{.Id}}" value="3" required></td>
+                </tr>
+                {{end}}
+                {{end}} 
+                </tbody>
+            </table>
+          </div>
+<br>
+          <div id="question8">
+            <label for="estrategia" class="form-label">8. En la siguiente tabla, encontrará una serie de estrategias que puede utilizar cuando se enfrenta a una situación complicada. Por favor, marque la casilla que represente la frecuencia con la cual utiliza cada estrategia.</u> <span style="color: #FF7D81;">*</span></label>
+            <table class="table table-bordered align-middle" style="text-align:center;">
+                <thead>
+                <tr>
+                    <th>Cuando me enfrento a una situación complicada: </th>
+                    <th>Nunca</th>
+                    <th>Muy pocas veces</th>
+                    <th>Algunas veces</th>
+                    <th>Muy seguido</th>
+                </tr>
+                </thead>
+                <tbody>
+                  {{range.}}
+                  {{if eq .Seccion 8}}
+                  <tr>
+                  <th style="text-align: left;">{{.Pregunta}}</th>
+                    <td><input type="radio" name="estrategia{{.Id}}" value="1" required></td> 
+                    <td><input type="radio" name="estrategia{{.Id}}" value="2" required></td>
+                    <td><input type="radio" name="estrategia{{.Id}}" value="3" required></td>
+                    <td><input type="radio" name="estrategia{{.Id}}" value="4" required></td>
+                </tr>
+                {{end}}
+                {{end}} 
+                </tbody>
+            </table>
+          </div>
+<br>
+            <div id="question9" class="col">
+                <label for="realidad" class="form-label">9. De las oraciones a continuación, seleccione la respuesta que mejor describa su realidad. Usted siente que:<span style="color: #FF7D81;">*</span></label>
+                <select class="form-select" id="realidad" name="realidad" required>
+                    <option value="" selected disabled>Seleccione una opción...</option>
+                    <option value="1">Es capaz de lidiar (hacerle frente) a cualquier situación.</option>
+                    <option value="2">Es capaz de lidiar (hacerle frente) a algunas situaciones, pero no puede hacerle frente a otras.</option>
+                    <option value="3">No puede lidiar con la mayoría de situaciones.</option>
+                    <option value="4">No puede lidiar con ninguna situación.</option>
+                    </select>    
+            </div>
+<br>
+            <div id="question10" class="col">
+                <label for="efectos" class="form-label">10. ¿Conoce sobre los efectos del trauma en la vida de las personas?:<span style="color: #FF7D81;">*</span></label>
+                <select class="form-select" id="efectos" name="efectos" required>
+                    <option value="" selected disabled>Seleccione una opción...</option>
+                    <option value="1">Si.</option>
+                    <option value="2">No.</option>
+                    </select>    
+            </div>
+<br>
+            <div id="question11" class="col">
+                <label for="nreferido" class="form-label">11. En el último mes ¿a cuántas personas ha referido o animado a alguien a solicitar ayuda especializada? (terapia psicológica, terapia psiquiátrica, grupos de apoyo de salud mental)<span style="color: #FF7D81;">*</span></label>
+                <input type="number" min=0 step="1" name="nreferido" id="nreferido" class="form-control" placeholder="" required >
+            </div>
+<br>
+            <div id="question12">
+            <label for="entorno" class="form-label">12. En la siguiente tabla, se muestran algunas afirmaciones respecto a cómo se siente en su entorno laboral. Por favor, marque la casilla que mejor represente la situación en su lugar de trabajo. <span style="color: #FF7D81;">*</span></label>
+            <table class="table table-bordered align-middle" style="text-align:center;">
+                <thead>
+                <tr>
+                    <th>En mi lugar de trabajo…</th>
+                    <th>Muy pocas veces</th>
+                    <th>Algunas veces</th>
+                    <th>Casi siempre</th>
+                </tr>
+                </thead>
+                <tbody>
+                  {{range.}}
+                  {{if eq .Seccion 12}}
+                  <tr>
+                  <th style="text-align: left;">{{.Pregunta}}</th>
+                    <td><input type="radio" name="entorno{{.Id}}" required value="1"></td> 
+                    <td><input type="radio" name="entorno{{.Id}}" required value="2"></td>
+                    <td><input type="radio" name="entorno{{.Id}}" required value="3"></td>
+                </tr>
+                {{end}}
+                {{end}} 
+                </tbody>
+            </table>
+          </div>
+<br>            
+            <h4>Cohesión Social</h4>
+<br>
+          <div id="question13">
+            <label for="relacion" class="form-label">13. A continuación encontrará una serie de círculos, por favor seleccione el círculo que mejor represente su relación con estas personas: <span style="color: #FF7D81;">*</span></label>
+            <div class="form-group">
+              <label> ¿Qué tan cerca se siente de su familia?:<span style="color: #FF7D81;">*</span></label><br>
+              <table class="table">
+                <tbody>
+                  <tr>
+                    <td class="text-center">
+                      <div class="form-check">
+                        <input class="form-check-input" type="radio" name="rel1" id="rel1" value="1" required>
+                        <label class="form-check-label" for="rel1">
+                          <div class="d-flex justify-content-center">
+                            <img src="/public/IMG/rel1_1.png" class="img-max" alt="Imagen 1">
+                          </div>
+                        </label>
+                      </div>
+                    </td>
+                    <td class="text-center">
+                      <div class="form-check">
+                        <input class="form-check-input" type="radio" name="rel1" value="2">
+                        <label class="form-check-label" for="imagen2">
+                          <div class="d-flex justify-content-center">
+                            <img src="/public/IMG/rel1_2.png" class="img-max" alt="Imagen 2">
+                          </div>
+                        </label>
+                      </div>
+                    </td>
+                    <td class="text-center">
+                      <div class="form-check">
+                        <input class="form-check-input" type="radio" name="rel1" value="3">
+                        <label class="form-check-label" for="imagen3">
+                          <div class="d-flex justify-content-center">
+                            <img src="/public/IMG/rel1_3.png" class="img-max" alt="Imagen 3">
+                          </div>
+                        </label>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="text-center">
+                      <div class="form-check">
+                        <input class="form-check-input" type="radio" name="rel1" value="4">
+                        <label class="form-check-label" for="imagen4">
+                          <div class="d-flex justify-content-center">
+                            <img src="/public/IMG/rel1_4.png" class="img-max" alt="Imagen 4">
+                          </div>
+                        </label>
+                      </div>
+                    </td>
+                    <td class="text-center">
+                      <div class="form-check">
+                        <input class="form-check-input" type="radio" name="rel1" value="5">
+                        <label class="form-check-label" for="imagen5">
+                          <div class="d-flex justify-content-center">
+                            <img src="/public/IMG/rel1_5.png" class="img-max" alt="Imagen 5">
+                          </div>
+                        </label>
+                      </div>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+<br>            
+            <div class="form-group">
+              <label>¿Qué tan cerca se siente de sus compañeros(as) de trabajo?<span style="color: #FF7D81;">*</span></label><br>
+              <table class="table">
+                <tbody>
+                  <tr>
+                    <td class="text-center">
+                      <div class="form-check">
+                        <input class="form-check-input" type="radio" name="rel2" id="rel2" value="1" required>
+                        <label class="form-check-label" for="rel2">
+                          <div class="d-flex justify-content-center">
+                            <img src="/public/IMG/rel2_1.png" class="img-max" alt="Imagen 1">
+                          </div>
+                        </label>
+                      </div>
+                    </td>
+                    <td class="text-center">
+                      <div class="form-check">
+                        <input class="form-check-input" type="radio" name="rel2" value="2">
+                        <label class="form-check-label" for="imagen2">
+                          <div class="d-flex justify-content-center">
+                            <img src="/public/IMG/rel2_2.png" class="img-max" alt="Imagen 2">
+                          </div>
+                        </label>
+                      </div>
+                    </td>
+                    <td class="text-center">
+                      <div class="form-check">
+                        <input class="form-check-input" type="radio" name="rel2" value="3">
+                        <label class="form-check-label" for="imagen3">
+                          <div class="d-flex justify-content-center">
+                            <img src="/public/IMG/rel2_3.png" class="img-max" alt="Imagen 3">
+                          </div>
+                        </label>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="text-center">
+                      <div class="form-check">
+                        <input class="form-check-input" type="radio" name="rel2" value="4">
+                        <label class="form-check-label" for="imagen4">
+                          <div class="d-flex justify-content-center">
+                            <img src="/public/IMG/rel2_4.png" class="img-max" alt="Imagen 4">
+                          </div>
+                        </label>
+                      </div>
+                    </td>
+                    <td class="text-center">
+                      <div class="form-check">
+                        <input class="form-check-input" type="radio" name="rel2" value="5">
+                        <label class="form-check-label" for="imagen5">
+                          <div class="d-flex justify-content-center">
+                            <img src="/public/IMG/rel2_5.png" class="img-max" alt="Imagen 5">
+                          </div>
+                        </label>
+                      </div>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+<br>
+            <div class="form-group">
+              <label> ¿Qué tan cerca se siente de las personas que atiende? (estudiantes, usuarios de sus servicios):<span style="color: #FF7D81;">*</span></label><br>
+              <table class="table">
+                <tbody>
+                  <tr>
+                    <td class="text-center">
+                      <div class="form-check">
+                        <input class="form-check-input" type="radio" name="rel3" id="rel3" value="1" required>
+                        <label class="form-check-label" for="rel3">
+                          <div class="d-flex justify-content-center">
+                            <img src="/public/IMG/rel3_1.png" class="img-max" alt="Imagen 1">
+                          </div>
+                        </label>
+                      </div>
+                    </td>
+                    <td class="text-center">
+                      <div class="form-check">
+                        <input class="form-check-input" type="radio" name="rel3" value="2">
+                        <label class="form-check-label" for="imagen2">
+                          <div class="d-flex justify-content-center">
+                            <img src="/public/IMG/rel3_2.png" class="img-max" alt="Imagen 2">
+                          </div>
+                        </label>
+                      </div>
+                    </td>
+                    <td class="text-center">
+                      <div class="form-check">
+                        <input class="form-check-input" type="radio" name="rel3" value="3">
+                        <label class="form-check-label" for="imagen3">
+                          <div class="d-flex justify-content-center">
+                            <img src="/public/IMG/rel3_3.png" class="img-max" alt="Imagen 3">
+                          </div>
+                        </label>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="text-center">
+                      <div class="form-check">
+                        <input class="form-check-input" type="radio" name="rel3" value="4">
+                        <label class="form-check-label" for="imagen4">
+                          <div class="d-flex justify-content-center">
+                            <img src="/public/IMG/rel3_4.png" class="img-max" alt="Imagen 4">
+                          </div>
+                        </label>
+                      </div>
+                    </td>
+                    <td class="text-center">
+                      <div class="form-check">
+                        <input class="form-check-input" type="radio" name="rel3" value="5">
+                        <label class="form-check-label" for="imagen5">
+                          <div class="d-flex justify-content-center">
+                            <img src="/public/IMG/rel3_5.png" class="img-max" alt="Imagen 5">
+                          </div>
+                        </label>
+                      </div>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+<br>
+            <br>
+            <label> Su aporte es muy valioso. ¡Muchas gracias por completar esta encuesta! </label>
+      <br>
+      <br>
+    
+      <button class="btn btn-primary" id="boton" type="submit" > Enviar</button>
+    </div>
+    </form>
+ 
+    <script src="/static/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="/public/JS/sanamente/encuestainicial.js"></script>
+  </body>
+</html>
+

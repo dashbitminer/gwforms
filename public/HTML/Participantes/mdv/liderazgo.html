@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Formulario de inscripción Escuela de Liderazgo</title>
+    <meta charset="utf-8">
+    <base target="_top">
+    <link href="/static/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+  </head>
+  <body>
+    <div class="d-flex align-items-start">
+      <img src="/public/IMG/liderazgo.png" class="img-fluid" alt="Glasswing" style="width: 100%;" />
+    </div>
+    
+    <div class="container">
+      <form method="POST" id="formularioRegistro" name="formularioRegistro" class="needs-validation" action="/juventud/liderazgo/post" enctype="multipart/form-data" novalidate>
+        <h1>Solicitud de ingreso a Escuela de Liderazgo. </h1>
+<h4>¡Hola aspirante a la Escuela de Liderazgo, es un gusto saludarte!</h4>
+<p>Glasswing International, ejecuta a través de la Red Juvenil la Escuela de Liderazgo, en la cual descubrirás tu potencial como líder, fortaleciendo habilidades sociales, y habilidades transferibles que te permitirán llevar tu liderazgo al siguiente nivel.</p>
+
+<h4>A continuación, detalles de la Escuela de Liderazgo:</h4>
+
+<ul>
+  <li><strong>Horario:</strong> de 9:00 am a 12:00 pm, o 1:00 pm a 4:00 pm; en todos los talleres practicar la puntualidad será clave.</li>
+  <li><strong>Asistencia:</strong> La asistencia es importante en los 10 talleres formativos, si faltas a 2 talleres sin justificación alguna, automáticamente te darás de baja de la Escuela de Liderazgo.</li>
+  <li><strong>Alimentación:</strong> Estar en la formación incluye la alimentación, sin ningún costo; el horario para el almuerzo será de 12:00 pm a 1:00 pm.</li>
+  <li><strong>Materiales:</strong> Todos los materiales que se utilicen en la formación se te brindaran, no debes gastar en ningún tipo de material. *Existe la posibilidad que se solicite algún material, pero son como materiales que se tendrán en casa o reciclados.</li>
+  <li><strong>Otros beneficios:</strong> Dentro del Edificio contaras con un espacio seguro, acceso a Wi-Fi, baños, agua potable, café, impresiones, espacios para poder tener reuniones o estudiar en otros días que no sean de formación y finalmente obtendrás un diploma certificando que recibiste la formación.</li>
+  <li><strong>Técnicos o talleristas:</strong> Los talleristas son personas capacitadas y especialistas en los temas que darán, los talleristas no cobran por la facilitación de los talleres, por lo tanto, por recibir esta formación no se te cobrara por ningún servicio.</li>
+  <li><strong>Red de referencias:</strong> Para Glasswing es importante tu bienestar emocional y físico, si en algún momento necesitas tú o alguien de tu familia recibir apoyo para tratar salud física o emocional, podrás aplicar a la Red de Salud de Glasswing Internacional. *Todos los casos son evaluados por un equipo multidisciplinario que da seguimiento a cada caso.</li>
+  <li><strong>Duración:</strong> El nivel 1, de la Escuela de Liderazgo, tiene una duración de 4 meses, todas las fechas se te darán en el taller 1.</li>
+  <li><strong>Fecha de inicio:</strong> Julio 2024</li>
+</ul>
+
+        <div class="mb-3">
+          <label for="nombreCompleto" class="form-label"><strong>Nombre completo</strong></label>
+          <input type="text" class="form-control" name="nombreCompleto" id="nombreCompleto" required>
+        </div>
+
+        <div class="mb-3">
+          <label for="edad" class="form-label"><strong>Edad</strong></label>
+          <input type="number" step="1" name="edad" id="edad" class="form-control" placeholder="" required>
+        </div>
+
+        <div class="col">
+          <label for="departamento" class="form-label"><strong>Departamento de residencia</strong></label>
+            <select class="form-select" id="departamento" name="departamento" required>
+              <option value=""></option>
+              <option value="2">San Salvador</option>
+              <option value="76">Santa Ana</option>
+            </select>
+        </div>
+        <br>
+        <div class="mb-3">
+          <label for="numeroCelular" class="form-label"><strong>Número celular con WhatsApp</strong></label>
+          <input type="tel" class="form-control" name="numeroCelular" id="numeroCelular" required>
+        </div>
+        
+        <div class="mb-3">
+          <label for="correoPersonal" class="form-label"><strong>Brindar tu correo personal</strong></label>
+          <input type="email" class="form-control" name="correoPersonal" id="correoPersonal" required>
+        </div>
+        
+        <div class="mb-3">
+          <label for="telefonoEmergencia" class="form-label"><strong>Teléfono de contacto en caso de emergencia</strong></label>
+          <input type="tel" class="form-control" name="telefonoEmergencia" id="telefonoEmergencia" required>
+        </div>
+
+        <div class="mb-3">
+          <label for="nombreEmergencia" class="form-label"><strong>Nombre de la persona de contacto de emergencia</strong></label>
+          <input type="text" class="form-control" name="nombreEmergencia" id="nombreEmergencia" required>
+        </div>
+        
+        <div class="mb-3">
+          <label for="organizacion" class="form-label"><strong>¿A qué Organización perteneces?</strong></label><br>
+          <input type="radio" value="Red Juvenil Glasswing" name="organizacion" id="organizacion" onchange="Otro()" required> Red Juvenil Glasswing</option><br>
+          <input type="radio" value="-1" name="organizacion" id="organizacionOtro" onchange="Otro()"> Otra:<br>
+        </div>
+        <div id="otra_organizacion_div" class="d-none">
+          <label for="otra_organizacion" class="form-label"><strong>Otra:</strong></label>
+          <input type="text" name="otraOrganizacion" id="otraOrganizacion" class="form-control" maxlength="50">
+        </div>
+        <br>
+
+        <div class="mb-3">
+          <label for="archivo1" class="form-label"><strong>Adjunta carta de interés</strong></label>
+          <input type="file" class="form-control" id="archivo1" name="archivo1" required>
+        </div>        <button class="btn btn-primary" id="boton" type="submit">Enviar</button>
+      </form>
+    </div>
+   <script src="/static/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="/public/JS/Participantes/red.js"></script>
+  </body>
+</html>

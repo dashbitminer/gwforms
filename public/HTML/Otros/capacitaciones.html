@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <base target="_top">
+    <link href="/static/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+  </head>
+  <body>
+
+    <div class="container">
+<img src="/public/IMG/logo.png" class="img-fluid" alt="Glasswing" />
+      <h2> Capacitaciones Médicas </h2>
+     
+      <br/>
+      <form id="formularioRegistro" name="formularioRegistro" class="needs-validation" method="POST" action="/capacitaciones/post" enctype="multipart/form-data" novalidatez >
+      <h4>INFORMACIÓN REQUERIDA</h4>
+ 
+      <label for="nombreEmpresa" class="form-label">Escribe nombre de la empresa:*</label>
+      <input type="text" name="nombreEmpresa" id="nombreEmpresa" class="form-control" required>
+
+      <label for="correoContacto" class="form-label">Ingresar correo electrónico de contacto:</label>
+      <input type="email" name="correoContacto" id="correoContacto" class="form-control" placeholder="" required>
+      <div class="invalid-feedback">
+       Ingresa una dirección de correo válida
+      </div>
+
+        <label for="cursoAFinanciar" class="form-label">Seleccionar curso a financiar:</label>
+            <select class="form-select" id="cursoAFinanciar" name="cursoAFinanciar" required >
+                <option value=""></option>
+                <option value="1">Estabilización, Reconocimiento y Abordaje de las Emergencias Pedíatricas (PEARS)</option>
+                <option value="2">Primeros Auxilios</option>
+                <option value="3">Reanimación cardiopulmonar básica (RCP) [PROVEEDOR]</option>
+                <option value="4">Soporte Cardiovascular Avanzado (SVCA/ACLS) [PROVEEDOR]</option>
+                <option value="5">Soporte Vital Avanzado Pediátrico (PALS) [PROVEEDOR]</option>
+                <option value="6">Soporte Vital Básico (BLS/SVB) [PROVEEDOR]</option>
+            </select>
+
+    <label for="cantPersonas" class="form-label">Cantidad de personas a financiar:*</label>
+    <input type="number" min="1" step="1" name="cantPersonas" id="cantPersonas" class="form-control" required> 
+    </br>
+    <div class="form-group">
+    <label for="comprobantePago">Adjuntar el comprobante de pago o respaldo de crédito</label>
+    </br>
+    <input type="file" class="form-control-file" id="comprobantePago" name="comprobantePago" required>
+    </br>
+    </div>
+    </br>
+  <label for="tipoFactura" class="form-label">Tipo de facturación requerida:*</label>
+     <select class="form-select" id="tipoFactura" name="tipoFactura"  required>
+       <option value=""></option>
+       <option value="1">Factura consumidor final</option>
+       <option value="2">Crédito fiscal</option>
+       </select>
+  </br>
+
+  <div class="form-group">
+    <label for="tarjetaIVA">Adjuntar Tarjeta del IVA revés y derecho</label>
+</br>
+<input type="file" class="form-control-file" id="tarjetaIVA" name="tarjetaIVA" required>
+</br>
+  </div>
+
+</br>
+  <div class="form-group">
+    <label for="nitEmpresa">Adjuntar NIT de empresa revés y derecho</label>
+</br>
+<input type="file" class="form-control-file" id="nitEmpresa" name="nitEmpresa" required>
+</br>
+</br>
+  </div>
+
+<label for="detallePago" class="form-label">Para el detalle de su FCF o crédito fiscal indicar:*</label>
+     <select class="form-select" id="detallePago" name="detallePago"  required onchange="activaselect()">
+       <option value=""></option>
+       <option value="1">Nombre de participantes y curso</option>
+       <option value="2">Solo nombre del curso</option>
+       </select>
+
+<div id="nombreParticipanteD" class="d-none mb-3">
+<label for="nombreParticipante" class="form-label">Detallar nombres de participantes:</label>
+<textarea class="form-control" id="nombreParticipante" name="nombreParticipante" rows="3"></textarea>
+</div>
+</br>
+  <label for="tipoContribuyente" class="form-label">¿La empresa esta catalogada como gran contribuyente?</label>
+     <select class="form-select" id="tipoContribuyente" name="tipoContribuyente"  required onchange="activaselect2()">
+       <option value=""></option>
+       <option value="1">Sí</option>
+       <option value="2">No</option>
+       </select>
+</br>
+<div class="d-none" id="numeroContactoD">
+<label for="numContacto" class="form-label">Brindar un número de contacto:</label>
+<input type="text" name="numContacto" id="numContacto" class="form-control">
+</div>
+</br>  
+<button class="btn btn-primary" id="boton" type="submit"> Enviar</button>
+
+      </form>
+
+    </div>
+   <script src="/static/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="/public/JS/Otros/capacitaciones.js"></script>
+  </body>
+</html>

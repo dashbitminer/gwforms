@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <base target="_top">
+    <title> Encuesta de percepción sobre juventud</title>
+   <link href="/static/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+    <style>
+      body {
+        font-family: 'Montserrat', sans-serif;
+      }
+      .banner {
+        display: flex;
+        justify-content: space-between;
+      }
+      img {
+        width: 300px;
+      }
+    </style>
+  </head>
+
+ 
+<body class="bg-custom">
+
+<div class="container">
+
+  <div class="banner">
+    <img src="/public/IMG/USAID.png" alt="Logo 1">
+    <img src="/public/IMG/NIDO.png" alt="Logo 2">
+    <img src="/public/IMG/logo.png" alt="Logo 3">
+  </div>
+
+<form action="/mdv/percepcion/post" method="POST" enctype="multipart/form-data" id="formualrioRegistro" name="formualrioRegistro" class="needs-validation" novalidatez>
+
+<h2> Encuesta de percepción sobre juventud</h2>
+      <p style="text-align: justify;">
+        ¡Hola! De parte del equipo Glasswing International estamos realizando una encuesta que tiene como objetivo conocer su percepción sobre la juventud y su entorno social. Le pedimos por favor que responda a las preguntas con completa honestidad, sus respuestas serán utilizadas con fines diagnósticos y toda la información recopilada será manejada únicamente por personal de Glasswing International. Recuerde, no hay respuestas buenas ni malas, solo opiniones y todas son importantes.
+              </p> 
+        <h5>Consentimiento y participación.</h5> 
+
+              <label for="participar" class="form-label">¿Le gustaría participar en la encuesta?</label>
+              <select class="form-select" id="participar" name="participar"  onchange="participarF()" required >
+                <option value=""></option>
+                {{range .Respuestas }}
+                <option value="{{.Value}}">{{.Label}}</option>
+                {{end}}
+              </select>
+
+              <label for="anterior" class="form-label">¿Está es la primera vez que participa en actividades organizadas por Glasswing International?</label>
+              <select class="form-select" id="anterior" name="anterior" required >
+                <option value=""></option>
+                {{range .Respuestas }}
+                <option value="{{.Value}}">{{.Label}}</option>
+                {{end}}
+              </select>
+                
+                <label for="actividad" class="form-label">¿En qué actividad estuvo participando?</label>
+                <select class="form-select" id="actividad" name="actividad" required>
+                  <option value=""></option>
+                  <option value="1">Lobby empresarial.</option>
+                  <option value="2">Conversatorio empresarial/emprendedor.</option>
+                  <option value="3">Pitch emprendedor.</option>
+                
+                </select>  
+                <br>
+                <div id="ocultar" class="d-none" >
+
+        <h5>Datos de identificación.</h5>
+        <label for="Sexo" class="form-label">Seleccione su sexo:</label>
+        <select class="form-select" id="Sexo" name="Sexo"  >
+          <option value=""></option>
+          {{range .Sexo}}
+          <option value="{{.Value}}">{{.Label}}</option>
+        {{end}}
+       </select>
+        <label for="edad" class="form-label">¿Cuál es su edad?</label>
+        <input type="number" name="edad" id="edad" min="15" step="1" max="100" class="form-control">
+        <br>
+        <h5>PERCEPCIÓN.</h5>
+        <p style="text-align: justify;">
+            Las siguientes preguntas están relacionadas a la actividad sobre juventud de Glasswing en la que participó. Piense cómo era su percepción ANTES de la actividad y como es AHORA. 
+        </p>
+        <label for="p1" class="form-label">1. Antes de participar en las actividades de Glasswing ¿Cuál era su definición de un joven en situación de riesgo?</label>
+        <textarea class="form-control" rows="3" name="p1" id="p1" maxlength="1000"></textarea>
+        <br><br>
+        <label for="p2" class="form-label">2. ¿Ha cambiado en algo su definición, luego de participar en los encuentros organizados por Glasswing?</label>
+        <select class="form-select" id="p2" name="p2" onchange="p2F()"  required >
+          <option value=""></option>
+          {{range .Respuestas }}
+          <option value="{{.Value}}">{{.Label}}</option>
+          {{end}}
+        </select> 
+        <br><br>
+        <div id="p2div" class="d-none">
+            <label for="p21" class="form-label">2.1 ¿En qué sentido ha cambiado su definición?</label>
+            <textarea class="form-control" rows="3" name="p21" id="p21" maxlength="1000"></textarea>
+      </div>
+      <br>
+        <br>
+        <label for="p3" class="form-label">3. Antes de participar en las actividades de Glasswing ¿Consideraba el aspecto físico de un joven en situación de riesgo como un factor determinante para ser contratado en un empleo?  </label>
+        <select class="form-select" id="p3" name="p3"  required >
+          <option value=""></option>
+          {{range .Respuestas }}
+          <option value="{{.Value}}">{{.Label}}</option>
+          {{end}}
+        </select> 
+        <br><br>
+            <label for="p31" class="form-label">3.1 ¿Por qué?</label>
+            <textarea class="form-control" rows="3" name="p31" id="p31" maxlength="1000"></textarea>
+        <br>
+
+        <br>
+        <label for="p4" class="form-label">4. Después de participar en las actividades de Glasswing ¿Considera el aspecto físico de un joven en situación de riesgo como un factor determinante para ser contratado en un empleo?</label>
+        <select class="form-select" id="p4" name="p4"  required >
+          <option value=""></option>
+          {{range .Respuestas }}
+          <option value="{{.Value}}">{{.Label}}</option>
+          {{end}}
+        </select> 
+        <br><br>
+            <label for="p41" class="form-label">4.1 ¿Por qué?</label>
+            <textarea class="form-control" rows="3" name="p41" id="p41" maxlength="1000"></textarea>
+    
+        <br>
+        <br>
+        <label for="p5" class="form-label">5. Considerando que el entorno social es el espacio de la comunidad donde los jóvenes habitan y se desarrollan al lado de su familia, amigos y compañeros de escuela:
+<br><br>
+            Antes de participar en las actividades de Glasswing ¿Cómo percibía el entorno social de los jóvenes en situación de riesgo?
+            </label>
+        <select class="form-select" id="p5" name="p5"  required >
+          <option value=""></option>
+          {{range .Respuestas2 }}
+          <option value="{{.Value}}">{{.Label}}</option>
+          {{end}}
+        </select> 
+        <br>
+        <br>
+            <label for="p51" class="form-label">5.1 ¿Por qué?</label>
+            <textarea class="form-control" rows="3" name="p51" id="p51" maxlength="1000"></textarea>
+    
+        <br>
+        <br>
+        <label for="p6" class="form-label">6. Después de participar en las actividades de Glasswing ¿Cómo percibe el entorno social de los jóvenes en situación de riesgo?</label>
+        <select class="form-select" id="p6" name="p6"  required >
+          <option value=""></option>
+          {{range .Respuestas2}}
+          <option value="{{.Value}}">{{.Label}}</option>
+          {{end}}
+        </select> 
+        <br>
+        <br>
+            <label for="p61" class="form-label">6.1 ¿Por qué?</label>
+            <textarea class="form-control" rows="3" name="p61" id="p61" maxlength="1000"></textarea>
+        <br>
+        <br>
+        <label for="p7" class="form-label">7. Antes de participar en las actividades de Glasswing ¿Qué pensaba del entorno de los jóvenes en situación de riesgo y de la violencia?</label>
+        <select class="form-select" id="p7" name="p7"  required >
+          <option value=""></option>
+          {{range .Respuestas3 }}
+          <option value="{{.Value}}">{{.Label}}</option>
+          {{end}}
+        </select> 
+        <br>
+        <br>
+        <label for="p8" class="form-label">8. Después de participar en las actividades de Glasswing ¿Qué piensa del entorno de los jóvenes en situación de riesgo y de la violencia?</label>
+        <select class="form-select" id="p8" name="p8"  required >
+          <option value=""></option>
+          {{range .Respuestas4 }}
+          <option value="{{.Value}}">{{.Label}}</option>
+          {{end}}
+        </select> 
+        <br>
+        <br>
+        <label for="p9" class="form-label">9. Antes de participar en las actividades de Glasswing ¿Consideraba que los jóvenes en situación de riesgo cumplen con los conocimientos y experiencia necesaria para desenvolverse en el ámbito laboral?</label>
+        <select class="form-select" id="p9" name="p9"  required >
+          <option value=""></option>
+          {{range .Respuestas }}
+          <option value="{{.Value}}">{{.Label}}</option>
+          {{end}}
+        </select> 
+        <br>
+        <br>
+            <label for="p91" class="form-label">9.1 ¿Por qué?</label>
+            <textarea class="form-control" rows="3" name="p91" id="p91" maxlength="1000"></textarea>
+    
+        <br>
+        <br>
+        <label for="p10" class="form-label">10. Después de participar en las actividades de Glasswing ¿Considera que los jóvenes en situación de riesgo cumplen con los conocimientos y experiencia necesaria para desenvolverse en el ámbito laboral?</label>
+        <select class="form-select" id="p10" name="p10"  required >
+          <option value=""></option>
+          {{range .Respuestas }}
+          <option value="{{.Value}}">{{.Label}}</option>
+          {{end}}
+        </select> 
+        <br>
+        <br>
+            <label for="p101" class="form-label">10.1 ¿Por qué?</label>
+            <textarea class="form-control" rows="3" name="p101" id="p101" maxlength="1000"></textarea>
+        <br>
+        <br>
+        <label for="p11" class="form-label">11. Antes de participar en las actividades de Glasswing ¿Qué pensaba de la idea de contratar a jóvenes en situación de riesgo? </label>
+        <textarea class="form-control" rows="3" name="p11" id="p11" maxlength="1000"></textarea>
+        <br>
+        <br>
+        <label for="p12" class="form-label">12. Después de participar en las actividades de Glasswing ¿Qué piensa de la idea de contratar a jóvenes en situación de riesgo?</label>
+        <textarea class="form-control" rows="3" name="p12" id="p12" maxlength="1000"></textarea>
+    
+
+<br>
+</div>
+<div id="botondiv" class="d-none">
+      <button class="btn btn-primary" id="boton" type="submit"> Enviar</button>
+      <br>
+      <br>
+    </div>
+     </form>
+    
+   <script src="/static/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="/public/JS/MdV/percepcion.js"></script>
+  </body>
+</html>
+
+</html>

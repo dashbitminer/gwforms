@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <base target="_top">
+    <title> Formación Bienestar Emocional (Comunitaria)</title>
+   <link href="/static/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+   <link rel="stylesheet" href="/static/bootstrap-select/dist/css/bootstrap-select.min.css">
+  </head>
+
+  <link rel="stylesheet" href="/public/CSS/estilos_sanamente.css" type="text/css">
+
+  <body class="bg-custom">
+
+
+<div class="container">
+<img src="/public/IMG/Sanamente.png" class="img-fluid" alt="Glasswing" />
+
+<form action="/sanamente/modulo/col/post" method="POST" enctype="multipart/form-data" id="formualrioRegistro" name="formualrioRegistro" class="needs-validation" novalidatez>
+
+  {{range .Paises}}
+<h2> Actividad de Cierre - Formación Bienestar Emocional (Comunitaria) {{ .Label}}</h2>
+  {{end}}
+
+      <p style="text-align: justify;">
+        A continuación, se te presenta una serie de preguntas sobre lo compartido durante la capacitación, el objetivo es conocer cómo esta actividad apoya en tu conocimiento y cómo Glasswing puede continuar mejorando su implementación. 
+        <br><br>
+        Toda la información recolectada es de uso exclusivo para los objetivos del programa y será manejada únicamente por el equipo de SanaMente. El resultado de estas preguntas no tendrá ninguna repercusión en tu participación en la actividad, 
+        ni en tu trabajo, por lo que puedes sentir completa confianza al contestar ya que no existe ningún riesgo asociado.
+        <br><br>        
+        Agradecemos de antemano tus respuestas.
+        <br><br>
+              </p> 
+              <div id="ocultar" class="container">
+
+                       <div class="col">
+                          <label for="nombrecompleto" class="form-label">Escribe tus nombres y un apellido:*</label>
+                          <input type="text" name="nombreCompleto" id="nombreCompleto" class="form-control"  oninput="activa1()" required>
+                        </div>
+                          <div class="col">
+                          <label for="apellido" class="form-label">Seleccionar el nombre de la persona que facilitó este proceso formativo:</label>
+                          <select class="form-control selectpicker first-disabled" data-live-search="true" id="apellido" name="apellido" required="true" >
+                            <option value=""></option>
+                            {{range .Perfil }}
+                            <option value="{{.Value}}">{{.Label}}</option>
+                            {{end}}
+                          </select>  
+            
+                        </div>
+
+              <div class="col">
+                <label for="gi" class="form-label">Selecciona tu nacionalidad:</label>
+                <select class="form-select" id="nacionalidad" name="nacionalidad" required>
+                <option value="" selected></option>
+                {{range .Paisesn}}
+                <option value="1">{{.Label}}</option>
+                {{end}}
+                <option value="2">Extranjero(a)</option>
+                </select>
+        </div> 
+              
+        <div class="col">
+          <label for="pais" class="form-label">Selecciona el departamento donde se encuentra la sede a la que asistes*</label>
+          <select class="form-select" id="pais2" name="pais2"  onchange="actualizarmun(this.value)" required >
+                <option value=""></option>
+                {{range .Departamento}}
+                <option value="{{.Value}}">{{.Label}}</option>
+                {{end}}
+              </select>  
+
+    </div>
+  <div class="col">
+          <label for="departamento2" class="form-label">Selecciona el municipio donde se encuentra la sede a la que asistes*</label>
+           <select class="form-select" id="departamento2" name="departamento2"   onchange="actualizarsede(this.value)" required>
+      </select>
+    </div>
+
+     <div class="col">
+          <label for="sede2" class="form-label">Selecciona la sede a la que asistes*</label>
+           <select class="form-control selectpicker first-disabled" data-live-search="true" id="sede2" name="sede2" required="true" >
+            <option value=""></option>
+      </select>
+     </div>
+
+<br>
+<h6> A continuación encontrarás una serie de preguntas, agradecemos puedas responderlas de manera individual y recordando lo aprendido en la formación.</h6>
+<br>
+<div id="pregunta">
+<label for="p1" id="p1" class="form-label personalizado">1. De las siguientes opciones, ¿qué situaciones o eventos podrían llevar a una persona a experimentar un duelo?:</label>
+<br> 
+{{range .Parentesco}}
+<input type="radio" value="{{.Value}}" name="p1" onchange="quitar('pregunta')" required>{{.Label}}</option><br><br> 
+ {{end}}
+</div>
+<br> 
+<div id="pregunta2">
+<label for="p2" class="form-label personalizado">2. En la formación usamos el  ejemplo del “jinete” y  el “elefante” para describir al cerebro. Seleccione la opción que representa una característica del ELEFANTE:</label>
+<br> 
+{{range .Sexo}}
+ <input type="radio" value="{{.Value}}" name="p2" onchange="quitar('pregunta2')" required>{{.Label}}</option><br><br>
+ {{end}}
+</div>
+ <br> 
+ <div id="pregunta3">
+<label for="p3" class="form-label personalizado">3. Cuando los miembros de una comunidad están informados en temas como el trauma y duelo, suele pasar que:</label>
+<br>  
+{{range .Respuestas}}
+ <input type="radio" value="{{.Value}}" name="p3" onchange="quitar('pregunta3')" required>{{.Label}}</option><br><br>
+ {{end}}
+</div>
+ <br> 
+ <div id="pregunta4">
+<label for="p4" class="form-label personalizado">4. Llamamos trauma a:</label>
+<br>   
+{{range .Ultgrad}}
+ <input type="radio" value="{{.Value}}" name="p4" onchange="quitar('pregunta4')" required>{{.Label}}</option><br><br>
+ {{end}}
+</div>
+ <br> 
+ <div id="pregunta5">
+<label for="p5" class="form-label personalizado">5. En la vida hay situaciones que exigen mayor demanda de nuestro cuerpo para lograr cumplirlas, como por ejemplo: estudiar para un examen, ir a una entrevista de trabajo, o competir en algún deporte; en las cuales sentir un poco de tensión nos ayuda a mantenernos motivados y activos. Lo anterior corresponde a:</label>
+<br> 
+{{range .Grado}}
+ <input type="radio" value="{{.Value}}" name="p5" required onchange="quitar('pregunta5')">{{.Label}}</option><br><br>
+ {{end}}
+</div>
+<br>
+<div id="pregunta6">
+    <label for="p6" class="form-label personalizado">6. Seleccione la opción que mejor representa la relación entre nuestros pensamientos, comportamientos y emociones:</label>
+    <br> 
+    {{range .Respuestas2}}
+     <input type="radio" value="{{.Value}}" name="p6" required onchange="quitar('pregunta6')">{{.Label}}</option><br><br>
+     {{end}}
+    </div>
+    <br>
+<div id="pregunta7">
+    <label for="p7" class="form-label personalizado">7. Las respuestas ante un evento traumático son: </label>
+    <br> 
+    {{range .Respuestas3}}
+        <input type="radio" value="{{.Value}}" name="p7" required onchange="quitar('pregunta7')">{{.Label}}</option><br><br>
+        {{end}}
+    </div>
+    <br>
+<div id="pregunta8">
+    <label for="p8" class="form-label personalizado">8. ¿Cuál de las siguientes opciones, son recursos para nuestra supervivencia?</label>
+    <br> 
+    {{range .Respuestas4}}
+        <input type="radio" value="{{.Value}}" name="p8" required onchange="quitar('pregunta8')">{{.Label}}</option><br><br>
+        {{end}}
+    </div>
+    <br>
+
+    <input type="hidden" name="idp" value="{{.Idpais}}" id="idp">
+    <input type="hidden" name="modulo" value="5" id="modulo">
+      <button class="btn btn-primary" id="boton" type="submit"> Enviar</button>
+      <br>
+      <br>
+     </form>
+    </div>
+   <script src="/static/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="/public/JS/sanamente/modulomx.js"></script>
+    <script src="/static/jquery/dist/jquery.min.js"></script>
+    <script src="/static/bootstrap-select/dist/js/bootstrap-select.min.js"></script>
+  </body>
+</html>
+
+</html>

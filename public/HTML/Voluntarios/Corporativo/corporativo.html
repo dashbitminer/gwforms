@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Formulario de Registro</title>
+    <meta charset="utf-8">
+    <base target="_top">
+    <link href="/static/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    </head>
+    <body>
+        <div class="container">
+
+            <img src="/public/IMG/logo.png" class="img-fluid" alt="Glasswing" />
+
+            <form method="POST" id="formularioRegistro" name="formularioRegistro" class="needs-validation" action="/voluntariado/corporativo/post" enctype="multipart/form-data" novalidatez>
+            <br></br>
+                <h1 class="mb-4"> Formulario de Registro: Voluntariado Corporativo y Jornadas de Corto Plazo</h1>
+            
+
+                <p style="text-align: justify;">
+                    ¡Gracias por participar en nuestro programa de voluntariado corporativo! 
+                    <br>Tu asistencia es fundamental para hacer una diferencia positiva en nuestra comunidad.
+                </p>
+
+                <div class="row">
+                    <div class="col">
+                        <label for="pais" class="form-label">Selecciona tu país de residencia: *</label>
+                            <select class="form-select" id="pais" name="pais">
+                                <option value="" selected></option>
+                                {{range .Paises}}
+                                <option value="{{.Value}}">{{.Label}}</option>
+                              {{end}}
+                            </select>
+                    </div>                    
+                </div>
+
+                <div class="mb-3">
+                    <label for="nombreCompleto" class="form-label">Nombre Completo: *</label>
+                    <input type="text" name="nombreCompleto" id="nombreCompleto" class="form-control" placeholder="Nombre Completo" oninput="activa1()" required>
+                </div>
+            
+                <div class="row">
+
+                    <div class="col">
+                        <label for="FechaN" class="form-label">Fecha de nacimiento: *</label>
+                        <input type="date" name="FechaN" id="FechaN" class="form-control" placeholder="dd/mm/aaaa" oninput="activaselect4()" required>
+                    </div>
+
+                    <div class="col">
+                        <label for="sexo" class="form-label">Sexo: *</label>
+                            <select class="form-select" id="sexo" name="sexo" required >
+                                <option value=""></option>
+                                {{range .Sexo}}
+                                <option value="{{.Value}}">{{.Label}}</option>
+                                {{end}}
+                            </select>
+                    </div>
+
+                </div>
+            
+                <div class="row">
+
+                    <div class="col">
+                        <label for="DUIMl" id="DUIMl" class="form-label">Número de documento nacional de identidad: *</label>
+                        <input type="text" name="DUIM" id="DUIM" class="form-control" required>
+                        <div id="alertContainer" style="display: none;"></div>
+                    </div>
+
+                </div>
+            
+            <div class="row">
+                <div class="col">
+                    <label for="empresa" class="form-label">Ingresa el nombre de la empresa en la que labora: *</label>
+                    <input type="text" name="empresa" id="empresa" class="form-control" placeholder="Nombre empresa" required>
+                </div>
+            </div>
+            
+            <div class="mb-3">
+                <label for="evento" class="form-label">Selecciona la fecha de tu actividad de voluntariado: *</label>
+                <input type="date" name="FechaAct" id="FechaAct" class="form-control" placeholder="dd/mm/aaaa" required>
+            </div>
+
+            <p style="text-align: justify;">
+                <h4> SALVAGUARDA Y PROTECCIÓN INFANTIL </h4>
+            </p>
+            <p style="text-align: justify;">
+                Glasswing International posee el compromiso, con las niñas, niños, adolescentes y sus familias, de garantizar una atención digna y entornos seguros al momento de tener un contacto con niñez y adolescencia, así mismo, es necesario garantizar el debido proceso al momento que surja un caso de maltrato infantil, asegurando la atención adecuada y la resolución del caso a la brevedad posible, sin dar oportunidad a la negligencia o a la falta de atención a la situación suscitada. Ante esto, Glasswing posee una Declaración de Cero Tolerancia contra el abuso y maltrato infantil, a la cual se deben comprometer y acatar todas las personas que se integren como voluntarias y voluntarios, independientemente el programa, proyecto o actividad en la que participen y el tiempo que funjan como voluntarios.
+            </p>
+
+            <p style="text-align: justify;">
+                <h4>DECLARACIÓN DE CERO TOLERANCIA CONTRA LA VIOLENCIA, ABUSO Y MALTRATO INFANTIL </h4>
+            </p>
+            <p style="text-align: justify;">
+                Para Fundación Crisálida Internacional, conocida como Glasswing International, es indispensable la salvaguarda y protección de la niñez y la adolescencia y mantiene el compromiso de <b>cero tolerancia</b> contra cualquier tipo de violencia, abuso (físico, emocional y sexual) y maltrato a la niñez y adolescencia. Para esto, Glasswing International cuenta con una <b>Política de Salvaguarda y Protección para la Niñez y Adolescencia</b> y un <b>Protocolo de Atención y Respuesta para la Salvaguarda y Protección de la Niñez y la Adolescencia,</b> y es responsabilidad de Glasswing, sus directores y colaboradores velar por su estricta aplicación. Cero Tolerancia significa que cualquier colaborador que esté involucrado en un incidente de violencia, abuso (físico, emocional y sexual) y maltrato a la niñez y adolescencia, o que conozca de un incidente y no lo reporte, será inmediatamente desvinculado de la organización y será denunciado a las instituciones correspondientes.
+                 <br>
+                 <br>
+                 El alcance de esta política incluye a todas y todos las y los colaboradores y departamentos, contratados directamente o subcontratados, con contratos permanentes o temporales,  personas  voluntarias  y todo tipo de proveedores, socios, y/o visitantes (ya sea posean o no, contacto directo con la niñez y la adolescencia) que participen en los programas y proyectos en todos los países donde GW tiene presencia.
+                 <br>
+            </p>
+               <input type="checkbox" class="font-weight-bold" value="1" name="autR1" required> Confirmo que he leído la declaración de cero tolerancia conta la violencia, abuso y maltrato infantil. <br>
+
+
+            <p style="text-align: justify;">
+                <h4>CONSENTIMIENTO DE MEDIOS</h4>
+            </p>
+            <p style="text-align: justify;">
+                Solicitamos la autorización de cada participante para el uso de su información, así como la toma de fotografías y videos, tanto grupales como individuales, de carácter general. Estas imágenes y videos podrán ser utilizados para promover el trabajo de Glasswing, exclusivamente en las siguientes plataformas y contextos: 
+                <br>
+                <ul>
+                    <li>Sitio web y redes sociales institucionales.</li>
+                    <li>Herramientas de rendición de cuentas dirigidas a terceros, como medios de comunicación, informes y reportes.</li>
+                    <li>Redes profesionales de la fundadora de la organización, Celina de Sola.</li>
+                    <li>Materiales compartidos con socios estratégicos, como organizaciones de cooperación internacional, empresas aliadas, instituciones gubernamentales, entre otros.</li>
+                </ul>
+                Este uso se llevará a cabo siempre respetando la dignidad de los participantes y con fines estrictamente relacionados con los objetivos y valores de Glasswing.  
+                <br>
+                 <br>
+                Las fotografías y videos tendrán una vigencia de uso de cinco años máximo, lo que significa que, luego de ese periodo, no podremos seguir presentando, divulgando o publicando dichas fotografías y vídeos. A excepción de aquellas imágenes que son parte de reportes o documentos entregados a un tercero, y de fotografías que, por su carácter antiguo, sean utilizadas en las presentaciones y publicaciones de aniversarios de la organización. Ninguna fotografía, video o historia se podrá utilizar para fines políticos, religiosos o personales por ningún miembro de nuestra organización o externos a ella.
+                 <br>
+                 <br>
+                Las fotografías y vídeos serán de uso exclusivo por Glasswing o socios (cooperación internacional, empresas, organizaciones o centros educativos), con el objetivo de promover la labor que se realiza en nuestros programas.
+                <br>
+                <br>
+                Si estás de acuerdo y autorizas el uso de información, la toma de fotografías y vídeos, te solicitamos completar los siguientes campos:
+                <br>
+                Yo: <span id="nombrep2" style="display: inline;" class="text-primary"></span> , mayor de edad, de <span id="edadl" style="display: inline;" class="text-primary"></span> años de edad, 
+                habiendo sido informada o informado de los derechos que protegen mi imagen y de la finalidad para la cual se utilizará mi imagen, 
+                <span class="form-group d-inline-block">   <select class="form-select" id="aut3" name="aut3" required>
+                    <option value=""></option>
+                    <option value="1">AUTORIZO</option>
+                    <option value="0">NO AUTORIZO</option>
+                    </select>  
+                   </span> a Fundación Crisálida International (Glasswing International) y sus socios para que, en cumplimiento de sus objetivos estrictamente de carácter institucional, puedan publicar, presentar o divulgar mi imagen (fotografía/vídeo) y voz (audio/vídeo), exclusivamente en plataformas institucionales (sitio web y redes sociales), herramientas para la rendición de cuentas a terceros (medios de comunicación, informes, reportes, entre otros), y redes profesionales de la fundadora de la organización, Celina de Sola, y socios.
+            </p>
+            <input type="checkbox" class="font-weight-bold" value="1" name="autR2" required> Doy fe que conozco toda la información necesaria para mi participación en el programa de voluntariado y que los campos requeridos, han sido marcados por mi persona (autorización de participación, declaración de cero tolerancia, autorización de uso de información y de uso de voz e imagen). <br>
+            <br>
+<div class="d-none" id="mx">
+            <div class="mapouter"><div class="gmap_canvas"><iframe class="gmap_iframe" width="100%" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.com/maps?width=600&amp;height=400&amp;hl=en&amp;q=21.143854, -101.737809&amp;t=&amp;z=14&amp;ie=UTF8&amp;iwloc=B&amp;output=embed"></iframe><a href="https://capcuttemplate.org/">Capcut Template</a></div><style>.mapouter{position:relative;text-align:right;width:100%;height:400px;}.gmap_canvas {overflow:hidden;background:none!important;width:100%;height:400px;}.gmap_iframe {height:400px!important;}</style></div>
+</div>
+<div class="d-none" id="gt">
+    <div class="mapouter"><div class="gmap_canvas"><iframe class="gmap_iframe" width="100%" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.com/maps?width=600&amp;height=400&amp;hl=en&amp;q=14.542556, -90.567194&amp;t=&amp;z=16&amp;ie=UTF8&amp;iwloc=B&amp;output=embed"></iframe><a href="https://capcuttemplate.org/">Capcut Template</a></div><style>.mapouter{position:relative;text-align:right;width:100%;height:400px;}.gmap_canvas {overflow:hidden;background:none!important;width:100%;height:400px;}.gmap_iframe {height:400px!important;}</style></div>
+</div>
+<div class="d-none" id="pn">
+    <div class="mapouter"><div class="gmap_canvas"><iframe class="gmap_iframe" width="100%" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.com/maps?width=600&amp;height=400&amp;hl=en&amp;q=Complejo Deportivo Omar Torrijos Herrera, Av. Los Andes 23, San Miguelito, Panama&amp;t=&amp;z=16&amp;ie=UTF8&amp;iwloc=B&amp;output=embed"></iframe><a href="https://capcuttemplate.org/">Capcut Template</a></div><style>.mapouter{position:relative;text-align:right;width:100%;height:400px;}.gmap_canvas {overflow:hidden;background:none!important;width:100%;height:400px;}.gmap_iframe {height:400px!important;}</style></div> 
+</div>
+<div class="d-none" id="cr">
+    <div class="mapouter"><div class="gmap_canvas"><iframe class="gmap_iframe" width="100%" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.com/maps?width=600&amp;height=400&amp;hl=en&amp;q=Parque San Juan De Tibas&amp;t=&amp;z=16&amp;ie=UTF8&amp;iwloc=B&amp;output=embed"></iframe><a href="https://capcuttemplate.org/">Capcut Template</a></div><style>.mapouter{position:relative;text-align:right;width:100%;height:400px;}.gmap_canvas {overflow:hidden;background:none!important;width:100%;height:400px;}.gmap_iframe {height:400px!important;}</style></div>
+</div>
+<br>
+
+                <button class="btn btn-primary" id="boton" type="submit"> Enviar</button>
+
+            </form>
+
+        </div>
+
+       <script src="/static/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+        <script src="/public/JS/Voluntarios/corporativo.js"></script>
+
+    </body>
+</html>

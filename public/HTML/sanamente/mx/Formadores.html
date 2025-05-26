@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <base target="_top">
+    <title> Competencias para una facilitación segura </title>
+   <link href="/static/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+   <link rel="stylesheet" href="/static/bootstrap-select/dist/css/bootstrap-select.min.css">
+  </head>
+
+<link rel="stylesheet" href="/public/CSS/estilos_sanamente_equip.css" type="text/css">
+ 
+<body class="bg-custom">
+
+  <div class="container">
+    <div id="contentToPrint">
+  <img src="/public/IMG/Sanamente.png" class="img-fluid" alt="Glasswing" />
+  
+  <form action="/sanamente/equip/post" method="POST" enctype="multipart/form-data" id="formualrioRegistro" name="formualrioRegistro" class="needs-validation" novalidate>
+   
+  <h2> Competencias para una facilitación segura </h2>
+  <p style="text-align: justify;">
+  ¡Buen día! A continuación se presentará una lista de competencias que garantizan una facilitación segura. Dichas competencias han sido retomadas de la herramienta "GroupACT: Group Facilitation Skills" desarrolladas por la OMS y UNICEF en la plataforma: Asegurar la Calidad en el Apoyo Psicológico (EQUIP, por sus siglas en inglés). 
+   <br><br>
+  Este instrumento deberá ser aplicado a partir de observaciones directas de las formaciones de Atención Integral al Trauma desarrolladas por Glasswing International. Para poder levantar este instrumento, se deberá observar como mínimo 3 horas de la formación, es decir un módulo completo. Deberá ser completado al finalizar la observación, no durante la misma. Recordando que todo lo observado debe responder al manual de facilitación segura bajo los estándares determinados. 
+  <br><br>
+  En caso de seleccionar un comportamiento de riesgo, por favor detallar la situación observada en el campo correspondiente.
+  <br><br>
+  Toda la información aquí recolectada tiene como objetivo principal garantizar una facilitación segura para los(as) participantes y fortalecer los procesos de acompañamiento al equipo implementador. La información será guardada en bases de datos privadas de dominio Glasswing y tendrán acceso a la información únicamente personas autorizadas. 
+  <br><br>
+  Muchas gracias por contribuir a la mejora continua. 
+          <br><br>
+                </p> 
+                   <div class="col">
+                    <label for="email" class="form-label">Escribe tu correo electrónico:*</label>
+                    <input type="email" name="email" id="email" class="form-control" placeholder="" required>
+                    <div class="invalid-feedback">
+                      Ingresa una dirección de correo válida
+                   </div>
+                  </div>
+                  <br>
+                  <div class="col">
+                    <label for="pais" class="form-label">Tipo de perfil quien llena cuestionario</label>
+                    <select class="form-select" id="perfil" name="perfil" required >
+                          <option value=""></option>
+                          {{range .Departamento}}
+                          <option value="{{.Value}}">{{.Label}}</option>
+                          {{end}}
+                        </select>  
+              </div>
+              <br>
+                            <div class="col">
+                            <label for="apellido" class="form-label">Seleccionar el nombre de la persona que facilitó este proceso formativo:</label>
+                            <select class="form-control selectpicker first-disabled" data-live-search="true" id="apellido" name="apellido" required="true" >
+                              <option value=""></option>
+                              {{range .Perfil }}
+                              <option value="{{.Value}}">{{.Label}}</option>
+                              {{end}}
+                            </select>  
+              
+                          </div>
+                          <br>
+                          <div class="col">
+                            <label for="formaciones" class="form-label">Selecciona la formación observada:</label>
+                            <select class="form-select" id="formaciones" name="formaciones" required onchange="activaselectform()">
+                              <option value=""></option>
+                              {{range .Programa }}
+                              <option value="{{.Value}}">{{.Label}}</option>
+                              {{end}}
+                            </select>  
+              
+                          </div>
+                      <br>
+                      <div id="hidden-question-div-fentrenamiento" class="col d-none">
+                      <label for="fentrenamiento" class="form-label"> Formación en entrenamiento observada:</label>
+                      <select class="form-select" id="fentrenamiento" name="fentrenamiento" >
+                      <option value="" selected></option>
+                      <option value="1">Formación en Entrenador de Intervencionista</option>
+                      <option value="2">Formación Entrenador General</option>
+                      </select>
+                      </div>
+  
+                      <div id="hidden-question-div-modulos" class="col d-none">
+                      <label for="pais" class="form-label">Módulos observados:</label><br>
+                      <input type="checkbox" value="1" class="bigger-checkbox" name="m1" id="m1"> Módulo A</option><br>
+                      <input type="checkbox" value="1" class="bigger-checkbox" name="m2" id="m2"> Módulo B</option><br>
+                      <input type="checkbox" value="1" class="bigger-checkbox" name="m3" id="m3"> Módulo C</option><br>
+                      </div>  
+  
+  <br>
+  <label class="form-label personalizado2"> Facilitación observada:</label>
+  <br>
+  
+  <label for="p1" id="p1" class="form-label personalizado2">1. Conexión genuina y empática:</label>
+  <br> 
+  {{range .Parentesco}}
+  <input type="checkbox" value="{{.Value}}" class="bigger-checkbox" name="p1" id="p{{.Value}}" onchange="mostrarPregunta1()"> {{.Label}}</option><br><br> 
+   {{end}}
+   <div id="pregunta" class="d-none">
+    <label for="p1obs" class="form-label">Por favor detallar la situación observada:</label>
+    <input type="text" name="p1obs" id="p1obs" class="form-control" maxlength="500">
+   </div>
+  <br> 
+  </div>
+  <div id="contentToPrint2">
+  <label for="p2" class="form-label personalizado2">2. Directrices o reglas del grupo:</label>
+  <br> 
+  {{range .Sexo}}
+   <input type="checkbox" value="{{.Value}}" class="bigger-checkbox" name="p2" id="p{{.Value}}" onchange="mostrarPregunta2()" > {{.Label}}</option><br><br>
+   {{end}}
+   <div id="pregunta2" class="d-none">
+    <label for="p2obs" class="form-label">Por favor detallar la situación observada:</label>
+    <input type="text" name="p2obs" id="p2obs" class="form-control" maxlength="500">
+   </div>
+   <br> 
+  
+  <label for="p3" class="form-label personalizado2">3. Participación del grupo:</label>
+  <br>  
+  {{range .Respuestas}}
+   <input type="checkbox" value="{{.Value}}" class="bigger-checkbox" name="p3" id="p{{.Value}}" onchange="mostrarPregunta3()" > {{.Label}}</option><br><br>
+   {{end}}
+   <div id="pregunta3" class="d-none">
+    <label for="p3obs" class="form-label">Por favor detallar la situación observada:</label>
+    <input type="text" name="p3obs" id="p3obs" class="form-control" maxlength="500">
+   </div>
+   <br> 
+  </div>
+  <div id="contentToPrint3">
+   <label for="p4" class="form-label personalizado2">4. Confidencialidad y privacidad:</label>
+  <br>   
+  {{range .Ultgrad}}
+   <input type="checkbox" value="{{.Value}}" class="bigger-checkbox" name="p4" id="p{{.Value}}" onchange="mostrarPregunta4()"  > {{.Label}}</option><br><br>
+   {{end}}
+  <div id="pregunta4" class="d-none">
+    <label for="p4obs" class="form-label">Por favor detallar la situación observada:</label>
+    <input type="text" name="p4obs" id="p4obs" class="form-control" maxlength="500">
+  </div>
+  <br> 
+  
+  <label for="p5" class="form-label personalizado2">5. Gestión del tiempo:</label>
+  <br> 
+  {{range .Grado}}
+   <input type="checkbox" value="{{.Value}}" class="bigger-checkbox" name="p5" id="p{{.Value}}" onchange="mostrarPregunta5()"  > {{.Label}}</option><br><br>
+   {{end}}
+   <div id="pregunta5" class="d-none">
+    <label for="p5obs" class="form-label">Por favor detallar la situación observada:</label>
+    <input type="text" name="p5obs" id="p5obs" class="form-control" maxlength="500">
+   </div>
+  <br>
+  </div>
+  <div id="contentToPrint4">
+    <label for="p6" class="form-label personalizado2">6. Tolerancia y normalización de respuestas:</label>
+    <br> 
+    {{range .Respuestas2}}
+     <input type="checkbox" value="{{.Value}}" class="bigger-checkbox" name="p6" id="p{{.Value}}" onchange="mostrarPregunta6()"  > {{.Label}}</option><br><br>
+     {{end}}
+     <div id="pregunta6" class="d-none">
+      <label for="p6obs" class="form-label">Por favor detallar la situación observada:</label>
+      <input type="text" name="p6obs" id="p6obs" class="form-control" maxlength="500">
+     </div>
+    <br>
+      <label for="p7" class="form-label personalizado2">7. Fidelidad y maestría del contenido:</label>
+      <br> 
+      {{range .Respuestas3}}
+       <input type="checkbox" value="{{.Value}}" class="bigger-checkbox" name="p7" id="p{{.Value}}" onchange="mostrarPregunta7()"  > {{.Label}}</option><br><br>
+       {{end}}
+       <div id="pregunta7" class="d-none">
+        <label for="p7obs" class="form-label">Por favor detallar la situación observada:</label>
+        <input type="text" name="p7obs" id="p7obs" class="form-control" maxlength="500">
+       </div>
+       <div class="col">
+        <label for="faplicacion" class="form-label personalizado2">Fecha de aplicación de EQUIP:</label>
+        <input type="date" name="faplicacion" id="faplicacion" class="form-control" placeholder="dd/mm/aaaa">
+        </div>
+      <br>
+   <input type="hidden" name="idp" value="17" id="idp">
+      <input type="hidden" name="modulo" value="1" id="modulo">
+        <button class="btn btn-primary" id="boton" onclick="Convert_HTML_To_PDF()" type="submit" style="display: inline-block;"> Enviar</button>
+        <br>
+        <br>
+       </form>
+      </div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+     <script src="/static/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="/public/JS/sanamente/Formadores.js"></script>
+    <script src="/static/sweetalert2/dist/sweetalert2.all.min.js"></script>
+    <script src="/static/jquery/dist/jquery.min.js"></script>
+    <script src="/static/bootstrap-select/dist/js/bootstrap-select.min.js"></script>
+  </body>
+</html>
+

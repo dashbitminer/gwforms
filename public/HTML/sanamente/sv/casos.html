@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Solicitud de servicios El Salvador</title>
+    <meta charset="utf-8">
+    <base target="_top">
+   <link href="/static/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+         <script src="https://cdnjs.cloudflare.com/ajax/libs/selectize.js/0.12.6/js/standalone/selectize.min.js" integrity="sha256-+C0A5Ilqmu4QcSPxrlGpaZxJ04VjsRjKu+G82kl5UJk=" crossorigin="anonymous"></script>
+         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/selectize.js/0.12.6/css/selectize.bootstrap3.min.css" integrity="sha256-ze/OEYGcFbPRmvCnrSeKbRTtjG4vGLHXgOqsyLFTRjg=" crossorigin="anonymous" />
+     </head>
+  <body class="bg-custom">
+    <link rel="stylesheet" href="/public/CSS/estilos_sanamente2.css" type="text/css">
+    
+    <div class="container">
+      <img src="/public/IMG/Sanamente.png" class="img-fluid" alt="Glasswing" />
+<form method="POST" id="formualrioRegistro" name="formualrioRegistro" class="needs-validation" action="/refcasos/post" enctype="multipart/form-data" novalidatez>
+  <h2> Solicitud de servicios El Salvador 2024</h2>
+     
+  <p style="text-align: justify;">
+    ¡Buen día! Es un gusto saludarle de parte de Glasswing International.
+Este formulario se ha creado bajo el Programa SanaMente el cual busca trabajar herramientas para reconocer el impacto del trauma a través del reconocimiento e importancia de la salud mental para un bienestar integral. 
+Asimismo, la Red de Servicios y Apoyos Complementarios (RSAC) es uno de los componentes del Programa SanaMente. El cual busca generar alianzas interinstitucionales que fortalezcan las acciones que Glasswing realiza para sus participantes y gestionar de manera eficaz y oportuna los casos de acuerdo a necesidades específicas existentes de la población referida a la RSAC basados en protocolos y rutas de referencia con base en las características de cada área o programa activo de la fundación.
+Actualmente, la Red se encuentra trabajando en la gestión de casos para acercar servicios a la población de manera gratuita o a bajo costo (según disponibilidad). La información solicitada a continuación nos servirá para llenar una ficha de referencia y derivar el caso a través de una de las instituciones que forman parte de la RSAC. (en caso aplique).
+<br><br>
+NOTA: este formulario deberá ser llenado por la persona que solicita el servicio o por su responsable legal.  
+    <br><br>
+     </p>
+
+  <h4> Parte I: Consentimiento informado. </h4>
+     <p style="text-align: justify;">
+Declaración: Acepto continuar voluntariamente con el proceso de referencia, y que la información sea compartida en este momento únicamente con Glasswing para el seguimiento de mi caso.  
+  <label for="aut" class="form-label"></label>
+  <select class="form-select" id="aut" name="aut" required onchange="activaselect2()">
+    <option value=""></option>
+    {{range .Solucion}}
+    {{if eq .IdPregunta "1" }}
+    <option value="{{.Value}}">{{.Label}}</option>
+    {{end}}
+    {{end}}
+    </select>
+
+    <div id="hidden-question-div" class="col d-none">
+    <h4> Parte II: Servicios de atención</h4>
+    {{range .Preguntas}}
+  {{if eq .Value "30" }}
+  <label for="p{{.Value}}" class="form-label">{{.Label}}</label>
+  <select class="form-select" id="p{{.Value}}" name="p{{.Value}}">
+    {{end}}
+    {{end}}
+    <option value=""></option>
+    {{range .Solucion}}
+    {{if eq .IdPregunta "2" }}
+    <option value="{{.Value}}">{{.Label}}</option>
+    {{end}}
+    {{end}}
+    </select>
+<br>
+<p style="text-align: justify;color: red; font-weight: bold;">*Si ha seleccionado atención psicológica, una intervencionista Glasswing se contactará con usted para un primer acercamiento y determinará la ruta de acción a seguir*</p>
+
+<h4>Parte III: Datos de la persona que necesita el servicio solicitado</h4>
+{{range .Preguntas}}
+  {{if eq .Value "23" }}
+  <label for="p{{.Value}}" class="form-label">{{.Label}}</label>
+  <input type="text" class="form-control" id="p{{.Value}}" name="p{{.Value}}">
+    {{end}}
+    {{end}}
+    
+    {{range .Preguntas}}
+  {{if eq .Value "24" }}
+  <label for="p{{.Value}}" class="form-label">{{.Label}}</label>
+  <input type="number" class="form-control" min="0" step="1"  id="p{{.Value}}" name="p{{.Value}}" onchange="activaselect3()">
+    {{end}}
+    {{end}}
+    </select>
+    <div id="hidden-question-div2" class="col d-none">
+  {{range .Preguntas}}
+  {{if eq .Value "25" }}
+  <label for="p{{.Value}}" class="form-label">{{.Label}}</label>
+  <input type="text" class="form-control" id="p{{.Value}}" name="p{{.Value}}">
+    {{end}}
+    {{end}}
+  
+    {{range .Preguntas}}
+    {{if eq .Value "26" }}
+    <label for="p{{.Value}}" class="form-label">{{.Label}}</label>
+    <input type="text" class="form-control" id="p{{.Value}}" name="p{{.Value}}">
+      {{end}}
+      {{end}}
+    </div>
+      {{range .Preguntas}}
+      {{if eq .Value "27" }}
+      <label for="p{{.Value}}" class="form-label">{{.Label}}</label>
+      <input type="text" class="form-control" id="p{{.Value}}" name="p{{.Value}}">
+        {{end}}
+        {{end}}
+   
+
+    {{range .Preguntas}}
+    {{if eq .Value "28" }}
+    <label for="p{{.Value}}" class="form-label">{{.Label}}</label>
+    <select class="form-select"  id="p{{.Value}}" name="p{{.Value}}" onchange="actualizarmun(this.value)">
+      {{end}}
+      {{end}}
+      <option value=""></option>
+      {{range .Solucion}}
+      {{if eq .IdPregunta "3" }}
+      <option value="{{.Value}}">{{.Label}}</option>
+      {{end}}
+      {{end}}
+      </select>
+     
+      {{range .Preguntas}}
+      {{if eq .Value "29" }}
+      <label for="p{{.Value}}" class="form-label">{{.Label}}</label>
+      <select id="p{{.Value}}" name="p{{.Value}}">
+        {{end}}
+        {{end}}
+        </select>
+        <h4>  Parte IV: Motivo de referencia.  </h4>
+        <p style="text-align: justify;">   
+           Con el objetivo de brindarle un mejor seguimiento, le solicitamos compartir una breve explicación sobre el porqué solicita el servicio.(Máximo 90 palabras)
+        </p>
+        <textarea class="form-control" rows="3" name="p31" id="p31" maxlength="1000"></textarea>
+      
+      {{range .Preguntas}}
+      {{if eq .Value "138" }}
+      <label for="p{{.Value}}" class="form-label">{{.Label}}</label>
+      <select class="form-select" id="p{{.Value}}" name="p{{.Value}}">
+        {{end}}
+        {{end}}
+        <option value=""></option>
+        {{range .Solucion}}
+        {{if eq .IdPregunta "4" }}
+        <option value="{{.Value}}">{{.Label}}</option>
+        {{end}}
+        {{end}}
+        </select>
+      </div>
+<br>
+        <button class="btn btn-primary" id="boton" type="submit"> Enviar</button>
+  </form>
+        </div>
+       <script src="/static/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+        <script src="/public/JS/sanamente/casos.js"></script>
+      </body>
+    </html>
+    

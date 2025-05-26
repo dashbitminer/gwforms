@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Preinscripción: Entrevista Psicosocial</title>
+    <meta charset="utf-8">
+    <base target="_top">
+    <link href="/static/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+  </head>
+  <body>
+
+    <div class="container">
+<img src="/public/IMG/logo.png" class="img-fluid" alt="Glasswing" />
+<form method="POST" id="formualrioRegistro" name="formualrioRegistro" class="needs-validation" action="/mdv/sv/psicologico/post" enctype="multipart/form-data" novalidatez>
+      <br><h3> Preinscripción: Entrevista Psicosocial </h3><br>
+     
+     <p style="text-align: justify;">
+      Este instrumento tiene como objetivo conocer a la juventud aspirante del "Programa de Inserción Creando Profesionales" con el fin de acompañar de la mejor manera su crecimiento personal en el Diplomado de su elección.
+      Se le solicita a la juventud aspirante que responda con sinceridad, la información recolectada en este formulario de preinscripción será utilizada para conocer a la juventud aspirante y determinar como el Programa puede ser beneficioso para la o él joven.					
+    <br>
+    <br>
+    </p>
+    <label for="sede" class="form-label" style="font-weight: bold;">Selecciona la sede a la que perteneces*</label>
+    <select class="form-select" id="sede" name="sede" onchange="fmun(this.value)"required>
+     <option value=""></option>
+     <option value="666">Sede Juventudes - San Salvador</option>
+     <option value="1128">Sede Juventudes - Santa Ana</option>
+     <option value="2968">Sede Juventudes - San Miguel</option>
+    </select>
+    
+    <label for="FechaN" class="form-label" style="font-weight: bold;">¿Cuál es su fecha de nacimiento?</label>
+    <input type="date" name="fechanac" id="fechanac" class="form-control" placeholder="dd/mm/aaaa" onchange="edad()" required>
+    <div class="d-none" id="divmayor" >
+      <br>
+      <em>Se solicita al equipo implementador que comparta el dispositivo electrónico con la juventud aspirante para que pueda brindar su consentimiento.</em>
+      <br>      
+      <h3>AUTORIZACIÓN DE INFORMACIÓN</h3>
+      <p style="text-align: justify;">
+        Hacemos de su conocimiento que la información solicitada es utilizada para nuestros registros internos, en los cuales llevamos un seguimiento de las y los participantes. Los datos son guardados en una plataforma institucional de único acceso para personal de Glasswing International a cargo del monitoreo e implementación del programa.
+      </p>
+      <br>
+      <p style="text-align: justify;">
+        <input type="checkbox" name="mayor" id="mayor" value="1" onchange="permiso()">  Por lo anterior, confirmo que he leido y se me ha informado el uso que se le dará a los datos compartidos en este formulario y reconozco que tengo el derecho de retirar mi autorización en cualquier momento si así lo estimo conveniente. De ser así, puedes enviar un correo a "info_sv@glasswing.org"
+    </p>
+    </div>
+  <div class="d-none" id="divmenor">
+<br><h3>Datos personales de la persona aspirante</h3><br>
+<label for="nombre" class="form-label" style="font-weight: bold;">Nombre completo:</label>
+<input type="text" name="nombre" id="nombre" class="form-control" maxlength="300" required>
+<label for="diplomado" class="form-label" style="font-weight: bold;">¿Cuál es el diplomado en el que desea participar?</label>
+        <select class="form-select" id="diplomado" name="diplomado" required>
+          <option value=""></option>
+          <option value="114">Estudio</option>
+          <option value="119">Emprendimiento</option>
+          <option value="118">Empleo</option>
+      </select>
+
+<label for="Estadociv" class="form-label" style="font-weight: bold;">¿Cuál es su estado civil? </label>
+        <select class="form-select" id="estadoCivil" name="estadoCivil" required>
+          <option value=""></option>
+          {{range .Estado_civ}}
+          <option value="{{.Value}}">{{.Label}}</option>
+          {{end}}                    
+          </select>
+          <label for="municipio" class="form-label" style="font-weight: bold;">¿Cuál es su lugar de residencia?</label>
+        <select class="form-select" id="municipio" name="municipio" required onchange="fcolonia(this.value)">
+          <option value=""></option>                    
+          </select>
+
+<div id="colonia_div" class="d-none">
+<label for="colonia" class="form-label" style="font-weight: bold;">¿Cuál es su colonia?</label>
+<select class="form-select" id="colonia" name="colonia" onchange="fotro(this.value)">
+  <option value=""></option>    
+  <option value="1">Colonia Milagro de la Paz</option>
+  <option value="2">Colonia Ciudad Pacífica</option>
+  <option value="3">Otra</option>                          
+  </select>
+</div>
+
+  <div id="otro_colonia_div" class="d-none">
+    <label for="otro_colonia" class="form-label" style="font-weight: bold;">Otra</label>
+    <input type="text" name="otraColonia" id="otraColonia" class="form-control" maxlength="100">
+    </div>
+
+<br><h3>Expectativas y ocupaciones de la persona aspirante</h3><br>
+<label style="font-weight: bold;" for="motivo" class="form-label" >¿Por qué desea formar parte de este programa?</label>
+  <textarea class="form-control" name="motivo" id="motivo" rows="3" maxlength="500"></textarea>
+  <label for="ocupacion" class="form-label" style="font-weight: bold;">¿A qué se dedica actualmente?</label>
+<br>
+<input type="checkbox" name="ocupacion" id="ocupacion" value="1">Actividades religiosas<br>
+<input type="checkbox" name="ocupacion"  value="2">Deporte<br>
+<input type="checkbox" name="ocupacion"  value="3">Estudio<br>
+<input type="checkbox" name="ocupacion"  value="4">Labores del hogar<br>
+<input type="checkbox" name="ocupacion"  value="5">Trabajo o emprendo eventualmente<br>
+<input type="checkbox" name="ocupacion" id="ocupacionOtro"  value="6" onchange="Otro()">Otro<br>
+<div id="otro_ocupacion_div" class="d-none">
+<label for="otro_ocupacion" class="form-label">Otro</label>
+<input type="text" name="otraOcupacion" id="otraOcupacion" class="form-control" maxlength="50">
+</div>
+<br><h3>Convivencia familiar de la persona aspirante</h3><br>
+<label for="convivencia" class="form-label" style="font-weight: bold;">¿Considera que la convivencia en su familia es...?</label>
+        <select class="form-select" id="convivencia" name="convivencia" required>
+          <option value=""></option>
+          <option value="1">Buena</option>
+          <option value="2">Regular</option>
+          <option value="3">Difícil</option>
+      </select>
+<label style="font-weight: bold;" for="considera" class="form-label" style="font-weight: bold;">¿Por qué lo considera así?</label>
+<textarea class="form-control" name="considera" id="considera" rows="3" maxlength="500"></textarea>
+<label for="parentescomas" class="form-label" style="font-weight: bold;">En su grupo familiar, ¿Quién o quiénes le brindan MÁS apoyo en tus sueños y metas?</label>
+<br>
+          {{range .Parentesco}}
+          <input type="checkbox" name="parentescomas" value="{{.Value}}">{{.Label}}<br>
+          {{end}}
+          <input type="checkbox" name="parentescomenos" value="17">Amigo<br>                    
+          <input type="checkbox" name="parentescomas" value="16">No aplica/No responde<br>
+
+<label for="parentescomenos" class="form-label" style="font-weight: bold;">En su grupo familiar, ¿Quién o quiénes le brindan MENOS apoyo en tus sueños y metas?</label>
+<br>
+            {{range .Parentesco}}
+            <input type="checkbox" name="parentescomenos" value="{{.Value}}">{{.Label}}<br>
+            {{end}}    
+            <input type="checkbox" name="parentescomenos" value="17">Amigo<br>
+            <input type="checkbox" name="parentescomenos" value="16">No aplica/No responde<br>
+
+<label style="font-weight: bold;" for="destaca" class="form-label" style="font-weight: bold;">A su criterio, ¿En que actividades sobresale o se destaca de forma especial? (Ejemplo: Cantar, cocinar, futbol, hablar en público, etc.)</label>
+<div id="inputs">
+    <input type="text" name="destaca" id="destaca1" class="form-control" maxlength="50" required>
+    <input type="text" name="destaca" id="destaca2" class="form-control" maxlength="50" >
+    <input type="text" name="destaca" id="destaca3" class="form-control" maxlength="50" >
+</div>
+<button class="btn btn-primary" onclick="agregarInput()">Agregar actividad</button>
+<br>
+<br>
+<label style="font-weight: bold;" for="taller" class="form-label" style="font-weight: bold;">A su criterio, ¿Cuáles son sus cualidades positivas en cuanto a su forma de ser? (Ejemplo: Sincera)</label>
+  <div id="inputs2">
+    <input type="text" name="positiva" id="positiva1" class="form-control" maxlength="50" required>
+    <input type="text" name="positiva" id="positiva2" class="form-control" maxlength="50" >
+    <input type="text" name="positiva" id="positiva3" class="form-control" maxlength="50" >
+</div>
+<button class="btn btn-primary" onclick="agregarInput2()">Agregar actividad</button>
+<br>
+<br>
+<label style="font-weight: bold;" for="taller" class="form-label" style="font-weight: bold;">A su criterio, ¿Cuáles son los aspectos que le gustaría mejorar de su forma de ser? (Ejemplo: Ser grosera al responder)</label>
+<div id="inputs3">
+    <input type="text" name="mejorar" id="mejorar1" class="form-control" maxlength="50" required>
+    <input type="text" name="mejorar" id="mejorar2" class="form-control" maxlength="50" >
+    <input type="text" name="mejorar" id="mejorar3" class="form-control" maxlength="50" >
+</div>
+<button class="btn btn-primary" onclick="agregarInput3()">Agregar actividad</button>
+<br>
+<br>
+<label style="font-weight: bold;" for="situaciones" class="form-label" style="font-weight: bold;">En el último año, ¿Le ha ocurrido alguna o algunas de las siguientes situaciones?</label>
+<br>
+<input type="checkbox" name="situaciones" id="situaciones" value="1">Perdida de un familiar o ser querido<br>
+<input type="checkbox" name="situaciones"  value="2">Dificultades económicas<br>
+<input type="checkbox" name="situaciones"  value="3">Padecimiento de alguna enfermedad grave<br>
+<input type="checkbox" name="situaciones"  value="4">Padecimiento de alguna enfermedad grave de un familiar<br>
+<input type="checkbox" name="situaciones"  value="5">Vivencia en un clima de violencia: gritos, amenazas, golpes<br>
+<input type="checkbox" name="situaciones"  value="6">Catástrofe natural en tu hogar (Inundación, deslave, etc.)<br>
+<input type="checkbox" name="situaciones"  value="7">Robo o de algún acto violento<br>
+<input type="checkbox" name="situaciones"  value="8">Tú o alguien de tu familia ha sido detenido por la policía<br>
+<input type="checkbox" name="situaciones"  value="9">Padeces de algún tipo de adicción (Alcohol o droga)<br>
+<input type="checkbox" name="situaciones"  value="10">Ha tenido que ser atendido por un psicólogo o psiquiatra<br>
+<input type="checkbox" name="situaciones"  value="11">Ha concebido un hijo o ha sufrido un aborto<br>
+<input type="checkbox" name="situaciones"  value="12">Si eres hombre, tu pareja ha tenido embarazo de alto riesgo o aborto<br>
+<input type="checkbox" name="situaciones"  value="13">Ha emigrado<br>
+<input type="checkbox" name="situaciones" id="situacionesotro" onchange="Otro2()"  value="14">Otro<br>
+<input type="checkbox" name="situaciones" id="situacionesninguno" onchange="Otro3()" value="15">Ninguno<br>
+<br>
+
+<div id="otro_situaciones_div" class="d-none">
+  <label for="otro_situaciones" class="form-label" style="font-weight: bold;">Otro</label>
+  <input type="text" name="otroaSituacion" id="otroaSituacion" class="form-control" maxlength="50">
+  </div>
+  <div id="situaciones_ninguno_div" class="d-none">
+  <label style="font-weight: bold;" for="situaciones" class="form-label" style="font-weight: bold;">¿Puede ahondar en su respuesta anterior?</label>
+  <textarea class="form-control" name="situacionesmas" id="situacionesmas" rows="3" maxlength="500"></textarea>
+  </div>
+  <label for="psicologico" class="form-label" style="font-weight: bold;">¿Hay alguna situación específica, por la que le gustaría recibir acompañamiento psicológico o psiquiátrico?</label>
+  <select class="form-select" id="psicologico" name="psicologico" required onchange="otropsicologico(this.value)">
+    <option value=""></option>
+    {{range .Respuestas}}
+    <option value="{{.Value}}">{{.Label}}</option>
+    {{end}}                    
+    </select>
+
+    <div id="otro_psicologico_div" class="d-none">
+      <label for="otroPsicologico" style="font-weight: bold;" class="form-label">¿Cuál es la situación?</label>
+      <textarea class="form-control" name="otroPsicologico" id="otroPsicologico" rows="3" maxlength="500"></textarea>
+      </div>
+      
+        <label for="papa" class="form-label" style="font-weight: bold;">¿Eres madre o padre de familia? </label>
+        <select class="form-select" id="papa" name="papa" required onchange="mostrarhijos(this.value)">
+          <option value=""></option>
+          {{range .Respuestas}}
+          <option value="{{.Value}}">{{.Label}}</option>
+          {{end}}                    
+          </select>
+<div id="hijos_div" class="d-none">
+          <label for="hijos" style="font-weight: bold;"  class="form-label">¿Cuántos hijos tienes?</label>
+          <input type="number" name="hijos" id="hijos" class="form-control" min="1" >
+
+          <label for="ludoteca" class="form-label" style="font-weight: bold;">¿Harías uso de la Ludoteca?</label>
+          <select class="form-select" id="ludoteca" name="ludoteca" onchange="mostrarhijosludoteca(this.value)">
+            <option value=""></option>
+            {{range .Respuestas}}
+            <option value="{{.Value}}">{{.Label}}</option>
+            {{end}}                    
+            </select>
+<div id="hijosludoteca_div" class="d-none">
+            <label for="hijosludoteca" style="font-weight: bold;"  class="form-label">¿Cuántos de tus hijos vendrán a la Ludoteca?</label>
+            <input type="number" name="hijosludoteca" id="hijosludoteca" class="form-control" min="1" >
+</div>
+</div>
+      <br><h3>Sondeo socio económico y verificación de gastos de transporte de la persona aspirante</h3><br>
+      <label for="ida" style="font-weight: bold;" class="form-label">¿Cuál es la ruta de transporte público que utiliza para trasladarse de su domicilio a la sede del programa?</label>
+      <div id="inputs4">
+      <input type="text" name="ida" class="form-control" maxlength="50" required>
+      <input type="text" name="ida" class="form-control" maxlength="50">
+       </div>
+       <button class="btn btn-primary" onclick="agregarInput4()">Agregar ruta</button>
+       <br>
+      <br>
+      <div id="inputs5">
+      <label for="ida" style="font-weight: bold;" class="form-label">¿Cuál es la ruta de transporte público que utiliza para trasladarse de la sede del programa a su domicilio?</label>
+      <input type="text" name="idv" id="idv" class="form-control" maxlength="50" required>
+      <input type="text" name="idv" class="form-control" maxlength="50">
+    </div>
+    <button class="btn btn-primary" onclick="agregarInput5()">Agregar ruta</button>
+    <br>
+   <br>
+      <label for="ida" style="font-weight: bold;"  class="form-label">¿Cuánto es el monto total que inviertes para trasladarte diariamente de tu domicilio a la sede del programa?</label>
+      <input type="number" name="idvn" id="idvn" class="form-control" min="0" step="0.01" required>
+
+<br>
+<button class="btn btn-primary" id="boton" type="submit"> Enviar</button>
+  </div>
+</div>
+      </form>
+    </div>
+   <script src="/static/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="/public/JS/MdV/psicologica.js"></script>
+  </body>
+</html>

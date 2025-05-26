@@ -1,0 +1,8 @@
+{
+  "dependencies": {
+    "bootstrap": "^5.3.3",
+    "bootstrap-select": "^1.14.0-beta3",
+    "signature_pad": "^4.2.0",
+    "sweetalert2": "^11.6.13"
+  }
+}

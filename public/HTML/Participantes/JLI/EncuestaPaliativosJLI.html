@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <base target="_top">
+   <link href="/static/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <title> HOJA DE VISITA DE OBSERVACIÓN Y SEGUIMIENTO A VOLUNTARIOS  </title>
+  </head>
+  <body>
+    <div id="contentToPrint">
+    <div class="container">
+<img src="/public/IMG/logo.png" class="img-fluid" alt="Glasswing" />
+      <h2> HOJA DE VISITA DE OBSERVACIÓN Y SEGUIMIENTO A VOLUNTARIOS  </h2>
+     
+     <p style="text-align: justify;">
+      "A través de esta encuesta deseamos conocer su opinión acerca de la implementación de los diferentes programas que Glasswing ejecuta.<br>
+      El objetivo es identificar las áreas en las que Glasswing debe mejorar en sus procesos de capacitación, ayudar a los voluntarios en la realización
+      de su labor y fortalecer el trabajo que realizamos en las comunidades. <br>
+      Esta encuesta es anónima. ¡Muchas gracias por su colaboración!"						
+</p>
+<p style="text-align: justify;"></p>
+Indicaciones:<br>
+1. Favor siéntete en la libertad de responder con completa honestidad, sus respuestas nos ayudarán a mejorar la experiencia de futuros participantes del programa.<br>
+2. Lea detenidamente las preguntas que se presentan a continuación y seleccione las respuestas según su criterio<br>
+</p> 
+<form action="/jli/encuestapaliativaJLI/post" method="POST" enctype="multipart/form-data" id="formualrioRegistro" name="formualrioRegistro" class="needs-validation" novalidatez>
+
+  {{range .Preguntas}}
+            {{if eq .Value "82" }}
+            <label for="p{{.Value}}" class="form-label">{{.Label}}</label>
+            <input type="text" id="otrazon" name="otrazon" class="form-control" maxlength="700">
+              {{end}}
+              {{end}}
+
+  {{range .Preguntas}}
+  {{if eq .Value "7" }}
+  <label for="p{{.Value}}" class="form-label">{{.Label}}</label>
+  <select class="form-select" id="p{{.Value}}" name="p{{.Value}}" required>
+    {{end}}
+    {{end}}
+    <option value="" selected></option>
+    {{range .Solucion}}
+    {{if eq .IdPregunta "-1" }}
+    <option value="{{.Value}}">{{.Label}}</option>
+    {{end}}
+    {{end}}
+    </select>
+
+  </br>
+
+  {{range .Preguntas}}
+  {{if eq .Value "1" }}
+  <label for="p{{.Value}}" class="form-label">{{.Label}}</label>
+  <select class="form-select" id="p{{.Value}}" name="p{{.Value}}" onchange="activaselect52()" required>
+    {{end}}
+    {{end}}
+    <option value="" selected></option>
+    {{range .Solucion}}
+    {{if eq .IdPregunta "12" }}
+    <option value="{{.Value}}">{{.Label}}</option>
+    {{end}}
+    {{end}}
+    </select>
+
+
+<button class="btn btn-primary" id="boton" type="submit"> Enviar</button>
+ </div>
+      </form>
+    </div>
+    </div>
+    
+ <script src="/static/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="/public/JS/Participantes/encuestapaliativosJLI.js"></script>
+  </body>
+</html>

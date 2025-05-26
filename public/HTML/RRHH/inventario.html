@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Distribución Glasswing ESA</title>
+    <meta charset="utf-8">
+    <base target="_top">
+    <link href="/static/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+  </head>
+  <body>
+
+    <div class="container">
+<img src="/public/IMG/logo.png" class="img-fluid" alt="Glasswing" />
+<form method="POST" id="formualrioRegistro" name="formualrioRegistro" class="needs-validation" action="/rrhh/inventario/post" enctype="multipart/form-data" novalidatez>
+      <h2>Distribución Glasswing ESA </h2>
+      
+    <p style="text-align: justify;">
+
+    </p>
+    <label for="nombre" style="font-weight: bold;" class="form-label">Nombre :</label><span style="color: red;">*</span>
+    <input type="text" name="nombre" id="nombre" class="form-control" required maxlength="300">
+    <label for="areas" style="font-weight: bold;" class="form-label">Area:</label><span style="color: red;">*</span><br>
+    <input type="radio" name="areas" value="1" onchange="Otro2()">Administración y Logística<br>
+    <input type="radio" name="areas" value="2" onchange="Otro2()">Adquisiciones<br>
+    <input type="radio" name="areas" value="3" onchange="Otro2()">Comunicaciones y Mercadeo<br>
+    <input type="radio" name="areas" value="4" onchange="Otro2()">Educación<br>
+    <input type="radio" name="areas" value="5" onchange="Otro2()">Espacios Públicos<br>
+    <input type="radio" name="areas" value="6" onchange="Otro2()">Finanzas<br>
+    <input type="radio" name="areas" value="7" onchange="Otro2()">Infraestructura<br>
+    <input type="radio" name="areas" value="8" onchange="Otro2()">JLI<br>
+    <input type="radio" name="areas" value="9" onchange="Otro2()">Juventud<br>
+    <input type="radio" name="areas" value="10"onchange="Otro2()">ME&AL<br>
+    <input type="radio" name="areas" value="11"onchange="Otro2()">NBD<br>
+    <input type="radio" name="areas" value="12"onchange="Otro2()">NIDO<br>
+    <input type="radio" name="areas" value="13"onchange="Otro2()">Protección de la niñez<br>
+    <input type="radio" name="areas" value="14"onchange="Otro2()">Recursos Humanos<br>
+    <input type="radio" name="areas" value="15"onchange="Otro2()">Regional<br>
+    <input type="radio" name="areas" value="16"onchange="Otro2()">Salud<br>
+    <input type="radio" name="areas" value="17"onchange="Otro2()">Servicio Nacional Juvenil<br>
+    <input type="radio" name="areas" value="18" onchange="Otro2()">Soporte IT<br>
+    <input type="radio" name="areas" value="19" onchange="Otro2()">Voluntariado<br>
+    <input type="radio" name="areas" value="20" onchange="Otro()">Otro<br>
+    <div id="otrodiv" class="d-none">
+    <label for="areaotro" style="font-weight: bold;" class="form-label">Otro:</label><span style="color: red;">*</span>
+    <input type="text" name="areaotro" id="areaotro" class="form-control" maxlength="50">
+    </div>
+    <label for="puesto" style="font-weight: bold;" class="form-label">Puesto:</label><span style="color: red;">*</span>
+    <input type="text" name="puesto" id="puesto" class="form-control" required maxlength="100">
+
+    <label for="proyecto" style="font-weight: bold;" class="form-label">Proyecto:</label>
+    <input type="text" name="proyecto" id="proyecto" class="form-control" maxlength="100">
+
+<div form class="row">
+    <div class="col">
+      <label for="dispositivos" style="font-weight: bold;" class="form-label">Dispositivo</label>
+        <select class="form-select" id="dispositivos" name="dispositivos" required>
+          <option value="" selected></option>
+          {{range .Dispositivos}}
+          <option value="{{.Value}}">{{.Label}}</option>
+          {{end}}
+        </select>
+    </div>
+    <div class="col">
+      <label for="archivo" style="font-weight: bold;" class="form-label">Foto:</label>
+      <input type="file" name="archivo" id="archivo" class="form-control" >
+</div>
+   
+<button class="btn btn-primary" id="boton" type="submit"> Enviar</button>
+  </div>
+      </form>
+    </div>
+   <script src="/static/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="/public/JS/RRHH/inventario.js"></script>
+  </body>
+</html>

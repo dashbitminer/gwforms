@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Formulario Mentores</title>
+    <meta charset="utf-8">
+    <base target="_top">
+   <link href="/static/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+  </head>
+  <body>
+
+    <div class="container">
+<img src="/public/IMG/logo.png" class="img-fluid" alt="Glasswing" />
+      <h2> Formulario de Inscripción Mentores Solve For Tomorow 2023 </h2>
+     
+     <p style="text-align: justify;">
+        ¡Hola! Te damos la bienvenida al equipo de voluntariado de Glasswing International. Es un enorme agrado que quieras participar como mentor(a) en el Programa de Mentorías 2023. A continuación, te presentamos un formulario de inscripción de voluntariado que debes llenar con tus datos personales.<br/> <br/>
+
+        La información solicitada es para uso exclusivo de Glasswing, te aseguramos que tu información no será compartida con terceros. Toda la información será resguardada con estricta confidencialidad por el equipo de Glasswing y nada de lo que compartas tendrá repercusiones sobre tu persona o tu participación en las actividades. Si tienes consultas sobre este formulario puedes hacerlas sin ningún problema a la persona de tu referencia en Glasswing, en cualquier momento.
+</p>
+
+      <br/>
+      <form action="/samsung/post" method="POST" enctype="multipart/form-data" id="formualrioRegistro" name="formualrioRegistro" class="needs-validation" novalidatez>
+
+<label for="FechaN" class="form-label">Escribe tu fecha de nacimiento:*</label>
+<input type="date" name="FechaN" id="FechaN" class="form-control" placeholder="dd/mm/aaaa" required onchange="activaselect4()">
+
+      <br/>
+<div id="ocultar" class="d-none">
+
+    <h4>Datos de Identificación</h4>
+
+    <div class="col">
+
+        <div class="col">
+            <label for="pais3" class="form-label">¿En qué país resides? *</label>
+            <select class="form-select" id="pais3" name="pais3" required>
+                <option value="" selected></option>
+                {{range .Paises}}
+                <option value="{{.Value}}">{{.Label}}</option>
+                {{end}}
+            </select>
+        </div>
+
+         <label for="nombre" class="form-label">Escribe tus nombres completos:*</label> 
+          <input type="text" name="nombre" id="nombre" class="form-control" required  oninput="activa1()">
+
+ <label for="apellido" class="form-label">Escribe tus apellidos completos:*</label> 
+          <input type="text" name="apellido" id="apellido" class="form-control" required  oninput="activa1()">
+    </div>
+
+  <div class="col">
+          <label for="sexo" class="form-label">Selecciona tu sexo según registro nacional:*</label>
+          <select class="form-select" id="sexo" name="sexo" required>
+            <option value="" selected></option>
+            {{range .Sexo}}
+            <option value="{{.Value}}">{{.Label}}</option>
+          {{end}}
+      </select>
+          </div>
+  
+          <label for="dui" class="form-label">Escribe tu documento de identidad:*</label> 
+          <input type="text" name="dui" id="dui" class="form-control" required>
+    
+      
+    <h4> Datos de Contacto  </h4>
+      
+    <div id="acc2d" class="col">
+      </br>
+                 <!-- <h5>Voluntario CALI Fellow </h5> -->
+      <div id="telefonodiv" class="col">
+      <label for="numws" class="form-label">Numero de Telefono/ WhatsApp</label>
+      <p>*Incluir codigo de pais (p.e. El Salvador: +503 1234 5678)</p>
+      <input type="tel" class="form-control" id="numws" name="numws">
+      </div>
+
+      <div class="col">
+          <label for="correo" class="form-label">Escribe tu correo electrónico:*</label>
+          <input type="email" name="correo" id="correo" class="form-control" placeholder="" required>
+          <div class="invalid-feedback">
+          Ingresa una dirección de correo válida
+        </div>
+   
+      </div>
+
+
+      <label for="empresa" class="form-label">¿Cuál es tu empresa u organización? *</label> 
+      <select class="form-select" id="empresa" name="empresa" required>
+        <option value="" selected></option>
+        <option value="213">Samsung Electronics</option>
+       </select>
+        
+      <label for="titulo" class="form-label">¿Cuál es tu título o cargo dentro de la empresa u organización? *</label> 
+      <input type="text" name="titulo" id="titulo" class="form-control" >
+
+    </br>
+  <h4> CONSENTIMIENTOS </h4>
+    </br>
+ 
+    <h5> CÓDIGO DE CONDUCTA Y ACUERDO DE COMPROMISO </h5>
+  </br>
+    <p>
+      "Nuestro objetivo con lo siguiente es brindar recomendaciones claras, sencillas y prácticas que contribuyan a que el trabajo que desempeñamos como organización sea siempre bajo el enfoque del interés superior de las niñas, niños y adolescentes, a quienes responde nuestros esfuerzos como Glasswing International.
+Nuestro compromiso es crear espacios responsables, creativos, dinámicos y respetuosos de los derechos de la niñez, para que nuestros programas sean ese elemento clave y positivo que contribuya a la transformación de la realidad de la niñez, adolescencia y juventudes en Centroamérica.
+<br>
+<h5> Acuerdos de compromiso </h5>
+<br>1. Comprometerse a cumplir con la realización de las sesiones.               
+<br>2. Si por alguna razón el/la mentor/a no pudiese cumplir con la implementación de una sesión o sobre cualquier situación (contratiempos, emergencias, etc.) que pueda interrumpir o suspender la sesión, deberá notificar por correo o WhatsApp al coordinador de Glasswing, de preferencia, con una semana de antelación o lo más rápido posible para reprogramar la sesión. *Si un(a) mentor(a) se llegase a ausentar por más de dos sesiones consecutivas sin justificación, Glasswing International tiene el derecho de dar terminación a su voluntariado. 
+<br>3. Glasswing es una institución apartidaria y laica, por lo que los mentores no deberán discutir dichos temas con participantes de programas.
+<br>4. No se permite el intercambio de información personal entre mentores y los/las participantes.
+<br>5. En ningún caso Glasswing International aceptará las relaciones sentimentales entre mentores y  participantes de las instituciones beneficiadas, independientemente de la edad del participante. 
+<br>6. Durante las interacciones , se prohíbe a los mentores gritar, maltratar, insultar, discriminar, humillar. Cualquier intención de abuso, bullying o acoso escolar o sexual será sancionado según el Protocolo de Protección a la Niñez y Adolescencia de Glasswing International
+<br>7. Si identificas una situación de vulneración debes comunicar inmediatamente a las autoridades de Glasswing International.
+
+    </p>
+<br>
+
+    <h5> ACUERDO DE CONFIDENCIALIDAD </h5>
+
+<p>
+  "El/La mentor/a se compromete a cuidar cualquier tipo de información tanto de los participantes del programa como de datos exclusivos de la organización a los que tenga acceso y por tanto tiene prohibido utilizar, difundir o reproducir cualquier información.
+  Este código de conducta está amparado bajo las Leyes de Voluntariado y las Leyes de Protección Integral de la Niñez de cada país. El incumplimiento de cualquiera de los puntos antes mencionados puede generar desde, llamada de atención, baja del voluntario hasta la denuncia ante las instituciones competentes."
+</p>
+
+    <h5> SALVAGUARDA Y PROTECCIÓN INFANTIL </h5>
+
+<P>
+  Glasswing International posee el compromiso, con las niñas, niños, adolescentes y sus familias, de garantizar una atención digna y entornos seguros al momento de tener un contacto con niñez y adolescencia, así mismo, es necesario garantizar el debido proceso al momento que surja un caso de maltrato infantil, asegurando la atención adecuada y la resolución del caso a la brevedad posible, sin dar oportunidad a la negligencia o a la falta de atención a la situación suscitada. Ante esto, Glasswing posee una Declaración de Cero Tolerancia contra el abuso y maltrato infantil, a la cual se deben comprometer y acatar todas las personas que se integren como voluntarios y voluntarias, independientemente el programa, proyecto o actividad en la que participen y el tiempo que funjan como voluntarios.
+</P>
+
+    <h5> DECLARACIÓN DE CERO TOLERANCIA </h5>
+
+  <p>"Para Fundación Crisálida Internacional, conocida como Glasswing International, es indispensable la salvaguarda y protección de la niñez y la adolescencia y mantiene el compromiso de cero tolerancia contra cualquier tipo de violencia, abuso (físico, emocional y sexual) y maltrato a la niñez y adolescencia. Para esto, Glasswing International cuenta con una Política de Salvaguarda y Protección para la Niñez y Adolescencia y un Protocolo Nacional de Atención y Respuesta para la Salvaguarda y Protección de la Niñez y la Adolescencia, y es responsabilidad de Glasswing, sus directores y colaboradores velar por su estricta aplicación. Cero Tolerancia significa que cualquier colaborador que esté involucrado en un incidente de violencia, abuso (físico, emocional y sexual) y maltrato a la niñez y adolescencia, o que conozca de un incidente y no lo reporte, será inmediatamente desvinculado de la organización y será denunciado a las instituciones correspondientes.<br/><br/>
+
+    El alcance de esta política incluye a todas y todos las y los colaboradores y departamentos, contratados directamente o subcontratados, con contratos permanentes o temporales, voluntarios y todo tipo de proveedores, socios, y/o visitantes (ya sea posean o no, contacto directo con la niñez y la adolescencia) que participen en los programas y proyectos en todos los países donde GW tiene presencia.
+    <BR><input class="form-check-input" type="checkbox" value="Confirmo" id="leido" required> He leido"</p>
+
+    <h5> CONSENTIMIENTO DE MEDIOS </h5>
+
+    <p> Solicitamos la autorización de cada participante para la toma de fotografías y videos en grupo y/o individuales de carácter general. Las fotografías y los videos serán presentados, divulgados y/o publicados para promover el trabajo de Glasswing, exclusivamente en plataformas institucionales (sitio web y redes sociales), herramientas para la rendición de cuentas a terceros (medios de comunicación, informes, reportes, entre otros), redes profesionales de la fundadora de la organización, Celina de Sola, y socios (cooperación internacional, empresas aliadas, instituciones gubernamentales u otros).<br/><br/>  
+        Las fotografías y videos tendrán una vigencia de uso de cinco años máximo, lo que significa que, luego de ese periodo, no podremos seguir presentando, divulgando o publicando dichas fotografías y vídeos. A excepción de aquellas imágenes que son parte de reportes o documentos entregados a un tercero, y de fotografías que, por su carácter antiguo, sean utilizadas en las presentaciones y publicaciones de aniversarios de la organización. Ninguna fotografía, video o historia se podrá utilizar para fines políticos, religiosos o personales por ningún miembro de nuestra organización o externos a ella.<br/><br/>
+        Las fotografías y vídeos serán de uso exclusivo por Glasswing o socios (cooperación internacional, empresas, organizaciones o centros educativos), con el objetivo de promover la labor que se realiza en nuestros programas. Ninguna fotografía, vídeo o historia se podrá utilizar para fines políticos, religiosos o personales por ningún miembro de nuestra organización o externos a ella.<br/><br/>
+        Si estás de acuerdo y autorizas la toma de fotografías y vídeos, te solicitamos completar los siguientes campos:<br/>
+    </p>
+        <p style="text-align: justify;">Yo: <span id="nombrep2" style="display: inline;" class="text-primary"></span>, mayor de edad, de <span id="edadl" style="display: inline;" class="text-primary"></span> años de edad, 
+            habiendo sido informada o informado de los derechos que protegen mi imagen y de la finalidad para la cual se utilizará mi imagen, <span class="form-group d-inline-block">   <select class="form-select" id="aut3" name="aut3" >
+          <option value=""></option>
+          <option value="1">AUTORIZO</option>
+          <option value="2">NO AUTORIZO</option>
+          </select>  
+         </span> a Fundación Crisálida International (Glasswing International) y sus socios para que, en cumplimiento de sus objetivos estrictamente de carácter institucional, puedan publicar, presentar o divulgar mi imagen (fotografía/vídeo) y voz (audio/vídeo), exclusivamente en plataformas institucionales (sitio web y redes sociales), herramientas para la rendición de cuentas a terceros (medios de comunicación, informes, reportes, entre otros), y redes profesionales de la fundadora de la organización, Celina de Sola, y socios.
+        </p>
+      
+<br/>
+<button class="btn btn-primary" id="boton" type="submit"> Enviar</button>
+    </div>
+      </form>
+
+    </div>
+ <script src="/static/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="/public/JS/Voluntarios/mentores.js"></script>
+  </body>
+</html>

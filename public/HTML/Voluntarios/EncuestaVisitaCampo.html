@@ -1,0 +1,1011 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <base target="_top">
+    <link href="/static/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/selectize.js/0.12.6/js/standalone/selectize.min.js" integrity="sha256-+C0A5Ilqmu4QcSPxrlGpaZxJ04VjsRjKu+G82kl5UJk=" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/selectize.js/0.12.6/css/selectize.bootstrap3.min.css" integrity="sha256-ze/OEYGcFbPRmvCnrSeKbRTtjG4vGLHXgOqsyLFTRjg=" crossorigin="anonymous" />
+    <title>Hoja de visita de observación y seguimiento a voluntarios</title>
+    <link rel="icon" href="https://gwdata.org/images/favicon.png" type="image/png">
+  </head>
+  <body>
+    <div id="contentToPrint">
+      <div class="container">
+        <form action="/voluntariado/visitacampo/post" method="POST" enctype="multipart/form-data" id="formualrioRegistro" name="formualrioRegistro" class="needs-validation" novalidatez>
+          <img src="/public/IMG/logo.png" class="img-fluid" alt="Glasswing" />
+          <h2 class="mt-3 mb-3" style="color: #1A1241;text-align: center; font-family: 'Montserrat', sans-serif; font-weight: bold;"> Hoja de visita de observación y seguimiento a voluntarios</h2>
+          <p style="text-align: justify;">
+          <b>Objetivo: </b> Identificar oportunidades de mejora en el desarrollo de las actividades realizadas por las personas voluntarias para asegurar la calidad de la implementación de los programas.					
+          </p>
+          <p style="text-align: justify;">
+          <b>1.	Datos generales:</b></p> 
+
+              {{range .Preguntas}}
+              {{if eq .Value "160" }}
+              <label for="p{{.Value}}" class="form-label">{{.Label}}</label>
+              <select class="form-select" id="p{{.Value}}" name="p{{.Value}}" onchange="actualizardepto(this.value)" required>
+                {{end}}
+                {{end}}
+                <option value="" selected></option>
+                {{range .Solucion}}
+                {{if eq .IdPregunta "-1" }}
+                <option value="{{.Value}}">{{.Label}}</option>
+                {{end}}
+                {{end}}
+                </select>
+            <br>
+                {{range .Preguntas}}
+                {{if eq .Value "188" }}
+                <label for="p{{.Value}}" class="form-label">{{.Label}}</label>
+                <select id="p{{.Value}}" name="p{{.Value}}" onchange="actualizarmun()" required>
+                  {{end}}
+                  {{end}}
+                  <option value=""></option>
+                  </select>
+            <br>
+              {{range .Preguntas}}
+              {{if eq .Value "83" }}
+              <label for="p{{.Value}}" class="form-label">{{.Label}}</label>
+              <input type="date" id="visita" name="visita" class="form-control" required>
+                {{end}}
+                {{end}}
+            <br>
+                {{range .Preguntas}}
+                {{if eq .Value "158" }}
+                <label for="p{{.Value}}" class="form-label">{{.Label}}</label>
+                <select class="form-select" id="p{{.Value}}" name="p{{.Value}}" onchange="actualizaractividades(this.value); actualizarmun()"required>
+                  {{end}}
+                  {{end}}
+                  <option value="" selected></option>
+                  {{range .Solucion}}
+                  {{if eq .IdPregunta "-2" }}
+                  <option value="{{.Value}}">{{.Label}}</option>
+                  {{end}}
+                  {{end}}
+                  </select>
+              <br>
+                {{range .Preguntas}}
+                {{if eq .Value "84" }}
+                <label for="p{{.Value}}" class="form-label">{{.Label}}</label>
+                <select id="p{{.Value}}" name="p{{.Value}}">
+                  {{end}}
+                  {{end}}
+                  <option value=""></option>
+                  </select>
+
+            <br>
+              {{range .Preguntas}}
+              {{if eq .Value "85" }}
+              <label for="p{{.Value}}" class="form-label">{{.Label}}</label>
+              <input type="text" id="encargado" name="encargado" class="form-control" maxlength="300" required>
+                {{end}}
+                {{end}}
+            <br>
+              {{range .Preguntas}}
+              {{if eq .Value "120" }}
+              <label for="p{{.Value}}" class="form-label">{{.Label}}</label>
+              <input type="text" id="cargo" name="cargo" class="form-control" maxlength="300" required>
+                {{end}}
+                {{end}}
+            <br>
+                {{range .Preguntas}}
+                {{if eq .Value "86" }}
+                <label for="p{{.Value}}" class="form-label">{{.Label}}</label>
+                <select class="form-select" id="p{{.Value}}" name="p{{.Value}}" required>
+                  {{end}}
+                  {{end}}
+                  <option value="" selected></option>
+                    </select>
+            <br>
+                {{range .Preguntas}}
+                {{if eq .Value "87" }}
+                <label for="p{{.Value}}" class="form-label">{{.Label}}</label>
+                <textarea class="form-control" name="facilitadores" id="facilitadores" rows="1" maxlength="900" required></textarea>
+                  {{end}}
+                  {{end}}
+              
+              </br>
+
+              <p style="text-align: justify;"><b>2.	Observación del desarrollo de la actividad</b></p>  
+
+              <fieldset class="border p-3 rounded">  
+              <div class="container">
+              <h5>Cobertura</h5>
+                <p style="text-align: justify;"><b>Aspectos de verificación</b></p>
+
+                {{range .Preguntas}}
+                {{if eq .Value "88" }}
+                <label for="p{{.Value}}" class="form-label">{{.Label}}</label>
+                <select class="form-select" id="p{{.Value}}" name="p{{.Value}}" onchange="mostraobservacion('p{{.Value}}','av1')" required>
+                  {{end}}
+                  {{end}}
+                  <option value="" selected></option>
+                  {{range .Solucion}}
+                  {{if eq .IdPregunta "-6" }}
+                  <option value="{{.Value}}">{{.Label}}</option>
+                  {{end}}
+                  {{end}}
+                  </select>
+
+                  <div id="av1" class="d-none">
+                  <label for="obs1"><em>Observaciones</em></label>
+                  <textarea class="form-control" name="coobs1" id="coobs1" rows="1" maxlength="700"></textarea>
+                  <br>
+                  </div>
+
+                  {{range .Preguntas}}
+                  {{if eq .Value "91" }}
+                  <label for="p{{.Value}}" class="form-label">{{.Label}}</label>
+                  <select class="form-select" id="p{{.Value}}" name="p{{.Value}}" onchange="mostraobservacion('p{{.Value}}','av4')" required>
+                    {{end}}
+                    {{end}}
+                    <option value="" selected></option>
+                    {{range .Solucion}}
+                    {{if eq .IdPregunta "-6" }}
+                    <option value="{{.Value}}">{{.Label}}</option>
+                    {{end}}
+                    {{end}}
+                    </select>
+                    
+                    <div id="av4" class="d-none">
+                    <label for="obs4"><em>Observaciones</em></label>
+                    <textarea class="form-control" name="coobs4" id="coobs4" rows="1" maxlength="700"></textarea>
+                    <br>
+                  </div>
+
+                  {{range .Preguntas}}
+                  {{if eq .Value "92" }}
+                  <label for="p{{.Value}}" class="form-label">{{.Label}}</label>
+                  <small id="ej5" class="form-text text-muted">(por ejemplo, la sesión es de 2 horas y se ejecuta mínimo en 1:30)</small> 
+                  <select class="form-select" id="p{{.Value}}" name="p{{.Value}}" onchange="mostraobservacion('p{{.Value}}','av5')" required>
+                    {{end}}
+                    {{end}}
+                    <option value="" selected></option>
+                    {{range .Solucion}}
+                    {{if eq .IdPregunta "-6" }}
+                    <option value="{{.Value}}">{{.Label}}</option>
+                    {{end}}
+                    {{end}}
+                    </select>
+
+                    <div id="av5" class="d-none">
+                    <label for="obs5"><em>Observaciones</em></label>
+                    <textarea class="form-control" name="coobs5" id="coobs5" rows="1" maxlength="700"></textarea>
+                    <br>
+                  </div>
+              </div>
+            </fieldset>
+            <br>
+
+            <fieldset class="border p-3 rounded">  
+            <div class="container">
+                <h5>Calidad</h5>
+
+                <p style="text-align: justify;"><em>Información y apoyo a las personas voluntarias</em></p>  
+                <p style="text-align: justify;"><b>Aspectos de verificación</b></p>  
+                
+                {{range .Preguntas}}
+                {{if eq .Value "93" }}
+                <label for="p{{.Value}}" class="form-label">{{.Label}}</label>
+                <small id="ej2-1" class="form-text text-muted">Registre el nombre de las personas voluntarias</small> 
+                <select class="form-select" id="p{{.Value}}" name="p{{.Value}}" onchange="mostraobservacion('p{{.Value}}','av6')" required>
+                  {{end}}
+                  {{end}}
+                  <option value="" selected></option>
+                  {{range .Solucion}}
+                  {{if eq .IdPregunta "-6" }}
+                  <option value="{{.Value}}">{{.Label}}</option>
+                  {{end}}
+                  {{end}}
+                  <option value="3">N/A</option>
+                  </select>
+
+                  <div id="av6" class="d-none">
+                  <label for="obs2-1"><em>Observaciones</em></label>
+                  <textarea class="form-control" name="caobs1" id="caobs1" rows="1" maxlength="700"></textarea>
+                  <br>
+                </div>
+
+                {{range .Preguntas}}
+                {{if eq .Value "95" }}
+                <label for="p{{.Value}}" class="form-label">{{.Label}}</label>
+                <select class="form-select" id="p{{.Value}}" name="p{{.Value}}" onchange="mostraobservacion('p{{.Value}}','av8')" required>
+                  {{end}}
+                  {{end}}
+                  <option value="" selected></option>
+                  {{range .Solucion}}
+                  {{if eq .IdPregunta "-6" }}
+                  <option value="{{.Value}}">{{.Label}}</option>
+                  {{end}}
+                  {{end}}
+                  <option value="3">N/A</option>
+                  </select>
+                  
+                  <div id="av8" class="d-none">
+                  <label for="obs2-3"><em>Observaciones</em></label>
+                  <textarea class="form-control" name="caobs3" id="caobs3" rows="1" maxlength="700"></textarea>
+                  <br>
+                  </div>
+
+                {{range .Preguntas}}
+                {{if eq .Value "96" }}
+                <label for="p{{.Value}}" class="form-label">{{.Label}}</label>
+                <select class="form-select" id="p{{.Value}}" name="p{{.Value}}" onchange="mostraobservacion('p{{.Value}}','av9')" required>
+                  {{end}}
+                  {{end}}
+                  <option value="" selected></option>
+                  {{range .Solucion}}
+                  {{if eq .IdPregunta "-6" }}
+                  <option value="{{.Value}}">{{.Label}}</option>
+                  {{end}}
+                  {{end}}
+                  <option value="3">N/A</option>
+                  </select>
+
+                  <div id="av9" class="d-none">
+                  <label for="obs2-4"><em>Observaciones</em></label>
+                  <textarea class="form-control" name="caobs4" id="caobs4" rows="1" maxlength="700"></textarea>
+                  <br>
+                  </div>
+
+                  {{range .Preguntas}}
+                  {{if eq .Value "94" }}
+                  <label for="p{{.Value}}" class="form-label">{{.Label}}</label>
+                  <select class="form-select" id="p{{.Value}}" name="p{{.Value}}" onchange="mostraobservacion('p{{.Value}}','av7')" required>
+                    {{end}}
+                    {{end}}
+                    <option value="" selected></option>
+                    {{range .Solucion}}
+                    {{if eq .IdPregunta "-6" }}
+                    <option value="{{.Value}}">{{.Label}}</option>
+                    {{end}}
+                    {{end}}
+                    <option value="3">N/A</option>
+                    </select>
+              
+                    <div id="av7" class="d-none">
+                    <label for="obs2-2"><em>Observaciones</em></label>
+                    <textarea class="form-control" name="coobs2" id="coobs2" rows="1" maxlength="700"></textarea>
+                    <br>
+                  </div>  
+
+            <br>
+
+                <p style="text-align: justify;"><em>Desempeño y herramientas utilizadas por las personas voluntarias</em></p>  
+                <p style="text-align: justify;"><b>Aspectos de verificación</b></p>  
+
+                {{range .Preguntas}}
+                {{if eq .Value "98" }}
+                <label for="p{{.Value}}" class="form-label">{{.Label}}</label>
+                <select class="form-select" id="p{{.Value}}" name="p{{.Value}}" onchange="mostraobservacion('p{{.Value}}','av11')" required>
+                  {{end}}
+                  {{end}}
+                  <option value="" selected></option>
+                  {{range .Solucion}}
+                  {{if eq .IdPregunta "-6" }}
+                  <option value="{{.Value}}">{{.Label}}</option>
+                  {{end}}
+                  {{end}}
+                  <option value="3">N/A</option>
+                  </select>
+                  <div id="av11" class="d-none">
+                  <label for="obs2-6"><em>Observaciones</em></label>
+                  <textarea class="form-control" name="caobs6" id="caobs6" rows="1" maxlength="700"></textarea>
+                  <br>    
+                  </div>
+
+                {{range .Preguntas}}
+                {{if eq .Value "100" }}
+                <label for="p{{.Value}}" class="form-label">{{.Label}}</label>
+                <select class="form-select" id="p{{.Value}}" name="p{{.Value}}" onchange="mostraobservacion('p{{.Value}}','av13')" required>
+                  {{end}}
+                  {{end}}
+                  <option value="" selected></option>
+                  {{range .Solucion}}
+                  {{if eq .IdPregunta "-6" }}
+                  <option value="{{.Value}}">{{.Label}}</option>
+                  {{end}}
+                  {{end}}
+                  <option value="3">N/A</option>
+                  </select>
+
+                  <div id="av13" class="d-none">
+                  <label for="obs2-8"><em>Observaciones</em></label>
+                  <textarea class="form-control" name="caobs8" id="caobs8" rows="1" maxlength="700"></textarea>
+                  <br>    
+                  </div>
+
+                {{range .Preguntas}}
+                {{if eq .Value "101" }}
+                <label for="p{{.Value}}" class="form-label">{{.Label}}</label>
+                <select class="form-select" id="p{{.Value}}" name="p{{.Value}}" onchange="mostraobservacion('p{{.Value}}','av14')" required>
+                  {{end}}
+                  {{end}}
+                  <option value="" selected></option>
+                  {{range .Solucion}}
+                  {{if eq .IdPregunta "-6" }}
+                  <option value="{{.Value}}">{{.Label}}</option>
+                  {{end}}
+                  {{end}}
+                  <option value="3">N/A</option>
+                  </select>
+
+                  <div id="av14" class="d-none">
+                  <label for="obs2-9"><em>Observaciones</em></label>
+                  <textarea class="form-control" name="caobs9" id="caobs9" rows="1" maxlength="700"></textarea>
+                  <br>    
+                  </div>
+
+                {{range .Preguntas}}
+                {{if eq .Value "102" }}
+                <label for="p{{.Value}}" class="form-label">{{.Label}}</label>
+                <select class="form-select" id="p{{.Value}}" name="p{{.Value}}" onchange="mostraobservacion('p{{.Value}}','av15')" required>
+                  {{end}}
+                  {{end}}
+                  <option value="" selected></option>
+                  {{range .Solucion}}
+                  {{if eq .IdPregunta "-6" }}
+                  <option value="{{.Value}}">{{.Label}}</option>
+                  {{end}}
+                  {{end}}
+                  <option value="3">N/A</option>
+                  </select>
+
+                  <div id="av15" class="d-none">
+                  <label for="obs2-10"><em>Observaciones</em></label>
+                  <textarea class="form-control" name="caobs10" id="caobs10" rows="1" maxlength="700"></textarea>
+                  <br>    
+                  </div>
+
+                {{range .Preguntas}}
+                {{if eq .Value "103" }}
+                <label for="p{{.Value}}" class="form-label">{{.Label}}</label>
+                <select class="form-select" id="p{{.Value}}" name="p{{.Value}}" onchange="mostraobservacion('p{{.Value}}','av16')" required>
+                  {{end}}
+                  {{end}}
+                  <option value="" selected></option>
+                  {{range .Solucion}}
+                  {{if eq .IdPregunta "-6" }}
+                  <option value="{{.Value}}">{{.Label}}</option>
+                  {{end}}
+                  {{end}}
+                  <option value="3">N/A</option>
+                  </select>
+
+                  <div id="av16" class="d-none">
+                  <label for="obs2-11"><em>Observaciones</em></label>
+                  <textarea class="form-control" name="caobs11" id="caobs11" rows="1" maxlength="700"></textarea>
+                  <br>    
+                  </div>
+
+                {{range .Preguntas}}
+                {{if eq .Value "104" }}
+                <label for="p{{.Value}}" class="form-label">{{.Label}}</label>
+                <select class="form-select" id="p{{.Value}}" name="p{{.Value}}" onchange="mostraobservacion('p{{.Value}}','av17')" required>
+                  {{end}}
+                  {{end}}
+                  <option value="" selected></option>
+                  {{range .Solucion}}
+                  {{if eq .IdPregunta "-6" }}
+                  <option value="{{.Value}}">{{.Label}}</option>
+                  {{end}}
+                  {{end}}
+                  <option value="3">N/A</option>
+                  </select>
+
+                  <div id="av17" class="d-none">
+                  <label for="obs2-12"><em>Observaciones</em></label>
+                  <textarea class="form-control" name="caobs12" id="caobs12" rows="1" maxlength="700"></textarea>
+                  <br>    
+                  </div>
+
+                {{range .Preguntas}}
+                {{if eq .Value "105" }}
+                <label for="p{{.Value}}" class="form-label">{{.Label}}</label>
+                <select class="form-select" id="p{{.Value}}" name="p{{.Value}}" onchange="mostraobservacion('p{{.Value}}','av18')" required>
+                  {{end}}
+                  {{end}}
+                  <option value="" selected></option>
+                  {{range .Solucion}}
+                  {{if eq .IdPregunta "-6" }}
+                  <option value="{{.Value}}">{{.Label}}</option>
+                  {{end}}
+                  {{end}}
+                  <option value="3">N/A</option>
+                  </select>
+
+                  <div id="av18" class="d-none">
+                  <label for="obs2-13"><em>Observaciones</em></label>
+                  <textarea class="form-control" name="caobs13" id="caobs13" rows="1" maxlength="700"></textarea>
+                  <br>    
+                  </div>
+
+                {{range .Preguntas}}
+                {{if eq .Value "108" }}
+                <label for="p{{.Value}}" class="form-label">{{.Label}}</label>
+                <select class="form-select" id="p{{.Value}}" name="p{{.Value}}" onchange="mostraobservacion('p{{.Value}}','av21')" required>
+                  {{end}}
+                  {{end}}
+                  <option value="" selected></option>
+                  {{range .Solucion}}
+                  {{if eq .IdPregunta "-6" }}
+                  <option value="{{.Value}}">{{.Label}}</option>
+                  {{end}}
+                  {{end}}
+                  <option value="3">N/A</option>
+                  </select>
+
+                  <div id="av21" class="d-none">
+                  <label for="obs2-16"><em>Observaciones</em></label>
+                  <textarea class="form-control" name="caobs16" id="caobs16" rows="1" maxlength="700"></textarea>
+                  <br>    
+                  </div>
+
+                {{range .Preguntas}}
+                {{if eq .Value "109" }}
+                <label for="p{{.Value}}" class="form-label">{{.Label}}</label>
+                <select class="form-select" id="p{{.Value}}" name="p{{.Value}}" onchange="mostraobservacion('p{{.Value}}','av22')" required>
+                  {{end}}
+                  {{end}}
+                  <option value="" selected></option>
+                  {{range .Solucion}}
+                  {{if eq .IdPregunta "-6" }}
+                  <option value="{{.Value}}">{{.Label}}</option>
+                  {{end}}
+                  {{end}}
+                  <option value="3">N/A</option>
+                  </select>
+                  
+                  <div id="av22" class="d-none">
+                  <label for="obs2-17"><em>Observaciones</em></label>
+                  <textarea class="form-control" name="caobs17" id="caobs17" rows="1" maxlength="700"></textarea>
+                  <br>    
+                  </div>
+
+                {{range .Preguntas}}
+                {{if eq .Value "110" }}
+                <label for="p{{.Value}}" class="form-label">{{.Label}}</label>
+                <select class="form-select" id="p{{.Value}}" name="p{{.Value}}" onchange="mostraobservacion('p{{.Value}}','av23')" required>
+                  {{end}}
+                  {{end}}
+                  <option value="" selected></option>
+                  {{range .Solucion}}
+                  {{if eq .IdPregunta "-6" }}
+                  <option value="{{.Value}}">{{.Label}}</option>
+                  {{end}}
+                  {{end}}
+                  <option value="3">N/A</option>
+                  </select>
+
+                  <div id="av23" class="d-none">
+                  <label for="obs2-18"><em>Observaciones</em></label>
+                  <textarea class="form-control" name="caobs18" id="caobs18" rows="1" maxlength="700"></textarea>
+                  <br>    
+                  </div>
+              
+                {{range .Preguntas}}
+                {{if eq .Value "111" }}
+                <label for="p{{.Value}}" class="form-label">{{.Label}}</label>
+                <select class="form-select" id="p{{.Value}}" name="p{{.Value}}" onchange="mostraobservacion('p{{.Value}}','av24')" required>
+                  {{end}}
+                  {{end}}
+                  <option value="" selected></option>
+                  {{range .Solucion}}
+                  {{if eq .IdPregunta "-6" }}
+                  <option value="{{.Value}}">{{.Label}}</option>
+                  {{end}}
+                  {{end}}
+                  <option value="3">N/A</option>
+                  </select>
+
+                  <div id="av24" class="d-none">
+                  <label for="obs2-19"><em>Observaciones</em></label>
+                  <textarea class="form-control" name="caobs19" id="caobs19" rows="1" maxlength="700"></textarea>
+                  <br>    
+                  </div>
+
+                {{range .Preguntas}}
+                {{if eq .Value "113" }}
+                <label for="p{{.Value}}" class="form-label">{{.Label}}</label>
+                <select class="form-select" id="p{{.Value}}" name="p{{.Value}}" onchange="mostraobservacion('p{{.Value}}','av26')" required>
+                  {{end}}
+                  {{end}}
+                  <option value="" selected></option>
+                  {{range .Solucion}}
+                  {{if eq .IdPregunta "-6" }}
+                  <option value="{{.Value}}">{{.Label}}</option>
+                  {{end}}
+                  {{end}}
+                  <option value="3">N/A</option>
+                  </select>
+
+                  <div id="av26" class="d-none">
+                  <label for="obs2-21"><em>Observaciones</em></label>
+                  <textarea class="form-control" name="caobs21" id="caobs21" rows="1" maxlength="700"></textarea>
+                  <br>    
+                  </div>
+
+                {{range .Preguntas}}
+                {{if eq .Value "114" }}
+                <label for="p{{.Value}}" class="form-label">{{.Label}}</label>
+                <select class="form-select" id="p{{.Value}}" name="p{{.Value}}" onchange="mostraobservacion('p{{.Value}}','av27')" required>
+                  {{end}}
+                  {{end}}
+                  <option value="" selected></option>
+                  {{range .Solucion}}
+                  {{if eq .IdPregunta "-6" }}
+                  <option value="{{.Value}}">{{.Label}}</option>
+                  {{end}}
+                  {{end}}
+                  <option value="3">N/A</option>
+                  </select>
+
+                  <div id="av27" class="d-none">
+                  <label for="obs2-22"><em>Observaciones</em></label>
+                  <textarea class="form-control" name="caobs22" id="caobs22" rows="1" maxlength="700"></textarea>
+                  <br>    
+                  </div>
+
+                {{range .Preguntas}}
+                {{if eq .Value "115" }}
+                <label for="p{{.Value}}" class="form-label">{{.Label}}</label>
+                <select class="form-select" id="p{{.Value}}" name="p{{.Value}}" onchange="mostraobservacion('p{{.Value}}','av28')" required>
+                  {{end}}
+                  {{end}}
+                  <option value="" selected></option>
+                  {{range .Solucion}}
+                  {{if eq .IdPregunta "-6" }}
+                  <option value="{{.Value}}">{{.Label}}</option>
+                  {{end}}
+                  {{end}}
+                  <option value="3">N/A</option>
+                  </select>
+
+                  <div id="av28" class="d-none">
+                  <label for="obs2-23"><em>Observaciones</em></label>
+                  <textarea class="form-control" name="caobs23" id="caobs23" rows="1" maxlength="700"></textarea>
+                  <br>    
+                  </div>
+                </div>
+            </fieldset>
+            <br>
+
+            <fieldset class="border p-3 rounded">
+              <div class="container">
+
+                <label for="actividad" class="form-label">¿Qué tipo de actividad, te encuentras observando?:<span style="color: #FF7D81;">*</span></label>
+                <select class="form-select" id="actividad" name="actividad" required onchange="ocultardiv()">
+                    <option value="" selected></option>
+                    <option value="1">Actividad presencial.</option>
+                    <option value="2">Actividad virtual.</option>
+                    </select>    
+
+                <div id="presencial1" class="d-none">
+            <br>
+                  <p style="text-align: justify;"><em>Identificación y equipamiento de las personas voluntarias</em></p>  
+                  <p style="text-align: justify;"><b>Aspectos de verificación</b></p>  
+            <br>
+                  {{range .Preguntas}}
+                {{if eq .Value "116" }}
+                <label for="p{{.Value}}" class="form-label">{{.Label}}</label>
+                <select class="form-select" id="p{{.Value}}" name="p{{.Value}}" onchange="mostraobservacion('p{{.Value}}','av29')">
+                  {{end}}
+                  {{end}}
+                  <option value="" selected></option>
+                  {{range .Solucion}}
+                  {{if eq .IdPregunta "-6" }}
+                  <option value="{{.Value}}">{{.Label}}</option>
+                  {{end}}
+                  {{end}}
+                  <option value="3">N/A</option>
+                  </select>
+
+                  <div id="av29" class="d-none">
+                  <label for="obs2-24"><em>Observaciones</em></label>
+                  <textarea class="form-control" name="caobs24" id="caobs24" rows="1" maxlength="700"></textarea>
+                  <br>    
+                  </div>
+                  
+                {{range .Preguntas}}
+                {{if eq .Value "117" }}
+                <label for="p{{.Value}}" class="form-label">{{.Label}}</label>
+                <select class="form-select" id="p{{.Value}}" name="p{{.Value}}" onchange="mostraobservacion('p{{.Value}}','av30')">
+                  {{end}}
+                  {{end}}
+                  <option value="" selected></option>
+                  {{range .Solucion}}
+                  {{if eq .IdPregunta "-6" }}
+                  <option value="{{.Value}}">{{.Label}}</option>
+                  {{end}}
+                  {{end}}
+                  <option value="3">N/A</option>
+                  </select>
+
+                  <div id="av30" class="d-none">
+                  <label for="obs2-25"><em>Observaciones</em></label>
+                  <textarea class="form-control" name="caobs25" id="caobs25" rows="1" maxlength="700"></textarea>
+                  <br>    
+                  </div>
+
+                {{range .Preguntas}}
+                {{if eq .Value "118" }}
+                <label for="p{{.Value}}" class="form-label">{{.Label}}</label>
+                <select class="form-select" id="p{{.Value}}" name="p{{.Value}}" onchange="mostraobservacion('p{{.Value}}','av31')">
+                  {{end}}
+                  {{end}}
+                  <option value="" selected></option>
+                  {{range .Solucion}}
+                  {{if eq .IdPregunta "-6" }}
+                  <option value="{{.Value}}">{{.Label}}</option>
+                  {{end}}
+                  {{end}}
+                  <option value="3">N/A</option>
+                  </select>
+
+                  <div id="av31" class="d-none">
+                  <label for="obs2-26"><em>Observaciones</em></label>
+                  <textarea class="form-control" name="caobs26" id="caobs26" rows="1" maxlength="700"></textarea>
+                  <br>    
+                  </div>
+                </div>
+                
+                <br>
+
+                <div id="virtual" class="d-none">
+
+            <br>
+                  <p style="text-align: justify;"><em>Identificación y equipamiento de las personas voluntarias</em></p>  
+                  <p style="text-align: justify;"><b>Aspectos de verificación</b></p>  
+            <br>
+
+                {{range .Preguntas}}
+                {{if eq .Value "119" }}
+                <label for="p{{.Value}}" class="form-label">{{.Label}}</label>
+                <select class="form-select" id="p{{.Value}}" name="p{{.Value}}" onchange="mostraobservacion('p{{.Value}}','av32')">
+                  {{end}}
+                  {{end}}
+                  <option value="" selected></option>
+                  {{range .Solucion}}
+                  {{if eq .IdPregunta "-6" }}
+                  <option value="{{.Value}}">{{.Label}}</option>
+                  {{end}}
+                  {{end}}
+                  <option value="3">N/A</option>
+                  </select>
+
+                  <div id="av32" class="d-none">
+                  <label for="obs2-27"><em>Observaciones</em></label>
+                  <textarea class="form-control" name="caobs27" id="caobs27" rows="1" maxlength="700"></textarea>
+                  <br>  
+                  </div>
+
+                  {{range .Preguntas}}
+                  {{if eq .Value "112" }}
+                  <label for="p{{.Value}}" class="form-label">{{.Label}}</label>
+                  <select class="form-select" id="p{{.Value}}" name="p{{.Value}}" onchange="mostraobservacion('p{{.Value}}','av33')">
+                    {{end}}
+                    {{end}}
+                    <option value="" selected></option>
+                    {{range .Solucion}}
+                    {{if eq .IdPregunta "-6" }}
+                    <option value="{{.Value}}">{{.Label}}</option>
+                    {{end}}
+                    {{end}}
+                    <option value="3">N/A</option>
+                    </select>
+              
+                    <div id="av33" class="d-none">
+                    <label for="obs2-20"><em>Observaciones</em></label>
+                    <textarea class="form-control" name="caobs20" id="caobs20" rows="1" maxlength="700"></textarea>
+                    <br>    
+                    </div>
+              
+                    {{range .Preguntas}}
+                    {{if eq .Value "107" }}
+                    <label for="p{{.Value}}" class="form-label">{{.Label}}</label>
+                    <select class="form-select" id="p{{.Value}}" name="p{{.Value}}" onchange="mostraobservacion('p{{.Value}}','av34')">
+                      {{end}}
+                      {{end}}
+                      <option value="" selected></option>
+                      {{range .Solucion}}
+                      {{if eq .IdPregunta "-6" }}
+                      <option value="{{.Value}}">{{.Label}}</option>
+                      {{end}}
+                      {{end}}
+                      <option value="3">N/A</option>
+                      </select>
+                
+                      <div id="av34" class="d-none">
+                      <label for="obs2-15"><em>Observaciones</em></label>
+                      <textarea class="form-control" name="caobs15" id="caobs15" rows="1" maxlength="700"></textarea>
+                      <br>    
+                      </div>
+                
+                  <br>
+                <p style="text-align: justify;"><em>Herramientas para voluntariado virtual</em></p>  
+                <p style="text-align: justify;"><b>Aspectos de verificación</b></p>  
+              
+                {{range .Preguntas}}
+                {{if eq .Value "121" }}
+                <label for="p{{.Value}}" class="form-label">{{.Label}}</label>
+                <select class="form-select" id="p{{.Value}}" name="p{{.Value}}" onchange="mostraobservacion('p{{.Value}}','av35')">
+                  {{end}}
+                  {{end}}
+                  <option value="" selected></option>
+                  {{range .Solucion}}
+                  {{if eq .IdPregunta "-6" }}
+                  <option value="{{.Value}}">{{.Label}}</option>
+                  {{end}}
+                  {{end}}
+                  <option value="3">N/A</option>
+                  </select>
+
+                  <div id="av35" class="d-none">
+                  <label for="obs2-28"><em>Observaciones</em></label>
+                  <textarea class="form-control" name="caobs28" id="caobs28" rows="1" maxlength="700"></textarea>
+                  <br>   
+                  </div>
+                
+                {{range .Preguntas}}
+                {{if eq .Value "122" }}
+                <label for="p{{.Value}}" class="form-label">{{.Label}}</label>
+                <select class="form-select" id="p{{.Value}}" name="p{{.Value}}" onchange="mostraobservacion('p{{.Value}}','av36')">
+                  {{end}}
+                  {{end}}
+                  <option value="" selected></option>
+                  {{range .Solucion}}
+                  {{if eq .IdPregunta "-6" }}
+                  <option value="{{.Value}}">{{.Label}}</option>
+                  {{end}}
+                  {{end}}
+                  <option value="3">N/A</option>
+                  </select>
+
+                  <div id="av36" class="d-none">
+                  <label for="obs2-29"><em>Observaciones</em></label>
+                  <textarea class="form-control" name="caobs29" id="caobs29" rows="1" maxlength="700"></textarea>
+                  <br>         
+                  </div>
+
+                {{range .Preguntas}}
+                {{if eq .Value "123" }}
+                <label for="p{{.Value}}" class="form-label">{{.Label}}</label>
+                <select class="form-select" id="p{{.Value}}" name="p{{.Value}}" onchange="mostraobservacion('p{{.Value}}','av37')">
+                  {{end}}
+                  {{end}}
+                  <option value="" selected></option>
+                  {{range .Solucion}}
+                  {{if eq .IdPregunta "-6" }}
+                  <option value="{{.Value}}">{{.Label}}</option>
+                  {{end}}
+                  {{end}}
+                  <option value="3">N/A</option>
+                  </select>
+
+                  <div id="av37" class="d-none">
+                  <label for="obs2-29"><em>Observaciones</em></label>
+                  <textarea class="form-control" name="caobs30" id="caobs30" rows="1" maxlength="700"></textarea>       
+                  </div>      
+                </div>
+              </div>
+            </fieldset>
+            <br>
+            <div id="presencial2" class="d-none">
+            <fieldset class="border p-3 rounded">
+
+                <h5>Espacio y seguridad</h5>
+                <p style="text-align: justify;"><em>Visibilización del programa en el centro escolar/ sede</em></p>  
+                <p style="text-align: justify;"><b>Aspectos de verificación</b></p>  
+              
+                {{range .Preguntas}}
+                {{if eq .Value "124" }}
+                <label for="p{{.Value}}" class="form-label">{{.Label}}</label>
+                <select class="form-select" id="p{{.Value}}" name="p{{.Value}}" onchange="mostraobservacion('p{{.Value}}','av38')">
+                  {{end}}
+                  {{end}}
+                  <option value="" selected></option>
+                  {{range .Solucion}}
+                  {{if eq .IdPregunta "-6" }}
+                  <option value="{{.Value}}">{{.Label}}</option>
+                  {{end}}
+                  {{end}}
+                  <option value="3">N/A</option>
+                  </select>
+
+                  <div id="av38" class="d-none">
+                  <label for="obs3-1"><em>Observaciones</em></label>
+                  <textarea class="form-control" name="esobs1" id="esobs1" rows="1" maxlength="700"></textarea>
+                  <br>
+                  </div>
+
+                {{range .Preguntas}}
+                {{if eq .Value "127" }}
+                <label for="p{{.Value}}" class="form-label">{{.Label}}</label>
+                <select class="form-select" id="p{{.Value}}" name="p{{.Value}}" onchange="mostraobservacion('p{{.Value}}','av39')">
+                  {{end}}
+                  {{end}}
+                  <option value="" selected></option>
+                  {{range .Solucion}}
+                  {{if eq .IdPregunta "-6" }}
+                  <option value="{{.Value}}">{{.Label}}</option>
+                  {{end}}
+                  {{end}}
+                  <option value="3">N/A</option>
+                  </select>
+
+                  <div id="av39" class="d-none">
+                  <label for="obs3-4"><em>Observaciones</em></label>
+                  <textarea class="form-control" name="esobs4" id="esobs4" rows="1" maxlength="700"></textarea>
+                  <br>      
+                  </div>
+
+              </div>
+            </fieldset>
+            <br>
+
+            <fieldset class="border p-3 rounded">
+              <div class="container">
+                <h5>Protección Infantil</h5>
+                <p style="text-align: justify;"><b>Aspectos de verificación</b></p>  
+
+              {{range .Preguntas}}
+              {{if eq .Value "129" }}
+              <label for="p{{.Value}}" class="form-label">{{.Label}}</label>
+              <select class="form-select" id="p{{.Value}}" name="p{{.Value}}" onchange="mostraobservacion('p{{.Value}}','av41')" required>
+                {{end}}
+                {{end}}
+                <option value="" selected></option>
+                {{range .Solucion}}
+                {{if eq .IdPregunta "-6" }}
+                <option value="{{.Value}}">{{.Label}}</option>
+                {{end}}
+                {{end}}
+                <option value="3">N/A</option>
+                </select>
+
+                <div id="av41" class="d-none">
+                <label for="obs4-1"><em>Observaciones</em></label>
+                <textarea class="form-control" name="piobs1" id="piobs1" rows="1" maxlength="700"></textarea>
+                <br>
+                </div>
+
+              {{range .Preguntas}}
+              {{if eq .Value "130" }}
+              <label for="p{{.Value}}" class="form-label">{{.Label}}</label>
+              <select class="form-select" id="p{{.Value}}" name="p{{.Value}}" onchange="mostraobservacion('p{{.Value}}','av42')" required>
+                {{end}}
+                {{end}}
+                <option value="" selected></option>
+                {{range .Solucion}}
+                {{if eq .IdPregunta "-6" }}
+                <option value="{{.Value}}">{{.Label}}</option>
+                {{end}}
+                {{end}}
+                <option value="3">N/A</option>
+                </select>
+
+                <div id="av42" class="d-none">
+                <label for="obs4-2"><em>Observaciones</em></label>
+                <textarea class="form-control" name="piobs2" id="piobs2" rows="1" maxlength="700"></textarea>
+                <br>
+                </div>
+
+              {{range .Preguntas}}
+              {{if eq .Value "131" }}
+              <label for="p{{.Value}}" class="form-label">{{.Label}}</label>
+              <select class="form-select" id="p{{.Value}}" name="p{{.Value}}" onchange="mostraobservacion('p{{.Value}}','av43')" required>
+                {{end}}
+                {{end}}
+                <option value="" selected></option>
+                {{range .Solucion}}
+                {{if eq .IdPregunta "-6" }}
+                <option value="{{.Value}}">{{.Label}}</option>
+                {{end}}
+                {{end}}
+                <option value="3">N/A</option>
+                </select>
+
+                <div id="av43" class="d-none">
+                <label for="obs4-3"><em>Observaciones</em></label>
+                <textarea class="form-control" name="piobs3" id="piobs3" rows="1" maxlength="700"></textarea>
+                <br>
+                </div>
+
+              {{range .Preguntas}}
+              {{if eq .Value "132" }}
+              <label for="p{{.Value}}" class="form-label">{{.Label}}</label>
+              <select class="form-select" id="p{{.Value}}" name="p{{.Value}}" onchange="mostraobservacion('p{{.Value}}','av44')" required>
+                {{end}}
+                {{end}}
+                <option value="" selected></option>
+                {{range .Solucion}}
+                {{if eq .IdPregunta "-6" }}
+                <option value="{{.Value}}">{{.Label}}</option>
+                {{end}}
+                {{end}}
+                <option value="3">N/A</option>
+                </select>
+
+                <div id="av44" class="d-none">
+                <label for="obs4-4"><em>Observaciones</em></label>
+                <textarea class="form-control" name="piobs4" id="piobs4" rows="1" maxlength="700"></textarea>
+                <br>
+                </div>
+                
+              {{range .Preguntas}}
+              {{if eq .Value "133" }}
+              <label for="p{{.Value}}" class="form-label">{{.Label}}</label>
+              <select class="form-select" id="p{{.Value}}" name="p{{.Value}}" onchange="mostraobservacion('p{{.Value}}','av45')" required>
+                {{end}}
+                {{end}}
+                <option value="" selected></option>
+                {{range .Solucion}}
+                {{if eq .IdPregunta "-6" }}
+                <option value="{{.Value}}">{{.Label}}</option>
+                {{end}}
+                {{end}}
+                <option value="3">N/A</option>
+                </select>
+
+                <div id="av45" class="d-none">
+                <label for="obs4-5"><em>Observaciones</em></label>
+                <textarea class="form-control" name="piobs5" id="piobs5" rows="1" maxlength="700"></textarea>
+                <br>
+                </div>
+
+              {{range .Preguntas}}
+              {{if eq .Value "134" }}
+              <label for="p{{.Value}}" class="form-label">{{.Label}}</label>
+              <select class="form-select" id="p{{.Value}}" name="p{{.Value}}" onchange="mostraobservacion('p{{.Value}}','av46')" required>
+                {{end}}
+                {{end}}
+                <option value="" selected></option>
+                {{range .Solucion}}
+                {{if eq .IdPregunta "-6" }}
+                <option value="{{.Value}}">{{.Label}}</option>
+                {{end}}
+                {{end}}
+                <option value="3">N/A</option>
+                </select>
+
+                <div id="av46" class="d-none">
+                <label for="obs4-6"><em>Observaciones</em></label>
+                <textarea class="form-control" name="piobs6" id="piobs6" rows="1" maxlength="700"></textarea>
+                <br>    
+                </div>
+
+              </div>
+            </fieldset>
+
+            <br>
+            <fieldset class="border p-3 rounded">
+              <div class="container">
+              <p style="text-align: justify;">
+                <b>4.	Cierre</b></p>   
+
+                {{range .Preguntas}}
+                {{if eq .Value "136" }}
+                <label for="p{{.Value}}" class="form-label">{{.Label}}</label>
+                <textarea class="form-control" name="comentarios" id="comentarios" rows="2" maxlength="900"></textarea>
+                  {{end}}
+                  {{end}}    
+
+                {{range .Preguntas}}
+                {{if eq .Value "137" }}
+                <label for="p{{.Value}}" class="form-label">{{.Label}}</label>
+                <textarea class="form-control" name="recomendaciones" id="recomendaciones" rows="2" maxlength="900"></textarea>
+                  {{end}}
+                  {{end}}    
+            </div>
+            </fieldset>
+            <br>
+              <button class="btn btn-primary" id="boton" type="submit"> Enviar</button>
+        </form>
+      </div>
+    </div>
+    <script src="/static/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="/public/JS/Voluntarios/encuestavisitacampo.js"></script>
+  </body>
+</html>

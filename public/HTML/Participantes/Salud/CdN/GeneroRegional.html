@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <base target="_top">
+    <title> Programas de Género Regional </title>
+    <link rel="icon" href="https://gwdata.org/images/favicon.png" type="image/png">
+    <link href="/static/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+</head>
+
+<body style="background-color: rgba(177, 147, 196, 0.5); font-family: 'Montserrat', sans-serif;">
+
+    <div class="container">
+
+        <img src="/public/IMG/logo.png" class="img-fluid" alt="Chemonics">
+
+        <form action="/salud/cdn/genero/post" method="POST" enctype="multipart/form-data" id="formualrioRegistro" name="formualrioRegistro" class="needs-validation" novalidatez>
+            <br>
+            <h2 class="fw-bold"> CUESTIONARIO DE PROGRAMAS DE GÉNERO REGIONAL</h2>
+            <br>
+            <p style="text-align: justify;">
+                ¡Buen día! Gracias por ser parte de Club de Niñas. A continuación, encontrarás preguntas sobre los temas
+                que viste en el Club, algunas tocan temas personales y otras de conocimiento común. El objetivo de esta
+                encuesta es saber lo que has aprendido en el Club y conocer cómo podemos mejorarlo. Tu respuesta será
+                completamente anónima (no sabremos quién contestó qué) y se usará solo para mejorar el programa, solo el
+                equipo de Glasswing tendrá acceso a los resultados de la encuesta y se compartirán de manera grupal,
+                nunca de manera individual. Además, no hay respuestas buenas ni malas, todas son igual de importantes,
+                por lo que puedes sentir completa libertad de contestar con honestidad.
+                <br><br>
+                Si hay alguna pregunta que no te hace sentir cómoda y prefieres no contestar, puedes hacerlo. También,
+                si en algún momento decides que prefieres no seguir con la encuesta, puedes hacerlo sin problema; esto
+                no afectará tu participación en las actividades de Glasswing. Si tienes alguna pregunta o comentario, no
+                dudes en decírmelo. ¡Estamos aquí para ayudarte!
+            </p>
+            <br>
+
+            <label for="inicio" class="form-label"><b>¿Deseas participar de forma voluntaria en esta
+                    encuesta?</b></label>
+            <div class="radio">
+                <input type="radio" value="1" id="inicio" name="inicio" onclick="ocultarppal(this)"> Sí<br>
+                <input type="radio" value="0" id="inicio" name="inicio" onclick="ocultarppal(this)"> No<br>
+            </div>
+            <div id="ocultar" class="d-none">
+                <div id="Part1" class="mt-5">
+                    <h3 class="fw-bold" style="color: #73568f;">PARTE 1: DATOS DE IDENTIFICACIÓN</h3>
+                    <br>
+                    <label for="edad" class="form-label fw-bold">Ingresa tu edad</label>
+                    <input type="number" class="form-control" id="edad" name="edad" min="5" max="50" step="1" required>
+                    <br>
+                    <div class="col">
+                        <label for="pais" class="form-label"><b>Selecciona tu país:</b></label>
+                        <select class="form-select" id="pais" name="pais" onchange="actualizardepto(this.value)"
+                            required>
+                            <option value="" selected></option>
+                            <option value="16">Colombia</option>
+                            <option value="6">Costa Rica</option>
+                            <option value="4">Guatemala</option>
+                            <option value="3">Honduras</option>
+                            <option value="17">México</option>
+                            <option value="1">Panamá</option>
+                        </select>
+                    </div>
+                    <br>
+
+                    <div class="col">
+                        <label for="pais" class="form-label"><b>Selecciona la región administrativa (departamento,
+                                estado o provincia) donde se encuentra la sede a la que perteneces.</b></label>
+                        <select class="form-select" id="pais2" name="pais2" onchange="actualizarmun(this.value)"
+                            required>
+                        </select>
+                    </div>
+                    <br>
+
+                    <div class="col">
+                        <label for="departamento2" class="form-label"><b>Selecciona la localidad (municipio, alcaldía,
+                                ciudad o distrito) donde se encuentra la sede a la que perteneces.</b></label>
+                        <select class="form-select" id="departamento2" name="departamento2"
+                            onchange="actualizarsede(this.value)" required>
+                        </select>
+                    </div>
+                    <br>
+
+                    <div class="col">
+                        <label for="sede2" class="form-label"><b>Selecciona la sede/centro escolar al que
+                                perteneces</b></label>
+                        <select class="form-select" id="sede2" name="sede2" required>
+                            <option value=""></option>
+                        </select>
+                    </div>
+
+                </div>
+
+                <div id="Part2" class="mt-5">
+                    <h3 class="fw-bold" style="color: #73568f;">PARTE 2: RECONOCIMIENTO DE VIOLENCIA Y DESIGUALDAD </h3>
+                    <br>
+                    <label for="tabla1" class="form-label fw-bold">1. A continuación, leerás algunas situaciones que
+                        podrías
+                        ver en
+                        la
+                        vida diaria. Selecciona las situaciones que creas que muestran violencia.</label>
+                    <div class="container mt-4">
+                        <table class="table table-bordered" style="text-align:center;">
+                            <tr>
+                                <td style="background-color: rgba(177, 147, 196, 0.05);">
+                                    <input type="checkbox" name="situacion" id="opc1" value="1"> Juanito le pide perdón
+                                    arrepentido a su novia después de haberle gritado varias veces. <br><br>
+                                    <img src="/public/IMG/Genero/p2_img1.jpg" alt="Imagen 1">
+                                </td>
+                                <td style="background-color: rgba(177, 147, 196, 0.05);">
+                                    <input type="checkbox" name="situacion" id="opc2" value="2"> Una pareja decide
+                                    divorciarse
+                                    porque se han dado cuenta de que no quieren estar juntos. <br><br>
+                                    <img src="/public/IMG/Genero/p2_img2.jpg" alt="Imagen 2">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="background-color: rgba(177, 147, 196, 0.05);">
+                                    <input type="checkbox" name="situacion" id="opc3" value="3"> Un hombre grita
+                                    "mamacita" cuando
+                                    ve pasar a una mujer cerca de él. <br><br>
+                                    <img src="/public/IMG/Genero/p2_img3.jpg" alt="Imagen 3">
+                                </td>
+                                <td style="background-color: rgba(177, 147, 196, 0.05);">
+                                    <input type="checkbox" name="situacion" id="opc4" value="4"> Katherin y María ríen
+                                    al ver a un
+                                    compañero de la escuela llorar porque sacó malas calificaciones. <br><br>
+                                    <img src="/public/IMG/Genero/p2_img4.jpg" alt="Imagen 4">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="background-color: rgba(177, 147, 196, 0.05);">
+                                    <input type="checkbox" name="situacion" id="opc5" value="5"> El novio de Juana opina
+                                    constantemente sobre su ropa y le dice que debería cambiarla por una que le tape más
+                                    el
+                                    cuerpo. <br><br>
+                                    <img src="/public/IMG/Genero/p2_img5.jpg" alt="Imagen 5">
+
+                                </td>
+                                <td style="background-color: rgba(177, 147, 196, 0.05);">
+                                    <input type="checkbox" name="situacion" id="opc6" value="6"> Una pareja decide tener
+                                    relaciones sexuales por primera vez y planifican que sea especial. <br><br>
+                                    <img src="/public/IMG/Genero/p2_img6.jpg" alt="Imagen 6">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="2" style="background-color: rgba(177, 147, 196, 0.05);">
+                                    <input type="checkbox" name="situacion" id="opc7" value="7"> Una mujer y un hombre
+                                    aplican al
+                                    mismo puesto de trabajo, pero la mujer está embarazada y por eso la empresa decide
+                                    no
+                                    darle el trabajo. <br><br>
+                                    <img src="/public/IMG/Genero/p2_img7.jpg" alt="Imagen Combinada">
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+
+                    <div class="col mt-4">
+                        <label for="violencia" class="form-label"><b>2. ¿Has identificado alguna situación de violencia
+                                hacia la mujer en tu escuela, comunidad, pareja o familia?</b></label><br>
+                        <input type="radio" value="1" id="violencia" name="violencia"> Sí<br>
+                        <input type="radio" value="0" id="violencia" name="violencia"> No<br>
+                        <br>
+                        <p style="text-align: justify;">
+                            <b>2.1 Lee el siguiente caso:</b> <i>“Clara y Andrés son compañeros de grado. Son amigos y
+                                disfrutan
+                                jugando
+                                juntos durante el recreo. Sin embargo, últimamente Clara ha notado que Andrés la trata
+                                de
+                                una
+                                manera diferente y no sabe por qué. En clase, cuando Clara levanta la mano para
+                                responder o
+                                para
+                                hablar, Andrés a veces se burla de ella y la interrumpe diciendo: "las niñas siempre
+                                dicen
+                                cosas
+                                bien raras" o "mejor deja que los niños hablen porque saben más". Clara se siente
+                                incómoda y
+                                empieza a dudar de sí misma.”</i><br>
+                        </p>
+                        <label for="caso" class="form-label"><b>2.2 ¿Qué debería pasar para que esa situación no sea
+                                violenta?</b></label>
+                        <textarea class="form-control" name="caso" id="caso" rows="2" maxlength="500"></textarea>
+                        <br>
+                    </div>
+                    <label for="tabla2" class="form-label fw-bold">3. A continuación, se presentan una serie de
+                        situaciones,
+                        identifica si estas representan violencia y selecciona a qué tipo de violencia pertenecen
+                        (Puedes
+                        seleccionar más de una opción si piensas que la situación lo requiere).</label>
+                    <table class="table table-bordered align-middle" style="text-align:center;">
+                        <thead class="align-middle">
+                            <tr>
+                                <th style="background-color: rgba(177, 147, 196, 0.05);">SITUACIÓN</th>
+                                <th style="background-color: #f0f0f0;">NO ES VIOLENCIA <br><i
+                                        class="bi bi-emoji-laughing"></i></th>
+                                <th style="background-color: #f0f0f0;">SÍ ES VIOLENCIA <br><i
+                                        class="bi bi-emoji-tear"></i></th>
+                                <th style="background-color: rgba(177, 147, 196, 0.05);">VIOLENCIA ECONÓMICA <br><i class="bi bi-cash-coin"></i></th>
+                                <th style="background-color: rgba(177, 147, 196, 0.05);">VIOLENCIA PSICOLÓGICA <br><i class="bi bi-chat-right-quote"></i></th>
+                                <th style="background-color: rgba(177, 147, 196, 0.05);">VIOLENCIA HACIA LA MUJER <br><i class="bi bi-person-standing-dress"></i></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <th style="text-align: left; background-color: rgba(177, 147, 196, 0.05);">Pedro le cuenta a su novia sus sueños y metas, pero ella
+                                    casi
+                                    siempre le dice ¨no creo que lo logres¨, ¨no deberías perder tu tiempo intentándolo”
+                                    y
+                                    cuando él insiste en contarle, ella lo ignora.</th>
+                                <td style="background-color: #f0f0f0;"><input type="radio" name="sr1" id="sr1" value="0"
+                                        onclick="controlCheckboxes(this)"></td>
+                                <td style="background-color: #f0f0f0;"><input type="radio" name="sr1" id="sr1" value="1"
+                                        onclick="controlCheckboxes(this)">
+                                </td>
+                                <td style="background-color: rgba(177, 147, 196, 0.05);"><input type="checkbox" name="sr1-opc" id="sr1-opc1" value="1"></td>
+                                <td style="background-color: rgba(177, 147, 196, 0.05);"><input type="checkbox" name="sr1-opc" id="sr1-opc2" value="2"></td>
+                                <td style="background-color: rgba(177, 147, 196, 0.05);"><input type="checkbox" name="sr1-opc" id="sr1-opc3" value="3"></td>
+
+                            </tr>
+                            <tr>
+                                <th style="text-align: left; background-color: rgba(177, 147, 196, 0.05);">José, un hombre le insiste a María que sean novios, pero ella no quiere. </th>
+                                <td style="background-color: #f0f0f0;"><input type="radio" name="sr2" id="sr2" value="0"
+                                        onclick="controlCheckboxes2(this)"></td>
+                                <td style="background-color: #f0f0f0;"><input type="radio" name="sr2" id="sr2" value="1"
+                                        onclick="controlCheckboxes2(this)">
+                                </td>
+                                <td style="background-color: rgba(177, 147, 196, 0.05);"><input type="checkbox" name="sr2-opc" id="sr2-opc1" value="1"></td>
+                                <td style="background-color: rgba(177, 147, 196, 0.05);"><input type="checkbox" name="sr2-opc" id="sr2-opc2" value="2"></td>
+                                <td style="background-color: rgba(177, 147, 196, 0.05);"><input type="checkbox" name="sr2-opc" id="sr2-opc3" value="3"></td>
+                            </tr>
+                            <tr>
+                                <th style="text-align: left; background-color: rgba(177, 147, 196, 0.05);">En una fiesta, una chica empieza a recibir comentarios de
+                                    personas que no conoce sobre su cuerpo.</th>
+                                <td style="background-color: #f0f0f0;"><input type="radio" name="sr3" id="sr3" value="0"
+                                        onclick="controlCheckboxes3(this)"></td>
+                                <td style="background-color: #f0f0f0;"><input type="radio" name="sr3" id="sr3" value="1"
+                                        onclick="controlCheckboxes3(this)">
+                                </td>
+                                <td style="background-color: rgba(177, 147, 196, 0.05);"><input type="checkbox" name="sr3-opc" id="sr3-opc1" value="1"></td>
+                                <td style="background-color: rgba(177, 147, 196, 0.05);"><input type="checkbox" name="sr3-opc" id="sr3-opc2" value="2"></td>
+                                <td style="background-color: rgba(177, 147, 196, 0.05);"><input type="checkbox" name="sr3-opc" id="sr3-opc3" value="3"></td>
+                            </tr>
+                            <tr>
+                                <th style="text-align: left; background-color: rgba(177, 147, 196, 0.05);">Marcos no le permite a su esposa gastar su dinero como
+                                    ella
+                                    quiere.</th>
+                                <td style="background-color: #f0f0f0;"><input type="radio" name="sr4" id="sr4" value="0"
+                                        onclick="controlCheckboxes4(this)"></td>
+                                <td style="background-color: #f0f0f0;"><input type="radio" name="sr4" id="sr4" value="1"
+                                        onclick="controlCheckboxes4(this)">
+                                </td>
+                                <td style="background-color: rgba(177, 147, 196, 0.05);"><input type="checkbox" name="sr4-opc" id="sr4-opc1" value="1"></td>
+                                <td style="background-color: rgba(177, 147, 196, 0.05);"><input type="checkbox" name="sr4-opc" id="sr4-opc2" value="2"></td>
+                                <td style="background-color: rgba(177, 147, 196, 0.05);"><input type="checkbox" name="sr4-opc" id="sr4-opc3" value="3"></td>
+                            </tr>
+                            <tr>
+                                <th style="text-align: left; background-color: rgba(177, 147, 196, 0.05);">Camila le dice repetidas veces a Rosita que si se junta en
+                                    el
+                                    recreo con las niñas de la otra sección le dejará de hablar. </th>
+                                <td style="background-color: #f0f0f0;"><input type="radio" name="sr5" id="sr5" value="0"
+                                        onclick="controlCheckboxes5(this)"></td>
+                                <td style="background-color: #f0f0f0;"><input type="radio" name="sr5" id="sr5" value="1"
+                                        onclick="controlCheckboxes5(this)">
+                                </td>
+                                <td style="background-color: rgba(177, 147, 196, 0.05);"><input type="checkbox" name="sr5-opc" id="sr5-opc1" value="1"></td>
+                                <td style="background-color: rgba(177, 147, 196, 0.05);"><input type="checkbox" name="sr5-opc" id="sr5-opc2" value="2"></td>
+                                <td style="background-color: rgba(177, 147, 196, 0.05);"><input type="checkbox" name="sr5-opc" id="sr5-opc3" value="3"></td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <label for="caso2" class="form-label"><b>4. A continuación, se te presentará una situación, lee
+                            con
+                            calma y responde lo que pienses, ¡no hay respuestas correctas o incorrectas! Queremos
+                            conocer tu
+                            opinión.</b></label>
+                    <br>
+                    <p style="text-align: justify;">
+                        <i>“Las amigas de Maura que no tienen novio, no entienden que es normal que se aleje de ellas
+                            para
+                            pasar más tiempo con él. Además, Maura piensa que es importante darle su lugar a su novio y
+                            por
+                            eso ella ha decidido alejarse de sus amigos hombres para que él no se sienta
+                            celoso.”</i><br>
+                    </p>
+                    <label for="caso2" class="form-label"><b>4.1 ¿Qué tan de acuerdo estás con lo que Maura
+                            piensa?</b></label><br>
+                    <input type="radio" value="1" id="caso2" name="caso2"> Estoy de acuerdo<br>
+                    <input type="radio" value="2" id="caso2" name="caso2"> No estoy segura<br>
+                    <input type="radio" value="3" id="caso2" name="caso2"> No estoy de acuerdo<br>
+                    <label for="motivocaso2" class="form-label"><b>¿Por qué?</b></label>
+                    <textarea class="form-control" name="motivocaso2" id="motivocaso2" rows="2"
+                        maxlength="500"></textarea>
+                </div>
+
+                <div id="Part3" class="mt-5">
+                    <h3 class="fw-bold" style="color: #73568f;">PARTE 3: DESIGUALDAD HACIA LAS MUJERES, NIÑAS Y ADOLESCENTES Y ESTEREOTIPOS</h3>
+                    <br>
+                    <p style="text-align: justify;">
+                        En esta sección, encontrarás algunas situaciones expresadas por jóvenes como tú. Responde a las
+                        preguntas según tu opinión.
+                    </p>
+
+                    <label for="afirma" class="form-label fw-bold">5. A continuación, se presentan algunas frases,
+                        selecciona
+                        la que más represente tu opinión.</label>
+                    <table class="table table-bordered align-middle" style="text-align:center;">
+                        <thead class="align-middle">
+                            <tr>
+                                <th style="background-color: rgba(177, 147, 196, 0.05);">Situación</th>
+                                <th style="background-color: rgba(177, 147, 196, 0.05);">SÍ ESTOY DE ACUERDO <br><i class="bi bi-hand-thumbs-up"></i></th>
+                                <th style="background-color: rgba(177, 147, 196, 0.05);">NO ESTOY SEGURA <br><i class="bi bi-emoji-neutral"></i></th>
+                                <th style="background-color: rgba(177, 147, 196, 0.05);">NO ESTOY DE ACUERDO <br><i class="bi bi-hand-thumbs-down"></i></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <th style="text-align: left; background-color: rgba(177, 147, 196, 0.05);">Ser fuerte y valiente es más necesario para los chicos que
+                                    para las chicas.
+                                </th>
+                                <td style="background-color: rgba(177, 147, 196, 0.05);"><input type="radio" name="psb1" id="psb1" value="1"></td>
+                                <td style="background-color: rgba(177, 147, 196, 0.05);"><input type="radio" name="psb1" id="psb1" value="2"></td>
+                                <td style="background-color: rgba(177, 147, 196, 0.05);"><input type="radio" name="psb1" id="psb1" value="3"></td>
+
+                            </tr>
+                            <tr>
+                                <th style="text-align: left; background-color: rgba(177, 147, 196, 0.05);">Las mujeres, en general, necesitan de un hombre cerca para
+                                    que
+                                    las proteja.</th>
+                                <td style="background-color: rgba(177, 147, 196, 0.05);"><input type="radio" name="psb2" id="psb2" value="1"></td>
+                                <td style="background-color: rgba(177, 147, 196, 0.05);"><input type="radio" name="psb2" id="psb2" value="2"></td>
+                                <td style="background-color: rgba(177, 147, 196, 0.05);"><input type="radio" name="psb2" id="psb2" value="3"></td>
+                            </tr>
+                            <tr>
+                                <th style="text-align: left; background-color: rgba(177, 147, 196, 0.05);">El pago que una persona recibe por su trabajo no debe
+                                    depender
+                                    de si es una mujer o un hombre. </th>
+                                <td style="background-color: rgba(177, 147, 196, 0.05);"><input type="radio" name="psb3" id="psb3" value="1"></td>
+                                <td style="background-color: rgba(177, 147, 196, 0.05);"><input type="radio" name="psb3" id="psb3" value="2"></td>
+                                <td style="background-color: rgba(177, 147, 196, 0.05);"><input type="radio" name="psb3" id="psb3" value="3"></td>
+                            </tr>
+                            <tr>
+                                <th style="text-align: left; background-color: rgba(177, 147, 196, 0.05);">Las mujeres son mejores cuidando a los hijos/as que los
+                                    hombres.</th>
+                                <td style="background-color: rgba(177, 147, 196, 0.05);"><input type="radio" name="psb4" id="psb4" value="1"></td>
+                                <td style="background-color: rgba(177, 147, 196, 0.05);"><input type="radio" name="psb4" id="psb4" value="2"></td>
+                                <td style="background-color: rgba(177, 147, 196, 0.05);"><input type="radio" name="psb4" id="psb4" value="3"></td>
+                            </tr>
+                            <tr>
+                                <th style="text-align: left; background-color: rgba(177, 147, 196, 0.05);">Cuando una niña tiene sentimientos de tristeza es mejor
+                                    que se
+                                    lo guarde y lo resuelva por ella misma que pedir ayuda a alguien de su confianza.
+                                </th>
+                                <td style="background-color: rgba(177, 147, 196, 0.05);"><input type="radio" name="psb5" id="psb5" value="1"></td>
+                                <td style="background-color: rgba(177, 147, 196, 0.05);"><input type="radio" name="psb5" id="psb5" value="2"></td>
+                                <td style="background-color: rgba(177, 147, 196, 0.05);"><input type="radio" name="psb5" id="psb5" value="3"></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <label for="caso3" class="form-label"><b>6. A continuación, se te presentará una situación, por
+                            favor, lee con atención y contesta según lo creas conveniente. Recuerda que no hay
+                            respuestas
+                            buenas o malas, solo opiniones.</b></label>
+                    <br>
+                    <p style="text-align: justify;">
+                        <i>“Marco y Susana van a tener relaciones sexuales por primera vez, bueno… es la primera vez
+                            para
+                            ella, no para él. Pero Marco no quiere usar preservativos ya que lo considera una prueba de
+                            amor, además piensa que no será especial si se usa preservativos”</i><br>
+                    </p>
+                    <label for="caso3" class="form-label"><b>¿Qué recomendarías a Susana que haga?</b></label><br>
+                    <input type="radio" value="1" id="caso3" name="caso3" onclick="ocultardiv1(this)"> Que sí tenga
+                    relaciones sexuales con su novio.<br>
+                    <input type="radio" value="2" id="caso3" name="caso3" onclick="ocultardiv1(this)"> Que no tenga
+                    relaciones sexuales con su novio.<br>
+                    <input type="radio" value="3" id="caso3" name="caso3" onclick="ocultardiv1(this)"> No estoy
+                    segura.<br>
+                    <br>
+                    <div id="pregunta6" class="d-none">
+                        <label for="motivocaso3" class="form-label"><b>¿Por qué?</b></label>
+                        <textarea class="form-control" name="motivocaso3" id="motivocaso3" rows="2"
+                            maxlength="500"></textarea>
+                        <br>
+                    </div>
+
+                    <label for="dis2" class="form-label fw-bold">7. Si estuvieses en una situación similar y tuvieses
+                        dudas,
+                        ¿A quién pedirías un consejo para saber qué hacer? (puedes seleccionar más de una opción).
+                    </label><br>
+                    <input type="checkbox" name="consejo" value="1"> A mi mejor amiga o amigo<br>
+                    <input type="checkbox" name="consejo" value="2"> A mi mamá<br>
+                    <input type="checkbox" name="consejo" value="3"> A mi papá<br>
+                    <input type="checkbox" name="consejo" value="4"> A mi mentora del club<br>
+                    <input type="checkbox" name="consejo" value="5"> A un amigo o amiga que haya tenido relaciones
+                    sexuales
+                    antes<br>
+                    <input type="checkbox" name="consejo" value="6"> A un familiar cercano<br>
+                    <input type="checkbox" name="consejo" value="7"> A un maestro o maestra<br>
+                    <input type="checkbox" name="consejo" value="8"> A un vecino/a de mi comunidad<br>
+                    <input type="checkbox" name="consejo" value="9"> A un miembro de la iglesia<br>
+                    <input type="checkbox" name="consejo" value="10"> Buscaría en internet<br>
+                    <input type="checkbox" name="consejo" value="11"> A nadie<br>
+                    <input type="checkbox" name="consejo" value="12" id="otroCheckbox" onclick="ocultardiv3(this)">
+                    Otro<br>
+                    <br>
+                    <div id="pregunta7" class="d-none">
+                        <label for="otroconsejo" class="form-label"><b>Especifique</b></label>
+                        <input type="text" name="otroconsejo" class="form-control" id="otroconsejo" maxlength="50">
+                        <br>
+                    </div>
+                    <label for="afirma" class="form-label fw-bold">8. Del 1 al 5 (donde 5 es mucha confianza) ¿Qué tanta
+                        confianza tienes para hablar de temas de educación sexual (menstruación, desarrollo físico del
+                        cuerpo de las niñas y niños) con tus responsables (cuidadores)? (selecciona el número con el que
+                        te
+                        sientas identificada)</label>
+                    <table class="table table-bordered align-middle" style="text-align:center;">
+                        <tr>
+                            <td style="background-color: #E06666;">
+                                <input type="radio" name="seleccionp8" value="1"> 1
+                            </td>
+                            <td style="background-color: #E06666;">
+                                <input type="radio" name="seleccionp8" value="2"> 2
+                            </td>
+                            <td style="background-color: #FFD966;">
+                                <input type="radio" name="seleccionp8" value="3"> 3
+                            </td>
+                            <td style="background-color: #93C47D;">
+                                <input type="radio" name="seleccionp8" value="4"> 4
+                            </td>
+                            <td style="background-color: #93C47D;">
+                                <input type="radio" name="seleccionp8" value="5"> 5
+                            </td>
+                        </tr>
+                    </table>
+                    <label for="afirma" class="form-label fw-bold">8.1 Del 1 al 5 (donde 5 es mucha confianza) ¿Qué
+                        tanta
+                        confianza tienes para hablar sobre toma decisiones respecto a relaciones sociales y/o sexuales
+                        con
+                        tus responsables (cuidadores)? (selecciona el número con el que te sientas
+                        identificada)?</label>
+                    <table class="table table-bordered align-middle" style="text-align:center;">
+                        <tr>
+                            <td style="background-color: #E06666;">
+                                <input type="radio" name="seleccionp8-1" value="1"> 1
+                            </td>
+                            <td style="background-color: #E06666;">
+                                <input type="radio" name="seleccionp8-1" value="2"> 2
+                            </td>
+                            <td style="background-color: #FFD966;">
+                                <input type="radio" name="seleccionp8-1" value="3"> 3
+                            </td>
+                            <td style="background-color: #93C47D;">
+                                <input type="radio" name="seleccionp8-1" value="4"> 4
+                            </td>
+                            <td style="background-color: #93C47D;">
+                                <input type="radio" name="seleccionp8-1" value="5"> 5
+                            </td>
+                        </tr>
+                    </table>
+                    <label for="talleres" class="form-label"><b>8.2 ¿Alguien de tu familia ha participado en los
+                            talleres para
+                            adultos impartidos por Glasswing?</b></label><br>
+                    <input type="radio" value="1" id="talleres" name="talleres"> Sí<br>
+                    <input type="radio" value="0" id="talleres" name="talleres"> No<br>
+                    <br>
+
+                    <h3 class="fw-bold" style="color: #73568f;">PARTE 4: EXPERIENCIA EN EL CLUB DE NIÑAS </h3>
+                    <br>
+
+                    <label for="afirma" class="form-label fw-bold">9. ¿Cuánto consideras que la experiencia en el club
+                        te
+                        ayudó a trabajar en tu autoestima?</label>
+                    <table class="table table-bordered align-middle" style="text-align:center;">
+                        <tr>
+                            <td style="background-color: #E06666;">
+                                <input type="radio" name="seleccionp9" value="1"> Nada
+                            </td>
+                            <td style="background-color: #FFD966;">
+                                <input type="radio" name="seleccionp9" value="2"> Poco
+                            </td>
+                            <td style="background-color: #93C47D;">
+                                <input type="radio" name="seleccionp9" value="3"> Mucho
+                            </td>
+                        </tr>
+                    </table>
+                    <br>
+                    <label for="metas" class="form-label"><b>10. ¿Cambió algo en tus sueños o metas por tu participación
+                            en
+                            el Club?</b></label><br>
+                    <input type="radio" value="1" id="metas" name="metas" onclick="ocultardiv2(this)"> Sí<br>
+                    <input type="radio" value="0" id="metas" name="metas" onclick="ocultardiv2(this)"> No<br>
+                    <br>
+                    <div id="pregunta10">
+                        <label for="percepcion" class="form-label"><b>11. ¿Qué ha cambiado de cómo te veías antes del
+                                Club
+                                y cómo te ves a futuro ahora que has participado del programa?</b></label>
+                        <textarea class="form-control" name="percepcion" id="percepcion" rows="2"
+                            maxlength="500"></textarea>
+                        <br>
+                    </div>
+                    <label for="mejoras" class="form-label"><b>12. ¿Qué sugerirías cambiar en el Club para que
+                            mejore?</b></label>
+                    <textarea class="form-control" name="mejoras" id="mejoras" rows="2" maxlength="500"></textarea>
+                    <br>
+                    <label for="practica" class="form-label"><b>13. Comenta un breve ejemplo de cómo has puesto en
+                            práctica algún contenido del Club en tu vida diaria.
+                        </b></label>
+                    <textarea class="form-control" name="practica" id="practica" rows="2" maxlength="500"></textarea>
+                </div>
+
+                <p class="mt-5 fw-bold" style="text-align: center;">
+                    Fin de la encuesta ¡Muchas gracias por tu valioso aporte!<br>
+                </p>
+
+                <button class="btn btn-primary mt-4 mb-4" id="boton" type="submit"> Enviar</button>
+            </div>
+    </div>
+    </form>
+
+    <script src="/static/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="/public/JS/Participantes/Salud/CDN/generoreg.js"></script>
+</body>
+
+</html>

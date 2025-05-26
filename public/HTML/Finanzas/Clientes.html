@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Registro/Actualización de Proveedores por FSE</title>
+    <meta charset="utf-8">
+    <base target="_top">
+    <link href="/static/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/static/bootstrap-select/dist/css/bootstrap-select.min.css">
+    <link rel="icon" href="https://gwdata.org/images/favicon.png" type="image/png">
+  </head>
+  <body>
+
+    <div class="container">
+<img src="/public/IMG/logo.png" class="img-fluid" alt="Glasswing" />
+<form method="POST" id="formualrio" name="formualrio" class="needs-validation" action="/finanzas/datos/post" enctype="multipart/form-data" novalidatez>
+      <br><h3> Registro/Actualización de Clientes y Donantes</h3><br>
+     <p style="text-align: justify;">
+    </p>
+
+    <label for="tipoPersona" class="form-label" style="font-weight: bold;">Tipo de persona:<span style="color: #FF7D81;">**</span></label>
+    <select class="form-select" id="tipoPersona" name="tipoPersona" onchange="persona(this.value);contribuyente()" required>
+      <option disabled selected value=""></option>
+      <option value="1">Persona Natural</option>
+      <option value="2">Persona jurídica</option>
+      <option value="3">Persona Natural inscrita IVA</option>
+  </select>
+
+  <div class="d-none" id="divinscrita">
+    <label for="actividadEconomica" class="form-label" style="font-weight: bold;">Actividad económica primaria:<span style="color: #FF7D81;">**</span></label>
+    <select id="actividadEconomica" name="actividadEconomica" class="form-control selectpicker" data-live-search="true" data-live-search-placeholder="Search" data-actions-box="true"
+    data-hide-disabled="true" data-size="8" required="true">
+        <option value="" selected></option>
+      {{range .Categoria}}
+        {{$categoriaNombre := .Nombre}}
+        {{range .Subcategoria}}
+        <optgroup label="{{$categoriaNombre}} - {{.Nombre}}">
+          {{range .Actividad}}
+          <option value="{{.ID}}">{{.Nombre}}</option>
+          {{end}}
+        </optgroup>
+        {{end}}
+      {{end}}
+</select>
+
+<label for="actividadEconomica2" class="form-label" style="font-weight: bold;">Actividad económica secundaria:</label>
+<select id="actividadEconomica2" name="actividadEconomica2" class="form-control selectpicker" data-live-search="true" data-live-search-placeholder="Search" data-actions-box="true"
+data-hide-disabled="true" data-size="8">
+<option selected value=""></option>
+{{range .Categoria}}
+    {{$categoriaNombre := .Nombre}}
+    {{range .Subcategoria}}
+    <optgroup label="{{$categoriaNombre}} - {{.Nombre}}">
+      {{range .Actividad}}
+      <option value="{{.ID}}">{{.Nombre}}</option>
+      {{end}}
+    </optgroup>
+    {{end}}
+  {{end}}
+</select>
+
+<label for="actividadEconomica3" class="form-label" style="font-weight: bold;">Actividad económica terciaria:</label>
+<select id="actividadEconomica3" name="actividadEconomica3" class="form-control selectpicker" data-live-search="true" data-live-search-placeholder="Search" data-actions-box="true"
+data-hide-disabled="true" data-size="8">
+<option selected value=""></option>
+  {{range .Categoria}}
+    {{$categoriaNombre := .Nombre}}
+    {{range .Subcategoria}}
+    <optgroup label="{{$categoriaNombre}} - {{.Nombre}}">
+      {{range .Actividad}}
+      <option value="{{.ID}}">{{.Nombre}}</option>
+      {{end}}
+    </optgroup>
+    {{end}}
+  {{end}}
+</select>
+  </div>
+
+      <label for="NIT" class="form-label" style="font-weight: bold;">Número de identificacion tributario:<span style="color: #FF7D81;">**</span></label>
+      <input type="text" name="NIT" id="NIT" class="form-control" minlength="9" maxlength="15" required oninput="formatNIT(this)">
+      <label for="DocAl" id="DocAl" class="form-label" style="font-weight: bold;">Adjunte su documento de identificacion tributario (Frente)<span style="color: #FF7D81;">**</span></label>
+      <small class="form-text text-muted">Imagen legible</small> <br>
+      <input type="file" class="form-control-file" id="NITF" name="NITF" accept="image/*" required><br>
+      <label for="DocAl" id="DocAl" class="form-label" style="font-weight: bold;">Adjunte su documento de identificacion tributario (Reverso)<span style="color: #FF7D81;">**</span></label>
+      <small class="form-text text-muted">Imagen legible</small> <br>
+      <input type="file" class="form-control-file" id="NITA" name="NITA" accept="image/*" required>
+      <br>
+
+      <div class="d-none" id="divnatural">
+      <label for="nombres" class="form-label" style="font-weight: bold;">Nombres:<span style="color: #FF7D81;">**</span></label>
+      <input type="text" name="nombres" id="nombres" class="form-control" maxlength="300" >
+
+      <label for="apellidos" class="form-label" style="font-weight: bold;">Apellidos:<span style="color: #FF7D81;">**</span></label>
+      <input type="text" name="apellidos" id="apellidos" class="form-control" maxlength="300">
+
+      <label for="identidad" class="form-label" style="font-weight: bold;">Ingrese su número documento de identidad:<span style="color: #FF7D81;">**</span></label>
+      <input type="text" name="identidad" id="identidad" class="form-control" minlength="9" maxlength="9" oninput="formatIdentidad(this)"> 
+
+      <label for="DocAl" id="DocAl" class="form-label" style="font-weight: bold;">Adjunte su documento de identidad (Frente)<span style="color: #FF7D81;">**</span></label>
+      <small class="form-text text-muted">Imagen legible</small> <br>
+      <input type="file" class="form-control-file" id="identidadF" name="identidadF" accept="image/*"><br><br>
+      <label for="DocAl" id="DocAl" class="form-label" style="font-weight: bold;">Adjunte su documento de identidad (Reverso)<span style="color: #FF7D81;">**</span></label>
+      <small class="form-text text-muted">Imagen legible</small> <br>
+      <input type="file" class="form-control-file" id="identidadA" name="identidadA" accept="image/*"><br>
+      <br>
+
+      </div>
+
+<div class="d-none" id="divjuridica">
+        <label for="razonSocial" class="form-label" style="font-weight: bold;">Denominación o razón social:<span style="color: #FF7D81;">**</span></label>
+        <input type="text" name="razonSocial" id="razonSocial" class="form-control" maxlength="300" > 
+
+        <label for="nombreComercial" class="form-label" style="font-weight: bold;">Nombre comercial:<span style="color: #FF7D81;">**</span></label>
+        <input type="text" name="nombreComercial" id="nombreComercial" class="form-control" maxlength="300">
+
+        <label for="nombreRepre" class="form-label" style="font-weight: bold;">Nombre de Representante Legal:<span style="color: #FF7D81;">**</span></label>
+        <input type="text" name="nombreRepre" id="nombreRepre" class="form-control" maxlength="200" >
+        
+        <label for="NRC" class="form-label" style="font-weight: bold;">Ingrese su número registro de contribuyente:<span style="color: #FF7D81;">**</span></label>
+        <input type="text" name="NRC" id="NRC" class="form-control" maxlength="300" > 
+
+        <label for="DocAl" id="DocAl" class="form-label" style="font-weight: bold;">Adjunte su documento Numero de Registro de contribuyente(NRC) (Frente)<span style="color: #FF7D81;">**</span></label>
+        <small class="form-text text-muted">Imagen legible</small> <br>
+        <input type="file" class="form-control-file" id="NRCF" name="NRCF" accept="image/*"><br>
+        <label for="DocAl" id="DocAl" class="form-label" style="font-weight: bold;">Adjunte su documento Numero de Registro de contribuyente(NRC) (Reverso)<span style="color: #FF7D81;">**</span></label><br>
+        <small class="form-text text-muted">Imagen legible</small> <br>
+        <input type="file" class="form-control-file" id="NRCA" name="NRCA" accept="image/*"><br>
+        <br>   
+</div> 
+
+    <div class="d-none" id="ocultarContribuyente">
+      <label for="tipoContribuyente" class="form-label" style="font-weight: bold;">Tipo de contribuyente:<span style="color: #FF7D81;">**</span></label>
+              <select class="form-select" id="tipoContribuyente" name="tipoContribuyente" required>
+                <option disabled selected value=""></option>
+                <option value="1">Otros</option>
+                <option value="2">Mediano contribuyente</option>
+                <option value="3">Gran contribuyente</option>
+              </select>
+    </div>
+              
+      <label for="domiciliado" class="form-label" style="font-weight: bold;">¿Domiciliado?<span style="color: #FF7D81;">**</span></label>
+            <select class="form-select" id="domiciliado" name="domiciliado" required>
+                <option disabled selected value=""></option>
+                <option value="1">Sí</option>
+                <option value="2">No</option>
+            </select>
+
+      <input type="hidden" name="pais" id="pais" value="7">
+
+      <label for="departamento" class="form-label" style="font-weight: bold;">Departamento:<span style="color: #FF7D81;">**</span></label>
+      <select class="form-select" id="departamento" name="departamento" onchange="actualizarmun(this.value)" required>
+        <option disabled selected value=""></option>
+        {{range .Data.Paises}}
+        <option value="{{.Value}}">{{.Label}}</option>
+        {{end}}
+      </select>
+
+      <label for="municipio" class="form-label" style="font-weight: bold;">Municipio:<span style="color: #FF7D81;">**</span></label>
+      <select class="form-select" id="municipio" name="municipio" required>
+        <option disabled selected value=""></option>
+      </select>
+
+      <label for="direccion" class="form-label" style="font-weight: bold;" id="direccionlabel">Dirección (Según registro de IVA):<span style="color: #FF7D81;">**</span></label>
+      <input type="text" name="direccion" id="direccion" class="form-control" maxlength="200" required>
+
+      <label for="personaContacto" class="form-label" style="font-weight: bold;">Persona de contacto:<span style="color: #FF7D81;">**</span></label>
+      <input type="text" name="personaContacto" id="personaContacto" class="form-control" maxlength="200" required> 
+
+      <label for="telefono1" class="form-label" style="font-weight: bold;">Teléfono 1:<span style="color: #FF7D81;">**</span></label>
+      <input type="text" name="telefono1" id="telefono1" class="form-control" maxlength="20" required>      
+    
+      <label for="telefono2" class="form-label" style="font-weight: bold;">Teléfono 2:</label>
+      <input type="text" name="telefono2" id="telefono2" class="form-control" maxlength="20" >      
+    
+      <label for="correo" class="form-label" style="font-weight: bold;">Correo para recibir documentos electrónicos:<span style="color: #FF7D81;">**</span></label>
+      <input type="email" name="correo" id="correo" class="form-control" maxlength="50" required> 
+      <br>
+      <br>
+      <button class="btn btn-primary" id="boton" type="submit" onclick="guardar()"> Enviar</button>
+      <input type="hidden" name="tipo" id="tipo" value="1">
+      </form>
+    </div>
+   <script src="/static/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+   <script src="/static/jquery/dist/jquery.min.js"></script>
+   <script src="/static/bootstrap-select/dist/js/bootstrap-select.min.js"></script>
+   <script src="/static/sweetalert2/dist/sweetalert2.all.min.js"></script>
+    <script src="/public/JS/Finanzas/clientes.js"></script>
+  </body>
+</html>

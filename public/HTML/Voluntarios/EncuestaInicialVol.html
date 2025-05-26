@@ -1,0 +1,637 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <base target="_top">
+  <link href="/static/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+  <link rel="icon" href="https://gwdata.org/images/favicon.png" type="image/png">
+  <title>Encuesta de satisfacción inicial programa de voluntariado</title>
+</head>
+
+<body style=" background-color: #EAFFDB; font-family: 'Montserrat', sans-serif;">
+  <div id="contentToPrint">
+    <img src="/public/IMG/Fondo para formulario de registro.jpg" class="img-fluid" alt="Glasswing" style="width: 100%">
+    <div class="container">
+      <form action="/voluntariado/encuesta/inicial/post" method="POST" enctype="multipart/form-data"
+        id="formualrioRegistro" name="formualrioRegistro" class="needs-validation" novalidatez>
+
+        <br><br>
+        <h1 style="color: #1A1241;text-align: center; font-family: 'Montserrat', sans-serif; font-weight: bold;">
+          Encuesta de satisfacción fase inicial programa de voluntariado</h1>
+        <br>
+        <p style="text-align: justify;">
+          <b>¡Gracias por ser parte del programa de voluntariado Glasswing!</b><br><br>
+          A continuación, encontrarás una serie de preguntas que tienen como objetivo identificar las áreas en las que
+          el programa de voluntariado puede mejorar sus
+          procesos de inscripción, capacitación e inserción de las personas voluntarias en las diferentes sedes y
+          centros educativos. Con esta información, buscamos
+          mejorar tu experiencia como persona voluntaria en el desarrollo de las actividades y fortalecer el impacto de
+          nuestro trabajo en las comunidades. <br><br>
+          <b>¡Muchas gracias por su colaboración!</b> <br>
+        </p>
+
+        <h2>Indicaciones:</h2>
+        <ol>
+          <li>Por favor, siéntete en la libertad de responder con completa honestidad. Recuerda que esta encuesta es
+            anónima.</li>
+          <li>Lea detenidamente las preguntas que se presentan a continuación y seleccione las respuestas según su
+            criterio.</li>
+        </ol>
+        <p style="text-align: justify;">
+        Sus respuestas nos ayudarán a mejorar la experiencia de futuras personas voluntarias que participen en nuestros
+        programas.<br>
+        </p>
+
+        <h2>Información general</h2>
+
+        {{range .Preguntas}}
+        {{if eq .Value "61" }}
+        <label for="p{{.Value}}" class="form-label">{{.Label}}</label>
+        <select class="form-select" id="p{{.Value}}" name="p{{.Value}}" required>
+          {{end}}
+          {{end}}
+          <option value="" selected></option>
+          {{range .Solucion}}
+          {{if eq .IdPregunta "1" }}
+          <option value="{{.Value}}">{{.Label}}</option>
+          {{end}}
+          {{end}}
+        </select>
+
+        </br>
+
+        {{range .Preguntas}}
+        {{if eq .Value "2" }}
+        <label for="p{{.Value}}" class="form-label">{{.Label}}</label>
+        <select class="form-select" id="p{{.Value}}" name="p{{.Value}}" onchange="activaselect1()" required>
+          {{end}}
+          {{end}}
+          <option value="" selected></option>
+          {{range .Solucion}}
+          {{if eq .IdPregunta "2" }}
+          <option value="{{.Value}}">{{.Label}}</option>
+          {{end}}
+          {{end}}
+        </select>
+
+        </br>
+        <div id="otrol" class="d-none">
+          <label for="otro1" class="form-label">Ingresa el lugar:</label>
+          <input type="text" name="otro1" id="otro1" class="form-control" maxlength="200">
+          </br>
+        </div>
+
+        {{range .Preguntas}}
+        {{if eq .Value "3" }}
+        <label for="p{{.Value}}" class="form-label">{{.Label}}</label><br>
+        {{end}}
+        {{end}}
+        {{range .Solucion}}
+        {{if eq .IdPregunta "3" }}
+        <input class="form-check-input" type="checkbox" name="p3" value="{{.Value}}"
+          onchange="activaselect2(this.value);activaselectacti(this);"> {{.Label}}</option><br>
+        {{end}}
+        {{end}}
+
+        </br>
+        <div id="otrol2" class="d-none">
+          <label for="otro2" class="form-label">Ingresa el área:</label>
+          <input type="text" name="otro2" id="otro2" class="form-control" maxlength="200">
+          </br>
+        </div>
+
+        <div id="actividadesocultar1" class="d-none">
+          {{range .Preguntas}}
+          {{if eq .Value "62" }}
+          <label for="p{{.Value}}" class="form-label">{{.Label}} en el área educación</label>
+          <select class="form-select" id="p{{.Value}}edu" name="p{{.Value}}" onchange="activaselect3(this)">
+            {{end}}
+            {{end}}
+            <option value="" selected></option>
+            {{range .Solucionedu}}
+            {{if eq .IdPregunta "6" }}
+            <option value="{{.Value}}">{{.Label}}</option>
+            {{end}}
+            {{end}}
+          </select>
+          <br>
+        </div>
+
+        <div id="actividadesocultar2" class="d-none">
+          {{range .Preguntas}}
+          {{if eq .Value "62" }}
+          <label for="p{{.Value}}" class="form-label">{{.Label}} en el área salud</label>
+          <select class="form-select" id="p{{.Value}}salud" name="p{{.Value}}" onchange="activaselect3(this)">
+            {{end}}
+            {{end}}
+            <option value="" selected></option>
+            {{range .Solucionsalud}}
+            {{if eq .IdPregunta "6" }}
+            <option value="{{.Value}}">{{.Label}}</option>
+            {{end}}
+            {{end}}
+          </select>
+          <br>
+        </div>
+
+        <div id="actividadesocultar3" class="d-none">
+          {{range .Preguntas}}
+          {{if eq .Value "62" }}
+          <label for="p{{.Value}}" class="form-label">{{.Label}} en el área summer activities/ actividades
+            personalizadas</label>
+          <select class="form-select" id="p{{.Value}}sa" name="p{{.Value}}" onchange="activaselect3(this)">
+            {{end}}
+            {{end}}
+            <option value="" selected></option>
+            {{range .Solucionsa}}
+            {{if eq .IdPregunta "6" }}
+            <option value="{{.Value}}">{{.Label}}</option>
+            {{end}}
+            {{end}}
+          </select>
+          <br>
+        </div>
+
+        <div id="otrol3" class="d-none">
+          <label for="otro3" class="form-label">Ingresa la actividad/club impartido:</label>
+          <input type="text" name="otro3" id="otro3" class="form-control" maxlength="200">
+          </br>
+        </div>
+
+        {{range .Preguntas}}
+        {{if eq .Value "4" }}
+        <label for="p{{.Value}}" class="form-label">{{.Label}}</label>
+        <select class="form-select" id="p{{.Value}}" name="p{{.Value}}" required>
+          {{end}}
+          {{end}}
+          <option value="" selected></option>
+          {{range .Solucion}}
+          {{if eq .IdPregunta "19" }}
+          <option value="{{.Value}}">{{.Label}}</option>
+          {{end}}
+          {{end}}
+        </select>
+
+        </br>
+
+        {{range .Preguntas}}
+        {{if eq .Value "5" }}
+        <label for="p{{.Value}}" class="form-label">{{.Label}}</label>
+        <select class="form-select" id="p{{.Value}}" name="p{{.Value}}" required>
+          {{end}}
+          {{end}}
+          <option value="" selected></option>
+          {{range .Solucion}}
+          {{if eq .IdPregunta "4" }}
+          <option value="{{.Value}}">{{.Label}}</option>
+          {{end}}
+          {{end}}
+        </select>
+
+        </br>
+
+        <h4><b>Perfil de voluntariado</b></h4>
+        <p style="text-align: justify ;">
+          Aquí te presentamos una breve descripción de nuestros perfiles de voluntariado. Te invitamos a leer
+          atentamente cada uno y seleccionar aquel con el que más te identifiques.
+        </p>
+
+        <ol>
+          <li><b>Individual:</b> Realizo mi voluntariado como persona independiente; no pertenezco a la comunidad donde
+            Glasswing tiene intervención ni al voluntariado de mi lugar de trabajo (Ejemplo: estudiante universitario).
+          </li>
+          <li><b>Corporativo:</b> Realizo mi voluntariado como parte del programa de Responsabilidad Social Empresarial
+            de mi lugar de trabajo.</li>
+          <li><b>Miembro de la Comunidad:</b> Pertenezco a la comunidad donde Glasswing tiene intervención (Ejemplo:
+            familiar, vecino, miembro de la junta directiva, etc.).</li>
+          <li><b>Estudiante del Centro Educativo:</b> Soy estudiante activo del centro educativo o sede donde Glasswing
+            tiene intervención.</li>
+          <li><b>Exestudiante:</b> Soy exestudiante del centro educativo o sede donde Glasswing tiene intervención.</li>
+          <li><b>Docente o Personal Administrativo del Centro Educativo:</b> Soy docente o personal administrativo del
+            centro educativo donde Glasswing tiene intervención.</li>
+          <li><b>Staff Glasswing:</b> Soy parte del equipo de Glasswing y participo como persona voluntaria en un
+            programa, centro educativo, servicio de salud o sede donde se tiene intervención.</li>
+        </ol>
+
+        {{range .Preguntas}}
+        {{if eq .Value "6" }}
+        <label for="p{{.Value}}" class="form-label">{{.Label}}</label>
+        <select class="form-select" id="p{{.Value}}" name="p{{.Value}}" required>
+          {{end}}
+          {{end}}
+          <option value="" selected></option>
+          {{range .Solucion}}
+          {{if eq .IdPregunta "5" }}
+          <option value="{{.Value}}">{{.Label}}</option>
+          {{end}}
+          {{end}}
+        </select>
+
+        </br>
+
+        {{range .Preguntas}}
+        {{if eq .Value "8" }}
+        <label for="p{{.Value}}" class="form-label">1. {{.Label}}</label>
+        <select class="form-select" id="p{{.Value}}" name="p{{.Value}}" onchange="activaselect4()" required>
+          {{end}}
+          {{end}}
+          <option value="" selected></option>
+          {{range .Solucion}}
+          {{if eq .IdPregunta "7" }}
+          <option value="{{.Value}}">{{.Label}}</option>
+          {{end}}
+          {{end}}
+        </select>
+
+        </br>
+        <div id="otrol4" class="d-none">
+          <label for="otro4" class="form-label">Ingresa el medio por el que te enteraste:</label>
+          <input type="text" name="otro4" id="otro4" class="form-control" maxlength="200">
+          </br>
+        </div>
+
+
+        {{range .Preguntas}}
+        {{if eq .Value "54" }}
+        <label for="p{{.Value}}" class="form-label">2. {{.Label}}</label>
+        <select class="form-select" id="p{{.Value}}" name="p{{.Value}}" onchange="participo()" required>
+          {{end}}
+          {{end}}
+          <option value="" selected></option>
+          {{range .Solucion}}
+          {{if eq .IdPregunta "12" }}
+          <option value="{{.Value}}">{{.Label}}</option>
+          {{end}}
+          {{end}}
+        </select>
+
+        </br>
+
+        <div class="d-none" id="participo">
+          {{range .Preguntas}}
+          {{if eq .Value "55" }}
+          <label for="p{{.Value}}" class="form-label">3. {{.Label}}</label>
+          <input type="number" class="form-control" id="p{{.Value}}" min="0" step="1" max="99" name="p{{.Value}}">
+          {{end}}
+          {{end}}
+          </br>
+        </div>
+
+        <h4>A continuación evalúa qué tan adecuado fue el seguimiento que te brindó Glasswing en los siguientes
+          aspectos:</h4>
+        <br>
+        {{range .Preguntas}}
+        {{if eq .Value "56" }}
+        <label for="p{{.Value}}" class="form-label">4. {{.Label}}</label>
+        <select class="form-select" id="p{{.Value}}" name="p{{.Value}}" onchange="activaselect7()" required>
+          {{end}}
+          {{end}}
+          <option value="" selected></option>
+          {{range .Solucion}}
+          {{if eq .IdPregunta "8" }}
+          <option value="{{.Value}}">{{.Label}}</option>
+          {{end}}
+          {{end}}
+        </select>
+
+        </br>
+
+        <div id="razon1" class="d-none">
+          {{range .Preguntas}}
+          {{if eq .Value "53" }}
+          <label for="p{{.Value}}" class="form-label">{{.Label}}</label>
+          <input type="text" id="xq5" name="xq5" class="form-control" maxlength="300" required>
+          {{end}}
+          {{end}}
+          </br>
+        </div>
+
+        {{range .Preguntas}}
+        {{if eq .Value "37" }}
+        <label for="p{{.Value}}" class="form-label">5. {{.Label}}</label>
+        <select class="form-select" id="p{{.Value}}" name="p{{.Value}}" onchange="activaselect10()" required>
+          {{end}}
+          {{end}}
+          <option value="" selected></option>
+          {{range .Solucion}}
+          {{if eq .IdPregunta "20" }}
+          <option value="{{.Value}}">{{.Label}}</option>
+          {{end}}
+          {{end}}
+        </select>
+
+        </br>
+
+        <div id="razon4" class="d-none">
+          {{range .Preguntas}}
+          {{if eq .Value "53" }}
+          <label for="p{{.Value}}" class="form-label">{{.Label}}</label>
+          <input type="text" id="xq8" name="xq8" class="form-control" maxlength="300">
+          {{end}}
+          {{end}}
+          </br>
+        </div>
+
+        {{range .Preguntas}}
+        {{if eq .Value "38" }}
+        <label for="p{{.Value}}" class="form-label">6. {{.Label}}</label>
+        <select class="form-select" id="p{{.Value}}" name="p{{.Value}}" onchange="activaselect13()" required>
+          {{end}}
+          {{end}}
+          <option value="" selected></option>
+          {{range .Solucion}}
+          {{if eq .IdPregunta "8" }}
+          <option value="{{.Value}}">{{.Label}}</option>
+          {{end}}
+          {{end}}
+        </select>
+
+        </br>
+        <div id="razon7" class="d-none">
+          {{range .Preguntas}}
+          {{if eq .Value "35" }}
+          <label for="p{{.Value}}" class="form-label">{{.Label}}</label>
+          <input type="text" id="xq9" name="xq9" class="form-control" maxlength="300">
+          {{end}}
+          {{end}}
+          </br>
+        </div>
+
+        {{range .Preguntas}}
+        {{if eq .Value "39" }}
+        <label for="p{{.Value}}" class="form-label">7. {{.Label}}</label>
+        <select class="form-select" id="p{{.Value}}" name="p{{.Value}}" onchange="activaselect14()" required>
+          {{end}}
+          {{end}}
+          <option value="" selected></option>
+          {{range .Solucion}}
+          {{if eq .IdPregunta "8" }}
+          <option value="{{.Value}}">{{.Label}}</option>
+          {{end}}
+          {{end}}
+        </select>
+
+        </br>
+        <div id="razon8" class="d-none">
+          {{range .Preguntas}}
+          {{if eq .Value "35" }}
+          <label for="p{{.Value}}" class="form-label">{{.Label}}</label>
+          <input type="text" id="xq10" name="xq10" class="form-control" maxlength="300">
+          {{end}}
+          {{end}}
+          </br>
+        </div>
+
+        {{range .Preguntas}}
+        {{if eq .Value "12" }}
+        <label for="p{{.Value}}" class="form-label">8. {{.Label}}</label>
+        <select class="form-select" id="p{{.Value}}" name="p{{.Value}}" required>
+          {{end}}
+          {{end}}
+          <option value="" selected></option>
+          {{range .Solucion}}
+          {{if eq .IdPregunta "10" }}
+          <option value="{{.Value}}">{{.Label}}</option>
+          {{end}}
+          {{end}}
+        </select>
+
+        </br>
+
+        {{range .Preguntas}}
+        {{if eq .Value "14" }}
+        <label for="p{{.Value}}" class="form-label">9. {{.Label}}</label>
+        {{end}}
+        {{end}}
+        <br>
+        {{range .Solucion}}
+        {{if eq .IdPregunta "23" }}
+        <input class="form-check-input" type="checkbox" value="{{.Value}}" name="c15"> {{.Label}}</option><br>
+        {{end}}
+        {{end}}
+        </select>
+
+        </br>
+
+        {{range .Preguntas}}
+        {{if eq .Value "15" }}
+        <label for="p{{.Value}}" class="form-label">10. {{.Label}}</label>
+        <select class="form-select" id="p{{.Value}}" name="p{{.Value}}" required>
+          {{end}}
+          {{end}}
+          <option value="" selected></option>
+          {{range .Solucion}}
+          {{if eq .IdPregunta "10" }}
+          <option value="{{.Value}}">{{.Label}}</option>
+          {{end}}
+          {{end}}
+        </select>
+
+        </br>
+
+        {{range .Preguntas}}
+        {{if eq .Value "40" }}
+        <label for="p{{.Value}}" class="form-label">11. {{.Label}}</label>
+        <select class="form-select" id="p{{.Value}}" name="p{{.Value}}" onchange="activaselect11()" required>
+          {{end}}
+          {{end}}
+          <option value="" selected></option>
+          {{range .Solucion}}
+          {{if eq .IdPregunta "12" }}
+          <option value="{{.Value}}">{{.Label}}</option>
+          {{end}}
+          {{end}}
+        </select>
+
+        </br>
+
+        <div id="razon5" class="d-none">
+          {{range .Preguntas}}
+          {{if eq .Value "35" }}
+          <label for="p{{.Value}}" class="form-label">{{.Label}}</label>
+          <input type="text" id="xq11" name="xq11" class="form-control" maxlength="300">
+          {{end}}
+          {{end}}
+          </br>
+        </div>
+
+        {{range .Preguntas}}
+        {{if eq .Value "41" }}
+        <label for="p{{.Value}}" class="form-label">12. {{.Label}}</label>
+        <select class="form-select" id="p{{.Value}}" name="p{{.Value}}" onchange="activaselect12()" required>
+          {{end}}
+          {{end}}
+          <option value="" selected></option>
+          {{range .Solucion}}
+          {{if eq .IdPregunta "12" }}
+          <option value="{{.Value}}">{{.Label}}</option>
+          {{end}}
+          {{end}}
+        </select>
+
+        </br>
+
+        <div id="razon6" class="d-none">
+          {{range .Preguntas}}
+          {{if eq .Value "35" }}
+          <label for="p{{.Value}}" class="form-label">{{.Label}}</label>
+          <input type="text" id="xq12" name="xq12" class="form-control" maxlength="300">
+          {{end}}
+          {{end}}
+          </br>
+        </div>
+
+        {{range .Preguntas}}
+        {{if eq .Value "19" }}
+        <label for="p{{.Value}}" class="form-label">13. {{.Label}}</label>
+        <select class="form-select" id="p{{.Value}}" name="p{{.Value}}" required>
+          {{end}}
+          {{end}}
+          <option value="" selected></option>
+          {{range .Solucion}}
+          {{if eq .IdPregunta "21" }}
+          <option value="{{.Value}}">{{.Label}}</option>
+          {{end}}
+          {{end}}
+        </select>
+
+        </br>
+
+        {{range .Preguntas}}
+        {{if eq .Value "20" }}
+        <label for="p{{.Value}}" class="form-label">14. {{.Label}}</label>
+        <select class="form-select" id="p{{.Value}}" name="p{{.Value}}" required>
+          {{end}}
+          {{end}}
+          <option value="" selected></option>
+          {{range .Solucion}}
+          {{if eq .IdPregunta "13" }}
+          <option value="{{.Value}}">{{.Label}}</option>
+          {{end}}
+          {{end}}
+        </select>
+
+        </br>
+
+        {{range .Preguntas}}
+        {{if eq .Value "21" }}
+        <label for="p{{.Value}}" class="form-label">15. {{.Label}}</label>
+        <select class="form-select" id="p{{.Value}}" name="p{{.Value}}" required>
+          {{end}}
+          {{end}}
+          <option value="" selected></option>
+          {{range .Solucion}}
+          {{if eq .IdPregunta "12" }}
+          <option value="{{.Value}}">{{.Label}}</option>
+          {{end}}
+          {{end}}
+        </select>
+
+        </br>
+
+        {{range .Preguntas}}
+        {{if eq .Value "60" }}
+        <label for="p{{.Value}}" class="form-label">16. {{.Label}}</label><br>
+        {{end}}
+        {{end}}
+        {{range .Solucion}}
+        {{if eq .IdPregunta "16" }}
+        <input class="form-check-input" type="checkbox" name="p28" value="{{.Value}}"
+          onchange="activaselect6(this.value)"> {{.Label}}</option><br>
+        {{end}}
+        {{end}}
+
+        </br>
+
+        <div id="otrol5" class="d-none">
+          {{range .Preguntas}}
+          {{if eq .Value "57" }}
+          <label for="p{{.Value}}" class="form-label">{{.Label}}</label>
+          </br>
+          <input type="text" id="apoyo" name="apoyo" class="form-control" maxlength="300">
+          {{end}}
+          {{end}}
+          </br>
+        </div>
+
+        {{range .Preguntas}}
+        {{if eq .Value "58" }}
+        <label for="p{{.Value}}" class="form-label">17. {{.Label}}</label>
+        <select class="form-select" id="p{{.Value}}" name="p{{.Value}}" required>
+          {{end}}
+          {{end}}
+          <option value="" selected></option>
+          {{range .Solucion}}
+          {{if eq .IdPregunta "24" }}
+          <option value="{{.Value}}">{{.Label}}</option>
+          {{end}}
+          {{end}}
+        </select>
+
+        </br>
+
+        {{range .Preguntas}}
+        {{if eq .Value "59" }}
+        <label for="p{{.Value}}" class="form-label">18. {{.Label}}</label>
+        <select class="form-select" id="p{{.Value}}" name="p{{.Value}}" onchange="activaselect15()" required>
+          {{end}}
+          {{end}}
+          <option value="" selected></option>
+          {{range .Solucion}}
+          {{if eq .IdPregunta "12" }}
+          <option value="{{.Value}}">{{.Label}}</option>
+          {{end}}
+          {{end}}
+        </select>
+
+        </br>
+        <div id="razon9" class="d-none">
+          {{range .Preguntas}}
+          {{if eq .Value "35" }}
+          <label for="p{{.Value}}" class="form-label">{{.Label}}</label>
+          <input type="text" id="xq1" name="xq1" class="form-control" maxlength="300">
+          {{end}}
+          {{end}}
+          </br>
+        </div>
+
+        {{range .Preguntas}}
+        {{if eq .Value "63" }}
+        <label for="p{{.Value}}" class="form-label">19. {{.Label}}</label>
+        <select class="form-select" id="p{{.Value}}" name="p{{.Value}}" required>
+          {{end}}
+          {{end}}
+          <option value="" selected></option>
+          {{range .Solucion}}
+          {{if eq .IdPregunta "17" }}
+          <option value="{{.Value}}">{{.Label}}</option>
+          {{end}}
+          {{end}}
+        </select>
+
+        </br>
+
+        {{range .Preguntas}}
+        {{if eq .Value "36" }}
+        <label for="p{{.Value}}" class="form-label">20. {{.Label}}</label>
+        </br>
+        <input type="text" id="coment" name="p{{.Value}}" class="form-control" maxlength="300">
+        {{end}}
+        {{end}}
+
+        <br><br>
+
+        <button class="btn btn-primary" id="boton" type="submit"> Enviar</button>
+        <br>
+      </form>
+    </div>
+  </div>
+  <input type="hidden" name="idp" value="4" id="idp">
+  <script src="/static/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="/public/JS/Voluntarios/encuestavolv3.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <base target="_top">
+    <title> Actividad de Cierre</title>
+   <link href="/static/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+  </head>
+
+  <link rel="stylesheet" href="/public/CSS/estilos_nnasv.css" type="text/css">
+
+  <body class="bg-custom">
+
+
+<div class="container">
+<img src="/public/IMG/logo.png" class="img-fluid" alt="Glasswing" />
+
+<form action="/salud/cdn/taller/post" method="POST" enctype="multipart/form-data" id="formualrioRegistro" name="formualrioRegistro" class="needs-validation" novalidatez>
+<br>
+<h2> Actividad de Cierre - Taller de Bienestar Emocional</h2>
+<br>
+      <p style="text-align: justify;">
+        ¡Buen día! Gracias por ser parte de las actividades de Glasswing. A continuación, se te presenta una serie de preguntas sobre lo compartido durante el taller en el que has participado, el objetivo es conocer cómo la información compartida es de utilidad en tu vida y cómo Glasswing puede continuar mejorando.
+        <br><br>
+        Toda la información recolectada en este formulario es de uso exclusivo para los objetivos del programa y será manejada únicamente por el equipo de Glasswing. El resultado de estas preguntas no tendrá ninguna repercusión en tu participación en la actividad, por lo que puedes sentir completa confianza al contestar ya que no existe ningún riesgo asociado. Toda la información recopilada es resguardada con estricta seguridad y es utilizada para identificar a las personas participantes en los talleres. 
+        <br><br>        
+        De antemano, muchas gracias por tu participación.
+        <br>
+              </p> 
+              <div class="container">
+    <div class="col">
+      <label for="sexo" class="form-label"><b>Selecciona tu sexo según registro nacional:</b></label>
+      <select class="form-select" id="sexo" name="sexo" required>
+          <option value="" selected></option>
+          <option value="1">Hombre</option>
+          <option value="2">Mujer</option>
+      </select>
+    </div> 
+    <br>      
+
+    <div class="col">
+      <label for="pais" class="form-label"><b>Selecciona tu país:</b></label>
+      <select class="form-select" id="pais" name="pais" onchange="actualizardepto(this.value)" required >
+          <option value="" selected></option>
+          <option value="16">Colombia</option>
+          <option value="7">El Salvador</option>
+          <option value="4">Guatemala</option>
+          <option value="3">Honduras</option>
+      </select>
+    </div> 
+    <br>      
+   
+    <div class="col">
+      <label for="pais" class="form-label"><b>Selecciona el departamento donde se encuentra la sede a la que perteneces*</b></label>
+      <select class="form-select" id="pais2" name="pais2" onchange="actualizarmun(this.value)" required >
+          </select>  
+    </div>
+    <br>
+
+    <div class="col">
+      <label for="departamento2" class="form-label"><b>Selecciona el municipio donde se encuentra la sede a la que perteneces*</b></label>
+      <select class="form-select" id="departamento2" name="departamento2" onchange="actualizarsede(this.value)" required>
+      </select>
+      </div>
+<br>
+
+    <div class="col">
+          <label for="sede2" class="form-label"><b>Selecciona la sede a la que perteneces*</b></label>
+           <select class="form-select" id="sede2" name="sede2" required >
+            <option value=""></option>
+      </select>
+     </div>
+
+<br>
+  <h6> A continuación encontrarás una serie de preguntas, agradecemos puedas responderlas de manera individual y recordando lo aprendido en el taller.</h6>
+  <br>
+<div id="pregunta">
+<label for="p1" id="p1" class="form-label personalizado"><b>1. ¿Las emociones se clasifican en buenas y malas?:</b></label>
+<br> 
+{{range .Respuestas1}}
+<input type="radio" value="{{.Value}}" name="p1" onchange="quitar('pregunta')" required>{{.Label}}</option><br><br> 
+ {{end}}
+</div>
+<br> 
+<div id="pregunta2">
+<label for="p2" class="form-label personalizado"><b>2. ¿Qué es estrés?:</b></label>
+<br> 
+{{range .Respuestas2}}
+ <input type="radio" value="{{.Value}}" name="p2" onchange="quitar('pregunta2')" required>{{.Label}}</option><br><br>
+ {{end}}
+</div>
+ <br> 
+ <div id="pregunta3">
+<label for="p3" class="form-label personalizado"><b>3. Entendemos por trauma a:</b></label>
+<br>  
+{{range .Respuestas3}}
+ <input type="radio" value="{{.Value}}" name="p3" onchange="quitar('pregunta3')" required>{{.Label}}</option><br><br>
+ {{end}}
+</div>
+ <br> 
+ <div id="pregunta4">
+<label for="p4" class="form-label personalizado"><b>4. Al hablar de trauma y estrés es importante reconocer que:</b></label>
+<br>   
+{{range .Respuestas4}}
+ <input type="radio" value="{{.Value}}" name="p4" onchange="quitar('pregunta4')" required>{{.Label}}</option><br><br>
+ {{end}}
+</div>
+ <br> 
+ <div id="pregunta5">
+<label for="p5" class="form-label personalizado"><b>5. ¿Cuál dirias que ha sido el aprendizaje más significativo de este taller o el que más le ha interesado?:</b></label>
+<input type="text" name="p5" id="p5" class="form-control" required maxlength="500">
+</div>
+<br>
+<h5>¡Muchas gracias por su participación! Su participación es muy valiosa.</h5>
+<br>
+    <input type="hidden" name="modulo" value="1" id="modulo">
+      <button class="btn btn-primary" id="boton" type="submit"> Enviar</button>
+      <br>
+      <br>
+     </form>
+    </div>
+   <script src="/static/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="/public/JS/Participantes/Salud/CDN/taller.js"></script> 
+  </body>
+</html>
+
+</html>

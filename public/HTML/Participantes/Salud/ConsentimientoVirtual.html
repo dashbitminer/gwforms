@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>CARTA DE CONSENTIMIENTO INFORMADO</title>
+    <meta charset="utf-8">
+    <base target="_top">
+    <link href="/static/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+      .canvas-container {
+        width: 100%;
+        max-width: 750px;
+        max-height: 250px;
+      }
+      canvas {
+        width: 100%;
+        height: auto;
+        max-height: 250px;
+      }
+    </style>
+  </head>
+
+  <body>
+
+<div class="container"id="contentToPrint">
+  <img src="/public/IMG/Membretada_Mexico.png" class="img-fluid" alt="Glasswing" style="width: 100%;" />
+<form method="POST" id="form" name="form" class="needs-validation" enctype="multipart/form-data" novalidatez>
+
+      <h2>CARTA DE CONSENTIMIENTO INFORMADO</h2>
+      <br>
+      <p style='text-align: justify;'>
+        ¡Buen día! Reciba un cordial saludo del área de Monitoreo y Evaluación de Glasswing International. Somos una organización no gubernamental, que tiene programas de educación, salud y medios de vida en centros escolares, hospitales y espacios públicos. Desde hace dos años hemos trabajado con el programa SanaMente brindando formaciones en Atención Integral al Trauma (AIT) dirigidas a personal de primera línea (personal docente, personal de salud y agentes policiales).
+        <br>
+        <br>
+<strong>¿Por qué está recibiendo esta carta?</strong> Estamos impulsando una iniciativa para evaluar la efectividad y utilidad de la Formación General en AIT del Programa SanaMente en el personal de la Escuela de Formación de Profesores de Educación Media de Guatemala [EFPEM].
+<br>
+<br>
+<strong>Por esta razón, <u>le invitamos a participar en una encuesta.</u></strong> Su participación es voluntaria, por lo que puede elegir no participar y esto no afectará su participación en la Formación General de SanaMente, ni en proyectos futuros de Glasswing. Si decide participar, solicitaremos su firma en esta carta de consentimiento informado y le entregaremos una copia para su referencia. 
+<br>
+<br>
+<strong>¿En qué consiste y cuánto durará su participación?</strong> Si acepta participar, solicitamos su apoyo para llenar una encuesta en la que se le harán preguntas sobre sus prácticas de autocuidado, estrés, atención a las personas y ambiente laboral. Esta encuesta durará 30 minutos máximo, y será aplicada antes de la formación, y un mes después de que haya finalizado la formación.  Recuerde que no hay respuestas buenas ni malas, y su participación es de mucha importancia para nosotros como organización, ya que esto nos permite mejorar y ampliar nuestro trabajo.
+<br>
+<br>
+Para proteger su identidad, <strong><u>nunca utilizaremos su nombre para identificar sus respuestas</u></strong>, en su lugar, usaremos el código asignado a este consentimiento (ver reverso de la hoja) que darán anonimato a sus datos. Los informes que realicemos con la información compartida, se presentarán de forma grupal, es decir que <u><strong>sus respuestas individuales no se le mostrarán a ningún miembro de la comunidad ni de su centro laboral.</u></strong>
+<br>
+<br>
+Toda la información que comparta se guardará con estricta confidencialidad en carpetas de Google Drive y computadoras institucionales con clave de acceso. De modo que únicamente el equipo de Monitoreo y Evaluación de los programas de Salud tendrán acceso a esta información durante un máximo de 12 meses. Finalizado este tiempo, estos registros serán eliminados completamente de todas las computadoras institucionales.
+<br>
+<br>
+<strong>¿Qué riesgos se corre al participar?</strong> No existe ningún riesgo asociado con su participación. 
+¿A quién puedo contactar para saber más de la actividad? Si tiene alguna duda, puede pedir apoyo a la persona de Glasswing de su referencia, esta persona nos comunicará sus dudas y se las aclararemos lo más pronto posible. También puede escribir directamente al correo electrónico <a href="mailto:estudio@glasswing.org">estudio@glasswing.org</a>, por este medio nos encargaremos de resolver sus dudas.
+<br>
+<br> 
+<strong>¿Cómo puedo retirar mi consentimiento o ejercer mis derechos ARCO (Acceso, Rectificación, Cancelación u Oposición) respecto de mis datos?</strong> En caso que usted desee retirar el consentimiento o solicitar el acceso, rectificar o cancelar el acceso a sus datos personales recogidos para esta actividad, u oponerse a su uso, puede contactarnos al correo indicado anteriormente. 
+<br>
+<br>
+Si usted desea participar en esta actividad, le solicitamos completar los siguientes campos:
+<br>
+<br>
+<strong>POR LO ANTERIOR, MANIFIESTO QUE: 
+HE TENIDO LA OPORTUNIDAD DE LEER/ DE QUE ME SEA LEÍDA ESTA DECLARACIÓN DE CONSENTIMIENTO INFORMADO Y DE HACER PREGUNTAS SOBRE LA ENCUESTA. POR LO TANTO, ACEPTO PARTICIPAR EN ESTA ACTIVIDAD.</strong>
+
+</p>
+<div class="container">
+  <div class="row">
+    <div class="col-12 col-md-6 mb-4">
+      <div class="canvas-container">
+        <canvas id="Signature1draw" class="border"></canvas>
+      </div>
+      <br>
+      <input type="text" class="form-control mt-2" id="firma1" name="firma1" placeholder="Nombre de la persona participante">
+      <button type="button" id="borrar1" class="btn btn-primary mt-2" onclick="clearSigniture()">Borrar</button>
+    </div>
+</div>
+      <br>
+      <label for="Codigo"><b>Código de consentimiento: </b></label>
+      <input type="text" class="form-control" name="Codigo" id="Codigo" required>
+      <label for="fechafirma"><b>Fecha de firma: <span id="fechaActual"></span></b></label>
+      <input type="date" hidden id="fechafirma" name="fechafirma">
+      <br>
+      <img src="/public/IMG/Membretada_Guatemala.jpeg" class="img-fluid" alt="Glasswing" style="width: 100%;" />
+      <br>
+      <br>
+<button class="btn btn-primary" id="boton" type="submit" onclick="guardar(event)"> Enviar</button>
+      </form>
+    </div>
+   
+   <script src="/static/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+   <script src="/static/sweetalert2/dist/sweetalert2.all.min.js"></script>
+   <script src="/static/signature_pad/dist/signature_pad.umd.min.js"></script>
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+   <script src="/public/JS/Participantes/Salud/consentimientogt.js"></script>   
+  </body>
+</html>

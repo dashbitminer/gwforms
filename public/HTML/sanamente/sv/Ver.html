@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <base target="_top">
+    <title> Editor</title>
+   <link href="/static/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+  
+  </head>
+
+<link rel="stylesheet" href="/public/CSS/estilos_sanamente crud.css" type="text/css">
+ 
+<body class="bg-custom">
+
+
+<img src="/public/IMG/Sanamente.png" class="img-fluid" alt="Glasswing" />
+
+<form  method="POST" enctype="multipart/form-data" id="formualrioRegistro" name="formualrioRegistro" class="needs-validation" novalidatez>
+
+<h2> Editor</h2>
+<br>
+<p>Filtro:<span><input type="text" id="filtroInput" placeholder="Filtrar tabla"></span>
+<br>
+<table id="tabla" class="table">
+  <thead class="table-success">
+      <tr>
+          <th scope="col">ID</th>
+          <th scope="col">Módulo</th>
+          <th scope="col">Fecha</th>
+          <th scope="col">Nombre</th>
+          <th scope="col">Dui</th>
+          <th scope="col">Sede</th>
+          <th colspan="2" scope="col" class="text-center">Funciones</th>
+
+      </tr>
+  </thead>
+  <tbody>
+      {{range .Modulos}}
+      <tr>
+          <td class="text-center">{{.ID}}</td>
+          <td class="text-center">{{.Module}}</td>
+          <td>{{.Fecha}}</td>
+          <td>{{.Nombre}}</td>
+          <td>{{.Dui}}</td>
+          <td>{{.Sede}}</td>
+          <td><span><button class="btn btn-primary" onclick="enviarFormulario('/sanamente/modulo/editar')" name="id" value="{{.ID}}">Editar</button></td>
+            <td><button class="btn btn-danger"onclick="confirmAction()" name="id" value="{{.ID}}">Eliminar</button></td>
+      {{end}}
+  </tbody>
+</table>
+
+<br>
+      <br>
+      <br>
+     </form>
+
+   <script src="/static/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="/public/JS/sanamente/editor.js"></script>
+    
+  </body>
+</html>
+
+</html>

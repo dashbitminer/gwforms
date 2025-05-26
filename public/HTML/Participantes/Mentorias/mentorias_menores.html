@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Formulario de inscripción participantes</title>
+    <meta charset="utf-8">
+    <base target="_top">
+    <link href="/static/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+  </head>
+  <body>
+
+    <div class="container">
+<img src="/public/IMG/logo.png" class="img-fluid" alt="Glasswing" />
+<form method="POST" id="formualrioRegistro" name="formualrioRegistro" class="needs-validation" action="/glasswing/mentees/post" novalidatez>
+      <h2> Formulario de inscripción mentees menores edad uso interno</h2>
+     
+      <label for="firmap" class="form-label">¿Posee firma de la persona participante?</label>
+      <select class="form-select" id="firmap" name="firmap" onchange="activaselect6()"  >
+        <option value=""></option>
+        {{range .Respuestas}}
+        <option value="{{.Value}}">{{.Label}}</option>
+      {{end}}
+     </select>
+   
+     <label for="firmat" class="form-label">¿Posee firma de persona tutora?</label>
+     <select class="form-select" id="firmat" name="firmat" onchange="activaselect6()" >
+       <option value=""></option>
+       {{range .Respuestas}}
+       <option value="{{.Value}}">{{.Label}}</option>
+     {{end}}
+    </select>
+
+<div id="ocultar" class="d-none">
+        <label for="aut1" class="form-label">¿Posee autorización de participación en el programa?</label>
+      <select class="form-select" id="aut1" name="aut1"  >
+        <option value=""></option>
+        {{range .Respuestas}}
+        <option value="{{.Value}}">{{.Label}}</option>
+      {{end}}
+     </select>
+
+     <label for="aut2" class="form-label">¿Posee autorización para compartir datos personales en el formulario de inscripción?</label>
+     <select class="form-select" id="aut2" name="aut2"  >
+       <option value=""></option>
+       {{range .Respuestas}}
+       <option value="{{.Value}}">{{.Label}}</option>
+     {{end}}
+    </select>
+
+    <label for="aut3" class="form-label">¿Posee información uso de voz e imagen?</label>
+    <select class="form-select" id="aut3" name="aut3"  >
+      <option value=""></option>
+      {{range .Respuestas}}
+      <option value="{{.Value}}">{{.Label}}</option>
+    {{end}}
+   </select>
+
+   <label for="aut4" class="form-label">¿Posee información Contacto y comunicación telefónica o WhatsApp?</label>
+    <select class="form-select" id="aut4" name="aut4" onchange="activaselect8()"  >
+      <option value=""></option>
+      {{range .Respuestas}}
+      <option value="{{.Value}}">{{.Label}}</option>
+    {{end}}
+   </select>
+
+
+   <div class="d-none" id="divtel">
+    <label for="TM" class="form-label">Teléfono:</label>
+    <input type="text" name="TM" id="TM" class="form-control" >
+
+    <label for="compañia" class="form-label">Compañía:</label>
+    <input type="text" name="compañia" id="compañia" class="form-control" >
+</div>
+
+
+      <h4>DATOS DE IDENTIFICACIÓN</h4>
+
+<p style="text-align: justify;" class="text-primary"> Las preguntas a continuación deberán ser completadas con tu información como participante de las actividades de Glasswing. 	</p>
+        <div class="mb-3">
+          <div class="row">
+  <div class="col">
+          <label for="nombrecompleto" class="form-label">Escribe tus nombres completos:*</label>
+          <input type="text" name="nombreCompleto" id="nombreCompleto" class="form-control"  oninput="activa1()">
+        </div>
+          <div class="col">
+          <label for="apellido" class="form-label">Escribe tus apellidos completos:*</label>
+          <input type="text" name="apellido" id="apellido" class="form-control"   oninput="activa1()">
+        </div>
+          </div>
+
+          <div class="col">
+            <label for="pais" class="form-label">Indica tu país:</label>
+            <select class="form-select" id="pais" name="pais" required onchange="cargarProgramas(); actualizarCiudades3(this.value)">
+              <option value="" selected></option>
+              {{range .Paises}}
+              <option value="{{.Value}}">{{.Label}}</option>
+              {{end}}
+          </select>
+
+          <div class="d-none" id="paisdiv">
+            <div class="col">
+              <label for="pais" class="form-label">Selecciona el departamento donde se encuentra la escuela/sede a la que perteneces*</label>
+              <select class="form-select" id="pais2" name="pais2"  onchange="actualizarmun(this.value)">
+                    <option value=""></option>
+                    {{range .Depsede}}
+                    <option value="{{.Value}}">{{.Label}}</option>
+                    {{end}}
+                  </select>  
+                 
+            </select>
+            </div>
+            <div class="col">
+              <label for="departamento2" class="form-label">Selecciona el municipio donde se encuentra la escuela/sede a la que perteneces*</label>
+               <select class="form-select" id="departamento2" name="departamento2"   onchange="actualizarsede(this.value)">
+            </select>
+            </div>
+            </div>
+          
+
+          <label for="programa" class="form-label">Selecciona la sede a la que perteneces:</label>
+          <select class="form-select" id="programa" name="programa" required> </select>
+          </div>
+
+          <label for="edad" class="form-label">Edad:</label>
+          <input type="number" name="edad" id="edad" min="15" step="1" class="form-control" required>
+  
+          <div class="col">
+              <label for="Sexo" class="form-label">Selecciona tu sexo según registro nacional:*</label>
+     <select class="form-select" id="Sexo" name="Sexo"  >
+       <option value=""></option>
+       {{range .Sexo}}
+       <option value="{{.Value}}">{{.Label}}</option>
+     {{end}}
+    </select>
+    </div>
+  </div>
+
+
+
+      <div class="col">
+        <label for="correo" class="form-label">Escribe tu correo electrónico:*</label>
+        <input type="email" name="correo" id="correo" class="form-control" placeholder="" required>
+        <div class="invalid-feedback">
+          Ingresa una dirección de correo válida
+       </div>
+      </div>
+
+      <h4> PERFIL DEMOGRÁFICO </h4>
+
+      
+    
+    <label for="hijos" class="form-label">¿Tienes intereses laborales o profesionales?</label>
+    <select class="form-select" id="trabajas" name="trabajas" onchange="activaselect13()">
+      <option value="" selected></option>
+      {{range .Respuestas}}
+      <option value="{{.Value}}">{{.Label}}</option>
+      {{end}}
+    </select>
+
+    <div id="trabajasdiv" class="d-none">
+
+    <label for="enque" class="form-label">¿En qué?</label>
+    <select class="form-select" id="enque" name="enque"  >
+     <option value=""></option>
+     {{range .ActLaboral}}
+     <option value="{{.Value}}">{{.Label}}</option>
+     {{end}}                   
+     </select>
+
+    </div>
+
+
+     <label for="hijos" class="form-label">¿Tienes alguna experiencia laboral?</label>
+     <select class="form-select" id="hijos2" name="hijos2" onchange="activaselect14()" >
+       <option value="" selected></option>
+       {{range .Respuestas}}
+       <option value="{{.Value}}">{{.Label}}</option>
+       {{end}}
+     </select>
+ 
+     <div id="expdiv" class="d-none">
+ 
+     <label for="area" class="form-label">¿En qué área?</label>
+     <select class="form-select" id="area" name="area"  multiple>
+      <option value=""></option>
+      {{range .ActLaboral}}
+      <option value="{{.Value}}">{{.Label}}</option>
+      {{end}}                    
+      </select>
+     </div>
+
+ <label for="vives" class="form-label">¿Con quién o quienes vives? (Selecciona todas las que aplican) <br>En caso de utilizar computadora manten presionada la tecla ctrl para seleccionar varias</label>
+    <select class="form-select" id="vives" name="vives"  multiple>
+      <option value=""></option>
+      <option value="100">Solo(a)</option>
+      {{range .Parentesco}}
+      <option value="{{.Value}}">{{.Label}}</option>
+      {{end}}
+</select>
+<div class="d-none" id="preguntasabadosdiv">
+     <h4> Horario de mentorías </h4>
+     <table class="table table-bordered">
+			<thead>
+				<tr>
+					<th></th>
+					<th>Lunes</th>
+					<th>Martes</th>
+					<th>Miércoles</th>
+          <th>Jueves</th>
+          <th>Viernes</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<th>9:00-10:00</th>
+					<td><input type="checkbox" name="horario" value="1"></td>
+					<td><input type="checkbox" name="horario" value="2"></td>
+					<td><input type="checkbox" name="horario" value="3"></td>
+          <td><input type="checkbox" name="horario" value="4"></td>
+					<td><input type="checkbox" name="horario" value="5"></td>
+				</tr>
+				<tr>
+					<th>10:00-11:00</th>
+					<td><input type="checkbox" name="horario" value="6"></td>
+					<td><input type="checkbox" name="horario" value="7"></td>
+					<td><input type="checkbox" name="horario" value="8"></td>
+          <td><input type="checkbox" name="horario" value="9"></td>
+					<td><input type="checkbox" name="horario" value="10"></td>
+				</tr>
+				<tr>
+					<th>11:00-12:00</th>
+					<td><input type="checkbox" name="horario" value="11"></td>
+					<td><input type="checkbox" name="horario" value="12"></td>
+					<td><input type="checkbox" name="horario" value="13"></td>
+          <td><input type="checkbox" name="horario" value="14"></td>
+					<td><input type="checkbox" name="horario" value="15"></td>
+				</tr>
+        <tr>
+					<th>12:00-1:00</th>
+					<td><input type="checkbox" name="horario" value="16"></td>
+					<td><input type="checkbox" name="horario" value="17"></td>
+					<td><input type="checkbox" name="horario" value="18"></td>
+          <td><input type="checkbox" name="horario" value="19"></td>
+					<td><input type="checkbox" name="horario" value="20"></td>
+				</tr>
+        <tr>
+					<th>1:00-2:00</th>
+					<td><input type="checkbox" name="horario" value="21"></td>
+					<td><input type="checkbox" name="horario" value="22"></td>
+					<td><input type="checkbox" name="horario" value="23"></td>
+          <td><input type="checkbox" name="horario" value="24"></td>
+					<td><input type="checkbox" name="horario" value="25"></td>
+				</tr>
+        <tr>
+					<th>2:00-3:00</th>
+					<td><input type="checkbox" name="horario" value="26"></td>
+					<td><input type="checkbox" name="horario" value="27"></td>
+					<td><input type="checkbox" name="horario" value="28"></td>
+          <td><input type="checkbox" name="horario" value="29"></td>
+					<td><input type="checkbox" name="horario" value="30"></td>
+				</tr>
+        <tr>
+					<th>3:00-4:00</th>
+					<td><input type="checkbox" name="horario" value="31"></td>
+					<td><input type="checkbox" name="horario" value="32"></td>
+					<td><input type="checkbox" name="horario" value="33"></td>
+          <td><input type="checkbox" name="horario" value="34"></td>
+					<td><input type="checkbox" name="horario" value="35"></td>
+				</tr>
+        <tr>
+					<th>4:00-5:00</th>
+					<td><input type="checkbox" name="horario" value="36"></td>
+					<td><input type="checkbox" name="horario" value="37"></td>
+					<td><input type="checkbox" name="horario" value="38"></td>
+          <td><input type="checkbox" name="horario" value="39"></td>
+					<td><input type="checkbox" name="horario" value="40"></td>
+				</tr>
+			</tbody>
+		</table>
+
+     <label for="sabados" class="form-label">¿Podrías tener sesiones de mentoría los sábados?</label>
+     <select class="form-select" id="sabados" name="sabados"  onchange="activaselect11()">
+      <option value="" selected></option>
+      {{range .Respuestas}}
+      <option value="{{.Value}}">{{.Label}}</option>
+     {{end}}    
+    </select>
+</div>
+      <div id="sabadosdiv" class="d-none">
+        <label for="sabados" class="form-label">¿En qué horaio?</label>
+        <select class="form-select" id="sabados2" name="sabados2" multiple>
+          <option value="0" selected></option>
+          <option value="1">8:00 - 9:00</option>
+          <option value="2">9:00 - 10:00</option>
+          <option value="3">10:00 - 11:00</option>
+          <option value="4">11:00 - 12:00</option>
+        </select>
+     </div>
+
+    <label for="dispositivo" class="form-label">¿Cuentas con un dispositivo que puedas usar para participar en mentorías? ¿Cuál?*</label>
+    <select class="form-select" id="dispositivo" name="dispositivo" multiple required>
+     <option value="" disabled></option>
+     <option value="1">No tengo / no podría usarlo para participar en las sesiones de mentorías</option>
+     <option value="2">Computadora</option>
+     <option value="3">Tablet</option>
+     <option value="4">Celular</option>
+   </select>
+
+   <label for="Sexo" class="form-label">¿Tienes acceso a internet? </label>
+   <select class="form-select" id="internet" name="internet" onchange="activaselect6()" >
+     <option value=""></option>
+     {{range .Respuestas}}
+     <option value="{{.Value}}">{{.Label}}</option>
+   {{end}}
+  </select>
+
+  <label for="desde" class="form-label">¿Desde dónde planeas conectarte a las sesiones virtuales de mentorías? </label>
+  <select class="form-select" id="desde" name="desde" onchange="activaselect9()" > </select>
+
+<div class="d-none" id="otrodiv">
+   <label for="tiempo" class="form-label">Otro:</label>
+ <input type="text" name="otro" id="otro" class="form-control" >
+</div>
+
+ <label for="tiempo" class="form-label">¿Qué te gusta hacer en tu tiempo libre?</label>
+ <input type="text" name="tiempo" id="tiempo" class="form-control" >
+
+
+  </br>
+<h4>NORMAS Y DECLARACIÓN</h4>
+    <p style="text-align: justify;">
+      Si estás de acuerdo en participar en el programa de Mentorías de Glasswing, por favor completa la siguiente información:<br>
+Como participante del Programa de Mentoría de Glasswing International, me comprometo a cumplir los acuerdos de convivencia juvenil detallado a continuación:<br>
+1. Mostrar cortesía y respeto a los demás y en todo momento, lo que incluye respetar a mis compañeros(as) y personas responsables de las actividades.<br>
+2. Reportar sobre cualquier situación inapropiada o que me haga sentir incómodo(a), a las autoridades de Glasswing International.<br>
+3. Utilizar un lenguaje respetuoso en toda interacción. <br>
+4. Hacer un buen uso de las plataformas o espacios de interacción.<br> 
+5. Comprometerse a asistir a las sesiones de mentoría y respetar la asistencia y horarios acordados para realizar las sesiones requeridas en el programa.<br>
+*Si por alguna razón la persona que participa no pudiese atender una sesión (contratiempos, fallas técnicas, acceso a internet, emergencias, etc), por favor notificar a la coordinación de Glasswing lo más rápido posible para poder apoyar su conexión <br>
+6. En la medida que lo permita su situación y se sienta motivado/a a hacerlo, encender la cámara durante la sesión virtual.<br>
+7. Si llegara retrasado/a, por favor enviar un mensaje a su mentor/a por el chat, indicando que ha ingresado y procurar no interrumpir la actividad de trabajo o avisar a la persona responsable de la actividad que le nivele en el desarrollo de la sesión.<br>
+8. Poner el micrófono de su dispositivo celular, tablet, computador, en silencio (mute).<br>
+9. No compartir fotografías, capturas de pantalla, audios y/o vídeos de mis compañeros(as) en redes sociales o en cualquier plataforma de comunicación, de su participación en las actividades de Glasswing.<br>
+10. Confidencialidad: Respetar la información compartida de mis compañeros y mentor/a y practicas la confidencialidad no compartir ni platicar acerca de experiencias personales de compañeras(os) del grupo fuera de las sesiones de mentoría.<br>
+<br>
+Notas: <br>
+El/La mentor(a) podrá poner en silencio a los participantes, o bien activar el micrófono para favorecer la escucha y buena comunicación. <br>
+Confirmo que he leído las normas de convivencia de Glasswing y por tanto yo:<br>
+<div >
+         
+<div class="form-check">
+      <input class="form-check-input" type="checkbox" value="" id="invalidCheck" value="Comprometo" required>
+      <label class="form-check-label" for="invalidCheck">
+        Me comprometo a cumplirlas
+      </label>
+     </div>
+    </p>
+<br/>
+<button class="btn btn-primary" id="boton" type="submit"> Enviar</button>
+  </div>
+</div>
+
+</div>      
+</div>
+
+      </form>
+    </div>
+   <script src="/static/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="/public/JS/Participantes/mentoriasmenores.js"></script>
+  </body>
+</html>

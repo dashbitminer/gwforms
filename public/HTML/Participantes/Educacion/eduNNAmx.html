@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>FORMULARIO DE INSCRIPCIÓN DE PARTICIPANTES NNA - MÉXICO - EDUCACIÓN</title>
+    <meta charset="utf-8">
+    <base target="_top">
+    <link href="/static/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+  </head>
+  <body class="bg-custom">
+
+    <div class="container">
+<img src="/public/IMG/logo.png" class="img-fluid" alt="Glasswing" />
+<form method="POST" id="formualrioRegistro" name="formualrioRegistro" class="needs-validation" action="/educacion/inscripcion/nna/post" enctype="multipart/form-data" novalidatez>
+      <h2> Formulario de inscripción participantes NNA - México</h2>
+
+    <p style='text-align: justify;'>
+      ¡Buen día! Reciba un cordial saludo de la Fundación Crisálida Internacional/Glasswing International. El motivo del formulario es para validar sus datos personales. Por favor, complete el siguiente formulario con la información solicitada. 
+      <br>
+    </p>
+
+    <div class="col">
+      <label for="auto" class="form-label"><b>Marque con un cheque las autorizaciones que fueron dadas en el formulario físico:</b></label><br>
+      <input type="checkbox" name="auto" value="1"> Participación<br>
+      <input type="checkbox" name="auto" value="2"> Compartir Datos Personales<br>
+      <input type="checkbox" name="auto" value="3"> Uso De Voz E Imagen<br>
+      <input type="checkbox" name="auto" value="4"> Participación En Encuesta De Evaluación Del Programa<br>
+      <input type="checkbox" name="auto" value="5"> Recibir Información De En Casa Con Glasswing<br>
+    </div>
+    <br>
+
+    <h5>CAMPOS A LLENAR POR ADULTO RESPONSABLE</h5>
+    
+    <label for="contacto" class="form-label"><b>Nombres y apellidos completos del adulto responsable:</b></label>
+    <input type="text" name="contacto" id="contacto" class="form-control" required maxlength="400">
+
+    <label for="FechaNR" class="form-label"><b>Fecha de nacimiento del adulto responsable:</b></label>
+    <input type="date" name="FechaNR" id="FechaNR" class="form-control" placeholder="dd/mm/aaaa" required>
+
+    <label for="relacion" class="form-label"><b>Parentesco con la NNA o forma en la que acredita la representación legal de la NNA:</b></label>
+    <select class="form-select" id="relacion" name="relacion"  required>
+      <option value="" selected></option>
+      {{range .Parentesco}}
+      <option value="{{.Value}}">{{.Label}}</option>
+      {{end}}
+      </select>
+
+      <label for="DUIMl" id="DUIMl" class="form-label"><b>Número de CURP:</b></label>
+      <input type="text" name="DUIM" id="DUIM" class="form-control" placeholder="abcd000000abcdef00" maxlength="20">
+
+    <label for="Telcontacto" class="form-label"><b>Número de teléfono (incluya el que usa para WhatsApp):</b></label>
+    <input type="text" name="Telcontacto" id="Telcontacto" class="form-control" required minlength="8" maxlength="20">
+    <br>
+
+<h5>INFORMACIÓN PERSONAL DE LA NIÑA, NIÑO O ADOLESCENTE</h5>
+
+    <div id="llenadofecha">
+      <label for="nacionalidad" class="form-label"><b>Selecciona tu nacionalidad:</b></label>
+      <select class="form-select" id="nacionalidad" name="nacionalidad" required>
+       <option value="" selected></option>
+       <option value="1" >Mexicana/o</option>
+       <option value="0" >Extranjera/o</option>
+    </select>
+
+    <label for="anterior" class="form-label"><b>¿La/el menor ha participado en años anteriores en actividades de Glasswing?</b></label>
+    <select class="form-select" id="anterior" name="anterior" required>
+     <option value="" selected></option>
+     <option value="1">Sí</option>
+     <option value="0">No</option>
+    </select>
+
+        <div class="col">
+        <label for="nombre" class="form-label"><b>Nombres completos:</b></label>
+        <input type="text" name="nombre" id="nombre" class="form-control" required maxlength="200">
+    </div>
+        <div class="col">
+        <label for="apellido" class="form-label"><b>Apellidos completos:</b></label>
+        <input type="text" name="apellido" id="apellido" class="form-control" required maxlength="200">
+      </div>
+
+      <div class="col">
+      <label for="FechaN" class="form-label"><b>Fecha de nacimiento:</b></label>
+      <input type="date" name="FechaN" id="FechaN" class="form-control" placeholder="dd/mm/aaaa" required>
+      </div>
+
+    <div class="col">
+                <label for="Sexo" class="form-label"><b>Selecciona tu sexo según registro nacional:</b></label>
+    <select class="form-select" id="Sexo" name="Sexo"  required>
+        <option value=""></option>
+        {{range .Sexo}}
+        <option value="{{.Value}}">{{.Label}}</option>
+    {{end}}
+    </select>
+    </div>   
+
+<div class="col">
+  <label for="TdC" class="form-label"><b>¿La/el menor se encuentra estudiando actualmente?</b></label>
+  <select class="form-select" id="Eactual" name="Eactual" onchange="activaselect2()" required>
+   <option value="" selected></option>
+   <option value="1">Sí</option>
+   <option value="0">No</option>
+ </select>
+</div>
+
+<div id="hidden-question-div" class="col d-none">
+  <label for="Area" class="form-label"><b>¿Último grado alcanzado?</b></label>
+         <select class="form-select" id="UT" name="UT"  >
+             <option value="" selected></option>
+             {{range .Ultgrad}}
+             <option value="{{.Value}}">{{.Label}}</option>
+           {{end}}
+         </select>
+ </div>
+ <div id="hidden-question-div2" class="col d-none">
+  <label for="Area" class="form-label"><b>Selecciona tu grado o el nivel educativo actual:</b></label>
+         <select class="form-select" id="GA" name="GA"  onchange="activaselect3()">
+             <option value="" selected></option>
+             {{range .Grado}}
+             <option value="{{.Value}}">{{.Label}}</option>
+           {{end}}
+         </select>
+
+ <div id="hidden-question-div3" class="col d-none">
+  <label for="seccion" class="form-label"><b>Selecciona tu sección/grupo:</b></label>
+         <select class="form-select" id="seccion" name="seccion"  >
+           <option value="" selected></option>
+           {{range .Seccion}}
+           <option value="{{.Value}}">{{.Label}}</option>
+         {{end}}
+         </select>
+ </div>
+     <div id="hidden-question-div5" class="col d-none">
+  <label for="turno" class="form-label"><b>Selecciona el turno:</b></label>
+         <select class="form-select" id="Turno" name="Turno"  >
+           <option value="" selected></option>
+           {{range .Turno}}
+           <option value="{{.Value}}">{{.Label}}</option>
+         {{end}}
+         </select>
+ </div> 
+</div>
+
+<div class="col">
+  <label for="dis" class="form-label"><b>¿Posee alguna discapacidad?</b></label>
+   <select class="form-select" id="dis" name="dis"  onchange="activaselect10()" required>
+    <option value="" selected></option>
+    <option value="1">Sí</option>
+    <option value="0">No</option>
+</select>
+</div>
+
+<div id="hidden-question-div10" class="col d-none">
+<label for="dis2" class="form-label"><b>¿Cuál?</b></label><br>
+<input type="checkbox" name="dis2" value="4"> Física<br>
+<input type="checkbox" name="dis2" value="2"> Auditiva<br>
+<input type="checkbox" name="dis2" value="3"> Visual<br>
+<input type="checkbox" name="dis2" value="5"> Cognitiva o intelectual<br>
+</div>
+
+<div class="col">
+  <label for="club" class="form-label"><b>Club/actividad en el que participará la/el menor este año:</b></label>
+  <input type="text" name="club" id="club" class="form-control" required maxlength="100">
+</div>
+
+<div class="col">
+  <label for="pais" class="form-label"><b>Selecciona el estado donde se encuentra la escuela o sede Glasswing</b></label>
+  <select class="form-select" id="pais2" name="pais2"  onchange="actualizarmun(this.value)" required >
+        <option value=""></option>
+        {{range .Depsede}}
+        <option value="{{.Value}}">{{.Label}}</option>
+        {{end}}
+      </select>  
+     
+</div>
+<div class="col">
+  <label for="departamento2" class="form-label"><b>Selecciona la alcaldía o municipio donde se encuentra la escuela o sede Glasswing</b></label>
+   <select class="form-select" id="departamento2" name="departamento2"   onchange="actualizarsede(this.value)" required>
+</select>
+</div>
+
+<div class="col">
+  <label for="sede2" class="form-label"><b>Selecciona el centro educativo o sede Glasswing al que pertenece la /el menor</b></label>
+   <select class="form-select" id="sede2" name="sede2" required >
+    <option value=""></option>
+</select>
+</div>
+
+<div class="col">
+  <label for="pais" class="form-label"><b>Selecciona el estado en el que reside:</b></label>
+  <select class="form-select" id="pais" name="pais"  onchange="actualizarCiudades(this.value)" required>
+    <option value="" selected></option>
+    {{range .Departamento}}
+    <option value="{{.Value}}">{{.Label}}</option>
+  {{end}}
+</select>
+</div>
+<div class="col">
+  <label for="departamento" class="form-label"><b>Selecciona la alcaldía o el municipio en el que reside:</b></label>
+   <select class="form-select" id="departamento" name="departamento" required>
+    <option value="" selected></option>
+</select>
+</div>
+</div>
+<br/>
+<button class="btn btn-primary" id="boton" type="submit"> Enviar</button>
+</div>
+</div>
+</div>
+<input type="hidden" id="idpais" name="idpais" value="17">
+      </form>
+    </div>
+    <script src="/static/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="/static/sweetalert2/dist/sweetalert2.all.min.js"></script>
+    <script src="/public/JS/Participantes/edunna.js"></script>
+  </body>
+</html>

@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <base target="_top">
+    <link rel="shortcut icon" href="https://gwdata.org/images/favicon.png">
+   <link href="/static/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+  </head>
+  <body>
+
+    <div class="container">
+<img src="/public/IMG/logo.png" class="img-fluid" alt="Glasswing" />
+      <h2> Formulario de inscripción voluntariado Panamá 2024 </h2>
+     
+     <p style="text-align: justify;">
+¡Hola! Te damos la bienvenida al equipo de voluntariado de Glasswing International. Es un enorme agrado que quieras unirte a nuestras actividades. A continuación, te presentamos un formulario de inscripción de voluntariado que debes llenar con tus datos personales.</br></br>
+
+La información solicitada es para usos exclusivos de Glasswing, te aseguramos que tu información no será compartida con terceros. Toda la información será resguardada con estricta confidencialidad por el equipo de Glasswing y nada de lo que compartas tendrá repercusiones sobre tu persona o tu participación en las actividades. Si tienes consultas sobre este formulario puedes hacerlas sin ningún problema a la persona de tu referencia en Glasswing, en cualquier momento.
+
+</p>
+
+      <br/>
+      <form action="/voluntariado/post/pn" method="POST" enctype="multipart/form-data" id="formualrioRegistro" name="formualrioRegistro" class="needs-validation" novalidatez>
+
+<label for="FechaN" class="form-label">Antes de iniciar es necesario conocer si eres menor de edad.  Ingresar tu Fecha de Nacimiento*</label>
+<input type="date" name="FechaN" id="FechaN" class="form-control" placeholder="dd/mm/aaaa" required onchange="activaselect4()">
+
+<div class="col">
+          <label for="gi" class="form-label">Selecciona tu nacionalidad:</label>
+          <select class="form-select" id="gi" name="gi" required onchange="activaselect51()">
+          <option value="" selected></option>
+          <option value="1">Panameño(a)</option>
+          <option value="2">Extranjero(a)</option>
+          </select>
+  </div> 
+
+      <br/>
+<div id="ocultar" class="container d-none">
+      <div id="menor" class="container d-none">
+ <h4>Autorización de uso de Información </h4>
+<br/>
+<p style="text-align: justify;">
+Para comenzar, asegúrate de que tu familiar o adulto responsable se encuentre cerca de ti, ya que requerimos de su autorización para que compartas tus datos personales. Por lo que, en el siguiente apartado, solicitamos que la información sea leída y completada por tu madre, padre o adulto responsable. </br> </br>
+
+Estimada y estimado madre, padre o adulto responsable, reciba un cordial saludo de Glasswing Internacional. Somos una organización no gubernamental que tiene programas en educación, salud y desarrollo comunitario dirigidos a la niñez, adolescencia y juventud. Realizamos actividades según los programas como: clubes extracurriculares, talleres, cafés comunitarios, entre otros, de forma presencial en los centros escolares, y también de forma virtual. Algunas de nuestras actividades incluyen la participación de personas voluntarias, quienes apoyan en la implementación de estas. Su hijo o hija adolescente a cargo , se encuentra interesado en participar como voluntaria o voluntario, es por ello que en este formulario de inscripción le requiere del llenado con  información personal.</br> </br>
+
+Dado que la persona adolescente bajo su cargo aún es menor de 18 años, solicitamos su autorización para que él o ella nos comparta información personal mediante el formulario de inscripción de voluntariado 2023. Hacemos de su conocimiento que la información solicitada es utilizada para nuestros registros internos, en los cuales llevamos un seguimiento de nuestro equipo de voluntariado. Los datos son guardados en una plataforma institucional de único acceso para el área de Monitoreo y Evaluación, y el área de Voluntariado de Glasswing International; por tanto, aseguramos que la información personal de su hijo o hija adolescente a cargo, no será compartida con terceras personas.</br> </br>
+
+Si usted acepta que su hijo o hija adolescente a cargo complete el presente formulario de inscripción con sus datos personales, le solicitamos llenar el siguiente apartado de autorización parental</br> </br>
+
+</p>
+              
+          <p>Yo <input type="text" name="nombreRep" id="nombreRep" class="form-control" required></p>
+                   
+    <label for="DUIP" class="form-label">, mayor de edad, portador/portadora de mi Documento de Identidad número</label>
+    <input type="text" name="DUIP" id="DUIP" class="form-control" placeholder="" required>
+    
+              <label for="parentesco" class="form-label">en mi calidad de (Parentesco con la/el adolescente):</label>
+          <select class="form-select" id="parentesco" name="parentesco" required >
+            <option value="" selected></option>
+            {{range .Parentesco}}
+            <option value="{{.Value}}">{{.Label}}</option>
+          {{end}}
+      </select>
+
+          <label for="nombreAdolescente" class="form-label"> del adolescente </label>
+          <input type="text" name="nombreAdolescente" id="nombreAdolescente" class="form-control" required>
+
+      <label for="edad" class="form-label">, de </label>
+          <input type="number" name="edad" id="edad" min="12" step="1" class="form-control" required>
+<p style="text-align: justify;">
+años de edad, brindo mi autorización para que mi hijo o hija adolescente a cargo, comparta información personal en el formulario de inscripción de Glasswing International, quien estará participando en el equipo de voluntariado durante el año 2023. Estoy informado/a que los datos personales serán utilizados para el registro interno de voluntarios y voluntarias, y serán alojados en una plataforma institucional de único acceso para el área de Voluntariado y Monitoreo y Evaluación de Glasswing International. Por lo que entiendo que la información será tratada con rigurosa confidencialidad y nunca será compartida con terceras personas.
+</p>
+</div>   
+
+
+<div id="ext" class="d-none">
+
+      <label for="paisn" class="form-label">Selecciona tu país de nacimiento:*</label>
+          <select class="form-select" id="paisn" name="paisn">
+            <option value="" selected></option>
+            {{range .Paises}}
+            <option value="{{.Value}}">{{.Label}}</option>
+          {{end}}
+        </select>
+  
+       <label for="elec" class="form-label">Selecciona el tipo de documento de identidad que brindarás:</label>
+          <select class="form-select" id="elec" name="elec" onchange="activaselect52()">
+          <option value="" selected></option>
+          <option value="1">Pasaporte</option>
+          <option value="2">Documento de identidad / Carnet de residente</option>
+          </select>
+          </div>
+<div id="nacional" class="container d-none">
+<div id="mayor" class="container d-none">
+</br>
+<label for="DUIL" id="DUIL" class="form-label">Escribe el número de tu Documento de Identidad</label>
+<input type="text" name="DUI" id="DUI" class="form-control" placeholder="" required>
+   </div>
+</div>
+<div id="ext2" class="d-none">
+  </br>
+<label for="Docl" id="Docl" class="form-label">Toma una fotografía a tu documento de identidad (lado de enfrente)  y súbelo en este espacio</label>
+<input type="file" class="form-control-file" id="docF" name="docF" required>
+</br>
+<label for="DocAl" id="DocAl" class="form-label">Toma una fotografía a tu documento de identidad (lado de atras)  y súbelo en este espacio   </label>
+<input type="file" class="form-control-file" id="docA" name="docA" required>
+</div>
+
+<div id="pasd" class="d-none">
+  </br>
+  <label for="pas" id="Docl" class="form-label">Toma una fotografía a la hoja de datos del pasaporte  y súbelo en este espacio</label>
+  <input type="file" class="form-control-file" id="pas" name="pas">
+</div>
+</br>
+
+
+<h4>Datos de Voluntario </h4>
+
+         <label for="nombre" class="form-label">Escribe tus nombres completos:*</label> 
+          <input type="text" name="nombre" id="nombre" class="form-control" required>
+
+ <label for="apellido" class="form-label">Escribe tus apellidos completos:*</label> 
+          <input type="text" name="apellido" id="apellido" class="form-control" required>
+
+  <div class="col">
+          <label for="sexo" class="form-label">Selecciona tu sexo según registro nacional:*</label>
+          <select class="form-select" id="sexo" name="sexo" required>
+            <option value="" selected></option>
+            {{range .Sexo}}
+            <option value="{{.Value}}">{{.Label}}</option>
+          {{end}}
+      </select>
+          </div>
+          
+
+   <div class="col">
+     <label for="correo" class="form-label">Escribe tu correo electrónico:*</label>
+     <input type="email" name="correo" id="correo" class="form-control" placeholder="" required>
+     <div class="invalid-feedback">
+       Ingresa una dirección de correo válida
+    </div>
+   </div>
+
+   <div class="col">
+              <label for="TM" class="form-label">Escribe tu número de teléfono / Whatsapp:*</label>
+          <input type="text" name="TM" id="TM" class="form-control" required>
+  </div>
+
+<div class="col">
+          <label for="camisa" class="form-label">Favor indica tu talla de camisa si estarás asignado en actividades presenciales:* </label>
+           <select class="form-select" id="camisa" name="camisa" required >
+            <option value="" selected></option>
+            {{range .Camisa}}
+            <option value="{{.Value}}">{{.Label}}</option>
+          {{end}}
+      </select>
+     </div>
+
+<div class="col">
+          <label for="voluntario" class="form-label">¿Cuántos años llevas participando como voluntario Glasswing?*</label>
+           <select class="form-select" id="voluntario" name="voluntario" required >
+  <option value="" selected></option>
+       <option value="1">Es mi primera vez como voluntario</option>
+       <option value="2">Menos de 1 año</option>
+       <option value="3">1 año</option>
+       <option value="4">2 años</option>
+       <option value="5">3 años</option>
+       <option value="6">4 años</option>
+       <option value="7">5 años</option>
+       <option value="8">Más 5 años</option>
+      </select>
+     </div>
+
+ <div class="row">
+  <div class="col">
+          <label for="pais" class="form-label">Selecciona la provincia en la que resides:*</label>
+          <select class="form-select" id="pais" name="pais" required onchange="actualizarCiudades(this.value)">
+            <option value="" selected></option>
+            {{range .Departamento}}
+            <option value="{{.Value}}">{{.Label}}</option>
+          {{end}}
+      </select>
+      </select>
+    </div>
+  <div class="col">
+          <label for="departamento" class="form-label">Selecciona el municipio en el que resides:*</label>
+           <select class="form-select" id="departamento" name="departamento" required>
+            <option value="" selected></option>
+      </select>
+    </div>
+  </div>
+   <label for="direccion" class="form-label">Escribe tu dirección exacta de residencia:*</label> 
+          <input type="text" name="direccion" id="direccion" class="form-control" required>
+
+  <div class="col">
+          <label for="TdC" class="form-label">¿Te encuentras estudiando actualmente?*</label>
+           <select class="form-select" id="TdC" name="TdC" onchange="activaselect3()" required>
+            <option value="" selected></option>
+            {{range .Respuestas}}
+            <option value="{{.Value}}">{{.Label}}</option>
+          {{end}}
+      </select>
+     </div>
+     
+ <div id="hidden-question-div" class="col d-none">
+     <label for="Area" class="form-label">Último grado alcanzado*</label>
+            <select class="form-select" id="UT" name="UT" required >
+              <option value="" selected></option>
+              {{range .Ultgrad}}
+              <option value="{{.Value}}">{{.Label}}</option>
+            {{end}}
+        </select>
+            </select>
+    </div>
+    <div id="hidden-question-div2" class="col d-none">
+     <label for="Area" class="form-label">Selecciona tu grado/nivel actual:*</label>
+            <select class="form-select" id="GA" name="GA" required onchange="activaselect3()">
+              <option value="" selected></option>
+              {{range .Grado}}
+              <option value="{{.Value}}">{{.Label}}</option>
+            {{end}}
+        </select>
+            </select>
+</div>
+    <div id="hidden-question-div3" class="col d-none">
+     <label for="seccion" class="form-label">Escribe la universidad en la que estudias</label>
+             <input type="text" name="U" id="U" class="form-control" required>
+  
+     <label for="carrera" class="form-label">Escribe tu carrera de estudios</label>
+            <input type="text" class="form-control" id="carrera" name="carrera" required >
+        
+    </div>
+    <div id="hidden-question-div5" class="col d-none">
+         <label for="HS" class="form-label">¿Requieres horas sociales por tu voluntariado?</label>
+           <select class="form-select" id="HS" name="HS"  required>
+            <option value="" selected></option>
+            {{range .Respuestas}}
+            <option value="{{.Value}}">{{.Label}}</option>
+          {{end}}
+      </select>
+     </div>
+
+</br>
+
+<h4>Referencias personales</h4>
+ <label for="nombrer" class="form-label">Escribe los nombres y apellidos completos de tu referencia personal (1):* </label>
+             <input type="text" name="nombrer" id="nombrer" class="form-control" required>
+  
+     <label for="telr" class="form-label">Teléfono de referencia/ Whatsapp (1):* </label>
+            <input type="text" class="form-control" id="telr" name="telr" required >
+
+<label for="nombrer2" class="form-label">Escribe los nombres y apellidos completos de tu referencia personal (2):* </label>
+<input type="text" name="nombrer2" id="nombrer2" class="form-control" required>
+
+<label for="telr2" class="form-label">Teléfono de referencia/ Whatsapp (2):* </label>
+<input type="text" class="form-control" id="telr2" name="telr2" required >
+</br>
+
+
+<h4> Perfil de voluntariado  </h4>
+      
+      <div >
+          <label for="acceso" class="form-label">Selecciona el perfil con el que te identificas:*</label>
+      <select class="form-select" id="acc" name="acc" required onchange="activaselect30()">
+        <option value="" selected></option>
+        {{range .Perfil}}
+        <option value="{{.Value}}">{{.Label}}</option>
+      {{end}}
+  </select>
+     </div>
+           <div id="acc2d" class="d-none">
+             </br>
+             <h5>Voluntario Comunitario </h5>
+          <label for="acc2" class="form-label">¿Cuál es tu relación con el lugar?</label>
+           <select class="form-select" id="acc2" name="acc2">
+            <option value="" selected></option>
+            {{range .Relacioncom}}
+            <option value="{{.Value}}">{{.Label}}</option>
+          {{end}}
+      </select>
+  </div>
+             <div id="acc3d" class="d-none" >
+               </br>
+               <h5>Voluntario Corporativo</h5>
+          <label for="acc3" class="form-label">Selecciona tu lugar de trabajo:</label>
+          <select class="form-select" id="acc3" name="acc3">
+            <option value="" selected></option>
+            {{range .Copdonor}}
+            <option value="{{.Value}}">{{.Label}}</option>
+          {{end}}
+      </select>
+    </div>
+    <div id="puestod" class="d-none" >
+          <label for="puesto" class="form-label">Especifica el área/departamento/planta en la que trabajas</label> 
+          <input type="text" name="puesto" id="puesto" class="form-control">
+  
+        </div>
+        <br>
+<h4>Datos de inducción</h4>
+
+<label for="FechaI" class="form-label">Indica la fecha en la que recibiste la inducción de voluntariado</label>
+<input type="date" name="FechaI" id="FechaI" class="form-control" placeholder="dd/mm/aaaa" required >
+ <label for="nombrei" class="form-label">Escribe el nombre de la persona que desarrolló la inducción:</label>
+             <input type="text" name="nombrei" id="nombrei" class="form-control" required>
+
+    <div class="col">
+          <label for="pais" class="form-label">Selecciona el programa que estarás apoyando:</label>
+          <select class="form-select" id="pais2" name="pais2" onchange="actualizaractividades(this.value)" required>
+            <option value="" selected></option>
+            {{range .Programa}}
+            <option value="{{.Value}}">{{.Label}}</option>
+          {{end}}
+      </select>
+      </select>
+    </div>
+    
+        <label for="actividad" class="form-label">Selecciona si conoces la actividad que estarás apoyando :</label>
+                <select class="form-select" id="actividad" name="actividad" onchange="actualizarsubactividades(this.value)">
+                </select>
+        <div id="subactD" class="d-none">
+        <label for="subact" class="form-label">Selecciona si conoces club que esta estarás apoyando :</label>
+                <select class="form-select" id="subact" name="subact" onchange="otro()">
+                </select>
+        </div>
+
+<div id="aD" class="d-none">
+        <input type="text" name="aT" id="aT" class="form-control">
+</div>    
+
+ <label for="dis2" class="form-label">Selecciona si conoces el o los días que estarás desarrollando la actividad:</label><br>
+        <input type="checkbox" name="dis2" value="1"> Lunes<br>
+        <input type="checkbox" name="dis2" value="2"> Martes<br>
+        <input type="checkbox" name="dis2" value="3"> Miércoles<br>
+        <input type="checkbox" name="dis2" value="4"> Jueves<br>
+        <input type="checkbox" name="dis2" value="5"> Viernes<br>
+        <input type="checkbox" name="dis2" value="6"> Sábado<br>
+       
+
+  <label for="dis4" class="form-label">Selecciona si conoces el horario en el que estaras desarrollando la actividad:</label><br>
+        <input type="checkbox" name="dis4" value="1"> 8:00 - 10:00<br>
+        <input type="checkbox" name="dis4" value="2"> 10:00 - 12:00<br>
+        <input type="checkbox" name="dis4" value="3"> 11:00 - 12:00<br>
+        <input type="checkbox" name="dis4" value="4"> 12:00 - 1:00<br>
+        <input type="checkbox" name="dis4" value="5"> 1:00 - 2:00<br>
+        <input type="checkbox" name="dis4" id="OH" value="6" onchange="otro2()"> Otro<br>
+
+<div id="OHD" class="d-none">
+        <input type="text" name="OHT" id="OHT" class="form-control">
+</div>
+            <label for="departamento" class="form-label">Selecciona la provincia donde se encuentra la escuela/sede donde realizaras tu voluntariado</label>
+           <select class="form-select" id="departamento2" name="departamento2" onchange="actualizarsedes2(this.value)">
+      </select>
+
+      <div class="col">
+          <label for="sede2" class="form-label">Selecciona la sede/escuela donde realizaras tu voluntariado</label>
+           <select class="form-select" id="sede2" name="sede2" >
+      </select>
+
+     </div>
+
+  </br>
+
+<button class="btn btn-primary" id="boton" type="submit"> Enviar</button>
+ </div>
+      </form>
+
+    </div>
+    <input type="hidden" name="idp" value="1" id="idp">
+ <script src="/static/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="/public/JS/Voluntarios/pn.js"></script>
+  </body>
+</html>

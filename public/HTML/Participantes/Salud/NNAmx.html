@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>FORMULARIO DE INSCRIPCIÓN DE PARTICIPANTES NNA</title>
+    <meta charset="utf-8">
+    <base target="_top">
+    <link href="/static/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+  </head>
+  <body class="bg-custom">
+
+    <link rel="stylesheet" href="/public/CSS/estilos_nnasv.css" type="text/css">
+
+    <div class="container">
+<img src="/public/IMG/logo.png" class="img-fluid" alt="Glasswing" />
+<form method="POST" id="formualrioRegistro" name="formualrioRegistro" class="needs-validation" action="/salud/nna/post" enctype="multipart/form-data" novalidatez>
+      <h2> Formulario de inscripción participantes NNA</h2>
+
+    <p style='text-align: justify;'>
+        ¡Buen día! Reciba un cordial saludo de Fundación Crisálida Internacional/Glasswing International (en adelante Glasswing). El presente formulario tiene la finalidad de solicitar su autorización para que la niña o adolescente (en adelante NNA) bajo su patria potestad o tutela pueda participar en nuestro programa Club de Niñas que desarrollamos en el centro educativo o sede al cual asiste. Todas las actividades son realizadas dentro del centro educativo o sede, en los días entre lunes y viernes, en horarios que son acordados con la administración de la sede, por lo que la niña no requiere movilizarse hacia otro lugar. En caso de que se realicen actividades fuera del centro escolar o sede de participación, solicitaremos una autorización especial para la actividad y traslado de la NNA. La oferta de actividades dentro de nuestro programa, incluye áreas como: bienestar integral y emocional, relación con el entorno, relaciones saludables, salud sexual y reproductiva, toma de decisiones y proyecto de vida, entre otras. Glasswing es responsable del uso y protección de los datos personales que recaba según la Ley Federal de Protección de Datos Personales en Posesión de los Particulares. Glasswing no compartirá ni venderá sus datos personales a ningún tercero. Sin embargo, podrá compartir información cuando así lo soliciten las autoridades gubernamentales y/o cuando haya sido requerido por orden judicial. A continuación, se detalla la información sobre las autorizaciones solicitadas:
+    </p>
+<br>
+<div id="autorizaciones">
+<h4>CAMPO A LLENAR POR ADULTO RESPONSABLE</h4>
+<h5>AUTORIZACIÓN DE PARTICIPACIÓN</h5>
+<p style="text-align: justify;">
+  <b>Es necesaria la expresa autorización por usted para respaldar la participación de la NNA en nuestros programas.</b> Para su conocimiento, Glasswing International desarrolla mecanismos de supervisión en sus actividades y, tanto el staff como voluntarios(as), deben cumplir con un Código de Conducta y lineamientos de Salvaguarda y Protección Infantil. También debe de saber que <b>estas actividades pueden desarrollarse de manera presencial o virtual, y que la persona adulta responsable debe brindar supervisión adecuada para la NNA a cargo, en las actividades que lo ameriten.</b>
+  <br>
+ </p>
+<input type="radio" value="1" onchange="ver1()" name="autR1" required>Autorizo participación<br>
+<input type="radio" value="0" onchange="ocultar1()" name="autR1">No autorizo participación 
+<br>
+<br>
+
+<div class="d-none" id="finllenadoRes" style="text-align: center; font-style: italic; margin-top: 20px;">
+  <h4><b>Fin del llenado del formulario</b></h4>
+</div>
+
+<div class="d-none" id="datospersonales">
+  <h5>AUTORIZACIÓN PARA USAR DATOS PERSONALES EN FORMULARIO DE INSCRIPCIÓN:</h5>
+  <p style="text-align: justify;">
+    <b>Es necesaria la expresa autorización por usted para respaldar que la información de inscripción de la NNA, ha sido brindada de forma voluntaria,</b> la cual tiene como propósito cumplir las obligaciones derivadas de la relación jurídica con Glasswing. La información será utilizada exclusivamente por Glasswing y se almacenará de forma segura; asimismo, le informamos que podemos generar datos desagregados, los cuales serán anonimizados para que no sea posible identificar a ningún individuo. Estos datos se utilizarán para campañas publicitarias, promoción de donaciones a favor de Glasswing y elaboración de reportes generales.
+    <br>
+   </p>
+   <input type="radio" value="1" onchange="ver2()" name="autR2" required>Autorizo la recolección y uso de información<br>
+   <input type="radio" value="0" onchange="ocultar2()" name="autR2">No autorizo la recolección y uso de información
+   <br>
+   <br>
+
+<div class="d-none" id="finllenadoRes1" style="text-align: center; font-style: italic; margin-top: 20px;">
+  <h4><b>Fin del llenado del formulario</b></h4>
+</div>
+
+<div class="d-none" id="datospersonales2">
+<h5>AUTORIZACIÓN DE USO DE VOZ E IMAGEN</h5>
+<p style="text-align:justify;">
+  <b>Por este medio solicitamos la autorización expresa para la toma de fotografías y videos en grupo y/o individuales de carácter general, tomando de referencia el artículo 16 de la Convención sobre los Derechos de las Niñas y Niños, el artículo 87 de la Ley Federal del Derecho de Autor, los artículos 64, 71, 76 y 77 de la Ley General de los Derechos de Niñas, Niños y Adolescentes, los artículos 6, 7, 8, 9, 15, 16, 17 y demás relativos y aplicables de la Ley Federal de Protección de Datos Personales en Posesión de los Particulares, así como lo dispuesto por los artículos 16, 17, 18 y 19 de la Ley de Responsabilidad Civil para la Protección del Derecho a la Vida Privada, el Honor y la Propia Imagen en el Distrito Federal.</b><br>
+  <b>La autorización de Uso de Voz e Imagen solicitada tiene las finalidades siguientes:</b><br>
+    • Uso exclusivo en plataformas institucionales y para la rendición de cuentas a los socios de Glasswing, que podrán compartir y publicar esta información a través de sus propios canales (cooperación internacional, empresas, organizaciones o centros educativos).<br>
+    • El uso de fotografías o videos en formas de comunicación y medios según corresponda al trabajo de Glasswing.<br>
+    • Uso de voz e imagen para eventos o presentaciones públicas, exclusivamente para la promoción y marketing de Glasswing.<br>
+    • Ninguna fotografía o video se podrá utilizar para fines políticos, religiosos o personales por ninguna persona de la Fundación, o externos a ella.<br>
+    • <b>La autorización para el uso de voz e imagen no es un requisito para participar en nuestras iniciativas o programas.</b><br>
+    • Brindar el derecho de usar, publicar, reproducir y compartir el primer nombre o con el que desee ser identificada la NNA, foto o semejanza en video, su voz grabada, citas y comentarios en todos los medios para promover actividades de comunicaciones, recaudación de fondos, marketing y otros sin fines de lucro relacionados con Glasswing (en adelante los "materiales").<br>
+    • Autorizar la edición de dichos materiales y aceptar que Glasswing no estará obligado a entregar materiales, ya sea en versión física o digital, de cualquier titular que lo exija o solicite.<br>
+  <br>
+  
+  <input type="radio" value="1" name="autR3" required>Autorizo el uso de voz e imagen<br>
+  <input type="radio" value="0" name="autR3">No autorizo el uso de voz e imagen<br>
+
+  <h5>CONSENTIMIENTO PARA PARTICIPAR EN ENCUESTA DE EVALUACIÓN DEL PROGRAMA:</h5>
+  <p style="text-align: justify;">
+    Glasswing realiza encuestas para entender cómo el programa impacta a sus participantes y mejorar los servicios. Estas encuestas son anónimas y no recogen información personal. Queremos pedir su permiso para que su NNA participe. La participación en la encuesta es voluntaria.
+    <br>
+   </p>
+   <input type="radio" value="1" name="autR4" required>Autorizo participación en encuesta<br>
+   <input type="radio" value="0" name="autR4">No autorizo la participación en encuesta
+   <br>
+   <br>
+
+  Es importante que usted sepa que tiene el derecho a acceder, rectificar, cancelar y retirar su autorización de participación, compartir datos personales y uso de voz e imagen, en cualquier momento, según lo considere necesario o conveniente. Para tal efecto, puede enviar un correo a info_mx@glasswing.org, notificando el retiro de su autorización para una o todas las autorizaciones brindadas en los apartados anteriores. Así mismo, le informamos que usted puede limitar el uso y divulgación de sus datos personales mediante inscripción en el Registro Público para Evitar Publicidad a cargo de la Procuraduría Federal del Consumidor.
+</p>
+
+<label for="contacto" class="form-label"><b>Nombres y apellidos completos del adulto responsable:</b></label>
+<input type="text" name="contacto" id="contacto" class="form-control" required maxlength="400">
+
+<label for="FechaNR" class="form-label"><b>Fecha de nacimiento del adulto responsable:</b></label>
+<input type="date" name="FechaNR" id="FechaNR" class="form-control" placeholder="dd/mm/aaaa" required>
+
+<label for="relacion" class="form-label"><b>Parentesco con la NNA o forma en la que acredita la representación legal de la NNA:</b></label>
+<select class="form-select" id="relacion" name="relacion"  required>
+  <option value="" selected></option>
+  {{range .Parentesco}}
+  <option value="{{.Value}}">{{.Label}}</option>
+  {{end}}
+  </select>
+
+<label for="DUIMl" id="DUIMl" class="form-label"><b>Número de CURP:</b></label>
+<input type="text" name="DUIM" id="DUIM" class="form-control" placeholder="abcd000000abcdef00" maxlength="20">
+
+<label for="Telcontacto" class="form-label"><b>Número de teléfono (incluya el que usa para WhatsApp):</b></label>
+<input type="text" name="Telcontacto" id="Telcontacto" class="form-control" required minlength="8" maxlength="20">
+
+
+<div id="alertContainer" style="display: none;"></div>
+<br>
+Con el objetivo de asegurar que la información sea entregada adecuadamente por nuestra institución, le pedimos que nos apoye informando lo siguiente: <br><br>
+<b>• Confirmo que he recibido una copia de este documento, ya sea en formato físico o digital.</b><br> 
+<input type="radio" value="1" name="autR5" required>Sí<br>
+<input type="radio" value="0" name="autR5">No<br>
+<br>
+<b>• Me han informado sobre el propósito y las actividades en las que participará la NNA en el programa.</b><br>
+<input type="radio" value="1" name="autR6" required>Sí<br>
+<input type="radio" value="0" name="autR6">No<br>  
+<br>
+<b>• Declaro que la NNA ha sido escuchada y su opinión ha sido considerada para otorgar las autorizaciones de este documento, de acuerdo con su edad y madurez. En señal de conformidad la NNA firma o coloca su huella en este documento.</b><br>
+<input type="radio" value="1" name="autR7" required>Sí<br>
+<input type="radio" value="0" name="autR7">No<br>  
+<br>
+<b>• Manifiesto que he leído y comprendido en su totalidad el aviso de privacidad y otorgo consentimiento para que los datos de la NNA sean tratados conforme a los términos y condiciones del aviso de privacidad.</b><br>
+<input type="radio" value="1" name="autR8" required>Sí<br>
+<input type="radio" value="0" name="autR8">No<br>  
+<br>
+<p style="text-align: justify;">
+  Hago constar que conozco toda la información necesaria para autorizar la participación de la NNA a mi cargo (autorización de participación, autorización para compartir datos, autorización de uso de voz e imagen y autorización de participar en encuesta) y que los campos de autorización e información han sido completados por mi persona.
+</p>
+
+<h4>CAMPO A LLENAR POR LA NIÑA, NIÑO O ADOLESCENTE</h4>
+<h5>AUTORIZACIÓN DE PARTICIPACIÓN</h5>
+<p style="text-align: justify;">
+Es necesaria para respaldar que la participación como NNA (niña, niño o adolescente) es voluntaria. Informamos que Glasswing International desarrolla mecanismos de supervisión en sus actividades y, tanto el staff, voluntarias y voluntarios, deben cumplir con un Código de Conducta y lineamientos de Salvaguarda y Protección Infantil. Estos programas y actividades pueden desarrollarse de manera presencial o virtual, y que la persona adulta responsable también debe brindar supervisión adecuada para la niña, niño o adolescente a cargo, en las actividades que lo ameriten.
+  <br>
+ </p>
+<input type="radio" value="1" onchange="ver3()" name="autm1">Sí deseo participar<br>
+<input type="radio" value="0" onchange="ocultar3()" name="autm1">No deseo participar 
+<br>
+<br>
+
+<div class="d-none" id="finllenadoMenor" style="text-align: center; font-style: italic; margin-top: 20px;">
+  <h4><b>Fin del llenado del formulario</b></h4>
+</div>
+
+<div class="d-none" id="datospersonalesm">
+  <h5>AUTORIZACIÓN PARA COMPARTIR DATOS PERSONALES EN FORMULARIO DE INSCRIPCIÓN</h5>
+  <p style="text-align: justify;">
+  Es necesaria para respaldar que la información de inscripción como NNA ha sido brindada de forma voluntaria, de acuerdo con los campos que se encuentran al final de esta ficha. La información será utilizada exclusivamente por Glasswing International y se almacenará de forma segura; asimismo, podría compartirse en reportes e informes con donantes y socios, manteniendo tu confidencialidad.
+    <br>
+   </p>
+   <input type="radio" value="1" onchange="ver4()" name="autm2" required>Autorizo la recolección y uso de información<br>
+   <input type="radio" value="0" onchange="ocultar4()" name="autm2">No autorizo la recolección y uso de información<br>
+   <br>
+</div>
+
+<div class="d-none" id="finllenadoMenor1" style="text-align: center; font-style: italic; margin-top: 20px;">
+  <h4><b>Fin del llenado del formulario</b></h4>
+</div>
+
+<div class="d-none" id="datospersonalesm2">
+<h5>AUTORIZACIÓN DE USO DE VOZ E IMAGEN</h5>
+<p style="text-align:justify;">
+  Pedimos permiso para sacar fotos y videos en grupo o individuales, siguiendo reglas importantes que protegen tus derechos, tomando de referencia el artículo 16 de la Convención sobre los Derechos de los Niños y Niñas, y del artículo 77 de la Ley Crecer Juntos para la Protección Integral de la Primera Infancia, Niñez y Adolescencia. Esta autorización incluye:<br>
+  • Las fotos y videos serán utilizados únicamente en medios oficiales de Glasswing y nuestros socios, como en nuestra página web y redes sociales.<br>
+  • También pueden aparecer en medios de comunicación, pero siempre para mostrar el trabajo de Glasswing o nuestros socios.<br>
+  • Las fotos y videos se usan por un tiempo máximo de cinco años. Algunas podrían estar más tiempo en informes importantes o en nuestros aniversarios.<br>
+  • Si hay eventos o presentaciones donde mostramos lo que hacemos, podríamos usar esas fotos y videos para compartir parte de nuestro trabajo, con otras personas.<br>
+  • Nunca vamos a usar estas fotos o videos para actividades de política, religión o para temas personales de alguien al interior de nuestra organización o de fuera.<br>
+  <br>
+  Si decides no autorizar el uso de voz e imagen, igual puedes participar en el programa. Si tienes preguntas o te preocupa algo sobre esto, estamos aquí para ayudarte.<br>
+  <input type="radio" value="1" name="autm3" required>Autorizo el uso de voz e imagen<br>
+  <input type="radio" value="0" name="autm3">No autorizo el uso de voz e imagen<br>
+  <br>
+  Es importante que usted sepa que tiene el derecho a acceder, rectificar, cancelar y retirar su autorización de participación, compartir datos personales y uso de voz e imagen, en cualquier momento, según lo considere necesario o conveniente. Para tal efecto, puede enviar un correo a info_mx@glasswing.org, notificando el retiro de su autorización para una o todas las autorizaciones brindadas en los apartados anteriores.
+</p>
+
+<p style="text-align: justify;">
+Doy fe que conozco toda la información necesaria para mi participación en el programa y que los campos requeridos, han sido marcados por mi persona (autorización de participación, autorización de uso de información y autorización de uso de voz e imagen).
+</p>
+
+    <div id="llenadofecha">
+      <label for="nacionalidad" class="form-label"><b>Seleccione nacionalidad:</b></label>
+      <select class="form-select" id="nacionalidad" name="nacionalidad" required>
+       <option value="" selected></option>
+       <option value="1">Mexicano(a)</option>
+       <option value="0">Extranjero(a)</option>
+    </select>
+  
+    <label for="anterior" class="form-label"><b>¿La menor ha participado en años anteriores en actividades de Glasswing?</b></label>
+    <select class="form-select" id="anterior" name="anterior" required>
+     <option value="" selected></option>
+     <option value="1">Sí</option>
+     <option value="0">No</option>
+</select>
+
+    <div class="col">
+      <label for="nombre" class="form-label"><b>Nombres completos de la menor:</b></label>
+      <input type="text" name="nombre" id="nombre" class="form-control" required maxlength="200">
+    </div>
+    <div class="col">
+      <label for="apellido" class="form-label"><b>Apellidos completos de la menor:</b></label>
+      <input type="text" name="apellido" id="apellido" class="form-control" required maxlength="200">
+    </div>
+
+    <label for="FechaN" class="form-label"><b>Fecha de nacimiento:</b></label>
+    <input type="date" name="FechaN" id="FechaN" class="form-control" placeholder="dd/mm/aaaa" required>
+
+    <div class="col">
+                <label for="Sexo" class="form-label"><b>Selecciona el sexo según registro nacional:</b></label>
+      <select class="form-select" id="Sexo" name="Sexo"  required>
+        <option value=""></option>
+        {{range .Sexo}}
+        <option value="{{.Value}}">{{.Label}}</option>
+      {{end}}
+      </select>
+    </div>
+
+         
+
+<div class="col">
+  <label for="dis" class="form-label"><b>¿Posee alguna discapacidad?</b></label>
+   <select class="form-select" id="dis" name="dis"  onchange="activaselect10()" required>
+    <option value="" selected></option>
+    <option value="1">Sí</option>
+    <option value="0">No</option>
+</select>
+</div>
+
+<div id="hidden-question-div10" class="col d-none">
+<label for="dis2" class="form-label"><b>¿Cuál?</b></label><br>
+<input type="checkbox" name="dis2" value="4"> Física<br>
+<input type="checkbox" name="dis2" value="2"> Auditiva<br>
+<input type="checkbox" name="dis2" value="3"> Visual<br>
+<input type="checkbox" name="dis2" value="5"> Cognitiva o intelectual<br>
+</div>
+
+<div class="col">
+  <label for="TdC" class="form-label"><b>¿La menor se encuentra estudiando actualmente?</b></label>
+  <select class="form-select" id="Eactual" name="Eactual" onchange="activaselect2()" required>
+   <option value="" selected></option>
+   <option value="1">Sí</option>
+   <option value="0">No</option>
+ </select>
+</div>
+
+<div id="hidden-question-div" class="col d-none">
+  <label for="Area" class="form-label"><b>¿Último grado alcanzado?</b></label>
+         <select class="form-select" id="UT" name="UT"  >
+             <option value="" selected></option>
+             {{range .Ultgrad}}
+             <option value="{{.Value}}">{{.Label}}</option>
+           {{end}}
+         </select>
+ </div>
+
+ <div id="hidden-question-div2" class="col d-none">
+  <label for="Area" class="form-label"><b>Seleccione el grado o el nivel educativo actual de la menor:</b></label>
+         <select class="form-select" id="GA" name="GA"  onchange="activaselect3()">
+             <option value="" selected></option>
+             {{range .Grado}}
+             <option value="{{.Value}}">{{.Label}}</option>
+           {{end}}
+         </select>
+
+ <div id="hidden-question-div3" class="col d-none">
+  <label for="seccion" class="form-label"><b>Seleccione la sección/grupo:</b></label>
+         <select class="form-select" id="seccion" name="seccion"  >
+           <option value="" selected></option>
+           {{range .Seccion}}
+           <option value="{{.Value}}">{{.Label}}</option>
+         {{end}}
+         </select>
+ </div>
+     <div id="hidden-question-div5" class="col d-none">
+  <label for="turno" class="form-label"><b>Seleccione el turno:</b></label>
+         <select class="form-select" id="Turno" name="Turno"  >
+           <option value="" selected></option>
+           {{range .Turno}}
+           <option value="{{.Value}}">{{.Label}}</option>
+         {{end}}
+         </select>
+ </div> 
+</div>
+
+<div class="col">
+  <label for="pais" class="form-label"><b>Seleccione el departamento donde se encuentra la escuela/sede a la que pertenece la menor</b></label>
+  <select class="form-select" id="pais2" name="pais2"  onchange="actualizarmun(this.value)" required >
+        <option value=""></option>
+        {{range .Depsede}}
+        <option value="{{.Value}}">{{.Label}}</option>
+        {{end}}
+      </select>  
+     
+</div>
+<div class="col">
+  <label for="departamento2" class="form-label"><b>Seleccione el municipio donde se encuentra la escuela/sede a la que pertenece la menor</b></label>
+   <select class="form-select" id="departamento2" name="departamento2"   onchange="actualizarsede(this.value)" required>
+</select>
+</div>
+
+<div class="col">
+  <label for="sede2" class="form-label"><b>Seleccione el centro educativo o sede Glasswing a la que pertenece la menor</b></label>
+   <select class="form-select" id="sede2" name="sede2" required >
+    <option value=""></option>
+</select>
+</div>
+
+<div class="col">
+  <label for="pais" class="form-label"><b>Seleccione el estado en el que reside la menor:</b></label>
+  <select class="form-select" id="pais" name="pais"  onchange="actualizarCiudades(this.value)" required>
+    <option value="" selected></option>
+    {{range .Departamento}}
+    <option value="{{.Value}}">{{.Label}}</option>
+  {{end}}
+</select>
+</div>
+<div class="col">
+  <label for="departamento" class="form-label"><b>Seleccione la alcaldía o municipio en el que reside la menor:</b></label>
+   <select class="form-select" id="departamento" name="departamento" required>
+    <option value="" selected></option>
+</select>
+</div>
+<label for="fechaficha" class="form-label"><b>Fecha de registro de la ficha fisica:</b></label>
+<input type="date" name="fechaficha" id="fechaficha" class="form-control" placeholder="dd/mm/aaaa" required>
+<input hidden type="text" name="idpais" id="idpais" value="17">
+</div>
+<br/>
+<button class="btn btn-primary" id="boton" type="submit"> Enviar</button>
+  </div>
+</div>
+</div>
+</div>
+      </form>
+    </div>
+   <script src="/static/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="/public/JS/Participantes/nnasaludmx.js"></script>
+  </body>
+</html>
+

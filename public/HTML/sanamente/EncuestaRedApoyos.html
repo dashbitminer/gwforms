@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <base target="_top">
+    <title> Encuesta de satisfacción de servicios de la Red y Apoyos Complementarios </title>
+   <link href="/static/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+  </head>
+
+<link rel="stylesheet" href="/public/CSS/estilos_sanamente_encuesta_Red_Apoyo.css" type="text/css">
+ 
+<body class="bg-custom">
+
+<div class="container">
+<img src="/public/IMG/Sanamente.png" class="img-fluid" alt="Glasswing" />
+
+<form action="/sanamente/Encuesta/RedyApoyos/post" method="POST" enctype="multipart/form-data" id="formualrioRegistro" name="formualrioRegistro" class="needs-validation" novalidatez>
+ 
+<h2> Encuesta de satisfacción de servicios de la Red y Apoyos Complementarios </h2>
+<p style="text-align: justify;">
+    Para la Red de Servicios y Apoyos Complementarios es importante tu opinión, por ello, nos gustaría saber cómo fue la atención recibida durante todo el proceso de apoyo que has recibido. Esta encuesta es totalmente anónima y lo que nos compartas será de utilidad para mejorar la atención a las personas que la Red apoya. Dar tu opinión no afectará de ninguna manera en el servicio que te encuentras recibiendo o en próximos apoyos que podamos brindarte. 
+        <br>
+              </p>
+            
+            <div class="col">
+                <label for="FechaN" class="form-label"><b>1. Escribe tu fecha de nacimiento:<span style="color: #FF7D81;">*</span></b></label>
+                <input type="date" name="FechaN" id="FechaN" class="form-control" placeholder="dd/mm/aaaa" onchange="activaselect4()" oninput="hideAlert2()">
+            </div>
+
+            <br>
+
+            <div id="alertContainer2" style="display: none;"></div> 
+
+        <div id="ocultar" class="d-none">
+
+            <div class="col">
+                <label for="sexo" class="form-label"><b>2. Sexo<span style="color: #FF7D81;">*</span></b></label>
+                <select class="form-select" id="sexo" name="sexo">
+                <option value="" selected></option>
+                <option value="0">Mujer</option>
+                <option value="1">Hombre</option>
+                </select>
+            </div>
+
+            <br>
+
+            <div class="col">
+                <label for="tipo1" class="form-label"><b>3. Tipo de servicio recibido:<span style="color: #FF7D81;">*</span></b></label>
+                <br>
+                <input type="radio" name="tipo1" id="tipo1" value="1" onchange="mostrarPreguntaOtro()" required>Atención psicológica</option><br><br>
+                <input type="radio" name="tipo1" id="tipo2" value="2" onchange="mostrarPreguntaOtro()">Apoyo médico</option><br><br>
+                <input type="radio" name="tipo1" id="tipo3" value="3" onchange="mostrarPreguntaOtro()">Asesoría legal</option><br><br>
+                <input type="radio" name="tipo1" id="tipo4" value="4" onchange="mostrarPreguntaOtro()">Apoyo humanitario (transporte, alimentación, vivienda)</option><br><br>
+                <input type="radio" name="tipo1" id="tipo5" value="5" onchange="mostrarPreguntaOtro()">Otro:</option><br><br> 
+            </div>
+
+            <div id="preguntaOtro" class="d-none">
+                <label for="otro" class="form-label"><b>Completar:<span style="color: #FF7D81;">*</b></label>
+                <input type="text" name="otro" id="otro" class="form-control" maxlength="500">
+            </div>
+
+            <br> 
+
+            <div class="col">
+                <label for="institucion" class="form-label"><b>4. Nombre de la institución que te brindó el servicio:<span style="color: #FF7D81;">*</b></label>
+                <br>
+                <input type="text" name="institucion" id="institucion" class="form-control" maxlength="500">
+            </div>
+            
+            <br>
+            
+            <div class="col">
+                <label for="cantServicio" class="form-label"><b>5. ¿Cuántas veces has recibido el servicio por parte de la institución?<span style="color: #FF7D81;">*</b></label>
+                <br>
+                <input class="form-control" type="number" min="1" step="1" name="cantServicio" id="cantServicio">
+            </div>
+            
+            <br>
+
+            <div class="col">
+                <label for="satis1" class="form-label"><b>6. ¿Qué tan satisfecho está con la atención y servicio recibido por parte de la institución socia (la institución que has colocado en la pregunta 4)?<span style="color: #FF7D81;">*</span></b></label>
+                <br>
+                <input type="radio" name="satis1" id="satis1" value="1" required>Muy insatisfecho/a</option><br><br>
+                <input type="radio" name="satis1" id="satis2" value="2">Insatisfecho/a</option><br><br>
+                <input type="radio" name="satis1" id="satis3" value="3">Algo satisfecho/a</option><br><br>
+                <input type="radio" name="satis1" id="satis4" value="4">Satisfecho/a</option><br><br>
+                <input type="radio" name="satis1" id="satis5" value="5">Muy satisfecho/a</option><br><br> 
+            </div>
+
+            <div class="col">
+                <label for="comentarios" class="form-label"><b>7. Dejanos tus comentarios y sugerencias sobre la atención recibida por parte de la institución que te brindó la atención (atención, tiempos de espera, seguridad, acceso al lugar, etc.):</b></label>
+                <br>
+                <input type="text" name="comentarios" id="comentarios" class="form-control" maxlength="500">
+            </div>
+
+            <br>
+
+            <div class="col">
+                <label for="op1" class="form-label"><b>8. Nos gustaría saber tu opinión sobre la atención recibida por parte de Glasswing. ¿Cómo le ha parecido la atención recibida por parte del personal Glasswing durante el proceso de ser referido/a?<span style="color: #FF7D81;">*</span></b></label>
+                <br>
+                <input type="radio" name="op1" id="op1" value="1" required>Muy insatisfecho/a</option><br><br>
+                <input type="radio" name="op1" id="op2" value="2">Insatisfecho/a</option><br><br>
+                <input type="radio" name="op1" id="op3" value="3">Algo satisfecho/a</option><br><br>
+                <input type="radio" name="op1" id="op4" value="4">Satisfecho/a</option><br><br>
+                <input type="radio" name="op1" id="op5" value="5">Muy satisfecho/a</option><br><br> 
+            </div>
+
+            <div class="col">
+                <label for="sugerencias" class="form-label"><b>9. Déjanos tus comentarios y sugerencias sobre la atención recibida por parte del personal de Glasswing:</b></label>
+                <br>
+                <input type="text" name="sugerencias" id="sugerencias" class="form-control" maxlength="500">
+            </div>
+
+            <br>
+            
+            <div align = "center">
+                <h5> ¡Muchas gracias! su opinión es muy importante. </h5>
+            </div>
+            
+
+            <br>
+            <input type="hidden" name="idp" value="{{.IdPais}}" id="idp">
+                <button class="btn btn-primary" id="boton" type="submit" style="display: inline-block;"> Enviar</button>
+                <br>
+                <br>
+
+        </div>
+            </form>
+        </div>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+  
+ <script src="/static/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="/public/JS/sanamente/encuestaRedApoyos.js"></script>
+  <script src="/static/sweetalert2/dist/sweetalert2.all.min.js"></script>
+  </body>
+</html>

@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Formulario de gestión de casos</title>
+    <meta charset="utf-8">
+    <base target="_top">
+    <link href="/static/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+     <style>
+      body {
+        background-color: #EFEAE2;
+      }
+    </style>
+    </head>
+  <body>
+
+    <div class="container">
+      <br>
+<div class="d-flex justify-content-between">
+<img src="/public/IMG/LOGO CREANDO.png" class="img-fluid" alt="Glasswing" style="height: 150px; object-fit: contain;" />
+<img src="/public/IMG/logo.png" class="img-fluid" alt="Glasswing" style="height: 150px; object-fit: contain;" />
+</div>
+<form method="POST" id="form" name="form" class="needs-validation" enctype="multipart/form-data" novalidatez>
+      <br><h3 class="text-center"><strong>Formulario de gestión de casos: Programa Creando Profesionales</strong></h3><br>
+    <label for="sede" class="form-label" style="font-weight: bold;">Selecciona la sede:</label>
+    <select class="form-select" id="sede" name="sede" required onchange="listado()">
+     <option value=""></option>
+     <option value="666">Sede Juventudes - San Salvador</option>
+     <option value="2968">Sede Juventudes - San Miguel</option>
+     <option value="1128">Sede Juventudes - Santa Ana</option>
+    </select>
+    <br>
+    <label for="ano" class="form-label" style="font-weight: bold;">Selecciona el año:</label>
+    <select class="form-select" id="ano" name="ano" required onchange="listado()">
+      <option value=""></option>
+      <option value="2022">2022</option>
+      <option value="2023">2023</option>
+      <option value="2024">2024</option>
+      <option value="2025">2025</option>
+      <option value="2026">2026</option>
+     </select>
+     <br>
+     <label for="cohorte" class="form-label" style="font-weight: bold;">Selecciona el número de cohorte:</label>
+     <select class="form-select" id="cohorte" name="cohorte" required onchange="listado()">
+       <option value=""></option>
+       <option value="1">1</option>
+       <option value="2">2</option>
+      </select>
+      <br>
+      <label for="participante" class="form-label" style="font-weight: bold;">Selecciona el nombre de la persona participante:</label>
+      <select class="form-select" id="participante" name="participante" required>
+        <option value=""></option>
+       </select>
+       <br>
+  <label for="Fechasesion" style="font-weight: bold;" class="form-label">Fecha de la sesión:</label>
+  <input type="date" name="fechasesion" id="fechasesion" class="form-control" placeholder="dd/mm/aaaa" required>
+  <br>
+  <label for="duracion" style="font-weight: bold;"  class="form-label">¿Cuál fue la duración de la sesión en minutos?</label>
+  <input type="number" name="duracion" id="duracion" class="form-control" min="0" step="1" required>
+  <br>
+  <label for="tipo" class="form-label" style="font-weight: bold;">Seleccione el tipo de caso a registrar:</label>
+  <select class="form-select" id="tipo" name="tipo" required onchange="btipo(this.value)">
+    <option value=""></option>
+    <option value="1">Seguimiento general.</option>
+    <option value="2">Intervención psicosocial.</option>
+    <option value="3">Seguimiento a plan de vida o hábitos.</option>
+    <option value="4">Deserción de participante.</option>
+   </select>
+
+   <div id="subtipodiv"></div>   
+    <div id="continuacionformulario">
+      <div id="final">
+        <br>
+        <label for="pro" class="form-label" style="font-weight: bold;">¿Se brindará seguimiento a este proceso?</label>
+        <select class="form-select" id="pro" name="pro" onchange="fseguimientos(this.value)" required>
+          <option value=""></option>
+          <option value="1">Sí</option>
+          <option value="2">No</option>
+         </select>
+         <div id="seguimientosdivnuevo"></div>
+         <br>
+         <label for="pcomentarios" class="form-label" style="font-weight: bold;">¿Tiene comentarios?</label>
+        <select class="form-select" id="pcomentarios" name="pcomentarios" onchange="fcomentario(this.value)" required>
+          <option value=""></option>
+          <option value="1">Sí</option>
+          <option value="2">No</option>
+         </select>
+         <div id="comentariosdiv" class="d-none">
+          <br>
+          <label for="comentarios" class="form-label" style="font-weight: bold;">Comentarios:</label>
+          <textarea class="form-control" id="comentarios" name="comentarios" rows="3" maxlength="1000"></textarea>
+         </div>
+         <br>
+  <button class="btn btn-primary" id="boton" type="submit" onclick="guardar(event)"> Enviar</button>
+</div>
+  </div>
+</div>
+      </form>
+    </div>
+   <script src="/static/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="/static/signature_pad/dist/signature_pad.umd.min.js"></script>
+    <script src="/public/JS/MdV/seguimiento.js"></script>
+  </body>
+</html>

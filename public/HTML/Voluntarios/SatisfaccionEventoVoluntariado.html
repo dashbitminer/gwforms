@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <base target="_top">
+   <link href="/static/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+   <link rel="stylesheet" href="/static/bootstrap-select/dist/css/bootstrap-select.min.css">
+   <link rel="icon" href="https://gwdata.org/images/favicon.png" type="image/png">
+    <title>Encuesta de satisfacción evento para personas voluntarias</title>
+  </head>
+  <body style=" background-color: #EAFFDB; font-family: 'Montserrat', sans-serif;">
+    <div id="contentToPrint">
+      <img src="/public/IMG/Fondo para formulario de registro.jpg" class="img-fluid" alt="Glasswing" style="width: 100% ">
+      <div class="container">
+        <form id="form">
+          <br><br>
+          <h2 style="color: #1A1241;text-align: center; font-family: 'Montserrat', sans-serif; font-weight: bold;"> 
+            Encuesta de satisfacción evento para personas voluntarias</h2>
+          <br>
+          <p style="text-align: justify;">
+          <b>¡Gracias por ser parte del programa de voluntariado Glasswing!</b><br><br>
+          En Glasswing, valoramos profundamente tu compromiso y dedicación. Queremos asegurarnos de que el evento que organizamos para ti haya sido una experiencia 
+          positiva y memorable. Tu opinión es fundamental para nosotros, ya que nos ayuda a mejorar continuamente y a ofrecer actividades más impactantes y enriquecedoras. <br>
+          Te agradeceríamos que tomaras unos minutos para completar esta breve encuesta y compartir tu experiencia con nosotros.<br><br>
+          <b>¡Agradecemos tu valioso tiempo y retroalimentación!</b><br>
+            </p>
+            <p style="text-align: justify;"></p>
+            <b>Indicaciones:</b><br>
+            1. Por favor, siéntete en la libertad de responder con completa honestidad. Recuerda que esta encuesta es anónima.<br>
+            2. Lea detenidamente las preguntas que se presentan a continuación y seleccione las respuestas según su criterio.<br><br>
+            Sus respuestas nos ayudarán a mejorar la experiencia de futuras personas voluntarias que participen en las actividades de nuestro programa.<br>
+            </p> 
+
+              {{range .Preguntas}}
+              {{if eq .Value "1" }}
+              <label for="p{{.Value}}" class="form-label">{{.Label}}</label>
+              <select class="form-select" id="p{{.Value}}" name="p{{.Value}}" required>
+                {{end}}
+                {{end}}
+                <option value="" selected></option>
+                {{range .Solucion}}
+                {{if eq .IdPregunta "1" }}
+                <option value="{{.Value}}">{{.Label}}</option>
+                {{end}}
+                {{end}}
+                </select>
+
+              </br>
+
+              {{range .Preguntas}}
+              {{if eq .Value "45" }}
+              <label for="p{{.Value}}" class="form-label">{{.Label}}</label>
+              <select class="form-select" id="p{{.Value}}" name="p{{.Value}}" onchange="activaselect1()" required>
+                {{end}}
+                {{end}}
+                <option value="" selected></option>
+                {{range .Solucion}}
+                {{if eq .IdPregunta "12" }}
+                <option value="{{.Value}}">{{.Label}}</option>
+                {{end}}
+                {{end}}
+                </select>
+
+              </br>
+
+              <div id="otrol" class="d-none">
+                {{range .Preguntas}}
+                {{if eq .Value "46" }}
+                <label for="p{{.Value}}" class="form-label">{{.Label}}</label>
+                    </br>
+                <input type="text" id="noasiste" name="noasiste" class="form-control" maxlength="300" required>
+                  {{end}}
+                  {{end}}
+              </div>
+
+              </br>
+
+              {{range .Preguntas}}
+              {{if eq .Value "3" }}
+              <label for="p{{.Value}}" class="form-label">{{.Label}}</label><br>
+                {{end}}
+                {{end}}
+                {{range .Solucion}}
+                {{if eq .IdPregunta "3" }}
+                <input class="form-check-input" type="checkbox" name="p3" value="{{.Value}}" onchange="activaselect2(this.value)"> {{.Label}}</option><br>
+                {{end}}
+                {{end}}
+                
+              </br>
+                <div id="otrol2" class="d-none">
+                  <label for="otro2" class="form-label">Ingresa el programa:</label>
+                  <input type="text" name="otro2" id="otro2" class="form-control" maxlength="200">
+                </div>
+              </br>
+
+              {{range .Preguntas}}
+              {{if eq .Value "4" }}
+              <label for="p{{.Value}}" class="form-label">{{.Label}}</label>
+              <select class="form-select" id="p{{.Value}}" name="p{{.Value}}" required>
+                {{end}}
+                {{end}}
+                <option value="" selected></option>
+                {{range .Solucion}}
+                {{if eq .IdPregunta "19" }}
+                <option value="{{.Value}}">{{.Label}}</option>
+                {{end}}
+                {{end}}
+                </select>
+
+              </br>
+
+              {{range .Preguntas}}
+              {{if eq .Value "5" }}
+              <label for="p{{.Value}}" class="form-label">{{.Label}}</label>
+              <select class="form-select" id="p{{.Value}}" name="p{{.Value}}" required>
+                {{end}}
+                {{end}}
+                <option value="" selected></option>
+                {{range .Solucion}}
+                {{if eq .IdPregunta "4" }}
+                <option value="{{.Value}}">{{.Label}}</option>
+                {{end}}
+                {{end}}
+                </select>
+              
+              </br>
+
+              <h4><b>Perfil de voluntariado</b></h4>
+              <p style="text-align: justify ;">
+                Aquí te presentamos una breve descripción de nuestros perfiles de voluntariado. Te invitamos a leer atentamente cada uno y seleccionar aquel con el que más te identifiques.
+              </p>
+
+              <p>
+              <b>Individual:</b> Realizo mi voluntariado como persona independiente; no pertenezco a la comunidad donde Glasswing tiene intervención ni al voluntariado de mi lugar de trabajo (Ejemplo: estudiante universitario).<br>
+
+              <b>Corporativo:</b> Realizo mi voluntariado como parte del programa de Responsabilidad Social Empresarial de mi lugar de trabajo.<br>
+
+              <b>Miembro de la comunidad:</b> Pertenezco a la comunidad donde Glasswing tiene intervención (Ejemplo: familiar, vecino, miembro de la junta directiva, etc.).<br>
+
+              <b>Estudiante del Centro Educativo:</b> Soy estudiante activo del centro educativo o sede donde Glasswing tiene intervención.<br>
+
+              <b>Exestudiante:</b> Soy exestudiante del centro educativo o sede donde Glasswing tiene intervención.<br>
+
+              <b>Docente o Personal Administrativo del Centro Educativo:</b> Soy docente o personal administrativo del centro educativo donde Glasswing tiene intervención.<br>
+
+              <b>Staff Glasswing:</b> Soy parte del equipo de Glasswing y participo como persona voluntaria en un programa, centro educativo, servicio de salud o sede donde se tiene intervención.<br>
+
+              <b>Glasswing Fellow:</b> Realizo voluntariado como parte del programa Fellow.
+              </p>
+
+              {{range .Preguntas}}
+              {{if eq .Value "6" }}
+              <label for="p{{.Value}}" class="form-label">{{.Label}}</label>
+              <select class="form-select" id="p{{.Value}}" name="p{{.Value}}" required>
+                {{end}}
+                {{end}}
+                <option value="" selected></option>
+                {{range .Solucion}}
+                {{if eq .IdPregunta "5" }}
+                <option value="{{.Value}}">{{.Label}}</option>
+                {{end}}
+                {{end}}
+                </select>
+              
+                </br>
+
+              {{range .Preguntas}}
+              {{if eq .Value "47" }}
+              <label for="p{{.Value}}" class="form-label">1. {{.Label}}</label>
+              <small class="form-text text-muted">(Selecciona todas las opciones que apliquen)</small> <br>
+                {{end}}
+                {{end}}
+                {{range .Solucion}}
+                {{if eq .IdPregunta "21" }}
+                <input class="form-check-input" type="checkbox" name="p47" value="{{.Value}}"> {{.Label}}</option><br>
+                {{end}}
+                {{end}}
+
+              </br>
+
+              {{range .Preguntas}}
+              {{if eq .Value "48" }}
+              <label for="p{{.Value}}" class="form-label">2. {{.Label}}</label>
+              <small class="form-text text-muted">(Selecciona todas las opciones que consideres relevantes)</small> <br>
+                {{end}}
+                {{end}}
+                {{range .Solucion}}
+                {{if eq .IdPregunta "22" }}
+                <input class="form-check-input" type="checkbox" name="p48" value="{{.Value}}"> {{.Label}}</option><br>
+                {{end}}
+                {{end}}
+
+              </br>
+
+              {{range .Preguntas}}
+              {{if eq .Value "49" }}
+              <label for="p{{.Value}}" class="form-label">3. {{.Label}}</label>
+                  </br>
+              <input type="text" id="opinion" name="opinion" class="form-control" maxlength="300" required>
+                {{end}}
+                {{end}}
+                    
+              </br>
+
+              {{range .Preguntas}}
+              {{if eq .Value "50" }}
+              <label for="p{{.Value}}" class="form-label">4. {{.Label}}</label>
+                  </br>
+              <input type="text" id="sugerencias" name="sugerencias" class="form-control" maxlength="300" required>
+                {{end}}
+                {{end}}
+                    
+              </br>
+
+              {{range .Preguntas}}
+              {{if eq .Value "51" }}
+              <label for="p{{.Value}}" class="form-label">5. {{.Label}}</label>
+              <select class="form-select" id="p{{.Value}}" name="p{{.Value}}" onchange="activaselect3()" required>
+                {{end}}
+                {{end}}
+                <option value="" selected></option>
+                {{range .Solucion}}
+                {{if eq .IdPregunta "12" }}
+                <option value="{{.Value}}">{{.Label}}</option>
+                {{end}}
+                {{end}}
+                </select>
+
+              </br>
+
+              <div id="otrol3" class="d-none">
+                {{range .Preguntas}}
+                {{if eq .Value "52" }}
+                <label for="p{{.Value}}" class="form-label">{{.Label}}</label>
+                    </br>
+                <input type="text" id="comentarios" name="comentarios" class="form-control" maxlength="300" required>
+                  {{end}}
+                  {{end}}
+              </div>
+
+              </br>
+              </br> 
+
+            <button class="btn btn-primary" type="submit" onclick="guardar(event)"> Enviar</button>
+
+        </form>
+      </div>
+    </div>
+    <script src="/static/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="/public/JS/Voluntarios/encuestaeventovol.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="/static/bootstrap-select/dist/js/bootstrap-select.min.js"></script>
+    <script src="/static/sweetalert2/dist/sweetalert2.all.min.js"></script>
+  </body>
+</html>
